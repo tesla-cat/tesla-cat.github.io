@@ -1,8 +1,0 @@
-
-`Read The Docs`_ 
-=======================================
-
-.. _Read The Docs: https://tesla-cat.github.io/Cognitive-Neuroscience/index.html
-
-.. toctree::
-	Cognitive-Neuroscience-Michael/index

@@ -1,0 +1,478 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>PyTorch Tutorial Transformer &mdash; Simple Physics  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Thermodynamics And Statistical Mechanics" href="../Thermodynamics-And-Statistical-Mechanics/index.html" />
+    <link rel="prev" title="Awesome Stock Ai" href="Awesome-Stock-Ai.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Simple Physics
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Math</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Math/index.html">Math</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Relativity</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Relativity/index.html">Relativity</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Mechanics-Feynman-Path-Integral/index.html">Quantum Mechanics: Feynman Path Integral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Computation/index.html">Quantum Computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Optics/index.html">Quantum Optics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Density-Functional-Theory/index.html">Density Functional Theory</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Electronics and Coding</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Experimental-Physics-SoC-FPGA-Design/index.html">Experimental Physics: SoC FPGA Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Django/index.html">Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Signal-Processing/index.html">Signal-Processing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Machine Learning</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Machine Learning</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="PyTorch-Get-Started.html">PyTorch Get Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PyTorch-Tutorial-DQN.html">Reinforcement-Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PyTorch-Tutorial-RNN-1.html">PyTorch Tutorial RNN 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PyTorch-Tutorial-RNN-2.html">PyTorch Tutorial RNN 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Awesome-Stock-Ai.html">Awesome Stock Ai</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">PyTorch Tutorial Transformer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#transformer-model">Transformer Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-and-training">Data And Training</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Statistical Mechanics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Thermodynamics-And-Statistical-Mechanics/index.html">Thermodynamics And Statistical Mechanics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">BioPhysics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Biomolecular-Physics/index.html">Biomolecular Physics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Papers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Papers-Quantum-Computers/index.html">Papers: Quantum Computers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Simple Physics</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Machine Learning</a> &raquo;</li>
+        
+      <li>PyTorch Tutorial Transformer</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Machine-Learning/PyTorch-Tutorial-Transformer.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pytorch-tutorial-transformer">
+<h1>PyTorch Tutorial Transformer<a class="headerlink" href="#pytorch-tutorial-transformer" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Date</dt>
+<dd class="field-odd"><p>23 Oct 2019</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span><span class="p">;</span> <span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="nb">open</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">torch</span><span class="p">;</span> <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="kn">as</span> <span class="nn">nn</span><span class="p">;</span> <span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="kn">as</span> <span class="nn">F</span>
+</pre></div>
+</div>
+<div class="section" id="transformer-model">
+<h2>Transformer Model<a class="headerlink" href="#transformer-model" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">PosEncoder</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">embedDim</span><span class="p">,</span><span class="n">dropoutProb</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="n">maxPos</span><span class="o">=</span><span class="mi">5000</span><span class="p">):</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">PosEncoder</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">dropoutProb</span><span class="p">)</span>
+    <span class="n">posEnc</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">maxPos</span><span class="p">,</span><span class="n">embedDim</span><span class="p">)</span>
+    <span class="n">position</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">maxPos</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">divTerm</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">embedDim</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">*</span>\
+                      <span class="p">(</span><span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1e4</span><span class="p">)</span><span class="o">/</span><span class="n">embedDim</span><span class="p">))</span>
+    <span class="n">posEnc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">position</span><span class="o">*</span><span class="n">divTerm</span><span class="p">)</span>
+    <span class="n">posEnc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">position</span><span class="o">*</span><span class="n">divTerm</span><span class="p">)</span>
+    <span class="n">posEnc</span><span class="o">=</span><span class="n">posEnc</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">register_buffer</span><span class="p">(</span><span class="s1">&#39;posEnc&#39;</span><span class="p">,</span><span class="n">posEnc</span><span class="p">)</span>
+    <span class="c1"># This is used to register a buffer that</span>
+    <span class="c1"># should not to be considered a model parameter</span>
+  <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+    <span class="c1"># x.shape = [seqLen, batchSize, embedDim]</span>
+    <span class="c1"># output.shape = x.shape</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">posEnc</span><span class="p">[:</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="p">:])</span>
+
+<span class="k">class</span> <span class="nc">Transformer</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">numEmbeds</span><span class="p">,</span><span class="n">embedDim</span><span class="p">,</span><span class="n">nHeads</span><span class="p">,</span><span class="n">feedforwardDim</span><span class="p">,</span>
+               <span class="n">nLayers</span><span class="p">,</span><span class="n">dropoutProb</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">Transformer</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">embedDim</span><span class="o">=</span><span class="n">embedDim</span><span class="p">;</span> <span class="bp">self</span><span class="o">.</span><span class="n">numEmbeds</span><span class="o">=</span><span class="n">numEmbeds</span>
+
+    <span class="kn">from</span> <span class="nn">torch.nn</span> <span class="kn">import</span> <span class="n">TransformerEncoder</span><span class="p">,</span> <span class="n">TransformerEncoderLayer</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">inputSeqMask</span><span class="o">=</span><span class="bp">None</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">posEncoder</span><span class="o">=</span><span class="n">PosEncoder</span><span class="p">(</span><span class="n">embedDim</span><span class="p">,</span><span class="n">dropoutProb</span><span class="p">)</span>
+    <span class="n">encoderLayers</span><span class="o">=</span><span class="n">TransformerEncoderLayer</span><span class="p">(</span><span class="n">embedDim</span><span class="p">,</span><span class="n">nHeads</span><span class="p">,</span>
+                                          <span class="n">feedforwardDim</span><span class="p">,</span><span class="n">dropoutProb</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">transformerEncoder</span><span class="o">=</span><span class="n">TransformerEncoder</span><span class="p">(</span><span class="n">encoderLayers</span><span class="p">,</span><span class="n">nLayers</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">numEmbeds</span><span class="p">,</span><span class="n">embedDim</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">decoderLinear</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">embedDim</span><span class="p">,</span><span class="n">numEmbeds</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">initWeights</span><span class="p">()</span>
+  <span class="k">def</span> <span class="nf">initWeights</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">initRange</span><span class="o">=</span><span class="mf">0.1</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">uniform_</span><span class="p">(</span><span class="o">-</span><span class="n">initRange</span><span class="p">,</span><span class="n">initRange</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">decoderLinear</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">decoderLinear</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">uniform_</span><span class="p">(</span><span class="o">-</span><span class="n">initRange</span><span class="p">,</span><span class="n">initRange</span><span class="p">)</span>
+  <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">inputSeq</span><span class="p">,</span><span class="n">hasMask</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">hasMask</span><span class="p">:</span>
+      <span class="n">device</span><span class="o">=</span><span class="n">inputSeq</span><span class="o">.</span><span class="n">device</span>
+      <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputSeqMask</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputSeqMask</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">!=</span><span class="nb">len</span><span class="p">(</span><span class="n">inputSeq</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inputSeqMask</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">squareSubsequentMast</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">inputSeq</span><span class="p">))</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">inputSeqMask</span><span class="o">=</span><span class="bp">None</span>
+    <span class="n">inputSeq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">posEncoder</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="p">(</span><span class="n">inputSeq</span><span class="p">)</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">numEmbeds</span><span class="p">))</span>
+    <span class="n">outputSeq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">transformerEncoder</span><span class="p">(</span><span class="n">inputSeq</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">inputSeqMask</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">log_softmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">decoderLinear</span><span class="p">(</span><span class="n">outputSeq</span><span class="p">),</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+  <span class="k">def</span> <span class="nf">squareSubsequentMast</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">size</span><span class="p">):</span>
+    <span class="n">mask</span><span class="o">=</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">size</span><span class="p">,</span><span class="n">size</span><span class="p">))</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">mask</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">masked_fill</span><span class="p">(</span><span class="n">mask</span><span class="o">==</span><span class="mi">0</span><span class="p">,</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;-inf&#39;</span><span class="p">))</span>\
+                     <span class="o">.</span><span class="n">masked_fill</span><span class="p">(</span><span class="n">mask</span><span class="o">==</span><span class="mi">1</span><span class="p">,</span><span class="nb">float</span><span class="p">(</span><span class="mf">0.0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-and-training">
+<h2>Data And Training<a class="headerlink" href="#data-and-training" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Dictionary</span><span class="p">:</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">wordToIndex</span><span class="o">=</span><span class="p">{};</span> <span class="bp">self</span><span class="o">.</span><span class="n">indexToWord</span><span class="o">=</span><span class="p">[]</span>
+  <span class="k">def</span> <span class="nf">addWord</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">word</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">wordToIndex</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">indexToWord</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">wordToIndex</span><span class="p">[</span><span class="n">word</span><span class="p">]</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indexToWord</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">wordToIndex</span><span class="p">[</span><span class="n">word</span><span class="p">]</span>
+
+<span class="k">class</span> <span class="nc">Corpus</span><span class="p">:</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">path</span><span class="p">,</span><span class="n">batchSize</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">batchSize</span><span class="o">=</span><span class="n">batchSize</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">dictionary</span><span class="o">=</span><span class="n">Dictionary</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">trainData</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fileToIndices</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="s1">&#39;train.txt&#39;</span><span class="p">))</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">validData</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fileToIndices</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="s1">&#39;valid.txt&#39;</span><span class="p">))</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">testData</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fileToIndices</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="s1">&#39;test.txt&#39;</span><span class="p">))</span>
+  <span class="k">def</span> <span class="nf">fileToIndices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">path</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">myFile</span><span class="p">:</span>
+      <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">myFile</span><span class="p">:</span>
+        <span class="n">words</span><span class="o">=</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span><span class="o">+</span><span class="p">[</span><span class="s1">&#39;&lt;eos&gt;&#39;</span><span class="p">]</span> <span class="c1"># end of seq</span>
+        <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+          <span class="bp">self</span><span class="o">.</span><span class="n">dictionary</span><span class="o">.</span><span class="n">addWord</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">myFile</span><span class="p">:</span>
+      <span class="n">fileToIndices</span><span class="o">=</span><span class="p">[]</span>
+      <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">myFile</span><span class="p">:</span>
+        <span class="n">words</span><span class="o">=</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span><span class="o">+</span><span class="p">[</span><span class="s1">&#39;&lt;eos&gt;&#39;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+          <span class="n">fileToIndices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dictionary</span><span class="o">.</span><span class="n">wordToIndex</span><span class="p">[</span><span class="n">word</span><span class="p">])</span>
+      <span class="n">nSlices</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">fileToIndices</span><span class="p">)</span><span class="o">//</span><span class="bp">self</span><span class="o">.</span><span class="n">batchSize</span>
+    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">fileToIndices</span><span class="p">[:</span><span class="n">nSlices</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">batchSize</span><span class="p">])</span>\
+      <span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">batchSize</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">t</span><span class="p">()</span><span class="o">.</span><span class="n">contiguous</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+<span class="c1"># alphabet as the sequence, batchSize=4</span>
+<span class="c1"># ┌ a g m s ┐</span>
+<span class="c1"># │ b h n t │</span>
+<span class="c1"># │ c i o u │</span>
+<span class="c1"># │ d j p v │</span>
+<span class="c1"># │ e k q w │</span>
+<span class="c1"># └ f l r x ┘.</span>
+<span class="c1"># These columns are treated as independent by the model, which means that the</span>
+<span class="c1"># dependence of e. g. &#39;g&#39; on &#39;f&#39; can not be learned, but allows more efficient</span>
+<span class="c1"># batch processing.</span>
+
+<span class="k">class</span> <span class="nc">Trainer</span><span class="p">:</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">batchSize</span><span class="p">,</span><span class="n">seqLen</span><span class="p">,</span><span class="n">clip</span><span class="p">,</span><span class="n">learnRate</span><span class="p">,</span>
+               <span class="n">embedDim</span><span class="p">,</span><span class="n">nHead</span><span class="p">,</span><span class="n">feedforwardDim</span><span class="p">,</span><span class="n">nLayers</span><span class="p">,</span><span class="n">dropoutProb</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">seqLen</span><span class="o">=</span><span class="n">seqLen</span><span class="p">;</span> <span class="bp">self</span><span class="o">.</span><span class="n">clip</span><span class="o">=</span><span class="n">clip</span><span class="p">;</span> <span class="bp">self</span><span class="o">.</span><span class="n">learnRate</span><span class="o">=</span><span class="n">learnRate</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">corpus</span><span class="o">=</span><span class="n">Corpus</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="n">batchSize</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">trainData</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">numEmbeds</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">dictionary</span><span class="o">.</span><span class="n">indexToWord</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">transformer</span><span class="o">=</span><span class="n">Transformer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">numEmbeds</span><span class="p">,</span><span class="n">embedDim</span><span class="p">,</span><span class="n">nHead</span><span class="p">,</span>
+                                 <span class="n">feedforwardDim</span><span class="p">,</span><span class="n">nLayers</span><span class="p">,</span>
+                                 <span class="n">dropoutProb</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">criterion</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
+
+  <span class="k">def</span> <span class="nf">getSeq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">fullData</span><span class="p">,</span><span class="n">startIndex</span><span class="p">):</span>
+    <span class="n">seqLen</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">seqLen</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">fullData</span><span class="p">)</span><span class="o">-</span><span class="n">startIndex</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">inputSeq</span> <span class="o">=</span><span class="n">fullData</span><span class="p">[</span><span class="n">startIndex</span>  <span class="p">:</span><span class="n">startIndex</span><span class="o">+</span><span class="n">seqLen</span><span class="p">]</span>
+    <span class="n">targetSeq</span><span class="o">=</span><span class="n">fullData</span><span class="p">[</span><span class="n">startIndex</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">startIndex</span><span class="o">+</span><span class="n">seqLen</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1">#print(&#39;@getSeq:inputSeq,targetSeq&#39;,inputSeq.shape,targetSeq.shape)</span>
+    <span class="k">return</span> <span class="n">inputSeq</span><span class="p">,</span><span class="n">targetSeq</span>
+<span class="c1"># self.seqLen=2, startIndex=0</span>
+<span class="c1">#  inputSeq    targetSeq</span>
+<span class="c1"># ┌ a g m s ┐ ┌ b h n t ┐</span>
+<span class="c1"># └ b h n t ┘ └ c i o u ┘</span>
+
+  <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">fullData</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span> <span class="c1"># turn on eval mode which disables dropout</span>
+    <span class="n">totalLoss</span><span class="o">=</span><span class="mf">0.</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+      <span class="k">for</span> <span class="n">startIndex</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">fullData</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">seqLen</span><span class="p">):</span>
+        <span class="n">inputSeq</span><span class="p">,</span><span class="n">targetSeq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">getSeq</span><span class="p">(</span><span class="n">fullData</span><span class="p">,</span><span class="n">startIndex</span><span class="p">)</span>
+        <span class="n">outputSeq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">transformer</span><span class="p">(</span><span class="n">inputSeq</span><span class="p">)</span>
+        <span class="n">outputSeqFlat</span><span class="o">=</span><span class="n">outputSeq</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">numEmbeds</span><span class="p">)</span>
+        <span class="n">totalLoss</span><span class="o">+=</span><span class="nb">len</span><span class="p">(</span><span class="n">inputSeq</span><span class="p">)</span><span class="o">*</span>\
+          <span class="bp">self</span><span class="o">.</span><span class="n">criterion</span><span class="p">(</span><span class="n">outputSeqFlat</span><span class="p">,</span><span class="n">targetSeq</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">totalLoss</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">fullData</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">trainOneEpoch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">fullData</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span> <span class="c1"># turn on training mode which enables dropout</span>
+    <span class="n">totalLoss</span><span class="o">=</span><span class="mf">0.</span>
+    <span class="k">for</span> <span class="nb">iter</span><span class="p">,</span> <span class="n">startIndex</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">fullData</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">seqLen</span><span class="p">)):</span>
+      <span class="n">inputSeq</span><span class="p">,</span><span class="n">targetSeq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">getSeq</span><span class="p">(</span><span class="n">fullData</span><span class="p">,</span><span class="n">startIndex</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+      <span class="n">outputSeq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">transformer</span><span class="p">(</span><span class="n">inputSeq</span><span class="p">)</span>
+      <span class="n">outputSeqFlat</span><span class="o">=</span><span class="n">outputSeq</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">numEmbeds</span><span class="p">)</span>
+      <span class="n">loss</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">criterion</span><span class="p">(</span><span class="n">outputSeqFlat</span><span class="p">,</span><span class="n">targetSeq</span><span class="p">)</span>
+      <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+      <span class="c1"># `clip_grad_norm` helps prevent the exploding gradient problem in RNNs / LSTMs.</span>
+      <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">clip_grad_norm_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span><span class="bp">self</span><span class="o">.</span><span class="n">clip</span><span class="p">)</span>
+      <span class="c1"># modify?</span>
+      <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">parameters</span><span class="p">():</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">add_</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">learnRate</span><span class="o">*</span><span class="n">p</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+      <span class="n">totalLoss</span><span class="o">+=</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+      <span class="k">if</span> <span class="nb">iter</span><span class="o">%</span><span class="mi">100</span><span class="o">==</span><span class="mi">0</span> <span class="ow">and</span> <span class="nb">iter</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;loss {:5.2f}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">totalLoss</span><span class="o">/</span><span class="mi">100</span><span class="p">));</span> <span class="n">totalLoss</span><span class="o">=</span><span class="mi">0</span>
+  <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">nEpochs</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nEpochs</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;fuck&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trainOneEpoch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">trainData</span><span class="p">)</span>
+        <span class="n">validLoss</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">validData</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">69</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">bestValidLoss</span> <span class="ow">or</span> <span class="n">validLoss</span><span class="o">&lt;</span><span class="n">bestValidLoss</span><span class="p">:</span>
+          <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">savePath</span><span class="p">,</span><span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">myFile</span><span class="p">:</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transformer</span><span class="p">,</span><span class="n">myFile</span><span class="p">)</span>
+          <span class="n">bestValidLoss</span><span class="o">=</span><span class="n">validLoss</span>
+        <span class="k">else</span><span class="p">:</span>
+          <span class="bp">self</span><span class="o">.</span><span class="n">learnRate</span><span class="o">/=</span><span class="mf">4.0</span> <span class="c1"># anneal learnRate if no improvement</span>
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+      <span class="k">print</span><span class="p">(</span><span class="s1">&#39;fuck you&#39;</span><span class="p">)</span>
+
+
+<span class="n">device</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cude&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
+<span class="n">t</span><span class="o">=</span><span class="n">Trainer</span><span class="p">(</span><span class="n">batchSize</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">seqLen</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span><span class="n">clip</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">learnRate</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span>
+          <span class="n">embedDim</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span><span class="n">nHead</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">feedforwardDim</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span><span class="n">nLayers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">dropoutProb</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">t</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">104431</span><span class="p">,</span> <span class="mi">20</span><span class="p">])</span>
+<span class="n">fuck</span>
+<span class="n">loss</span>  <span class="mf">8.01</span>
+<span class="n">loss</span>  <span class="mf">7.30</span>
+<span class="n">loss</span>  <span class="mf">6.97</span>
+<span class="n">loss</span>  <span class="mf">6.79</span>
+<span class="n">loss</span>  <span class="mf">6.70</span>
+<span class="n">loss</span>  <span class="mf">6.56</span>
+<span class="n">loss</span>  <span class="mf">6.49</span>
+<span class="n">loss</span>  <span class="mf">6.45</span>
+<span class="n">loss</span>  <span class="mf">6.39</span>
+<span class="n">loss</span>  <span class="mf">6.34</span>
+<span class="n">loss</span>  <span class="mf">6.23</span>
+<span class="n">loss</span>  <span class="mf">6.23</span>
+<span class="n">loss</span>  <span class="mf">6.18</span>
+<span class="n">loss</span>  <span class="mf">6.07</span>
+<span class="n">loss</span>  <span class="mf">6.10</span>
+<span class="n">loss</span>  <span class="mf">6.11</span>
+<span class="n">loss</span>  <span class="mf">6.05</span>
+<span class="n">loss</span>  <span class="mf">5.96</span>
+<span class="n">loss</span>  <span class="mf">5.92</span>
+<span class="n">loss</span>  <span class="mf">5.94</span>
+<span class="n">loss</span>  <span class="mf">5.83</span>
+<span class="n">loss</span>  <span class="mf">5.77</span>
+<span class="n">loss</span>  <span class="mf">5.73</span>
+<span class="n">loss</span>  <span class="mf">5.80</span>
+<span class="n">loss</span>  <span class="mf">5.75</span>
+<span class="n">loss</span>  <span class="mf">5.75</span>
+<span class="n">loss</span>  <span class="mf">5.66</span>
+<span class="n">loss</span>  <span class="mf">5.62</span>
+<span class="n">loss</span>  <span class="mf">5.64</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Thermodynamics-And-Statistical-Mechanics/index.html" class="btn btn-neutral float-right" title="Thermodynamics And Statistical Mechanics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Awesome-Stock-Ai.html" class="btn btn-neutral float-left" title="Awesome Stock Ai" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Tesla Cat
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

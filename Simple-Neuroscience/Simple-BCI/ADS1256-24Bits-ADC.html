@@ -1,0 +1,323 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ADS1256 24Bits ADC &mdash; Simple Neuroscience  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Simple BCI" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Simple Neuroscience
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Cognitive-Neuroscience-Michael/index.html">Cognitive Neuroscience Michael</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Simple BCI</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ADS1256 24Bits ADC</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#general-recommendations">General Recommendations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#digital-interface-connections">Digital Interface Connections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-about-esp32">What about ESP32?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-plan">The plan</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Simple Neuroscience</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Simple BCI</a> &raquo;</li>
+        
+      <li>ADS1256 24Bits ADC</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Simple-BCI/ADS1256-24Bits-ADC.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ads1256-24bits-adc">
+<h1>ADS1256 24Bits ADC<a class="headerlink" href="#ads1256-24bits-adc" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Date:</th><td class="field-body">14 Oct 2019</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="general-recommendations">
+<h2>General Recommendations<a class="headerlink" href="#general-recommendations" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://www.ti.com/lit/ds/symlink/ads1256.pdf">http://www.ti.com/lit/ds/symlink/ads1256.pdf</a></p>
+<div class="figure">
+<img alt="../_images/Figure25.ADS1255BasicConnections.png" src="../_images/Figure25.ADS1255BasicConnections.png" />
+</div>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Grounding</dt>
+<dd><ul class="first last">
+<li>It is recommended to use a single ground plane for both the analog and digital supplies. This ground plane should be shared with the bypass capacitors and analog conditioning circuits.</li>
+<li>However, avoid using this ground plane for noisy digital components such as microprocessors.</li>
+<li>If a split ground plane is used with the ADS1255/6, make sure the analog and digital planes are tied together. There should not be a voltage difference between the ADS1255/6 analog and digital ground pins (AGND and DGND).</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Power supply</dt>
+<dd><ul class="first last">
+<li>As with any precision circuit, use good supply bypassing techniques. A smaller value ceramic capacitor in parallel with a larger value tantalum or a larger value low-voltage ceramic capacitor works well.</li>
+<li>Place the capacitors, in particular the ceramic ones, close to the supply pins.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Digital pins</dt>
+<dd><ul class="first last">
+<li>Run the digital logic off as low of voltage as possible. This helps reduce coupling back to the analog inputs. Avoid ringing on the digital inputs. Small resistors (≈100Ω) in series with the digital pins can help by controlling the trace impedance.</li>
+<li>When not using the RESET or SYNC/PDWN inputs, tie directly to the ADS1255/6 DVDD pin.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Strong <strong>Vref</strong></dt>
+<dd><ul class="first last">
+<li>Pay special attention to the reference and analog inputs. These are the most critical circuits.</li>
+<li>On the voltage reference inputs, bypass with low equivalent series resistance (ESR) capacitors. Make these capacitors as large as possible to maximize the filtering on the reference.</li>
+<li>With the <strong>outstanding performance of the ADS1255/6, it is easy for the voltage reference to limit overall performance if not carefully selected</strong> .</li>
+<li>When using a stand-alone reference, make sure it is very low noise, very low drift, and capable of driving the ADS1255/6 reference inputs.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Week <strong>Vref</strong></dt>
+<dd><ul class="first last">
+<li>For voltage references not suited for driving the ADS1255/6 directly (for example, high output impedance references or <strong>resistive voltage dividers</strong> ), use the recommended buffer circuit shown in Figure 26.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="figure">
+<img alt="../_images/Figure26.RecommendedVoltageReferenceBufferCircuit.png" src="../_images/Figure26.RecommendedVoltageReferenceBufferCircuit.png" />
+</div>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Ratiometric measurements ?</dt>
+<dd><ul class="first last">
+<li>Ratiometric measurements, where the input signal and reference track each other, are somewhat less sensitive, but verify the reference signal is clean.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Analog Input</dt>
+<dd><ul class="first last">
+<li>Often times, only a simple RC filter (as shown in Figure 25) is needed on the inputs. This circuit limits the high-frequency noise near the modulator frequency; see the Frequency Response section. Avoid low-grade dielectrics for the capacitors to minimize temperature variations and leakage. Keep the input traces as short as possible and place the components close to the input pins. When using the ADS1256, make sure to filter all the input channels being used.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="digital-interface-connections">
+<h2>Digital Interface Connections<a class="headerlink" href="#digital-interface-connections" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>The ADS1255/6 5V tolerant SPI-, QSPI™, and MICROWIRE™-compatible interface easily connects to a wide variety of microcontrollers.</li>
+<li>Figure 27 shows the basic connection to TI’s MSP430 family of low-power microcontrollers.</li>
+</ul>
+<div class="figure">
+<img alt="../_images/Figure28.ConnectionSPI.png" src="../_images/Figure28.ConnectionSPI.png" />
+</div>
+<ul class="simple">
+<li>Figure 28 shows the connection to microcontrollers with an <strong>SPI interface</strong> like TI’s MSC12xx family or the 68HC11 family. <strong>Note that the MSC12xx includes a high-resolution A/D converter; the ADS1255/6 can be used to add additional channels of measurement or provide higher-speed conversions</strong> .</li>
+<li>Finally, Figure 29 shows how to connect the ADS1255/6 to an 8xC51 UART in serial mode 0 in a 2-wire configuration. Avoid using the continuous read mode (RDATAC) when DIN and DOUT are connected together.</li>
+<li>For more details read <strong>REGISTER MAP, COMMAND DEFINITIONS</strong> in the doc</li>
+</ul>
+</div>
+<div class="section" id="what-about-esp32">
+<h2>What about ESP32?<a class="headerlink" href="#what-about-esp32" title="Permalink to this headline">¶</a></h2>
+<p>ESP32 integrates two 12-bit SAR (Successive Approximation Register) ADCs</p>
+</div>
+<div class="section" id="the-plan">
+<h2>The plan<a class="headerlink" href="#the-plan" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Make PCB using <a class="reference external" href="https://upverter.com/">Upverter</a> , not gonna use Altium since I am using Linux now.</li>
+<li>To improve my skills dont just buy a board?</li>
+<li>Find a library to handle communication. Since the datasheet looks complicated</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Simple BCI" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Tesla Cat
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

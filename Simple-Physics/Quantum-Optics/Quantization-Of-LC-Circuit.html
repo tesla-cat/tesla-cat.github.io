@@ -1,0 +1,279 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Quantization Of LC Circuit &mdash; Simple Physics  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Quantization Of EM Field" href="Quantization-Of-EM-Field.html" />
+    <link rel="prev" title="Quantum Optics" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Simple Physics
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Math</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Math/index.html">Math</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Relativity</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Relativity/index.html">Relativity</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Mechanics-Feynman-Path-Integral/index.html">Quantum Mechanics: Feynman Path Integral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Computation/index.html">Quantum Computation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Quantum Optics</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Quantization Of LC Circuit</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dependency">Dependency</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-the-problem">What is the problem ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#derivation">Derivation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Quantization-Of-EM-Field.html">Quantization Of EM Field</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Quantum-States-Of-EM-Field.html">Quantum States Of EM Field</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Density-Functional-Theory/index.html">Density Functional Theory</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Electronics and Coding</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Experimental-Physics-SoC-FPGA-Design/index.html">Experimental Physics: SoC FPGA Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Django/index.html">Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Signal-Processing/index.html">Signal-Processing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Machine Learning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Machine-Learning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Statistical Mechanics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Thermodynamics-And-Statistical-Mechanics/index.html">Thermodynamics And Statistical Mechanics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">BioPhysics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Biomolecular-Physics/index.html">Biomolecular Physics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Papers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Papers-Quantum-Computers/index.html">Papers: Quantum Computers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Simple Physics</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Quantum Optics</a> &raquo;</li>
+        
+      <li>Quantization Of LC Circuit</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Quantum-Optics/Quantization-Of-LC-Circuit.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="quantization-of-lc-circuit">
+<h1>Quantization Of LC Circuit<a class="headerlink" href="#quantization-of-lc-circuit" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Date</dt>
+<dd class="field-odd"><p>1 August 2019</p>
+</dd>
+</dl>
+<div class="section" id="dependency">
+<h2>Dependency<a class="headerlink" href="#dependency" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><span class="xref std std-doc">Quantum-Harmonic-Oscillator</span></p></li>
+<li><p><span class="xref std std-doc">LC-Circuit</span></p></li>
+</ul>
+</div>
+<div class="section" id="what-is-the-problem">
+<h2>What is the problem ?<a class="headerlink" href="#what-is-the-problem" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="derivation">
+<h2>Derivation<a class="headerlink" href="#derivation" title="Permalink to this headline">¶</a></h2>
+<p><strong>Step 1</strong> Write down the <span class="xref std std-doc">Hamiltonian</span>, and find correspondence:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+&amp; H(I,Q) = {1\over 2}LI^2 + {1\over 2}{Q^2\over C}\\
+&amp; H(p,q) = {p^2\over 2m} + {1\over 2}m\omega^2 q^2\\
+\end{align*}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+&amp; L\leftrightarrow m  &amp; C \leftrightarrow {1\over m\omega^2}\\
+&amp; I\leftrightarrow {p\over m}  &amp; Q \leftrightarrow q
+\end{align*}\end{split}\]</div>
+<p><strong>Step 2</strong> Results from <span class="xref std std-doc">Quantum-Harmonic-Oscillator</span> then follows</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Quantization-Of-EM-Field.html" class="btn btn-neutral float-right" title="Quantization Of EM Field" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Quantum Optics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Tesla Cat
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

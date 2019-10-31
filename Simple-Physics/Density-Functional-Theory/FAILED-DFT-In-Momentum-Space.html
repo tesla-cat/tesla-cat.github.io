@@ -1,0 +1,343 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>DFT In Momentum Space &mdash; Simple Physics  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Simple Physics
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Math</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Math/index.html">Math</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Relativity</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Relativity/index.html">Relativity</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Mechanics-Feynman-Path-Integral/index.html">Quantum Mechanics: Feynman Path Integral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Computation/index.html">Quantum Computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Optics/index.html">Quantum Optics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Density Functional Theory</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Electronics and Coding</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Experimental-Physics-SoC-FPGA-Design/index.html">Experimental Physics: SoC FPGA Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Django/index.html">Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Signal-Processing/index.html">Signal-Processing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Machine Learning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Machine-Learning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Statistical Mechanics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Thermodynamics-And-Statistical-Mechanics/index.html">Thermodynamics And Statistical Mechanics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">BioPhysics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Biomolecular-Physics/index.html">Biomolecular Physics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Papers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Papers-Quantum-Computers/index.html">Papers: Quantum Computers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Simple Physics</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>DFT In Momentum Space</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Density-Functional-Theory/FAILED-DFT-In-Momentum-Space.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="dft-in-momentum-space">
+<h1>DFT In Momentum Space<a class="headerlink" href="#dft-in-momentum-space" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Date</dt>
+<dd class="field-odd"><p>27 Aug 2019</p>
+</dd>
+</dl>
+<div class="section" id="credit">
+<h2>Credit<a class="headerlink" href="#credit" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>This is a summary of Prof. Englert’s paper</p></li>
+</ul>
+</div>
+<div class="section" id="dependency">
+<h2>Dependency<a class="headerlink" href="#dependency" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="what-is-the-problem">
+<h2>What is the problem ?<a class="headerlink" href="#what-is-the-problem" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="derivation">
+<h2>Derivation<a class="headerlink" href="#derivation" title="Permalink to this headline">¶</a></h2>
+<p><strong>Note: In the following one should realize that the lagrange multiplier</strong> <span class="math notranslate nohighlight">\(\lambda\)</span> <strong>is infact minus Chemical Potential:</strong> <span class="math notranslate nohighlight">\(\lambda = -\mu\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{c|c|c}
+  \text{Description} &amp; \text{Position Space} &amp; \text{Momentum Space} \\
+  &amp; &amp; \\
+  \text{Starting Point} &amp;
+  H = \underbrace{ T_{\text{kin}} }_{\sum\limits_{j=1}^N {1\over 2}p_j^2 }
+  +   \underbrace{ V_{\text{ext}} }_{\sum\limits_{j=1}^N -{Z\over |r_j|} }
+  +   \underbrace{ V_{\text{e-e}} }_{{1\over 2}\sum\limits_{j,k;j\ne k}^N |r_j-r_k|^{-1} } &amp;
+  \\
+  \text{Density} &amp;
+  n(r')=N\int dr_2'...dr_N' |\langle r',r_2'...r_N'|\psi_0\rangle |^2 &amp;
+  \rho(p')=N\int dp_2'...dp_N' |\langle p',p_2'...p_N'|\psi_0\rangle |^2\\
+  \text{HK Theorem} &amp;
+  E_0=\min\limits_n E[n] &amp;
+  E_0=\min\limits_{\rho} E[\rho] \\
+  \text{Central Point} &amp;
+  n(r') \text{ uniquely determines } V_{\text{ext}}=-{Z\over |r|},|\psi_0\rangle&amp;
+  \rho(p') \text{ uniquely determines } T_{\text{kin}}={1\over 2}p^2,|\psi_0\rangle \\
+  \text{Lagrange Multiplier} &amp;
+  E[n,\lambda]=E[n]-\lambda [N-\int dr' n(r')] &amp;
+  E[\rho,\lambda]=E[\rho]-\lambda [N-\int dp' \rho(p')] \\
+  \text{Lagrange Multiplier} &amp;
+  E_0 = \text{extr}_{n,\lambda} \; E[n,\lambda] &amp;
+  E_0 = \text{extr}_{\rho,\lambda} \; E[\rho,\lambda] \\
+  \text{Effective Energies} &amp;
+  V(r')\equiv -\left( {\delta \over \delta n(r') } E_{\text{kin}}[n]+\lambda \right) &amp;
+  T(p')\equiv -\left( {\delta \over \delta \rho(p') } E_{\text{ext}}[\rho]+\lambda \right) \\
+  \text{Consider} &amp;
+  E_1=E_{\text{kin}}[n]+\int dr' n(r')[V(r')+\lambda] &amp;
+  E_1=E_{\text{ext}}[\rho]+\int dp' \rho(p')[T(p')+\lambda] \\
+  \text{Then} &amp;
+  \delta E_1 = \int dr' n(r')[\delta V(r')+\delta \lambda]  &amp;
+  \delta E_1 = \int dp' \rho(p')[\delta T(p')+\delta \lambda]  \\
+  \text{Then} &amp;
+  E_1 = E_1[V(r')+\lambda]  &amp;
+  E_1 = E_1[T(p')+\lambda]  \\
+  \text{Consider} &amp;
+  E[V,n,\lambda]=E_1[V(r')+\lambda] - \int dr' n(r')[V(r')-V_{\text{ext}}(r')]
+  +E_{\text{e-e}}[n] -\lambda N  &amp;
+  E[T,\rho,\lambda]=E_1[T(p')+\lambda] - \int dp' \rho(p')[T(p')-T_{\text{kin}}(p')] +E_{\text{e-e}}[p] -\lambda N   \\
+  \text{Then} &amp;
+  E_0 = \text{extr}_{V,n,\lambda} \; E[V,n,\lambda] &amp;
+  E_0 = \text{extr}_{T,\rho,\lambda} \; E[T,\rho,\lambda] \\
+  \text{Then} &amp;
+  \begin{cases}
+  \delta V   : &amp; n(r') = {\delta \over \delta V(r')} E_1[V+\lambda] \\
+  \delta n   : &amp; V(r') = {\delta \over \delta n(r')} E_{\text{e-e}}[n]+V_{\text{ext}}(r')\\
+  \delta \lambda : &amp; N = {\delta \over \delta \lambda} E_1[V+\lambda]
+  \end{cases} &amp;
+  \begin{cases}
+  \delta T    : &amp; \rho(p') = {\delta \over \delta T(p')}    E_1[T+\lambda] \\
+  \delta \rho : &amp; T(p') =    {\delta \over \delta \rho(p')} E_{\text{e-e}}[\rho]+T_{\text{kin}}(p')\\
+  \delta \lambda  : &amp; N =        {\delta \over \delta \lambda} E_1[T+\lambda]
+  \end{cases}
+  \\
+  \text{More on }E_1 &amp;
+  E_1[V+\lambda] = \langle \psi_0 |\sum\limits_{j=1}^N [\underbrace{H(r_j,p_j)}_{ T_{\text{kin}}(p)+V(r)  }+\lambda]| \psi_0 \rangle  &amp;
+  E_1[T+\lambda] = \langle \psi_0 |\sum\limits_{j=1}^N [\underbrace{H(r_j,p_j)}_{ T(p)+V_{\text{ext}}(r) }+\lambda]| \psi_0 \rangle  \\
+  \text{Inference} &amp;
+  E_1 = \text{Tr } f(H+\lambda) \text{ for some function }f &amp;
+  E_1 = \text{Tr } f(H+\lambda) \\
+  \text{Approximation} &amp;
+  f(x)\approx x \eta(-x) \text{ Where } \eta \text{ is Heaviside} &amp;
+  f(x)\approx x \eta(-x) \text{ Where } \eta \text{ is Heaviside} \\
+  \text{Thus} &amp;
+  E_1 = \text{Tr } [(H+\lambda)\eta(-H-\lambda)] &amp;
+  E_1 = \text{Tr } [(H+\lambda)\eta(-H-\lambda)] \\
+  \text{Thus} &amp;
+  \begin{cases}
+  N\approx \text{Tr } \eta(-H-\lambda) \\
+  n(r') \approx 2 \langle r'|\eta(-H-\lambda)|r' \rangle
+  \end{cases} &amp;
+  \begin{cases}
+  N\approx \text{Tr } \eta(-H-\lambda) \\
+  \rho(p') \approx 2 \langle p'|\eta(-H-\lambda)|p' \rangle
+  \end{cases}
+  \\
+  \text{Thomas Fermi} &amp;
+  \text{Quantum Mechanical Trace to Classic Mechanical Integral} &amp;
+  E_1^{TF}[V+\lambda]=2\int {dr'dp'\over (2\pi)^3}(H+\lambda)\eta(-H-\lambda) \\
+  \text{Heaviside} &amp;
+  p'\le \sqrt{-2[V(r')+\lambda]} \equiv P(r') \;\text{Fermi Momentum} &amp;
+  r'\le Z[T(p')+\lambda]^{-1} \equiv R(p') \;\text{Fermi Radius} \\
+  \text{Thus} &amp;
+  E_1^{TF}[V+\lambda]= \int dr' (-{1\over 15\pi^2})P^5(r') &amp;
+  E_1^{TF}[T+\lambda]= \int dp' (-{Z\over 6\pi^2})R^2(p') \\
+  \text{Thus} &amp;
+  n(r')=...={1\over 3\pi^2}P^3(r') &amp;
+  \rho(p')=...={1\over 3\pi^2}R^3(p') \\
+  \text{And} &amp;
+  E_{\text{kin}}^{TF}[n]   =\int dr' {1\over 10\pi^2} P^5(r') &amp;
+  E_{\text{ext}}^{TF}[\rho]=\int dp' {-Z\over 2\pi^2} R^2(p')  \\
+  \text{And} &amp;
+  E_{\text{e-e}}^{TF}[n] = \text{TO BE CONTINUED}  &amp;
+  \\
+\end{array}\end{split}\]</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Tesla Cat
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,309 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Boltzmann Entropy &mdash; Simple Physics  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Biomolecular Physics" href="../Biomolecular-Physics/index.html" />
+    <link rel="prev" title="Thermodynamic Potentials" href="Thermodynamic-Potentials.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Simple Physics
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Math</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Math/index.html">Math</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Relativity</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Relativity/index.html">Relativity</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Mechanics-Feynman-Path-Integral/index.html">Quantum Mechanics: Feynman Path Integral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Computation/index.html">Quantum Computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Optics/index.html">Quantum Optics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Density-Functional-Theory/index.html">Density Functional Theory</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Electronics and Coding</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Experimental-Physics-SoC-FPGA-Design/index.html">Experimental Physics: SoC FPGA Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Django/index.html">Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Signal-Processing/index.html">Signal-Processing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Machine Learning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Machine-Learning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Statistical Mechanics</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Thermodynamics And Statistical Mechanics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Legendre-Transformation.html">Legendre Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Thermodynamic-Potentials.html">Thermodynamic Potentials</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Boltzmann Entropy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dependency">Dependency</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-the-problem">What is the problem ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#derivation">Derivation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-1-two-state-system">Example 1: Two State System</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">BioPhysics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Biomolecular-Physics/index.html">Biomolecular Physics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Papers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Papers-Quantum-Computers/index.html">Papers: Quantum Computers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Simple Physics</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Thermodynamics And Statistical Mechanics</a> &raquo;</li>
+        
+      <li>Boltzmann Entropy</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Thermodynamics-And-Statistical-Mechanics/Boltzmann-Entropy.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="boltzmann-entropy">
+<h1>Boltzmann Entropy<a class="headerlink" href="#boltzmann-entropy" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Date</dt>
+<dd class="field-odd"><p>28 July 2019</p>
+</dd>
+</dl>
+<div class="section" id="dependency">
+<h2>Dependency<a class="headerlink" href="#dependency" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="Thermodynamic-Potentials.html"><span class="doc">Thermodynamic Potentials</span></a></p>
+</div>
+<div class="section" id="what-is-the-problem">
+<h2>What is the problem ?<a class="headerlink" href="#what-is-the-problem" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>The <strong>Key</strong> of Statistical Mechanics</p></li>
+<li><p>Link between <strong>Thermodynamics (macroscopic)</strong> And <strong>Statistical Mechanics (microscopic)</strong></p></li>
+</ul>
+</div>
+<div class="section" id="derivation">
+<h2>Derivation<a class="headerlink" href="#derivation" title="Permalink to this headline">¶</a></h2>
+<p><strong>Step 1</strong> <strong>Fundamental</strong> equation in the <strong>Entropy Representation</strong></p>
+<p>From <a class="reference internal" href="Thermodynamic-Potentials.html"><span class="doc">Thermodynamic Potentials</span></a>, we have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+&amp;dS ={1\over T}dE
+        - \sum\limits_{i=1}^r {F_i \over T} dx_i
+        - \sum\limits_{j=1}^s {\mu_j \over T} dN_j \\
+&amp;\Rightarrow S=S(E,{x_i},{N_j})
+\end{align*}\end{split}\]</div>
+<p><strong>Step 2</strong> Previously, we treated <span class="math notranslate nohighlight">\(S\)</span> purely as a theoretical macroscopic variable. But Boltzmann figured out the exact microscopic expression (origin) of it!</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+&amp; \boxed{ S(E,{x_i},{N_j}) = k_B \ln \Omega(E,{x_i},{N_j}) }\\
+&amp; where\\
+&amp; k_B: \text{ Boltzmann Constant }\\
+&amp; \Omega(E,{x_i},{N_j}): \text{ Number of Microstates corresponding to } (E,{x_i},{N_j})
+\end{align*}\end{split}\]</div>
+</div>
+<div class="section" id="example-1-two-state-system">
+<h2>Example 1: Two State System<a class="headerlink" href="#example-1-two-state-system" title="Permalink to this headline">¶</a></h2>
+<p><span class="math notranslate nohighlight">\(N\)</span> identical particles, with two energy levels <span class="math notranslate nohighlight">\(\epsilon_n = (-1)^n \epsilon, \;\; n = 1,2\)</span></p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://mathworld.wolfram.com/Combination.html">Combination</a> : The number of ways of picking <span class="math notranslate nohighlight">\(k\)</span> unordered outcomes from <span class="math notranslate nohighlight">\(n\)</span> possibilities</p></li>
+<li><p>Stirling Approximation: <span class="math notranslate nohighlight">\(\ln N! \approx N\ln N -N\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+&amp; \begin{cases}
+        N=N_1+N_2\\
+        E=-\epsilon N_1+ \epsilon N_2
+\end{cases}
+\Rightarrow \begin{cases}
+        N_1 = {N\over 2}(1-{E\over N \epsilon})\\
+        N_2 = {N\over 2}(1+{E\over N \epsilon})
+\end{cases}\\
+\Omega(E,N;N_2)&amp; = {N!\over N_2!(N-N_2)!}\;\; (\text{Combination})\\
+S(E,N;N_2)&amp; = k_B \ln \Omega=...(\text{Stirling Approximation})\\
+                  &amp; = -k_B N\left[ {N_2\over N}\ln {N_2\over N}+ {N-N_2\over N}\ln {N-N_2\over N}\right]\\
+&amp; \text{Next just substitute } N_2 \text{ we get } S(E,N)
+\end{align*}\end{split}\]</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Biomolecular-Physics/index.html" class="btn btn-neutral float-right" title="Biomolecular Physics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Thermodynamic-Potentials.html" class="btn btn-neutral float-left" title="Thermodynamic Potentials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Tesla Cat
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
