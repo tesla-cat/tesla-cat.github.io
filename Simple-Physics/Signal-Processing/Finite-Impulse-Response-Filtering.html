@@ -103,7 +103,10 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Signal-Processing</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Finite Impulse Response Filtering</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#fourier-transform">Fourier Transform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#discrete-fourier-transform">Discrete Fourier transform</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#signal-filtering">Signal Filtering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implementation-using-homemade-continuous-fourier-transform">Implementation using Homemade Continuous Fourier Transform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implementation-using-numpy-discrete-fourier-transform">Implementation using Numpy Discrete Fourier Transform</a></li>
 </ul>
 </li>
 </ul>
@@ -209,6 +212,25 @@
 &amp;\sqrt{2\pi} F\{f(x)g(x)\} = \tilde{f}(k)*\tilde{g}(k)\\
 \end{align*}\end{split}\]</div>
 </div>
+<div class="section" id="discrete-fourier-transform">
+<h2>Discrete Fourier transform<a class="headerlink" href="#discrete-fourier-transform" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+&amp;\boxed{\text{discrete}} &amp;\boxed{\text{continuous}} \\
+&amp; F_m=\sum\limits_{n=0}^{N-1} e^{-i(m{2\pi\over N})n} f_n \cdot 1&amp; \tilde{f}(k)={1\over\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-ikx}f(x)dx  \\
+&amp; f_n= {1\over2\pi} \sum\limits_{m=0}^{N-1} e^{i(m{2\pi\over N})n} F_m \cdot {2\pi\over N}&amp; f(x)={1\over\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{ikx}\tilde{f}(k)dk  \\
+&amp; N &amp; \lambda \\
+&amp; n=0,...N-1=\text{floor}(x) &amp;\textbf{[note]}\; x\in(0,\lambda) \\
+&amp; 1 &amp; dx\\
+&amp; f_n &amp; f(x) \\
+&amp; m{2\pi\over N} &amp; k_m \\
+&amp; F_m &amp; \tilde{f}(k_m) \\
+&amp; \textbf{[note]}\; f(x)=\begin{cases}
+&amp; \text{something} &amp; x\in(0,\lambda) \\
+&amp; 0&amp; \text{elsewhere}\\
+\end{cases}\\
+\end{align*}\end{split}\]</div>
+</div>
 <div class="section" id="signal-filtering">
 <h2>Signal Filtering<a class="headerlink" href="#signal-filtering" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -232,11 +254,14 @@
 &amp; ={1\over\sqrt{2\pi}} 2\omega_1 \text{sinc}(\omega_1 t) \quad \text{unnormalized sinc function in physics}\\
 &amp; ={1\over\sqrt{2\pi}} 2\omega_1 \text{sinc}({\omega_1 t\over \pi}) \quad \text{normalized sinc function in numpy}\\
 \end{align*}\end{split}\]</div>
+</div>
+<div class="section" id="implementation-using-homemade-continuous-fourier-transform">
+<h2>Implementation using Homemade Continuous Fourier Transform<a class="headerlink" href="#implementation-using-homemade-continuous-fourier-transform" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">i</span><span class="o">*</span><span class="mf">0.05</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)])</span>
-<span class="n">f_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="n">f_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f_x</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 <span class="n">k</span> <span class="o">=</span> <span class="p">[]</span>
@@ -246,7 +271,7 @@
   <span class="n">ki</span> <span class="o">=</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">N</span> <span class="c1"># N is lambda</span>
   <span class="n">k</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ki</span><span class="p">)</span>
   <span class="n">f_k</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1j</span><span class="o">*</span><span class="n">ki</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">f_x</span> <span class="p">))</span>
-<span class="n">f_k</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">f_k</span><span class="p">)</span>
+<span class="n">k</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">k</span><span class="p">);</span> <span class="n">f_k</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">f_k</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">f_k</span><span class="p">));</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
@@ -261,9 +286,12 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f_x_filtered</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/Finite-Impulse-Response-Filtering-output_1_0.png" src="../_images/Finite-Impulse-Response-Filtering-output_1_0.png" />
-<img alt="../_images/Finite-Impulse-Response-Filtering-output_1_1.png" src="../_images/Finite-Impulse-Response-Filtering-output_1_1.png" />
-<img alt="../_images/Finite-Impulse-Response-Filtering-output_1_2.png" src="../_images/Finite-Impulse-Response-Filtering-output_1_2.png" />
+<img alt="../_images/Finite-Impulse-Response-Filtering-output_2_0.png" src="../_images/Finite-Impulse-Response-Filtering-output_2_0.png" />
+<img alt="../_images/Finite-Impulse-Response-Filtering-output_2_1.png" src="../_images/Finite-Impulse-Response-Filtering-output_2_1.png" />
+<img alt="../_images/Finite-Impulse-Response-Filtering-output_2_2.png" src="../_images/Finite-Impulse-Response-Filtering-output_2_2.png" />
+</div>
+<div class="section" id="implementation-using-numpy-discrete-fourier-transform">
+<h2>Implementation using Numpy Discrete Fourier Transform<a class="headerlink" href="#implementation-using-numpy-discrete-fourier-transform" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
