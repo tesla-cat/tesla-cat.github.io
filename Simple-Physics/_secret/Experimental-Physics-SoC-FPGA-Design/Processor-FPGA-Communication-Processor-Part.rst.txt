@@ -1,0 +1,54 @@
+
+Processor-FPGA Communication: Processor Part
+===========================================================
+
+:Date: 14 Aug 2019
+
+`Corresponding Project Folder`_
+------------------------------------------
+
+.. _Corresponding Project Folder: https://github.com/tesla-cat/Works-Done-In-Dzmitry-s-Lab-At-CQT/tree/master/Cyclone%20V%20SoC%20Control%20System/Quartus%20Project/HPS_FPGA_LED
+
+Dependency
+-------------
+
+- Edit the system environment variables
+
+Processor Part
+--------------------------------
+
+**Step 1** Add :code:`quartus\sopc_builder\bin` to **PATH** environment variable, in my case :code:`D:\QUARTUS\quartus\sopc_builder\bin`
+
+**Step 2** Install `Intel SoC FPGA Embedded Development Suite`_
+
+- Search program **SoC EDS command shell** in your computer and run it
+
+.. _Intel SoC FPGA Embedded Development Suite: http://fpgasoftware.intel.com/soceds/18.1/?edition=standard&platform=windows&download_manager=direct
+
+**Step 3** Generate necessary C header file
+
+- In **SoC EDS command shell** go to your Quartus project folder and execute :code:`./generate_hps_qsys_header.sh`. This **automatically** generates :code:`hps_0.h` C header file based on :code:`soc_system.sopcinfo` file. :code:`hps_0.h` contains **address infomation** we set earlier in FPGA part: e.g. :code:`#define LED_PIO_BASE 0x3000` is in it
+- We can then use the macro :code:`LED_PIO_BASE` later in our main C program conveniently
+
+**Step 4** Write the main C program, refer to :code:`main.c` and read the comments there
+
+**Step 5** Compile the C program
+
+- In **SoC EDS command shell** go to the project folder and execute :code:`make`
+
+**Step 6** Copy the file to DE10-Nano Board and execute it
+
+- Connect your computer with DE10-Nano board using `Ethernet over USB`_ , this corresponds to :code:`IP Address: 192.168.7.1`
+- In **SoC EDS command shell** go to the project folder and execute :code:`scp HPS_FPGA_LED root@192.168.7.1:/home/root`, then type "yes" and press "Enter"
+
+.. _Ethernet over USB: https://software.intel.com/en-us/node/712683
+
+**Step 7** Enter the Linux System of your DE10-Nano board. I use `VNC Viewer`_ introduced in `Ethernet over USB`_. Then open Linux console (Applications >> Terminal Emulator in VNC Viewer). Go to :code:`/home/root` and execute :code:`./HPS_FPGA_LED`
+
+.. _VNC Viewer: https://www.realvnc.com/en/connect/download/viewer/ 
+
+**We are done!**
+
+
+
+

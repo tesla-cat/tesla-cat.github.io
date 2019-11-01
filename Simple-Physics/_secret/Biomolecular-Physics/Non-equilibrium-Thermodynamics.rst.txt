@@ -1,0 +1,61 @@
+
+Non-equilibrium Thermodynamics
+=================================
+
+:Date: 28 July 2019
+
+Dependency
+-------------
+
+- `Boltzmann Distribution`_
+
+.. _Boltzmann Distribution: 
+
+
+What is the problem ?
+-------------------------
+
+
+
+Derivation
+-------------
+
+**Step 1** **Crooks Fluctuation Theorem** relates **work** :math:`W` of a non-equilibrium process to **free energy** :math:`\Delta G` (an equilibrium property)
+
+.. math::
+	\begin{align*}
+	&\boxed{
+		{P_{A\to B}(W) \over P_{B\to A}(-W)} = e^{\beta (W-\Delta G)}
+	}\\
+	& where\\
+	& P = \text{Probability}\\
+	& A,B = \text{States}
+	\end{align*}
+
+**Step 2** Proof of **Step 1**
+
+*TO BE ADDED*
+
+**Step 3** **Jarzynski Equality**, a consequence of Crooks Fluctuation Theorem
+
+.. math::
+	\begin{align*}
+	&{P_{A\to B}(W) e^{-\beta W} = P_{B\to A}(-W)} e^{-\beta \Delta G}\\
+	& \text{Integrate over } P\\
+	& \Rightarrow \boxed{
+		\langle e^{-\beta W} \rangle = e^{-\beta \Delta G}
+	}
+	\end{align*}
+
+What is the significance ?
+-----------------------------
+In order to calculate free energy:
+
+Previously we need to simulate molecules in equilibrium process which is time consuming.
+Now we can just use Non-equilibrium process, saves a lot of time!
+
+Perform multiple Non-equilibrium simulations, then:
+
+- Using Crooks Fluctuation Theorem, find :math:`W` such that :math:`P_{A\to B}(W) = P_{B\to A}(-W)`, then :math:`\Delta G=W`
+
+- Using Jarzynski Equality, :math:`\Delta G= {1\over -\beta}\ln \langle e^{-\beta W} \rangle`

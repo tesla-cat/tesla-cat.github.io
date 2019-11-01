@@ -1,0 +1,36 @@
+
+Free Energy Calculation
+=================================
+
+:Date: 29 July 2019
+
+Dependency
+-------------
+
+:doc:`Canonical Ensemble And Boltzmann Factor`
+
+What is the problem ?
+-------------------------
+
+
+
+Derivation
+-------------
+
+**Step 1** A straight forward result of :doc:`Canonical Ensemble And Boltzmann Factor`: Zwanzig equation
+
+.. math::
+	\begin{align*}
+	&\Delta F = -k_B T \ln{z_2\over z_1} =-k_B T \ln \langle e^{-\beta \Delta E} \rangle
+	\end{align*}
+
+Problem of using Zwanzig equation: Exponential (:math:`e^{-\beta \Delta E}`) is too sensitive, :math:`\Delta E` must be small for it to work 
+
+**Step 2** Solution to this problem: :doc:`Perturbation Theory`
+
+**idea**: Take many steps instead of one, at each step :math:`\Delta E` is small
+
+.. math::
+	\begin{align*}
+	&\Delta F = \int_0^1 \langle {\partial H \over \partial \lambda} \rangle \; d\lambda
+	\end{align*}

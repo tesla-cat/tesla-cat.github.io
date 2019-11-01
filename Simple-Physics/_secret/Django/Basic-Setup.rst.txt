@@ -1,0 +1,141 @@
+
+Basic Setup
+================================================
+
+:Date: 4 Oct 2019
+
+Hello World
+-------------------
+
+.. code-block:: console
+
+    django-admin startproject daiGouProject
+    cd daiGouProject
+    python3 manage.py startapp mainApp
+    python3 manage.py runserver
+
+- **daiGouProject/daiGouProject/urls.py**
+
+.. code-block:: python
+
+    from django.contrib import admin
+    from django.urls import path, include
+
+    urlpatterns = [
+        path("", include('mainApp.urls')),
+        path('admin/', admin.site.urls),
+    ]
+
+
+- Create **daiGouProject/mainApp/urls.py**
+
+.. code-block:: python
+
+    from django.urls import path
+    from . import views
+
+    app_name = 'mainApp'  
+
+    urlpatterns = [
+        path("", views.homepage, name="homepage"),
+    ]
+
+- **daiGouProject/mainApp/views.py**
+
+.. code-block:: python
+
+    from django.shortcuts import render
+    from django.http import HttpResponse
+
+    # Create your views here.
+    def homepage(request):
+        return HttpResponse("Hello World")
+
+.. code-block:: console
+
+    python3 manage.py runserver
+
+Models
+------------
+
+- **daiGouProject/mainApp/models.py**
+
+.. code-block:: python
+
+    from django.db import models
+
+    class Order(models.Model):
+        productName = models.CharField(max_length=200)
+        state = models.TextField()
+
+        def __str__(self):
+            return self.productName
+
+- **daiGouProject/mainApp/admin.py**
+
+.. code-block:: python
+
+    from django.contrib import admin
+    from .models import Order
+
+    admin.site.register(Order)
+
+- **daiGouProject/daiGouProject/settings.py**
+
+.. code-block:: python
+
+    # ...
+    INSTALLED_APPS = [
+        'mainApp.apps.MainappConfig',  # add this!
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+    ]
+    # ...
+
+.. code-block:: console
+
+    python3 manage.py makemigrations
+    python3 manage.py migrate
+    python3 manage.py createsuperuser
+    python3 manage.py runserver
+    # go to http://127.0.0.1:8000/admin
+
+- You can see Model **MAINAPP Orders**
+- Add two models for testing: test1.productName, test1.state and test2.productName, test2.state
+
+Views and Templates
+----------------------------
+
+- **daiGouProject/mainApp/views.py**
+
+.. code-block:: python
+
+    from django.shortcuts import render
+    from django.http import HttpResponse
+    from .models import Order
+
+    # Create your views here.
+    def homepage(request):
+        return render(request = request,
+            template_name='homepage.html',
+            context = {"orders":Order.objects.all})
+
+- Create **daiGouProject/mainApp/templates/homepage.html**
+
+.. code-block:: html
+
+    {% for order in orders %}
+        <p>{{order.productName}}</p>
+        <p>{{order.state}}</p>
+        <br>
+    {% endfor %}
+
+
+
+
+
+

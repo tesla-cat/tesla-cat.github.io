@@ -1,0 +1,42 @@
+
+Legendre Transformation
+=================================
+
+:Date: 28 July 2019
+
+Dependency
+-------------
+
+- `Total Derivative`_
+
+.. _Total Derivative:
+
+
+What is the problem ?
+-------------------------
+
+Convert a function of one set of variables to **another function** of their **conjugate set of variables** (defined below)
+
+Derivation
+-------------
+
+**Step 1** Write a function :math:`f(x,y)` in its `Total Derivative`_
+
+.. math::
+	df=\partial_x f dx + \partial_y f dy \equiv u dx + vdy
+
+- :math:`(u,x)` is a conjugate pair
+- :math:`(v,y)` is a conjugate pair	
+
+**Step 2** Then **one example of** Legendre Transformation of :math:`f(x,y)` is
+
+.. math::
+	g \equiv f - xu
+
+and :math:`g` is a function of :math:`u,y`, since
+
+.. math::
+	dg = df - xdu - udx = - xdu + vdy 
+
+- :math:`u,y` are **Natural Variables** of :math:`g`
+- :math:`x,y` are **Natural Variables** of :math:`f`

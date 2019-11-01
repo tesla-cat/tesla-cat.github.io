@@ -1,0 +1,48 @@
+
+Thermodynamic Potentials
+=================================
+
+:Date: 28 July 2019
+
+Dependency
+-------------
+
+:doc:`Legendre-Transformation`
+
+
+What is the problem ?
+-------------------------
+
+- The **Key** of Thermodynamics
+
+- The **Essence** of **Enternal Energy, Helmholtz energy, Enthalpy, Gibbs energy**   
+
+
+Derivation
+-------------
+
+**Step 1** **Fundamental** Equation For Internal Energy
+
+.. math::
+	\begin{align*}
+	dE & = TdS + \sum\limits_{i=1}^r F_i dx_i + \sum\limits_{j=1}^s \mu_j dN_j \\
+	& where\\
+	& T: \text{Temperature}\\
+	& S: \text{Entropy}\\
+	& F_i: \text{Generalized Forces such as Pressure} P\\
+	& x_i: \text{Generalized Coordinates such as Volume} V\\
+	& \mu_j: \text{Chemical Potentials}\\
+	& N_j: \text{Particles Numbers}\\
+	& and \\
+	& S,{x_i},{N_j} \text{ are Natural Variables of } E
+	\end{align*}
+
+**Step 2** Helmholtz energy, Enthalpy, Gibbs energy are **simply** :doc:`Legendre-Transformation` of Internal Energy
+
+.. math::
+	\begin{align*}
+	\text{Internal Energy} & E(S,{x_i},{N_j})\\
+	\text{Helmholtz energy} & F(T,{x_i},{N_j})\equiv E-TS \\
+	\text{Enthalpy} & H(S,{F_i},{N_j})\equiv E- \sum\limits_{i=1}^r F_i x_i\\
+	\text{Gibbs energy} & G(T,{F_i},{N_j})\equiv E-TS -\sum\limits_{i=1}^r F_i x_i\\
+	\end{align*}

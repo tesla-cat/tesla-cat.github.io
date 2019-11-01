@@ -1,0 +1,37 @@
+
+SR: Lorentz Transformation
+================================================
+
+:Date: 30 Sep 2019
+
+Derivation
+-------------
+
+**Step 1**
+
+.. math::
+	\begin{align*}
+	& S'\text{ frame moves at }\vec{v}=(v,0,0) \text{ viewed from } S \text{ frame, then}\\ 
+	& {\partial x'^{(a)}\over \partial x^{(b)}}=\Lambda^a_b=
+		\begin{pmatrix}
+	    \gamma & -\gamma v & 0 & 0 \\
+	    -\gamma v & \gamma & 0 & 0 \\
+	    0 & 0 & 1 & 0 \\
+	    0 & 0 & 0 & 1 \\
+	    \end{pmatrix} =
+	    \begin{pmatrix}
+	    \cosh \Theta & -\sinh\Theta & 0 & 0 \\
+	    -\sinh\Theta & \cosh \Theta & 0 & 0 \\
+	    0 & 0 & 1 & 0 \\
+	    0 & 0 & 0 & 1 \\
+	    \end{pmatrix}\\
+	& \text{Where }\gamma ={1\over \sqrt{1-v^2} }, \Theta=\tanh^{-1} v \\
+	& {\partial x^{(a)}\over \partial x'^{(b)}}=(\Lambda^{-1})^a_b=
+		\begin{pmatrix}
+	    \gamma & \gamma v & 0 & 0 \\
+	    \gamma v & \gamma & 0 & 0 \\
+	    0 & 0 & 1 & 0 \\
+	    0 & 0 & 0 & 1 \\
+	    \end{pmatrix} \\
+	\end{align*}
+

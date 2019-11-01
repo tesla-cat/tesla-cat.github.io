@@ -1,0 +1,322 @@
+
+React Native Redux 3
+=====================================
+
+:Date: 13 Oct 2019
+
+What is the idea?
+-----------------------
+
+- Add 
+    - Added movieFinder, a function to get movies by parsing XML
+    - Added MovieList, MovieDetail, Episodes Components
+- Moved
+    - Moved all styles to a single file
+    - Moved all actions to a single file
+- Modified
+	- Modified reducers for Home
+ 
+functions/movieFinder.js
+----------------------------------------
+
+.. code-block:: javascript
+
+    const parseString = require('react-native-xml2js').parseString
+
+    export default function movieFinder(uriPrefix,keyword,callback){
+      var results=[]
+      fetchVideos(uriPrefix+"&wd="+keyword,(vids)=>{
+        vids.forEach((vid)=>{
+          fetchVideos(uriPrefix+"ac=videolist&ids="+vid.id[0],(vids)=>{
+            vids[0].dl[0].dd.forEach((dd)=>{
+              if(dd.$.flag=="ckm3u8"){
+                var eps=dd._.split("#")
+                var episodes=[]
+                eps.forEach((ep)=>{
+                  var episode=ep.split("$")
+                  episodes.push({label:episode[0],uri:episode[1]})
+                })
+                var result={
+                  name: vids[0].name[0],
+                  pic: vids[0].pic[0],
+                  episodes:episodes,
+                }
+                callback(result)
+              }
+            })
+          })
+        })
+      })
+    }
+
+    // ===================================
+    const fetchVideos=(uri,callback)=>{
+      console.log(uri)
+      fetch(uri).then(response=>response.text())
+        .then((response)=>{
+          parseString(response,(err,result)=>{
+            var videos = result.rss.list[0].video
+            callback(videos)
+          })
+        })
+    }
+
+- To use:
+
+.. code-block:: javascript
+
+    const uriPrefix = "https://cj.okzy.tv/inc/api1s.php?"
+    const keyword = "硅谷"
+    movieFinder(uriPrefix,keyword,(result)=>{
+        console.log(result)
+    })
+
+components/MovieList.js
+----------------------------------------
+
+.. code-block:: javascript
+
+    import React,{Component} from 'react'
+    import {FlatList,View,Modal,TouchableOpacity,Text} from 'react-native'
+    import {bindActionCreators} from 'redux'
+    import {connect} from 'react-redux'
+
+    import styles from './styles'
+    import MovieDetail from './MovieDetail'
+    import {changeMovie} from '../actions/Home'
+
+    class MovieList extends Component{
+      state={modalVisible:false}
+      flipModal=()=>{
+        this.setState({modalVisible:!this.state.modalVisible})
+      }
+
+      render(){
+        return(
+          <View>
+            <Modal animationType="slide" transparent={true}
+              visible={this.state.modalVisible}>
+              <View style={styles.Modal}>
+                <TouchableOpacity style={styles.ModalCloseButton}
+                  onPress={()=>this.flipModal()}>
+                  <Text style={styles.TextWhite}>收起</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.ModalItems}
+                  onPress={()=>this.flipModal()}>
+
+                  <FlatList data={this.props.Home.movies}
+                    style={{backgroundColor:'transparent'}}
+                    renderItem={({item})=>(
+                      <TouchableOpacity style={styles.ModalCloseButton}
+                        onPress={()=>{
+                          this.flipModal()
+                          this.props.changeMovie(item)
+                        }}>
+                        <MovieDetail movie={item}/>
+                      </TouchableOpacity>
+                    )}
+                    keyExtractor={item=>item.name}
+                  />
+
+                </TouchableOpacity>
+              </View>
+            </Modal>
+            <TouchableOpacity style={styles.ModalOpenButton}
+              onPress={()=>this.flipModal()}>
+              <Text style={styles.TextWhite}>影视列表</Text>
+            </TouchableOpacity>
+          </View>
+        )
+      }
+    }
+
+    const mapStateToProps=(state)=>{
+      const {Home}=state
+      return {Home}
+    }
+    const mapActionToProps=action=>(
+      bindActionCreators({changeMovie},action)
+    )
+    export default connect(mapStateToProps,mapActionToProps)(MovieList)
+
+components/MovieDetail.js
+----------------------------------------
+
+.. code-block:: javascript
+
+    import React,{Component} from 'react'
+    import {View,Text,Image} from 'react-native'
+
+    import styles from './styles'
+
+    export default class MovieDetail extends Component{
+      render(){
+        return(
+          <View style={styles.MovieDetailBody}>
+            <Text style={styles.MovieDetailName}>
+              {this.props.movie.name}</Text>
+            <Image style={styles.MovieDetailImage}
+              source={{uri: this.props.movie.pic}}/>
+          </View>
+        )
+      }
+    }
+
+components/Episodes.js
+----------------------------------------
+.. code-block:: javascript
+
+    import React,{Component} from 'react'
+    import {FlatList,View,Modal,TouchableOpacity,Text} from 'react-native'
+    import {bindActionCreators} from 'redux'
+    import {connect} from 'react-redux'
+
+    import styles from './styles'
+    import {changeMovie} from '../actions/Home'
+
+    class Episodes extends Component{
+      state={modalVisible:false}
+      flipModal=()=>{
+        this.setState({modalVisible:!this.state.modalVisible})
+      }
+
+      render(){
+        return(
+          <View>
+            <Modal animationType="slide" transparent={true}
+              visible={this.state.modalVisible}>
+              <View style={styles.Modal}>
+                <TouchableOpacity style={styles.ModalCloseButton}
+                  onPress={()=>this.flipModal()}>
+                  <Text style={styles.TextWhite}>收起</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.ModalItems}
+                  onPress={()=>this.flipModal()}>
+
+                  <FlatList data={this.props.Home.currentMovie.episodes}
+                    style={{backgroundColor:'transparent'}}
+                    renderItem={({item})=>(
+                      <TouchableOpacity style={styles.ModalCloseButton}
+                        onPress={()=>{
+                          this.flipModal()
+                          var currentMovie = this.props.Home.currentMovie
+                          currentMovie.currentEpisode = item
+                          this.props.changeMovie(currentMovie)
+                        }}>
+                        <Text style={styles.TextWhite}>{item.label}</Text>
+                      </TouchableOpacity>
+                    )}
+                    keyExtractor={item=>item.label}
+                  />
+
+                </TouchableOpacity>
+              </View>
+            </Modal>
+            <TouchableOpacity style={styles.ModalOpenButton}
+              onPress={()=>this.flipModal()}>
+              <Text style={styles.TextWhite}>选集</Text>
+            </TouchableOpacity>
+          </View>
+        )
+      }
+    }
+
+    const mapStateToProps=(state)=>{
+      const {Home}=state
+      return {Home}
+    }
+    const mapActionToProps=action=>(
+      bindActionCreators({changeMovie},action)
+    )
+    export default connect(mapStateToProps,mapActionToProps)(Episodes)
+
+
+components/styles.js
+----------------------------------------
+.. code-block:: javascript
+
+    import {StyleSheet} from 'react-native'
+
+    const ButtonCommon={
+      alignItems:'center',
+      borderWidth:2,borderRadius:10,borderColor:'white',
+      //backgroundColor:'black',
+      margin:2,
+      padding:2,
+    }
+
+    const TextCommon={
+      fontSize:18,fontWeight:'bold',
+    }
+
+    export default styles = StyleSheet.create({
+      Modal:{alignItems:'flex-end',paddingRight:120},
+      ModalOpenButton:Object.assign({}, ButtonCommon),
+      ModalCloseButton:Object.assign({}, ButtonCommon),
+      ModalItems:{backgroundColor:'black'},
+      MovieDetailBody:{flexDirection:'row-reverse'},
+      MovieDetailImage:{width:60,height:90},
+      MovieDetailName:Object.assign({color:'white'}, TextCommon),
+      TextWhite:Object.assign({color:'white'}, TextCommon),
+    })
+
+actions/Home.js
+---------------------
+.. code-block:: javascript
+
+    export const changeMovie = payload=>({
+        type: "changeMovie",
+        payload: payload
+    })
+
+reducers/Home.js
+-----------------------
+.. code-block:: javascript
+
+    const movie1 = {
+        id:214, name: "硅谷第四季", area: "美国", year: 2017,
+        pic: "https://facebook.github.io/react-native/img/tiny_logo.png",
+        currentEpisode: {label:"第01集",uri:"https://youku.com-youku.net/20180604/9320_35c569aa/index.m3u8"},
+        episodes: [
+            {label:"第01集",uri:"https://youku.com-youku.net/20180604/9320_35c569aa/index.m3u8"},
+            {label:"第02集",uri:"https://youku.com-youku.net/20180604/9321_75f7c37c/index.m3u8"},
+        ],
+    }
+
+    const movie2 = {
+        id:214, name: "硅谷第4季", area: "美国", year: 2017,
+        pic: "https://facebook.github.io/react-native/img/tiny_logo.png",
+        currentEpisode: {label:"第02集",uri:"https://youku.com-youku.net/20180604/9321_75f7c37c/index.m3u8"},
+        episodes: [
+            {label:"第01集",uri:"https://youku.com-youku.net/20180604/9320_35c569aa/index.m3u8"},
+            {label:"第02集",uri:"https://youku.com-youku.net/20180604/9321_75f7c37c/index.m3u8"},
+        ],
+    }
+
+    const initialState = {
+        currentMovie: movie1,
+        movies:[movie1, movie2]
+    }
+
+    const HomeReducer = (state=initialState, action)=>{
+        switch(action.type){
+            case "changeMovie":
+                if(action.payload==null){
+                    var randomIndex = Math.floor(Math.random()*state.movies.length)
+                    console.log("changeMovie",randomIndex)
+                    return Object.assign({}, state, {
+                        currentMovie: state.movies[randomIndex]
+                      })
+                }else{
+                    console.log(action.payload.name)
+                    return Object.assign({}, state, {
+                        currentMovie: action.payload
+                      })
+                }
+
+            default:
+                return state
+        }
+    }
+
+    export default HomeReducer

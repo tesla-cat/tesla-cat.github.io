@@ -1,0 +1,59 @@
+
+GR: Solving Geodesic Equation
+=================================
+
+:Date: 26 Sep 2019
+
+Derivation
+-------------
+
+**Step 1** 
+
+.. math::
+	\begin{align*}
+	& \text{I. Earlier we had}\\
+	& ds^2 = -(1-{r_s\over r}) dt^2+(1-{r_s\over r})^{-1} dr^2
+			+r^2 d\theta^2+ r^2 \sin^2 \theta d\phi^2\\
+	& \boxed{ {1\over 2}( -{\partial g_{ab}\over \partial x^{(c)}}{dx^{(a)} \over d\tau}{dx^{(b)} \over d\tau} ) 
+	   = {d\over d\tau}[ -g_{bc} {d{x}^{(b)} \over d\tau}]  \;\;\;\;\text{Geodesic Equation}}\\
+	& \text{II. Consider different cases of }x^{(c)}\\
+	& (1)\; x^{(0)}=t\Rightarrow  0={d\over d\tau}[ -g_{b0} {d{x}^{(b)} \over d\tau}] \\
+	& \;\;\;\; \to {d\over d\tau}[ -g_{00} {d{x}^{(0)} \over d\tau}] =0 
+		\Rightarrow (1-{r_s\over r}) {dt\over d\tau}=\text{const}\equiv e \\
+	& (2)\; x^{(3)}=\phi \Rightarrow  0={d\over d\tau}[ -g_{b3} {d{x}^{(b)} \over d\tau}] \\
+	& \;\;\;\; \to {d\over d\tau}[ -g_{33} {d{x}^{(3)} \over d\tau}] =0 
+		\Rightarrow r^2 \sin^2 \theta {d\phi \over d\tau}=\text{const}\equiv l \\
+	& (3)\; x^{(2)}=\theta \Rightarrow  
+		{1\over 2}( -{\partial g_{ab}\over \partial x^{(2)}}{dx^{(a)} \over d\tau}{dx^{(b)} \over d\tau} ) 
+	   = {d\over d\tau}[ -g_{b2} {d{x}^{(b)} \over d\tau}]  \\
+	& \;\;\;\; \to  {1\over 2} {\partial g_{33}\over \partial \theta}({d\phi \over d\tau})^2  
+	   = {d\over d\tau}[ g_{22} {d\theta \over d\tau}]  \\
+	& \;\;\;\; \to  r^2\sin\theta\cos\theta({d\phi \over d\tau})^2  
+	   = r^2 {d^2\theta \over d\tau^2} + {d\theta \over d\tau} 2r {dr\over d\tau}\\
+	& \;\;\;\; \to  \theta ={\pi \over 2} \text{ (Plane Orbit)} \text{ is a solution}\\
+	& (4)\; \begin{cases} 
+		x^{(1)}=r \\
+		\theta ={\pi \over 2} 
+	\end{cases} \Rightarrow 
+		{1\over 2} {\partial g_{00}\over \partial r} ({dt \over d\tau})^2 +
+		{1\over 2} {\partial g_{11}\over \partial r} ({dr \over d\tau})^2 +
+		{1\over 2} {\partial g_{33}\over \partial r} ({d\phi \over d\tau})^2 
+	   = {d\over d\tau}[ g_{11} {dr \over d\tau}] \\
+	& \;\;\;\; \to  
+		{1\over 2} (-{r_s\over r^2}) ({dt \over d\tau})^2 +
+		{1\over 2} (1-{r_s\over r})^{-2}{r_s\over r^2}  ({dr \over d\tau})^2 +
+		r ({d\phi \over d\tau})^2 
+	   = (1-{r_s\over r})^{-1}{d^2r \over d\tau^2} \\
+	& \text{III. Applications}\\
+	& (1)\; \text{[ II.(4)+Circular Orbit ]} \\
+	& \;\;\;\; \text{Circular} \Rightarrow {dr \over d\tau}={d^2r \over d\tau^2}=0 \Rightarrow 
+		{1\over 2} (-{r_s\over r^2}) ({dt \over d\tau})^2 +
+		r ({d\phi \over d\tau})^2 = 0 \\
+	& \;\;\;\; \to 
+		{1\over 2} (-{r_s\over r^2}) ({dt \over d\tau})^2 +
+		r ({d\phi \over dt}{dt \over d\tau})^2 = 0 \\
+	& \;\;\;\; \text{1. Any observer: }\Omega \equiv {d\phi \over d\tau} \\
+	& \;\;\;\; \text{2. Observer at infinity: } \Omega = {d\phi \over dt} \Rightarrow 
+	  \Omega^2 ={1\over 2} {r_s\over r^3} \underset{r\gg r_s}{=} {M\over r^3} 
+	\end{align*}
+

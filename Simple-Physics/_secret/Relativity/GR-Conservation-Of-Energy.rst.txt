@@ -1,0 +1,71 @@
+
+GR: Conservation Of Energy
+=================================
+
+:Date: 26 Sep 2019
+
+Derivation
+-------------
+
+**Step 1** 
+
+.. math::
+	\begin{align*}
+	& \text{I. Earlier we had}\\
+	& ds^2 = -(1-{r_s\over r}) dt^2+(1-{r_s\over r})^{-1} dr^2
+			+r^2 d\theta^2+ r^2 \sin^2 \theta d\phi^2\\
+	& u^2=u\cdot u = g_{ab}{dx^{(a)} \over d\tau}{dx^{(b)} \over d\tau}
+	   = {ds^2\over -ds^2} =-1\\
+	& (1-{r_s\over r}) {dt\over d\tau}=\text{const}\equiv e 
+	\;\;\;\;\;\;\;\; r^2 \sin^2 \theta {d\phi \over d\tau}=\text{const}\equiv l \\
+	& \text{II. Consider the case }\theta ={\pi\over 2} \text{ (Plane Orbit)}\\
+	& \Rightarrow   g_{00} ({dt \over d\tau})^2 + g_{11} ({dr \over d\tau})^2 +
+		g_{33} ({d\phi \over d\tau})^2 = -1 \\
+	& \Rightarrow   
+		-(1-{r_s\over r}) ({dt \over d\tau})^2 + 
+		(1-{r_s\over r})^{-1} ({dr \over d\tau})^2 +
+		r^2 ({d\phi \over d\tau})^2 = -1 \\
+	& \Rightarrow   
+		-(1-{r_s\over r})^{-1} e^2 + 
+		(1-{r_s\over r})^{-1} ({dr \over d\tau})^2 +
+		{l^2\over r^2} = -1 \\
+	& \Rightarrow   
+		- e^2 + 
+		 ({dr \over d\tau})^2 +
+		(1-{r_s\over r}){l^2\over r^2} = -(1-{r_s\over r}) \\
+	& \Rightarrow  
+		\underbrace{ {1\over 2}({dr \over d\tau})^2 }_{\text{Kinetic}} +
+		\underbrace{ (-{1\over 2}){r_s\over r}+{1\over 2}{l^2\over r^2}\boxed{-{1\over 2}{r_s l^2\over r^3}} }_{\text{Potential } \tilde{V}}= 
+		\underbrace{ {1\over 2}(e^2-1)\equiv \tilde{E} }_{\text{Total}} \\
+	& \;\;\;\; {d\tilde{E}\over d\tau}=0\Rightarrow 
+	{d^2r \over d\tau^2} =-{M\over r^2}+{l^2\over r^3}-{3Ml^2\over r^4}\\
+	& \;\;\;\; \text{Recall when }r\gg r_s \Rightarrow r_s\approx 2M \\
+	& \;\;\;\; \text{In Newtonian: }\underbrace{ {1\over 2}({dr \over d\tau})^2 }_{\text{Kinetic}} +
+      \underbrace{ (-){M\over r}+{1\over 2}{l^2\over r^2} }_{\text{Potential}}= 
+	  \underbrace{ E }_{\text{Total}} \\
+	& \text{III. Applications}\\
+	& (1)\text{ Possible + Stable circular orbits:}\\
+	& \;\;\;\;{d\tilde{V}\over dr}=0 \Rightarrow 
+		r={l^2\pm \sqrt{ l^4-12M^2l^2 }\over 2M}
+		={6M\over 1\pm \sqrt{ 1-12M^2/l^2 }}\\
+	& \;\;\;\;{d^2\tilde{V}\over dr^2}>0 \Rightarrow {2\over r}\underbrace{(-{M\over r^2}+{l^2\over r^3}-{3Ml^2\over r^4})}_{=-d\tilde{V}/ dr=0} +{l^2\over r^4}-{6Ml^2\over r^5}>0 \\
+	& \;\;\;\; \;\;\;\; \Rightarrow  l>\sqrt{12}M, r>6M \\
+	& (2)\text{ Perihelion Shift:}\\
+	& \;\;\;\; r^2  {d\phi \over d\tau}= l \Rightarrow {dr\over d\tau}={l\over r^2}{dr\over d\phi}
+		\;\;\;\; \;\;\;\; u\equiv {1\over r} \\
+	& \;\;\;\; \Rightarrow \tilde{E}={1\over 2}(-l{du\over d\phi})^2
+		-Mu+{1\over 2}l^2u^2-Ml^2u^3\\
+	& \;\;\;\; {d\tilde{E}\over d\phi }\overset{!}{=}0 \Rightarrow 
+		{d^2 u\over d\phi^2}-{M\over l^2}+ u-M 3u^2=0 \\
+	& \;\;\;\; \text{Perturbation theory: } u=u_0+c u_1 \;\;\;\; |u_1|\ll |u_0| \\
+	& \;\;\;\; {d^2 u_0\over d\phi^2}-{M\over l^2}+ u_0=0 \;\; [1]\Rightarrow u_0= {M\over l^2}(1+\epsilon\cos\phi) \\
+	& \;\;\;\; {d^2 cu_1\over d\phi^2}+ cu_1-c M 3u_0^2=0 \;\; [2] \\
+	& \;\;\;\; \text{Note that we will let }c=1 \text{ at the end, you can} \\
+	& \;\;\;\; \text{sum up [1] and [2] to check consistency}\\
+	& \;\;\;\; \text{Assume } u_1(\phi)=A+B\phi\sin\phi+C\phi\cos\phi+D\sin2\phi+E\cos2\phi\\
+	& \;\;\;\; \Rightarrow A= {3M^3\over l^4}(1+{\epsilon^2\over 2}), B={3M^3\epsilon\over l^4}, E=-{M^3 \epsilon^2\over 2l^4} \\
+	& \;\;\;\; \text{Finally }u\approx {M\over l^2}(1+\epsilon\cos\phi+ {3M^2\epsilon\over l^2}\phi\sin\phi) \\
+	& \;\;\;\; \approx {M\over l^2}(1+\epsilon\cos[(1-{3M^2\over l^2})\phi]) \Rightarrow \Delta \phi\approx 2\pi(1+{3M^2\over l^2}) \\
+	& \;\;\;\; \text{Semi-major Axis of elliptical orbit: } a={l^2\over M(1-\epsilon^2)}\\
+	\end{align*}
+

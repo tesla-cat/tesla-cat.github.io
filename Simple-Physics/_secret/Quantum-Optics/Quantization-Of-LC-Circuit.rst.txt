@@ -1,0 +1,33 @@
+
+Quantization Of LC Circuit
+===============================
+
+:Date: 1 August 2019
+
+Dependency
+-------------
+
+- :doc:`Quantum-Harmonic-Oscillator`
+- :doc:`LC-Circuit`
+
+What is the problem ?
+------------------------
+
+Derivation
+-------------
+
+**Step 1** Write down the :doc:`Hamiltonian`, and find correspondence:
+
+.. math::
+	\begin{align*}
+	& H(I,Q) = {1\over 2}LI^2 + {1\over 2}{Q^2\over C}\\
+	& H(p,q) = {p^2\over 2m} + {1\over 2}m\omega^2 q^2\\
+	\end{align*}
+
+.. math::
+	\begin{align*}
+	& L\leftrightarrow m  & C \leftrightarrow {1\over m\omega^2}\\
+ 	& I\leftrightarrow {p\over m}  & Q \leftrightarrow q
+	\end{align*}
+
+**Step 2** Results from :doc:`Quantum-Harmonic-Oscillator` then follows

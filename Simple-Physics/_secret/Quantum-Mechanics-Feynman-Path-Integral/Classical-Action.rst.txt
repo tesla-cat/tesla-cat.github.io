@@ -1,0 +1,55 @@
+
+Classical Action
+=================================
+
+:Date: 11 Aug 2019
+
+Dependency
+-------------
+
+:doc:`Functional` 
+
+What is the problem ?
+-------------------------
+
+- Equivalent theory of :doc:`Newton's Law`, but more fundamental.
+
+Derivation
+-------------
+
+**Step 1** Simplest scenario in nature: A particle travels from spacetime point :math:`(t_a,x_a)` to :math:`(t_b,x_b)`, then the path :math:`x` is a function of time :math:`t`, i.e. :math:`x(t)`
+
+Define **Action**, which is a :doc:`Functional` of :math:`x`
+
+.. math::
+	\begin{align*}
+	& \text{Action }S[x]=\int_{t_a}^{t_b} dt \; L(x,\dot{x},t)\\
+	& where \\
+	& \text{Lagrangian }L = {1\over 2} m\dot{x}^2-V(x,t) 
+	\end{align*}
+
+**Step 2** Equivalent to :doc:`Newton's Law`, the **Principle of Least Action** states that: The actual path that the particle would take is the one leads to **minimum Action**: :math:`\delta S=0`
+
+Therefore, to find :math:`x(t)`, we write down
+
+.. math::
+	\begin{align*}
+	& \delta S  \equiv S[x+\delta x]-S[x]
+	          = ... = \left. \delta x {\partial L \over \partial \dot{x}} 
+	           \right|_{t_a}^{t_b} - \int_{t_a}^{t_b} dt \; \delta x \left( {d\over dt}{\partial L \over \partial \dot{x}}-{\partial L \over \partial x} \right) \\
+	& \delta S=0  \Rightarrow \boxed{ 
+		{d\over dt}{\partial L \over \partial \dot{x}}-{\partial L \over \partial x} = 0  \;\;\;\; \text{Euler-Lagrange Equation}
+	}\\
+	& \text{From here we can solve }x(t)\text{ trivially}
+	\end{align*}
+
+Example 1: Newton's Law
+---------------------------------
+
+.. math::
+	\begin{align*}
+	& L = {1\over 2} m\dot{x}^2-V(x,t) 
+	 \Rightarrow {d\over dt}{m \dot{x}}+{\partial V \over \partial x} = 0\\
+	& \text{Since } F=- {\partial V \over \partial x}
+	 \Rightarrow {m \ddot{x}} = F\\
+	\end{align*}

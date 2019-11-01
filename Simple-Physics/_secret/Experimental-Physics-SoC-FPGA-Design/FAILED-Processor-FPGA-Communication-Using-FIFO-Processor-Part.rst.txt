@@ -1,0 +1,159 @@
+
+FAILED Processor-FPGA Communication: Using FIFO Processor Part
+====================================================================
+
+Warning
+--------------
+
+The approach used in this part, using FIFO provided by Platform Designer(Qsys), has failed due to the lack of proper example from Altera. I will use FIFO component from Quartus Library instead. Please read :doc:`Processor-FPGA Communication: Using FIFO Processor Part` instead.
+
+Credit
+------------
+
+- This section is **Modified From** `DE1 SoC ARM HPS and FPGA Addresses and Communication Cornell ece5760`_
+
+.. _DE1 SoC ARM HPS and FPGA Addresses and Communication Cornell ece5760: https://people.ece.cornell.edu/land/courses/ece5760/DE1_SOC/HPS_peripherials/FPGA_addr_index.html
+
+:Date: 20 Aug 2019
+
+
+Platform Designer Settings From Last Session
+-----------------------------------------------
+
+
+.. figure:: imgs/Stage-2_Mine_Qsys_FIFO.png
+
+.. figure:: imgs/Stage-2_Mine_Qsys_Address_Map.png
+
+
+Processor Code That Uses Above Address Map
+---------------------------------------------
+
+The following :code:`Quartus Project Stage 2\Cornell ECE5760\C Code for HPS\FIFO_2_prettified.c` is modified from the original file :code:`FIFO_2.c`. However, it is **not tested yet** since I still have doubt as can be seen below, hopefully my boss can help me with this: 
+
+.. code-block:: c
+
+	// FIFO details:
+	//     Depth: 256    Data Width: 32 bits
+
+	// From Cornell ECE5760
+	#include <string.h>
+	#include <stdlib.h>
+	#include <sys/types.h>
+	#include <sys/ipc.h>
+	#include <sys/shm.h>
+	#include <sys/time.h>
+	#include <math.h>
+
+	// From Terasic original HPS_FPGA_LED example 
+	#include <stdio.h>
+	#include <unistd.h> // provides access to the POSIX operating system API
+	#include <fcntl.h>  // header in the C POSIX library
+	#include <sys/mman.h> // memory management 
+	#include "hwlib.h" // location: SoC EDS\embedded\ip\altera\hps\altera_hps\hwlib\include
+	#include "socal/socal.h" // location: SoC EDS\embedded\ip\altera\hps\altera_hps\hwlib\include\soc_cv_av\socal
+	#include "socal/hps.h"
+	#include "socal/alt_gpio.h"
+	#include "hps_0.h"
+
+	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	// Modify the following based on your Qsys File in in Platform Designer 
+
+	    // The following corresponds to **h2f_axi_master** in Platform Designer
+	    #define h2f_axi_master_BASE             ( 0xC0000000 )
+	    #define h2f_axi_master_SPAN             ( 0x04000000 )
+
+	    //The following corresponds to **h2f_lw_axi_master** in Platform Designer
+	    #define HW_REGS_BASE ( ALT_STM_OFST )
+	    #define HW_REGS_SPAN ( 0x04000000 )
+	    #define HW_REGS_MASK ( HW_REGS_SPAN - 1 )  
+	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+	//====================================
+	// The following corresponds to **h2f_axi_master** in Platform Designer
+	//====================================
+	void *h2f_virtual_base;
+	volatile unsigned int * FIFO_write_ptr = NULL ;
+	volatile unsigned int * FIFO_read_ptr = NULL ;
+	#define FIFO_WRITE           (*(FIFO_write_ptr))
+	#define FIFO_READ            (*(FIFO_read_ptr))
+
+	//====================================
+	// The following corresponds to **h2f_lw_axi_master** in Platform Designer
+	//====================================
+	void *h2f_lw_virtual_base;
+	volatile unsigned int * FIFO_write_status_ptr = NULL ;
+	volatile unsigned int * FIFO_read_status_ptr = NULL ;
+	#define WRITE_FIFO_FILL_LEVEL (*FIFO_write_status_ptr)
+	#define READ_FIFO_FILL_LEVEL  (*FIFO_read_status_ptr)
+	#define WRITE_FIFO_FULL       ((*(FIFO_write_status_ptr+1))& 1 )
+	#define WRITE_FIFO_EMPTY      ((*(FIFO_write_status_ptr+1))& 2 )
+	#define READ_FIFO_FULL        ((*(FIFO_read_status_ptr+1)) & 1 )
+	#define READ_FIFO_EMPTY       ((*(FIFO_read_status_ptr+1)) & 2 )
+	#define WAIT {}
+
+	//====================================
+	// Helper Functions
+	//====================================
+
+	// Write and Read: **a** is data to be written, **b** is result(success/fail)
+	#define FIFO_WRITE_BLOCK(a)         {while (WRITE_FIFO_FULL){WAIT};FIFO_WRITE=a;}
+	#define FIFO_READ_BLOCK(a)          {while (READ_FIFO_EMPTY){WAIT};a=FIFO_READ;}
+	#define FIFO_WRITE_NOBLOCK(a,b)     {b=!WRITE_FIFO_FULL; if(!WRITE_FIFO_FULL)FIFO_WRITE=a;}
+	#define FIFO_READ_NOBLOCK(a,b)      {b=!READ_FIFO_EMPTY; if(!READ_FIFO_EMPTY)a=FIFO_READ;}
+
+	int memoryMapping(){
+	    // Step 1
+	    int fd;
+	    if( (fd = open("/dev/mem",(O_RDWR|O_SYNC))) == -1 ){
+	        printf( "ERROR: could not open \"/dev/mem\"...\n" );
+	        return( 1 );
+	    }
+
+	    // **h2f_axi_master** Part
+	    h2f_virtual_base = mmap( NULL, h2f_axi_master_SPAN, ( PROT_READ | PROT_WRITE ), MAP_SHARED, fd, h2f_axi_master_BASE);
+	    if( h2f_virtual_base == MAP_FAILED ) {
+	        printf( "ERROR: mmap() for **h2f_axi_master** failed\n");
+	        close( fd );  return(1);
+	    }
+	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	// Modify the following based on your Qsys File in in Platform Designer 
+	    FIFO_write_ptr =(unsigned int *)(h2f_virtual_base);
+	    FIFO_read_ptr  =(unsigned int *)(h2f_virtual_base + 0x40000);
+	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+	    // **h2f_lw_axi_master** Part
+	    h2f_lw_virtual_base = mmap( NULL, HW_REGS_SPAN, ( PROT_READ | PROT_WRITE ), MAP_SHARED, fd, HW_REGS_BASE );
+	    if( h2f_lw_virtual_base == MAP_FAILED ) {
+	        printf( "ERROR: mmap() for **h2f_lw_axi_master** failed...\n" );
+	        close( fd );  return(1);
+	    }
+	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	// Modify the following based on your Qsys File in in Platform Designer 
+	    FIFO_write_status_ptr = (unsigned int *)(h2f_lw_virtual_base + 0x50000);
+	    FIFO_read_status_ptr  = (unsigned int *)(h2f_lw_virtual_base + 0x60000); 
+	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+	    return(0);
+	}
+
+	int repeatWriting(){
+	    int i;
+	    while(1){
+	        printf( "repeatWriting: ");
+	        scanf("%d", &i);
+	        FIFO_WRITE_BLOCK(i);
+	        printf("Fill levels: WRITE_FIFO=%d READ_FIFO=%d\n", WRITE_FIFO_FILL_LEVEL, READ_FIFO_FILL_LEVEL);
+	    }
+	    return(0);
+	}
+
+	//====================================
+	// Main Function
+	//====================================
+
+	int main(void){
+	    memoryMapping();
+	    repeatWriting();
+	    return(0);
+	}

@@ -1,0 +1,74 @@
+
+Coordinate Transformation And Tensors
+=============================================
+
+:Date: 25 Sep 2019
+
+What is the problem ?
+-------------------------
+
+- Relativity = Physics laws should be same in different coordinates
+- Thus we study about Coordinate Transformation
+- A Tensor is quantity that obey a certain Transformation Law
+
+Derivation
+-------------
+
+**Step 1** 
+
+.. math::
+	\begin{align*}
+	& \textbf{I. Foundation}\\
+	& \text{Let }x \text{ be a coordinates system, } x'\text{ be another}\\
+	& \text{Basic calculus: } dx'^{(a)} = {\partial x'^{(a)} \over \partial x^{(b)}} d x^{(b)} \\
+	& \Rightarrow \boxed{ \delta'^a_c = {\partial x'^{(a)} \over \partial x'^{(c)}}  = {\partial x'^{(a)} \over \partial x^{(b)}}   {\partial x^{(b)} \over \partial x'^{(c)}} } \boxed{ \delta^a_c = {\partial x^{(a)} \over \partial x'^{(b)}}   {\partial x'^{(b)} \over \partial x^{(c)}} }\\
+	& \textbf{II. Tensors: Definition}\\
+	& A\text{ is a physical entity, regardless of observer's coordinate system}\\
+	& \text{But we can only measure components of it: } A^{(b)}, A'^{(a)} \\
+	& \;\;\;\; \text{based on our own coordinate systems} \\
+	& (1)\text{ If } A'^{(a)}={\partial x'^{(a)} \over \partial x^{(b)}} A^{(b)} \text{, then }A\text{ is called Contravariant}\\
+	& (2)\text{ If } A'_a={\partial x^{(b)} \over \partial x'^{(a)}} A_b \text{, then }A\text{ is called Covariant}\\
+	& \text{Use superscript to denote Contravariant, and ...}\\
+	& (3)\text{ If } T'^{(ab...)[r \text{ terms}]}_{ij...[s \text{ terms}]}= 
+		{\partial x'^{(a)} \over \partial x^{(c)}} ... {\partial x^{(k)} \over \partial x'^{(i)}} ...
+		T^{(cd...)}_{kl...} \\
+	& \;\;\;\; \text{then }T \text{ is called a Tensor of type }(r,s)\text{ and } r+s\text{ is called Rank}\\
+	& \textbf{III. Tensors: Examples} \\
+	& (1)\text{ Metric Tensor: } ds^2= g_{ab}dx^{(a)}dx^{(b)}=g'_{cd}dx'^{(c)}dx'^{(d)}\\
+	& \Rightarrow g_{ab} {\partial x^{(a)} \over \partial x'^{(c)}} d x'^{(c)} {\partial x^{(b)} \over \partial x'^{(d)}} d x'^{(d)}=g'_{cd}dx'^{(c)}dx'^{(d)}\\
+	& \Rightarrow \boxed{
+		g'_{cd} = {\partial x^{(a)} \over \partial x'^{(c)}} {\partial x^{(b)} \over \partial x'^{(d)}} g_{ab} 
+	} \\
+	& (2)\text{ Inverse Metric Tensor: } g^{(ab)} \text{ is defined by } g^{(ab)} g_{bc} = \delta^a_c\\
+	& \;\;\;\; \text{Transformation Law: } g'^{(ab)} = {\partial x'^{(a)} \over \partial x^{(c)}}{\partial x'^{(b)} \over \partial x^{(d)}} g^{(cd)}\\
+	& \;\;\;\; \text{Proof: } g'^{(ab)} g'_{bc} = \text{(use above)}= \delta^a_c \Rightarrow \text{Agree with definition}\\
+	& (3)\text{ Gradient of }\Phi(x^{(a)}): \partial_a\Phi\equiv {\partial \Phi \over \partial x^{(a)}} \\
+	& \;\;\;\; \text{Transformation Law: } \partial'_{a}\Phi'={\partial \Phi' \over \partial x'^{(a)}}=
+	{\partial x^{(b)} \over \partial x'^{(a)}}{\partial \Phi \over \partial x^{(b)}} \\
+	& (4)\text{ Delta Function: } \\
+	& \;\;\;\; \text{Transformation Law: } \delta'^a_c={\partial x'^{(a)} \over \partial x^{(b)}}   {\partial x^{(b)} \over \partial x'^{(c)}}={\partial x'^{(a)} \over \partial x^{(b)}}   {\partial x^{(d)} \over \partial x'^{(c)}} \delta^b_d \\ 
+	& (5)\text{ Gradient of a tensor is tensor when Box=0} \\
+	& \;\;\;\; \partial'_{a}A'^{(b)}={\partial A'^{(b)} \over \partial x'^{(a)}}= {\partial \over \partial x'^{(a)}} 
+	{\partial x'^{(b)} \over \partial x^{(c)}} A^{(c)} 
+	= {\partial x^{(d)} \over \partial x'^{(a)}} {\partial \over \partial x^{(d)}} 
+	{\partial x'^{(b)} \over \partial x^{(c)}} A^{(c)} \\
+	& \;\;\;\; =\boxed{ {\partial x^{(d)} \over \partial x'^{(a)}} 
+	{\partial^2 x'^{(b)} \over \partial x^{(c)} \partial x^{(d)}} A^{(c)} }+ 
+	{\partial x^{(d)} \over \partial x'^{(a)}} 
+	{\partial x'^{(b)} \over \partial x^{(c)}} \partial_d A^{(c)} \\
+	& \textbf{IV. Tensors: Operations}\\
+	& (1) \text{ Sum: } A^{(ab)}_c+B^{(ab)}_c=C^{(ab)}_c\\
+	& (2) \text{ Product: } A^{(ab)}B_c=C^{(ab)}_c\\
+	& (3) \text{ Contraction: } A^{(ab)}_c \to A^{(ac)}_c \text{ (Sum over one index)}\\ 
+	& \;\;\;\; \text{Transformation Law: } A'^{(ac)}_c = {\partial x'^{(a)} \over \partial x^{(b)} } A^{(bc)}_c\\
+	& (4) \text{ Raising: } (r,s)\overset{\times g^{(ab)}}{\to} (r+2,s) \overset{\text{contraction}}{\to} (r+1,s-1)\\
+	& \;\;\;\; \text{Lowering: } (r,s)\overset{\times g_{ab}}{\to} (r,s+2) \overset{\text{contraction}}{\to} (r-1,s+1)\\
+	& \;\;\;\; \text{Example: } A^{(a)}\to g_{bc}A^{(a)} \to g_{ac}A^{(a)} =A_c \\
+	& (5) \text{ Scalar Product: } A^{(a)}B_a = A^{(a)} (g_{ac}B^{(c)}) = A_c B^{(c)}\\
+	& \;\;\;\; \text{Independent of coordinate system since: }\\
+	& \;\;\;\; \text{Proof: } A'^{(a)}B'_a = {\partial x'^{(a)} \over \partial x^{(b)}} A^{(b)} 
+		{\partial x^{(c)} \over \partial x'^{(a)}} B_c =\delta^c_b A^{(b)} B_c 
+	 	=  A^{(b)}B_b \\
+	\end{align*}
+
+

@@ -1,0 +1,27 @@
+
+Master Equation
+=================================
+
+:Date: 29 July 2019
+
+Dependency
+-------------
+
+:doc:`Linear Algebra`
+
+What is the problem ?
+-------------------------
+
+Derivation
+-------------
+
+**Step 1** Master Equation is **simply** Conservation of Probability
+
+.. math::
+	\begin{align*}
+	& p_i(t)= \text{ probability that the system is in states }i\text{ at time } t\\
+	& \dot{p_i}(t) = -\sum\limits_{j\ne i} p_i(t) \; k_{i\to j} + \sum\limits_{i\ne j} p_j(t)\; k_{j\to i}\\
+	&where \;\; k_{i\to j}=\text{ transition probability}\\
+	& \text{Matrix Form: } \boxed{ \dot{p} =- Mp}
+	\end{align*}
+

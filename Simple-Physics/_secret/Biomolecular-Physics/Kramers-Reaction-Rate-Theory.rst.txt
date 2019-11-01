@@ -1,0 +1,82 @@
+
+Kramers Reaction Rate Theory
+===============================
+
+:Date: 28 July 2019
+
+Dependency
+-------------
+
+- `Statistical Mechanics`_
+- `Boltzmann Factor`_
+
+.. _Statistical Mechanics: 
+.. _Boltzmann Factor:
+
+
+What is the problem ?
+------------------------
+
+.. figure:: Kramers-Reaction-Rate-Theory-1.PNG
+   
+   *TO BE MODIFIED*
+
+.. math::
+	\require{mhchem}
+	\ce{A <=> B ->[k^+] C}
+
+Let the transition state :math:`B` correspond to **reaction coordinate** :math:`x=x^{\ne}`
+
+Derivation
+-------------
+
+**Step 1** **Transition State Theory (TST)**
+
+.. math::
+	\begin{align*}
+	& k^+ = {\text{flux} \over N_A} \\
+	& \text{and}\\
+	& \text{flux} = \underbrace{{N^{\ne} \over \Delta x}}_{\text{density}}
+		\underbrace{\langle v^{\ne} \rangle}_{velocity} \\
+	& {N^{\ne} \over N_A} = {z^{\ne} \over z_A} \; (\text{Boltzmann Factor})\\
+	\Rightarrow & k^+ = {z^{\ne} \over z_A} {\langle v^{\ne} \rangle \over \Delta x}
+	\end{align*}
+
+**Step 2** Find :math:`z^{\ne}`
+
+.. math::
+	\begin{align*}
+	& z^{\ne} = {1\over h} \int dp 
+		\int_{x^{\ne}-{\Delta x \over 2}}^{x^{\ne}+{\Delta x \over 2}}
+		dx \; \exp[{p^2\over 2m}+V(x)] \\
+	&\text{Assume } V=const \text{ around } x^{\ne}\\
+	\Rightarrow z^{\ne} & = {1\over h} \Delta x\; e^{-\beta V(x^{\ne})} 
+		\sqrt{2\pi m \beta}
+	\end{align*}
+
+**Step 3** Find :math:`z^A`
+
+*TO BE ADDED*
+
+**Step 4** Find :math:`\langle v^{\ne} \rangle`
+
+*TO BE ADDED*
+
+**Step 5** Combining above
+
+.. math::
+	\boxed{
+		k^+ = {\omega_A \over 2\pi}e^{-\beta V(x^{\ne})} \;\;\; \text{TST}
+	}
+
+**Step 6** Modify **TST** to get **Kramers Theory**
+
+*TO BE FURTHER EXPLAINED*
+
+.. math::
+	\boxed{
+		k^+ = {1\over \omega_B}\left(-{\gamma \over 2}+\sqrt{{\gamma^2 \over 4}+\omega_B^2}\right) 
+		\left\{
+			{\omega_A \over 2\pi}e^{-\beta V(x^{\ne})}
+		\right\} \;\;\; \text{Kramers}
+	}

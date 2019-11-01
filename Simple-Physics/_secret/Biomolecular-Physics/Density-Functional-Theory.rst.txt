@@ -1,0 +1,86 @@
+
+Density Functional Theory
+============================
+
+:Date: 28 July 2019
+
+Dependency
+-------------
+
+- `Schrodinger Equation`_
+- `Born Oppenheimer Approximation`_
+- Functional_
+
+.. _Schrodinger Equation: 
+.. _Born Oppenheimer Approximation:
+.. _Functional:
+
+What is the problem ?
+------------------------
+
+Calculate the approximate wavefunction and energy for atoms
+
+Derivation
+-------------
+
+**Step 1** Hohenberg Kohn theorem
+
+:math:`n(r)`: groundstate electron density
+
+:math:`v(r)`: external potential
+
+Then Functional_ :math:`v=v[n]`, meaning if we observe some :math:`n(r)`, then we know exactly what potential :math:`v(r)` generates such density distribution
+
+**Step 2** Proof of **Step 1**
+
+*TO BE ADDED*
+
+**Step 3** The energy
+
+.. math::
+	\begin{align*}
+	E[n] & = T+U+V = T[n]+U[n]+\int n(r)v(r) \; d^3r\\
+	& where\\
+	& T = \text{Kinetic energy of electrons}\\
+	& U = \text{Electric potential}\\
+	& V = \text{Total external potential}
+	\end{align*}
+
+**Step 4** Kohn-Sham approach to evaluate The energy
+
+Introduce single particle orbitals :math:`\chi_i`
+
+.. math::
+	\begin{align*}
+	& T=T_{\text{single particle}} + T_{\text{correlation}} = T_s+T_c \\
+	& T_s = T_s\{\chi_i[n]\}\\
+	& \text{Introduce:}\\
+	& E_{xc} = (T-T_s)+(U-U_H)\\
+	& \Rightarrow\\
+	E[n] & = T_s\{\chi_i[n]\}+U_H+E_{xc}+V
+	\end{align*}
+
+The idea above is to leave all the non-trivial parts to :math:`E_{xc}=E_{x}+E_{c}`
+
+- :math:`x` stands for exchange energy due to the Pauli Principle
+- :math:`c` stands for correlation energy, :math:`T_c` is part of :math:`E_c`
+
+We have
+
+.. math::
+	\begin{align*}
+	& T_s = ...\text{ trivial expression we know} \\
+	& U_H = ...\text{ trivial expression we know} \\
+	& E_x = ???\text{ can only be calculated after approximation(step 5)} \\
+	& E_c = ???\text{ can only be calculated after approximation(step 5)} 
+	\end{align*}
+
+**Step 5** Approximations to find :math:`E_{xc}`
+
+*TO BE ADDED*
+
+**Step 6** Get the groundstate energy by minimizing :math:`E[n]` wrt :math:`n`
+
+**Kohn-Sham Equations**
+
+**TO BE CONTINUED**

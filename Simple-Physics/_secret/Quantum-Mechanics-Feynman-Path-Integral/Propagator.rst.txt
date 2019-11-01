@@ -1,0 +1,75 @@
+
+Propagator
+=======================
+
+:Date: 11 Aug 2019
+
+Dependency
+-------------
+
+
+What is the problem ?
+-------------------------
+
+- In Quantum Mechanics there is **no actual path** of a particle but only the **probability** of transition from one state :math:`a` to another state :math:`b`
+- What is the probability :math:`P_{a\to b}` from :math:`(t_a,x_a)` to :math:`(t_b,x_b)` ?
+
+Derivation
+-------------
+
+**Step 1** Feynman says
+
+.. math::
+	\begin{align*}
+	& P_{a\to b} = |K_{a\to b}|^2\\
+	& where\\
+	& \text{Propagator }K_{a\to b} = \sum\limits_{\text{every path }x(t)\text{ from }a \to b}
+	{1\over A} e^{{i\over \hbar} S[x(t)]} \\
+	& A: \text{ Normalization Factor}
+	\end{align*}
+
+**This looks really like** :doc:`Boltzmann Factor`
+
+**Makes me question whether Quantum Mechanics is actually a result of Classic probability**
+
+**Step 2** Approximation for small time interval :math:`\epsilon`
+
+.. math::
+	\begin{align*}
+	& K_{a\to b} \approx {1\over A} \exp \left[ {i\over \hbar} \cdot \epsilon \cdot L({x_b+x_a\over 2}, {x_b-x_a\over \epsilon}, {t_b+t_a\over 2}) \right] 
+	\end{align*}
+
+**Step 3** **Wave Functions** are **simply** Propagators with common starting point :math:`(t_0,x_0)`
+
+.. math::
+	\begin{align*}
+	& \psi(x_i,t_i) \equiv K_{0\to i} \\
+	& \psi(x_j,t_j) = \int_{-\infty}^{\infty} dx_i \; \psi(x_i,t_i)
+	K_{i \to j}
+	\end{align*}
+
+Doubt 1
+------------
+
+The integration over :math:`dx_i` has dimension of **Length**, but in **Step 1** we are only summing over all possible paths, which should be dimensionless
+
+Derivation Part 2
+--------------------
+
+**Step 4** Combine **Step 2** and **Step 3** to get **Schrodinger Equation**
+
+.. math::
+	\begin{align*}
+	& \psi(x,t+\epsilon) ={1\over A} \int_{-\infty}^{\infty} dy \; \psi(y,t) 
+	\exp \left\{ {i\over \hbar} \epsilon
+	\left[ {1\over 2} m({x-y\over \epsilon})^2-V({x+y \over 2},t) \right]
+	\right\} \\
+	& \text{After some Taylor Expansions...}\\
+	& \psi(x,t) + \epsilon {\partial \psi \over \partial t} = \psi(x,t) -
+	{\hbar \epsilon \over 2im} {\partial^2 \psi \over \partial x^2} - {i\epsilon \over \hbar}V(x,t) \psi \\
+	&\boxed{ i\hbar {\partial \psi \over \partial t} =  -
+	{\hbar^2  \over 2m} {\partial^2 \psi \over \partial x^2} + V\psi 
+	\;\;\;\; \text{Schrodinger Equation}}\\
+	\end{align*}
+
+

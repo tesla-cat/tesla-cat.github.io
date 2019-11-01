@@ -1,0 +1,43 @@
+
+2010 Quantum computing
+=================================
+
+:Date: 18 Aug 2019
+
+I. INTRODUCTION
+------------------------
+
+**Step 1** Why is Quantum Computer better than Classical one?
+
+Because a quantum system is in superposition of states, doing everything allowed at the same time. 
+The system collapse into one state once observation (measurement) is made.
+
+For this reason, we can do **simulations** of physical systems (condensed matter, chemistry, anything!) **much faster**.
+
+**Step 2** What is this paper about?
+
+Comparison of different **Hardwares** to make quantum computers.
+
+
+II. REQUIREMENTS FOR QUANTUM COMPUTING (DiVincenzo's Criteria)
+-----------------------------------------------------------------
+
+**Requirement 1** Scalability
+
+**Requirement 2** A universal set of :doc:`Quantum Logic Gates` (Clifford group)
+
+**Requirement 3** Correctability: It must be possible to extract entropy of the computer to maintain the its quantum state
+
+More specifically, this means
+
+- **Initialization:** quickly cool down a system
+- **Measurement:** quickly determine the state of the system
+
+III. QUANTIFYING NOISE IN QUANTUM SYSTEMS
+---------------------------------------------------------
+
+**TO BE CONTINUED**
+
+
+
+

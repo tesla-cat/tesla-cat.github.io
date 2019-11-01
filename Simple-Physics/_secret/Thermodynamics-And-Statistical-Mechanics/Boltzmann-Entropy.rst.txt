@@ -1,0 +1,69 @@
+
+Boltzmann Entropy
+=================================
+
+:Date: 28 July 2019
+
+Dependency
+-------------
+
+:doc:`Thermodynamic-Potentials`
+
+
+What is the problem ?
+-------------------------
+
+- The **Key** of Statistical Mechanics
+
+- Link between **Thermodynamics (macroscopic)** And **Statistical Mechanics (microscopic)**
+
+Derivation
+-------------
+
+**Step 1** **Fundamental** equation in the **Entropy Representation**
+
+From :doc:`Thermodynamic-Potentials`, we have
+
+.. math::
+	\begin{align*}
+	&dS ={1\over T}dE 
+		- \sum\limits_{i=1}^r {F_i \over T} dx_i 
+		- \sum\limits_{j=1}^s {\mu_j \over T} dN_j \\
+	&\Rightarrow S=S(E,{x_i},{N_j})
+	\end{align*}
+
+**Step 2** Previously, we treated :math:`S` purely as a theoretical macroscopic variable. But Boltzmann figured out the exact microscopic expression (origin) of it! 
+
+.. math::
+	\begin{align*}
+	& \boxed{ S(E,{x_i},{N_j}) = k_B \ln \Omega(E,{x_i},{N_j}) }\\
+	& where\\
+	& k_B: \text{ Boltzmann Constant }\\
+	& \Omega(E,{x_i},{N_j}): \text{ Number of Microstates corresponding to } (E,{x_i},{N_j})
+	\end{align*}
+
+Example 1: Two State System
+---------------------------------
+
+:math:`N` identical particles, with two energy levels :math:`\epsilon_n = (-1)^n \epsilon, \;\; n = 1,2`
+
+- Combination_ : The number of ways of picking :math:`k` unordered outcomes from :math:`n` possibilities
+- Stirling Approximation: :math:`\ln N! \approx N\ln N -N`
+
+.. _Combination: http://mathworld.wolfram.com/Combination.html
+
+.. math::
+	\begin{align*}
+	& \begin{cases}
+		N=N_1+N_2\\
+		E=-\epsilon N_1+ \epsilon N_2
+	\end{cases}
+	\Rightarrow \begin{cases}
+		N_1 = {N\over 2}(1-{E\over N \epsilon})\\
+		N_2 = {N\over 2}(1+{E\over N \epsilon})
+	\end{cases}\\
+	\Omega(E,N;N_2)& = {N!\over N_2!(N-N_2)!}\;\; (\text{Combination})\\
+	S(E,N;N_2)& = k_B \ln \Omega=...(\text{Stirling Approximation})\\
+			  & = -k_B N\left[ {N_2\over N}\ln {N_2\over N}+ {N-N_2\over N}\ln {N-N_2\over N}\right]\\
+	& \text{Next just substitute } N_2 \text{ we get } S(E,N)
+	\end{align*}

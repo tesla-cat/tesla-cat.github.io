@@ -1,0 +1,118 @@
+
+Special vs General Relativity
+=================================
+
+:Date: 25 Sep 2019
+
+What is the problem ?
+-------------------------
+
+- Gravity is two objects pulling each other
+- Einstein thinks the "pulling" is actually achieved by
+	- Object has mass, this mass causes space to deform
+	- The deform causes two object to move closer, as if they are pulling each other 
+- In Special Relativity, we don't consider gravity
+- In General Relativity, we do consider gravity 
+- Relativity studys the Geometry of Spacetime
+
+Derivation
+-------------
+
+**Step 1** When we study geometry, we must define **Coordinates** and **Metric**, then we can talk about distance.
+
+.. math::
+	\begin{align*}
+	& \text{Coordinates: Alice stand at } x=3 \text{, Bob } x=5\\
+	& \text{Metric: They agree that each unit length }g=5m\\
+	& \text{Then their distance }\Delta s = g \cdot \Delta x = 5m\cdot 2=10m\\
+	& \text{Consider squared length of a small distance }(ds)^2\\
+	& \text{Notation: } ds^2=(ds)^2\\
+	& \text{2D Euclidean Coordinates: } ds^2=dx^2 + dy^2\\
+	& \text{2D Polar Coordinates: } ds^2= dr^2 + r^2 d\theta^2\\
+	& \text{Write in General form: } ds^2= g_{ab}dx^{(a)}dx^{(b)}\\
+	& g_{ab} \text{ is called Metric Tensor and Einstein summation convention is used}\\
+	& \text{Then:}\\
+	& \text{2D Euclidean: } x^{(0)}=x, x^{(1)}=y\text{ and } g_{00}=g_{11}=1, g_{01}=g_{10}=0\\
+	& \text{2D Polar: } x^{(0)}=r, x^{(1)}=\theta\text{ and } g_{00}=1, g_{11}=r^2, g_{01}=g_{10}=0  \\
+	& \text{SR = Special Relativity, GR = General Relativity}\\
+	& \text{4D Spacetime(SR): Ignore mass deforming space} \\
+	& \;\;\;\; \boxed{ds^2 = -dt^2+dx^2+dy^2+dz^2}\\
+	& \text{4D Spacetime(SR): } x^{(0)}=t, x^{(1)}=x, x^{(2)}=y, x^{(3)}=z\\
+	& \text{4D Spacetime(SR): } g=g_{\text{Minkowski}}=
+		\left(\array{
+			-1 & 0 & 0 & 0 \\
+			 0 & 1 & 0 & 0  \\
+			 0 & 0 & 1 & 0  \\
+			 0 & 0 & 0 & 1 
+		}\right)  \\
+	& \text{4D Spacetime(GR): Consider mass M deforming space} \\
+	& \;\;\;\;  \boxed{ds^2 = -(1-{r_s\over r}) dt^2+(1-{r_s\over r})^{-1} dr^2
+			+r^2 d\theta^2+ r^2 \sin^2 \theta d\phi^2 }\\
+	& \text{Where } r_s=2M \text{ is called Schwarzschild radius}\\
+	& \text{4D Spacetime(GR): } x^{(0)}=t, x^{(1)}=r, x^{(2)}=\theta, x^{(3)}=\phi \\
+	& \text{4D Spacetime(GR): } g=g_{\text{Schwarzschild}} \\
+	\end{align*}
+
+
+**Step 2** Some definitions
+
+.. math::
+	\begin{align*}
+	& \textbf{I. Some definitions: SR \& GR }\\
+	& \text{Inner Product: } A\cdot B= g_{ab}A^{(a)}B^{(b)} \\
+	& \text{Proper Time: } d\tau :=\sqrt{-ds^2} \\
+	& \text{Four Velocity: } u^{(a)}:={dx^{(a)}\over d\tau}\\
+	& \Rightarrow u^2=u\cdot u = g_{ab}{dx^{(a)} \over d\tau}{dx^{(b)} \over d\tau} = {ds^2\over -ds^2} =-1\\
+	& \text{Four Momentum: } p:=mu\Rightarrow p^2=-m \;\;\;\; =0 \text{ for Photon}\\
+	& \text{Relativistic Energy: } E:=-g_{00} p^{(0)}\\
+	& \text{Relativistic Momentum: }\vec{p}:=(p^{(1)},p^{(2)},p^{(3)})\\
+	& \textbf{II. SR}\\
+	& \text{Velocity: } \vec{v}=({dx\over dt},{dy\over dt},{dz\over dt})\;\;\;\; |\vec{v}|\le c\equiv1\\
+	& \Rightarrow ds^2 = -dt^2+dx^2+dy^2+dz^2 = (-1+\vec{v}^2)dt^2\\
+	& \text{Proper Time: } d\tau :=\sqrt{-ds^2}=\sqrt{1-\vec{v}^2}dt\\
+	& \text{Relativistic Energy: } E:=-(-1)p^{(0)}=m{dt\over d\tau}=m {1\over \sqrt{1-\vec{v}^2}}\\
+	& \text{Relativistic Momentum: }\vec{p}=m {\vec{v}\over \sqrt{1-\vec{v}^2}}\\
+	& \textbf{III. SR Photon}\\
+	& \text{Four Momentum: }p=(E,Ev_x,Ev_y,Ev_z)\\
+	& \text{Relativistic Energy: } E_{\text{Frame of source}}\equiv E_0={1\over \lambda_0}\\
+	& \;\;\;\; \text{(Refer to Lorentz Transformation for below:)}\\
+	& \;\;\;\; v_x=1,v_y=v_z=0 \Rightarrow(E,E,0,0)=\Lambda (E_0,E_0,0,0)\\
+	& \;\;\;\;  \Rightarrow \boxed{ E=E_0 \gamma-E_0 \gamma v \;\;\;\; \text{Doppler effect} }\\
+	& \textbf{IV. GR}\\
+	& \text{Proper Time: Choose coordinate such that } \\
+	& \;\;\;\; dx^{(1)}=dx^{(2)}=dx^{(3)}=0\Rightarrow d\tau :=\sqrt{-g_{00} }dt =\sqrt{(1-{r_s\over r}) } dt \\ 
+	& \text{Application: Gravitational Redshift} \\
+	& \;\;\;\; \lambda =cT,c=1\Rightarrow {\lambda_{\text{Receiver}} \over \lambda_{\text{Emitter}}}
+		= {\Delta \tau_R \over \Delta \tau_E}={\sqrt{1-r_s/ r_R } \over \sqrt{1-r_s/ r_E }} \\
+	& \;\;\;\; \approx 1-{M\over r_R}+	{M\over r_E}\overset{\Delta r\ll r_E}{\approx} 1+{M\over r_E^2}\Delta r
+		=1+g\Delta r\\
+	\end{align*}
+	
+
+**Step 3** Equation of Motion: the Geodesic Equation
+
+- Also base on Variational Principle, same as Newton's equation of motion and Shrodinger Equation
+- Specifically, we will maximize **proper time**
+
+.. math::
+	\begin{align*}
+	& \text{Geodesic: (1) Path with longest proper time. OR (2) Straight line}\\
+	& \text{Parameterize the line with one varibale: }l\in [0,1]\\
+	& \text{Notation: } \dot{x}={dx\over dl}\\
+	& \tau = \int \sqrt{-ds^2}= \int_0^1 \sqrt{-g_{ab}\dot{x}^{(a)}\dot{x}^{(b)}} dl\equiv \int_0^1 L(x,\dot{x};l) dl\\
+	& \text{Note that } d\tau = L dl\\
+	& \text{To maximize }\tau \text{, use Euler-Lagrange Equation: }
+	  {\partial L\over \partial x^{(c)}}={d\over dl}{\partial L\over \partial \dot{x}^{(c)} } \\
+	& \text{LHS} = {1\over 2}L^{-1}( -{\partial g_{ab}\over \partial x^{(c)}}\dot{x}^{(a)}\dot{x}^{(b)} ) 
+		= {1\over 2}( -{\partial g_{ab}\over \partial x^{(c)}}{dx^{(a)} \over d\tau}\dot{x}^{(b)} )  \\
+	& \text{RHS} ={d\over dl}[ {1\over 2}L^{-1}( -g_{ab}\delta_{ac} \dot{x}^{(b)} -g_{ab}\dot{x}^{(a)}\delta_{bc}) ]
+		={d\over dl}[ -g_{bc} {d{x}^{(b)} \over d\tau}] \\
+	& {\text{LHS}  \over L} ={\text{LHS}  \over L} \\
+	& \Rightarrow 
+	  \boxed{ {1\over 2}( -{\partial g_{ab}\over \partial x^{(c)}}{dx^{(a)} \over d\tau}{dx^{(b)} \over d\tau} ) 
+	   = {d\over d\tau}[ -g_{bc} {dx^{(b)} \over d\tau}]  \;\;\;\;\text{Geodesic Equation}}\\
+	& \Rightarrow 
+	\boxed{ 0 =  {d^2x^{(b)} \over d\tau^2}  \;\;\;\;\text{Geodesic Equation (SR)}} \\
+	\end{align*}
+
+

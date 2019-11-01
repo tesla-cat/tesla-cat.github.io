@@ -1,0 +1,122 @@
+
+DFT In Momentum Space
+=================================
+
+:Date: 27 Aug 2019
+
+Credit
+---------
+
+- This is a summary of Prof. Englert's paper 
+
+Dependency
+-------------
+
+What is the problem ?
+-------------------------
+
+Derivation
+-------------
+
+**Note: In the following one should realize that the lagrange multiplier** :math:`\lambda` **is infact minus Chemical Potential:** :math:`\lambda = -\mu`   
+
+.. math::
+	\begin{array}{c|c|c}
+	  \text{Description} & \text{Position Space} & \text{Momentum Space} \\ 
+	  & & \\
+	  \text{Starting Point} & 
+	  H = \underbrace{ T_{\text{kin}} }_{\sum\limits_{j=1}^N {1\over 2}p_j^2 } 
+	  +   \underbrace{ V_{\text{ext}} }_{\sum\limits_{j=1}^N -{Z\over |r_j|} }
+	  +   \underbrace{ V_{\text{e-e}} }_{{1\over 2}\sum\limits_{j,k;j\ne k}^N |r_j-r_k|^{-1} } & 
+	  \\   
+	  \text{Density} & 
+	  n(r')=N\int dr_2'...dr_N' |\langle r',r_2'...r_N'|\psi_0\rangle |^2 & 
+	  \rho(p')=N\int dp_2'...dp_N' |\langle p',p_2'...p_N'|\psi_0\rangle |^2\\  	  
+	  \text{HK Theorem} & 
+	  E_0=\min\limits_n E[n] & 
+	  E_0=\min\limits_{\rho} E[\rho] \\    	  
+	  \text{Central Point} &
+	  n(r') \text{ uniquely determines } V_{\text{ext}}=-{Z\over |r|},|\psi_0\rangle& 
+	  \rho(p') \text{ uniquely determines } T_{\text{kin}}={1\over 2}p^2,|\psi_0\rangle \\ 	  
+	  \text{Lagrange Multiplier} &
+	  E[n,\lambda]=E[n]-\lambda [N-\int dr' n(r')] & 
+	  E[\rho,\lambda]=E[\rho]-\lambda [N-\int dp' \rho(p')] \\	  	  
+	  \text{Lagrange Multiplier} &
+	  E_0 = \text{extr}_{n,\lambda} \; E[n,\lambda] & 
+	  E_0 = \text{extr}_{\rho,\lambda} \; E[\rho,\lambda] \\	  	  
+	  \text{Effective Energies} &
+	  V(r')\equiv -\left( {\delta \over \delta n(r') } E_{\text{kin}}[n]+\lambda \right) & 
+	  T(p')\equiv -\left( {\delta \over \delta \rho(p') } E_{\text{ext}}[\rho]+\lambda \right) \\
+	  \text{Consider} &
+	  E_1=E_{\text{kin}}[n]+\int dr' n(r')[V(r')+\lambda] & 
+	  E_1=E_{\text{ext}}[\rho]+\int dp' \rho(p')[T(p')+\lambda] \\	  	  
+	  \text{Then} &
+	  \delta E_1 = \int dr' n(r')[\delta V(r')+\delta \lambda]  & 
+	  \delta E_1 = \int dp' \rho(p')[\delta T(p')+\delta \lambda]  \\	  	  
+	  \text{Then} &
+	  E_1 = E_1[V(r')+\lambda]  & 
+	  E_1 = E_1[T(p')+\lambda]  \\	  	  
+	  \text{Consider} &
+	  E[V,n,\lambda]=E_1[V(r')+\lambda] - \int dr' n(r')[V(r')-V_{\text{ext}}(r')] 
+	  +E_{\text{e-e}}[n] -\lambda N  & 
+	  E[T,\rho,\lambda]=E_1[T(p')+\lambda] - \int dp' \rho(p')[T(p')-T_{\text{kin}}(p')] +E_{\text{e-e}}[p] -\lambda N   \\ 	  
+	  \text{Then} &
+	  E_0 = \text{extr}_{V,n,\lambda} \; E[V,n,\lambda] & 
+	  E_0 = \text{extr}_{T,\rho,\lambda} \; E[T,\rho,\lambda] \\		  
+	  \text{Then} &
+	  \begin{cases}
+	  \delta V   : & n(r') = {\delta \over \delta V(r')} E_1[V+\lambda] \\
+	  \delta n   : & V(r') = {\delta \over \delta n(r')} E_{\text{e-e}}[n]+V_{\text{ext}}(r')\\
+	  \delta \lambda : & N = {\delta \over \delta \lambda} E_1[V+\lambda]
+	  \end{cases} & 
+	  \begin{cases}
+	  \delta T    : & \rho(p') = {\delta \over \delta T(p')}    E_1[T+\lambda] \\
+	  \delta \rho : & T(p') =    {\delta \over \delta \rho(p')} E_{\text{e-e}}[\rho]+T_{\text{kin}}(p')\\
+	  \delta \lambda  : & N =        {\delta \over \delta \lambda} E_1[T+\lambda]
+	  \end{cases}
+	  \\ 	  
+	  \text{More on }E_1 &
+	  E_1[V+\lambda] = \langle \psi_0 |\sum\limits_{j=1}^N [\underbrace{H(r_j,p_j)}_{ T_{\text{kin}}(p)+V(r)  }+\lambda]| \psi_0 \rangle  & 
+	  E_1[T+\lambda] = \langle \psi_0 |\sum\limits_{j=1}^N [\underbrace{H(r_j,p_j)}_{ T(p)+V_{\text{ext}}(r) }+\lambda]| \psi_0 \rangle  \\
+	  \text{Inference} &
+	  E_1 = \text{Tr } f(H+\lambda) \text{ for some function }f & 
+	  E_1 = \text{Tr } f(H+\lambda) \\
+	  \text{Approximation} &
+	  f(x)\approx x \eta(-x) \text{ Where } \eta \text{ is Heaviside} & 
+	  f(x)\approx x \eta(-x) \text{ Where } \eta \text{ is Heaviside} \\
+	  \text{Thus} &
+	  E_1 = \text{Tr } [(H+\lambda)\eta(-H-\lambda)] & 
+	  E_1 = \text{Tr } [(H+\lambda)\eta(-H-\lambda)] \\
+	  \text{Thus} &
+	  \begin{cases}
+	  N\approx \text{Tr } \eta(-H-\lambda) \\
+	  n(r') \approx 2 \langle r'|\eta(-H-\lambda)|r' \rangle
+	  \end{cases} & 
+	  \begin{cases}
+	  N\approx \text{Tr } \eta(-H-\lambda) \\
+	  \rho(p') \approx 2 \langle p'|\eta(-H-\lambda)|p' \rangle	  
+	  \end{cases}
+	  \\
+	  \text{Thomas Fermi} &
+	  \text{Quantum Mechanical Trace to Classic Mechanical Integral} & 
+	  E_1^{TF}[V+\lambda]=2\int {dr'dp'\over (2\pi)^3}(H+\lambda)\eta(-H-\lambda) \\
+	  \text{Heaviside} &
+	  p'\le \sqrt{-2[V(r')+\lambda]} \equiv P(r') \;\text{Fermi Momentum} & 
+	  r'\le Z[T(p')+\lambda]^{-1} \equiv R(p') \;\text{Fermi Radius} \\
+	  \text{Thus} &
+	  E_1^{TF}[V+\lambda]= \int dr' (-{1\over 15\pi^2})P^5(r') & 
+	  E_1^{TF}[T+\lambda]= \int dp' (-{Z\over 6\pi^2})R^2(p') \\
+	  \text{Thus} &
+	  n(r')=...={1\over 3\pi^2}P^3(r') & 
+	  \rho(p')=...={1\over 3\pi^2}R^3(p') \\
+	  \text{And} &
+	  E_{\text{kin}}^{TF}[n]   =\int dr' {1\over 10\pi^2} P^5(r') & 
+	  E_{\text{ext}}^{TF}[\rho]=\int dp' {-Z\over 2\pi^2} R^2(p')  \\
+	  \text{And} &
+	  E_{\text{e-e}}^{TF}[n] = \text{TO BE CONTINUED}  & 
+	  \\
+	\end{array}
+		
+
+
+

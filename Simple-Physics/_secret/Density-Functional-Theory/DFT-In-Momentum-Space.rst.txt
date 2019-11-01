@@ -1,0 +1,165 @@
+DFT In Momentum Space
+========================
+
+:date: 29 oct 2019
+
+
+Intro
+-----
+
+History
+~~~~~~~
+
+-  1981, Henderson: Momental HK Thm
+
+   -  `Variational theorems for the single-particle probability density
+      and density matrix in momentum
+      space <https://journals.aps.org/pra/abstract/10.1103/PhysRevA.23.19>`__
+
+-  1982, Smith: Reviewed the status of momentum space considerations and
+   added a programmatic outlook
+
+   -  `Local Density Approximations in Quantum Chemistry and Solid State
+      Physics <https://www.springer.com/gp/book/9780306416675>`__
+
+-  1983-now: Nothing remarkable
+
+Some discussions
+~~~~~~~~~~~~~~~~
+
+-  Structure of spatial density functionals does not depend on external
+   potential. Momental functionals does
+
+-  Momental densities are easier to extract from experimental data, such
+   as **compton profiles** or **angular positron-annihilation
+   correlations**
+
+   -  `New practical method for reconstruction of electron momentum
+      density using Compton-profile
+      data <https://journals.aps.org/pra/abstract/10.1103/PhysRevA.36.2984>`__
+   -  `Momentum
+      Distributions <https://link.springer.com/book/10.1007/978-1-4899-2554-1>`__
+
+-  Scott correction to memental density of TF atoms
+
+   -  `Thomas-Fermi-Scott model: Momentum-space
+      density <https://journals.aps.org/pra/abstract/10.1103/PhysRevA.40.2738>`__
+
+Goal
+~~~~
+
+-  Self-consistent determination of momental density
+
+   -  Step 1: Find energy functionals of momental density
+
+Action
+~~~~~~
+
+-  II: Introduce **effective kinetic energy**
+-  III: **Momental TF approximation for atoms**
+-  IV: Scaling, Multiple counting of e-pairs
+-  Appendix: Is Lowdin’s natrual orbitals same as single-electron states
+   of independent particle description? **No**
+
+Effective energy :math:`V`
+--------------------------
+
+.. math::
+
+   \begin{align*}
+   & E=E_{\text{kin}}+\int dr\; V_{\text{ext}} n + E_{\text{int}}[n]+\mu(N-\int dr\; n)\\
+   &\Rightarrow {\delta E\over \delta n} = {\delta E_{\text{kin}}\over \delta n}+ \underbrace{V_{\text{ext}}+{\delta E_{\text{int}}\over \delta n}}_{V}+\mu(-1)=0 \\
+   & \Rightarrow E = \underbrace{E_{\text{kin}}+\int dr\; (V-\mu)n}_{E_1}+\mu N\\
+   & \begin{cases}
+   & {\delta E_1\over \delta n}={\delta E\over \delta n}-0=0\\
+   & {\delta E_1\over \delta V}=n\\
+   & {\delta E_1\over \delta \mu} ={\delta E\over \delta \mu}-N=-N
+   \end{cases}
+   \end{align*}
+
+What is the problem?
+~~~~~~~~~~~~~~~~~~~~
+
+-  We don’t know :math:`E_{\text{kin}}[n]` and :math:`E_{\text{int}}[n]`
+
+Approximations
+~~~~~~~~~~~~~~
+
+.. math::
+
+   \begin{align*}
+   & E_1=\langle \psi_0| \sum\limits_{i=1}^N [H(r_i,p_i)-\mu] |\psi_0 \rangle \\
+   & \boxed{= \text{Tr}[f(H-\mu)]\approx \text{Tr}[(H-\mu)\eta(\mu-H)]  }\\
+   & \Rightarrow \begin{cases}
+   &\boxed{ N\approx \text{Tr}[\eta(\mu-H)]  }\\
+   &\boxed{ n(r')\approx 2\langle r'|\eta(\mu-H)|r' \rangle  }
+   \end{cases}
+   \end{align*}
+
+Effective energy :math:`T`
+--------------------------
+
+.. math::
+
+   \begin{align*}\boxed{
+    r\to p\\
+    V_{\text{ext}} \to T_{\text{kin}}\\
+    E_{\text{kin}} \to E_{\text{ext}}
+   }\end{align*}
+
+.. math::
+
+   \begin{align*}
+   & E=E_{\text{ext}}+\int dp \; T_{\text{kin}} n + E_{\text{int}}[n]+\mu(N-\int dp\; n)\\
+   &\Rightarrow {\delta E\over \delta n} = {\delta E_{\text{ext}}\over \delta n}+ \underbrace{T_{\text{kin}}+{\delta E_{\text{int}}\over \delta n}}_{T}+\mu(-1)=0 \\
+   & \Rightarrow E = \underbrace{E_{\text{ext}}+\int dp\; (T-\mu)n}_{E_1}+\mu N\\
+   & \begin{cases}
+   & {\delta E_1\over \delta n}={\delta E\over \delta n}-0=0\\
+   & {\delta E_1\over \delta T}=n\\
+   & {\delta E_1\over \delta \mu} ={\delta E\over \delta \mu}-N=-N
+   \end{cases}
+   \end{align*}
+
+Approximations
+~~~~~~~~~~~~~~
+
+.. math::
+
+   \begin{align*}
+   \boxed{ n(p')\approx 2\langle p'|\eta(\mu-H)|p' \rangle  }
+   \end{align*}
+
+Thomas Fermi Approximation
+--------------------------
+
+.. math::
+
+   \begin{align*}
+   & E_1^{TF}[T-\mu]=g\int {drdp\over (2\pi)^3}[ T(p)+V_{\text{ext}}(r)-\mu ]\eta(\mu -T-V_{\text{ext}}) \\
+   &\Rightarrow n={\delta E_1^{TF} \over \delta T}= g\int {dr \over (2\pi)^3} 1\cdot \eta(\mu -T-V_{\text{ext}})\\
+   &= g{1 \over (2\pi)^3} {4\over 3}\pi R^3={g \over 6\pi^3}R^3 \\
+   &\text{Where }R \text{ is the radius of the sphere such that } \mu -T-V_{\text{ext}}>0
+   \end{align*}
+
+Task
+----
+
+.. math::
+
+   \begin{align*}
+   & V_{\text{ext}} = -{Z\over r}\Rightarrow r<{Z\over T-\mu}=R\\
+   & \Rightarrow E_1^{TF}=g\int {dp\over (2\pi)^3} (4\pi)\int_0^R dr \; r^2[T(p)-{Z\over r}-\mu] \\
+   & =g\int {dp\over (2\pi)^3} (4\pi) \left[ (T-\mu){R^3\over 3} -Z{R^2\over 2} \right]\\
+   & =g\int {dp\over (2\pi)^3} (4\pi) \left[-Z{R^2\over 6} \right]\\
+   & E_{\text{ext}}=g\int {dp\over (2\pi)^3} (4\pi) \left[-Z{R^2\over 2} \right]
+   \end{align*}
+
+.. math::
+
+   \begin{align*}
+   & E_{\text{int}}={1\over 2}\int dr' dr'' n(r')n(r'')\delta(r-r'')\\
+   & ={1\over 2} \int dr' n^2(r') \\
+   & ={1\over 2} \int dr' 2\int {dp'\over (2\pi)^3} \eta(R(p')-r') 2\int {dp''\over (2\pi)^3} \eta(R(p'')-r') \\
+   & ={1\over 2} \int dr' 2\int {dp'\over (2\pi)^3}2\int {dp''\over (2\pi)^3}\; \eta(R(p')-r')\; \eta(R(p'')-r') \\
+   & ={1\over 2}  2\int {dp'\over (2\pi)^3}2\int {dp''\over (2\pi)^3} 4\pi{R_<^3\over 3} \\
+   \end{align*}
