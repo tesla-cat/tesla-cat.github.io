@@ -54,19 +54,22 @@ Signal Filtering
 
 .. math::
 
-   \begin{align*}
-   & \tilde{A}'(\omega)=\begin{cases}
-   & \tilde{A}(\omega) & \text{if } |\omega|<\omega_1\\
-   & 0 & \text{otherwise}
-   \end{cases}=\tilde{A}(\omega)\; \text{rect}({\omega\over 2\omega_1}) \\
-   &\Rightarrow A'(t)={1\over \sqrt{2\pi}}A(t)* F^{-1}\{\text{rect}({\omega\over 2\omega_1})\} \\
-   & \quad ={1\over \sqrt{2\pi}}A(t)* {1\over\sqrt{2\pi}} 2\omega_1 \text{sinc}({\omega_1 t\over \pi}) \\
-   & \quad ={\omega_1\over \pi}A(t)*  \text{sinc}({\omega_1 t\over \pi}) \\
-   & \text{we used}\\
-   & F^{-1}\{\text{rect}({\omega\over 2\omega_1})\} ={1\over\sqrt{2\pi}} \int_{-\omega_1}^{\omega_1} e^{i\omega t}d\omega={1\over\sqrt{2\pi}} {2\omega_1\over 2\omega_1 it}(e^{i\omega_1 t}-e^{-i\omega_1 t}) \\
-   & ={1\over\sqrt{2\pi}} 2\omega_1 \text{sinc}(\omega_1 t) \quad \text{unnormalized sinc function in physics}\\
-   & ={1\over\sqrt{2\pi}} 2\omega_1 \text{sinc}({\omega_1 t\over \pi}) \quad \text{normalized sinc function in numpy}\\
-   \end{align*}
+  \begin{align*}
+  & \tilde{A}'(\omega)=\begin{cases}
+  & \tilde{A}(\omega) & \text{if } |\omega|<\omega_1\\
+  & 0 & \text{otherwise}
+  \end{cases}=\tilde{A}(\omega)\; \text{rect}({\omega\over 2\omega_1}) \\
+  &\Rightarrow A'(t)={1\over \sqrt{2\pi}}A(t)* F^{-1}\{\text{rect}({\omega\over 2\omega_1})\} \\
+  & \quad ={1\over \sqrt{2\pi}}A(t)* {1\over\sqrt{2\pi}} 2\omega_1 \text{sinc}({\omega_1 t\over \pi}) \\
+  & \quad ={\omega_1\over \pi}A(t)*  \text{sinc}({\omega_1 t\over \pi}) \\
+  & \boxed{\text{Low pass: }F^{-1}\{\text{rect}({\omega\over 2\omega_1})\}={1\over\sqrt{2\pi}} 2\omega_1 \text{sinc}({\omega_1 t\over \pi}) } \\
+  & \boxed{\text{Band pass: }F^{-1}\{\text{rect}({\omega\over 2\omega_\text{High}})- \text{rect}({\omega\over 2\omega_\text{Low}})\}} \\
+  & \boxed{\text{High pass: }F^{-1}\{1-\text{rect}({\omega\over 2\omega_\text{High}})\}=\sqrt{2\pi} \delta(x)-... } \\
+  & \text{we used}\\
+  & F^{-1}\{\text{rect}({\omega\over 2\omega_1})\} ={1\over\sqrt{2\pi}} \int_{-\omega_1}^{\omega_1} e^{i\omega t}d\omega={1\over\sqrt{2\pi}} {2\omega_1\over 2\omega_1 it}(e^{i\omega_1 t}-e^{-i\omega_1 t}) \\
+  & ={1\over\sqrt{2\pi}} 2\omega_1 \text{sinc}(\omega_1 t) \quad \text{unnormalized sinc function in physics}\\
+  & ={1\over\sqrt{2\pi}} 2\omega_1 \text{sinc}({\omega_1 t\over \pi}) \quad \text{normalized sinc function in numpy}\\
+  \end{align*}
 
 Homemade VS Numpy Fourier Transform
 -----------------------------------

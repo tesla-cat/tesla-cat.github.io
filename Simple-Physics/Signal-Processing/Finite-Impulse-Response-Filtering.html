@@ -254,6 +254,9 @@ to the Continuous Fourier Transform</p></li>
 &amp;\Rightarrow A'(t)={1\over \sqrt{2\pi}}A(t)* F^{-1}\{\text{rect}({\omega\over 2\omega_1})\} \\
 &amp; \quad ={1\over \sqrt{2\pi}}A(t)* {1\over\sqrt{2\pi}} 2\omega_1 \text{sinc}({\omega_1 t\over \pi}) \\
 &amp; \quad ={\omega_1\over \pi}A(t)*  \text{sinc}({\omega_1 t\over \pi}) \\
+&amp; \boxed{\text{Low pass: }F^{-1}\{\text{rect}({\omega\over 2\omega_1})\}={1\over\sqrt{2\pi}} 2\omega_1 \text{sinc}({\omega_1 t\over \pi}) } \\
+&amp; \boxed{\text{Band pass: }F^{-1}\{\text{rect}({\omega\over 2\omega_\text{High}})- \text{rect}({\omega\over 2\omega_\text{Low}})\}} \\
+&amp; \boxed{\text{High pass: }F^{-1}\{1-\text{rect}({\omega\over 2\omega_\text{High}})\}=\sqrt{2\pi} \delta(x)-... } \\
 &amp; \text{we used}\\
 &amp; F^{-1}\{\text{rect}({\omega\over 2\omega_1})\} ={1\over\sqrt{2\pi}} \int_{-\omega_1}^{\omega_1} e^{i\omega t}d\omega={1\over\sqrt{2\pi}} {2\omega_1\over 2\omega_1 it}(e^{i\omega_1 t}-e^{-i\omega_1 t}) \\
 &amp; ={1\over\sqrt{2\pi}} 2\omega_1 \text{sinc}(\omega_1 t) \quad \text{unnormalized sinc function in physics}\\
