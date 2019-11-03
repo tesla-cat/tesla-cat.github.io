@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>OLD Density Functional Theory &mdash; Simple Physics  documentation</title>
+  <title>Exchange and Correlation &mdash; Simple Physics  documentation</title>
   
 
   
@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Hohenberg Kohn Variational Principle" href="Hohenberg-Kohn-Variational-Principle.html" />
-    <link rel="prev" title="OLD Hartree Fock Method" href="OLD-Hartree-Fock-Method.html" /> 
+    <link rel="next" title="1D DFT In Python" href="1D-DFT-In-Python.html" />
+    <link rel="prev" title="Kohn Sham Equations" href="Kohn-Sham-Equations.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -96,15 +96,19 @@
 <li class="toctree-l1"><a class="reference internal" href="../Quantum-Optics/index.html">Quantum Optics</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Density Functional Theory</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="OLD-Hartree-Fock-Method.html">OLD Hartree Fock Method</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">OLD Density Functional Theory</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#dependency">Dependency</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#what-is-the-problem">What is the problem ?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#derivation">Derivation</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="OLD-Density-Functional-Theory.html">OLD Density Functional Theory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Hohenberg-Kohn-Variational-Principle.html">Hohenberg Kohn Variational Principle</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Kohn-Sham-Equations.html">Kohn Sham Equations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Exchange-and-Correlation.html">Exchange and Correlation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Exchange and Correlation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#electron-gas">Electron gas</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#non-interacting">Non-Interacting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#interacting">Interacting</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#hartree-fock-equation-and-exchange-energy">Hartree Fock Equation and Exchange Energy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#correlation">correlation</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="1D-DFT-In-Python.html">1D DFT In Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="1D-DPFT-In-Python.html">1D DPFT In Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="DFT-In-Momentum-Space.html">DFT In Momentum Space</a></li>
@@ -180,13 +184,13 @@
         
           <li><a href="index.html">Density Functional Theory</a> &raquo;</li>
         
-      <li>OLD Density Functional Theory</li>
+      <li>Exchange and Correlation</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/Density-Functional-Theory/OLD-Density-Functional-Theory.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/Density-Functional-Theory/Exchange-and-Correlation.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -199,71 +203,116 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="old-density-functional-theory">
-<h1>OLD Density Functional Theory<a class="headerlink" href="#old-density-functional-theory" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="exchange-and-correlation">
+<h1>Exchange and Correlation<a class="headerlink" href="#exchange-and-correlation" title="Permalink to this headline">¶</a></h1>
 <dl class="field-list simple">
-<dt class="field-odd">Date</dt>
-<dd class="field-odd"><p>28 July 2019</p>
+<dt class="field-odd">date</dt>
+<dd class="field-odd"><p>3 Nov 2019</p>
 </dd>
 </dl>
-<div class="section" id="dependency">
-<h2>Dependency<a class="headerlink" href="#dependency" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p><a class="reference internal" href="#schrodinger-equation">Schrodinger Equation</a></p></li>
-<li><p><a class="reference internal" href="#born-oppenheimer-approximation">Born Oppenheimer Approximation</a></p></li>
-<li><p><a class="reference internal" href="#functional">Functional</a></p></li>
-</ul>
+<div class="section" id="electron-gas">
+<h2>Electron gas<a class="headerlink" href="#electron-gas" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="non-interacting">
+<h3>Non-Interacting<a class="headerlink" href="#non-interacting" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+&amp; r_s:\text{radius of sphere with one }e^- \quad 4\pi {r_s^3\over 3}={1\over n}\\
+&amp; \sigma:\text{spin}\\
+&amp; \text{planewave eigenstates}:e^{ikr}\\
+&amp; \text{Fermi wavevector}:k_F^\sigma =\max k^\sigma\\
+&amp; k^\sigma \text{ means dependence on }\sigma  \\
+&amp; \text{Average Energy}: {T_\text{tot}^\sigma\over N}={\int dk\; k^2/2\over \int dk }={3\over 5}{1\over2}(k_F^\sigma)^2={3\over 5} E_F^\sigma\\
+\end{align*}\end{split}\]</div>
 </div>
-<div class="section" id="what-is-the-problem">
-<span id="functional"></span><span id="born-oppenheimer-approximation"></span><span id="schrodinger-equation"></span><h2>What is the problem ?<a class="headerlink" href="#what-is-the-problem" title="Permalink to this headline">¶</a></h2>
-<p>Calculate the approximate wavefunction and energy for atoms</p>
+<div class="section" id="interacting">
+<h3>Interacting<a class="headerlink" href="#interacting" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+&amp; H= \sum_i {-\nabla^2\over2}
+\underbrace{+{1\over 2} \sum_{i\ne j}{1\over |r_i-r_j|}}_{V_{\text{e-e}}}
+\underbrace{-{1\over2}\int drdr'{n(r)n(r')\over |r-r'|}}_{V_{\text{e-ion}}} \\
+&amp; \text{with assumption }n_{\text{ion}}(r)=n(r) \\
+\end{align*}\end{split}\]</div>
 </div>
-<div class="section" id="derivation">
-<h2>Derivation<a class="headerlink" href="#derivation" title="Permalink to this headline">¶</a></h2>
-<p><strong>Step 1</strong> Hohenberg Kohn theorem</p>
-<p><span class="math notranslate nohighlight">\(n(r)\)</span>: groundstate electron density</p>
-<p><span class="math notranslate nohighlight">\(v(r)\)</span>: external potential</p>
-<p>Then <a class="reference internal" href="#functional">Functional</a> <span class="math notranslate nohighlight">\(v=v[n]\)</span>, meaning if we observe some <span class="math notranslate nohighlight">\(n(r)\)</span>, then we know exactly what potential <span class="math notranslate nohighlight">\(v(r)\)</span> generates such density distribution</p>
-<p><strong>Step 2</strong> Proof of <strong>Step 1</strong></p>
-<p><em>TO BE ADDED</em></p>
-<p><strong>Step 3</strong> The energy</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{align*}
-E[n] &amp; = T+U+V = T[n]+U[n]+\int n(r)v(r) \; d^3r\\
-&amp; where\\
-&amp; T = \text{Kinetic energy of electrons}\\
-&amp; U = \text{Electric potential}\\
-&amp; V = \text{Total external potential}
-\end{align*}\end{split}\]</div>
-<p><strong>Step 4</strong> Kohn-Sham approach to evaluate The energy</p>
-<p>Introduce single particle orbitals <span class="math notranslate nohighlight">\(\chi_i\)</span></p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{align*}
-&amp; T=T_{\text{single particle}} + T_{\text{correlation}} = T_s+T_c \\
-&amp; T_s = T_s\{\chi_i[n]\}\\
-&amp; \text{Introduce:}\\
-&amp; E_{xc} = (T-T_s)+(U-U_H)\\
-&amp; \Rightarrow\\
-E[n] &amp; = T_s\{\chi_i[n]\}+U_H+E_{xc}+V
-\end{align*}\end{split}\]</div>
-<p>The idea above is to leave all the non-trivial parts to <span class="math notranslate nohighlight">\(E_{xc}=E_{x}+E_{c}\)</span></p>
+</div>
+<div class="section" id="hartree-fock-equation-and-exchange-energy">
+<h2>Hartree Fock Equation and Exchange Energy<a class="headerlink" href="#hartree-fock-equation-and-exchange-energy" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(x\)</span> stands for exchange energy due to the Pauli Principle</p></li>
-<li><p><span class="math notranslate nohighlight">\(c\)</span> stands for correlation energy, <span class="math notranslate nohighlight">\(T_c\)</span> is part of <span class="math notranslate nohighlight">\(E_c\)</span></p></li>
+<li><p>only consider <strong>exchange</strong></p></li>
+<li><p>interacting electron gas can be solved analytically at HF level</p></li>
 </ul>
-<p>We have</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align*}
-&amp; T_s = ...\text{ trivial expression we know} \\
-&amp; U_H = ...\text{ trivial expression we know} \\
-&amp; E_x = ???\text{ can only be calculated after approximation(step 5)} \\
-&amp; E_c = ???\text{ can only be calculated after approximation(step 5)}
+&amp; E_i\phi_i(r)=\left[{-\nabla^2\over 2}+V_{\text{e-e}} +V_{\text{e-ion}}\right]\phi_i(r) \\
+&amp; \qquad \qquad\boxed{- \sum_j \delta_{\sigma_i\sigma_j} \int dr' {\phi_j^*(r')\phi_i(r')\phi_j(r)\over|r-r'|} \quad\text{exchange}}\\
+&amp; i,j\text{ are combined orbit/spin indices} \\
+&amp;V_{\text{e-e}} = \sum_j \int dr' {|\phi_j(r')|^2\over |r-r'|}= \int dr' {\sum_j|\phi_j(r')|^2\over |r-r'|}=\int dr' {n(r')\over |r-r'|}\\
+&amp;V_{\text{e-ion}} = \sum_k -{Z_k\over |r-R_k|}\to\int -{n(R)dR\over |r-R|} \\
+&amp; \text{with assumption }n_{\text{ion}}(r)=n(r) \\
+&amp; \Rightarrow V_{\text{e-e}}+V_{\text{e-ion}}=0 \\
 \end{align*}\end{split}\]</div>
-<p><strong>Step 5</strong> Approximations to find <span class="math notranslate nohighlight">\(E_{xc}\)</span></p>
-<p><em>TO BE ADDED</em></p>
-<p><strong>Step 6</strong> Get the groundstate energy by minimizing <span class="math notranslate nohighlight">\(E[n]\)</span> wrt <span class="math notranslate nohighlight">\(n\)</span></p>
-<p><strong>Kohn-Sham Equations</strong></p>
-<p><strong>TO BE CONTINUED</strong></p>
+<ul class="simple">
+<li><p>claim: planewave <span class="math notranslate nohighlight">\(e^{ikr}\)</span> are still eigenstates</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+&amp; \text{Proof by substitution}\\
+&amp; E_ke^{ikr}={1\over2}k^2 e^{ikr} -\sum_{k'} \underbrace{\int dr'{ e^{-ik'r'}e^{ikr'}e^{ik'r} \over|r-r'|} }_I\\
+&amp; I=e^{ik'r} \int dr'{ e^{i(k-k')r'} \over|r-r'|}=e^{ik'r}e^{i(k-k')r} \int du{ e^{i(k-k')u} \over u} \\
+&amp;\qquad = e^{ikr} {4\pi\over |k-k'|^2} \qquad \boxed{}\\
+\end{align*}\end{split}\]</div>
+<ul class="simple">
+<li><p>finding eigenvalues</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+&amp; \sum_{k'}{4\pi\over |k-k'|^2}\to \int {d\vec{k}'\over (2\pi)^3}{4\pi\over |\vec{k}-\vec{k}'|^2}\\
+&amp;={4\pi\over(2\pi)^2}\int \sin\theta \;d\theta\int_0^{k_F} dk'{k'^2\over k^2-2kk'\cos\theta +k'^2} \\
+&amp; = {4\pi\over(2\pi)^2}\int_0^{k_F}{k'^2\over 2kk'} dk'\ln( k^2+2kk's +k'^2 )_{s=-1}^1  \\
+&amp; = {1\over 2\pi}\int_0^{k_F}{k'\over k} dk' \left| {k^2+2kk' +k'^2 \over k^2-2kk's +k'^2} \right| \\
+&amp; = {1\over \pi}\int_0^{k_F}{k'\over k} dk' \left| {k+k' \over k-k'} \right| =...\\
+&amp; \Rightarrow \boxed{E_k={1\over 2}k^2-{k_F\over \pi }f({k\over k_F})\\
+f(x)=1+{1-x^2\over 2x}\ln|{1+x\over 1-x}| } \\
+\end{align*}\end{split}\]</div>
+<ul class="simple">
+<li><p>interpretation: <strong>exchange term reduces :math:`E`, by making
+:math:`e^-` with same spin apart from each other</strong></p></li>
+<li><p>total energy. <strong>I haven’t read the note on why the following is ture
+yet</strong></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+&amp; E_{HF}={2V\over (2\pi)^3}4\pi\int_0^{k_F} k^2\left[{k^2\over 2}-{1\over 2}{k_F\over \pi}f({k\over k_F})\right] \\
+&amp; \epsilon_x={E_{HF}\over N}=...={2.21\over r_s^2}-{0.916\over r_s}
+\end{align*}\end{split}\]</div>
+</div>
+<div class="section" id="correlation">
+<h2>correlation<a class="headerlink" href="#correlation" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{align*}
+&amp; E_c:=E_{\text{real}}-T-E_x
+\end{align*}\]</div>
+<ul class="simple">
+<li><p><strong>collective behavior of :math:`e^-` to screen and decrease Coulomb
+interaction</strong></p>
+<ul>
+<li><p><strong>Unlike Exchange, correlation becomes more pronounced for
+opposite spins since they are more close</strong></p></li>
+</ul>
+</li>
+<li><p>attempts</p>
+<ul>
+<li><p><strong>Wigner crystal</strong> solved exactly for small <span class="math notranslate nohighlight">\(r_s\)</span> by
+assuming <span class="math notranslate nohighlight">\(\epsilon_c\to \text{const}\)</span> for large
+<span class="math notranslate nohighlight">\(r_s\Rightarrow \epsilon_c=-{0.44\over r_s+7.8}\)</span></p></li>
+<li><p><strong>Gellman and Breuckner</strong> summed an infinite series of Feynman
+diagrams and calculated exactly for large
+<span class="math notranslate nohighlight">\(r_s\Rightarrow \epsilon_c=0.311\ln(r_s)...\)</span>, agrees with
+wigner</p></li>
+<li><p><strong>Quantum Monte Carlo</strong></p></li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 
@@ -275,10 +324,10 @@ E[n] &amp; = T_s\{\chi_i[n]\}+U_H+E_{xc}+V
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Hohenberg-Kohn-Variational-Principle.html" class="btn btn-neutral float-right" title="Hohenberg Kohn Variational Principle" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="1D-DFT-In-Python.html" class="btn btn-neutral float-right" title="1D DFT In Python" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="OLD-Hartree-Fock-Method.html" class="btn btn-neutral float-left" title="OLD Hartree Fock Method" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="Kohn-Sham-Equations.html" class="btn btn-neutral float-left" title="Kohn Sham Equations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

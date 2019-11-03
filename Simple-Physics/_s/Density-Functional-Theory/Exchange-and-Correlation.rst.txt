@@ -1,0 +1,116 @@
+
+Exchange and Correlation
+========================
+
+:date: 3 Nov 2019
+
+Electron gas
+------------
+
+Non-Interacting
+~~~~~~~~~~~~~~~
+
+.. math::
+
+   \begin{align*}
+   & r_s:\text{radius of sphere with one }e^- \quad 4\pi {r_s^3\over 3}={1\over n}\\
+   & \sigma:\text{spin}\\
+   & \text{planewave eigenstates}:e^{ikr}\\
+   & \text{Fermi wavevector}:k_F^\sigma =\max k^\sigma\\
+   & k^\sigma \text{ means dependence on }\sigma  \\
+   & \text{Average Energy}: {T_\text{tot}^\sigma\over N}={\int dk\; k^2/2\over \int dk }={3\over 5}{1\over2}(k_F^\sigma)^2={3\over 5} E_F^\sigma\\ 
+   \end{align*}
+
+Interacting
+~~~~~~~~~~~
+
+.. math::
+
+   \begin{align*}
+   & H= \sum_i {-\nabla^2\over2}
+   \underbrace{+{1\over 2} \sum_{i\ne j}{1\over |r_i-r_j|}}_{V_{\text{e-e}}}
+   \underbrace{-{1\over2}\int drdr'{n(r)n(r')\over |r-r'|}}_{V_{\text{e-ion}}} \\
+   & \text{with assumption }n_{\text{ion}}(r)=n(r) \\
+   \end{align*}
+
+Hartree Fock Equation and Exchange Energy
+-----------------------------------------
+
+-  only consider **exchange**
+-  interacting electron gas can be solved analytically at HF level
+
+.. math::
+
+   \begin{align*}
+   & E_i\phi_i(r)=\left[{-\nabla^2\over 2}+V_{\text{e-e}} +V_{\text{e-ion}}\right]\phi_i(r) \\
+   & \qquad \qquad\boxed{- \sum_j \delta_{\sigma_i\sigma_j} \int dr' {\phi_j^*(r')\phi_i(r')\phi_j(r)\over|r-r'|} \quad\text{exchange}}\\
+   & i,j\text{ are combined orbit/spin indices} \\
+   &V_{\text{e-e}} = \sum_j \int dr' {|\phi_j(r')|^2\over |r-r'|}= \int dr' {\sum_j|\phi_j(r')|^2\over |r-r'|}=\int dr' {n(r')\over |r-r'|}\\
+   &V_{\text{e-ion}} = \sum_k -{Z_k\over |r-R_k|}\to\int -{n(R)dR\over |r-R|} \\
+   & \text{with assumption }n_{\text{ion}}(r)=n(r) \\
+   & \Rightarrow V_{\text{e-e}}+V_{\text{e-ion}}=0 \\
+   \end{align*}
+
+-  claim: planewave :math:`e^{ikr}` are still eigenstates
+
+.. math::
+
+   \begin{align*}
+   & \text{Proof by substitution}\\
+   & E_ke^{ikr}={1\over2}k^2 e^{ikr} -\sum_{k'} \underbrace{\int dr'{ e^{-ik'r'}e^{ikr'}e^{ik'r} \over|r-r'|} }_I\\
+   & I=e^{ik'r} \int dr'{ e^{i(k-k')r'} \over|r-r'|}=e^{ik'r}e^{i(k-k')r} \int du{ e^{i(k-k')u} \over u} \\
+   &\qquad = e^{ikr} {4\pi\over |k-k'|^2} \qquad \boxed{}\\
+   \end{align*}
+
+-  finding eigenvalues
+
+.. math::
+
+   \begin{align*}
+   & \sum_{k'}{4\pi\over |k-k'|^2}\to \int {d\vec{k}'\over (2\pi)^3}{4\pi\over |\vec{k}-\vec{k}'|^2}\\
+   &={4\pi\over(2\pi)^2}\int \sin\theta \;d\theta\int_0^{k_F} dk'{k'^2\over k^2-2kk'\cos\theta +k'^2} \\
+   & = {4\pi\over(2\pi)^2}\int_0^{k_F}{k'^2\over 2kk'} dk'\ln( k^2+2kk's +k'^2 )_{s=-1}^1  \\ 
+   & = {1\over 2\pi}\int_0^{k_F}{k'\over k} dk' \left| {k^2+2kk' +k'^2 \over k^2-2kk's +k'^2} \right| \\
+   & = {1\over \pi}\int_0^{k_F}{k'\over k} dk' \left| {k+k' \over k-k'} \right| =...\\  
+   & \Rightarrow \boxed{E_k={1\over 2}k^2-{k_F\over \pi }f({k\over k_F})\\
+   f(x)=1+{1-x^2\over 2x}\ln|{1+x\over 1-x}| } \\
+   \end{align*}
+
+-  interpretation: **exchange term reduces :math:`E`, by making
+   :math:`e^-` with same spin apart from each other**
+
+-  total energy. **I haven’t read the note on why the following is ture
+   yet**
+
+.. math::
+
+   \begin{align*}
+   & E_{HF}={2V\over (2\pi)^3}4\pi\int_0^{k_F} k^2\left[{k^2\over 2}-{1\over 2}{k_F\over \pi}f({k\over k_F})\right] \\
+   & \epsilon_x={E_{HF}\over N}=...={2.21\over r_s^2}-{0.916\over r_s}
+   \end{align*}
+
+correlation
+-----------
+
+.. math::
+
+   \begin{align*}
+   & E_c:=E_{\text{real}}-T-E_x
+   \end{align*}
+
+-  **collective behavior of :math:`e^-` to screen and decrease Coulomb
+   interaction**
+
+   -  **Unlike Exchange, correlation becomes more pronounced for
+      opposite spins since they are more close**
+
+-  attempts
+
+   -  **Wigner crystal** solved exactly for small :math:`r_s` by
+      assuming :math:`\epsilon_c\to \text{const}` for large
+      :math:`r_s\Rightarrow \epsilon_c=-{0.44\over r_s+7.8}`
+   -  **Gellman and Breuckner** summed an infinite series of Feynman
+      diagrams and calculated exactly for large
+      :math:`r_s\Rightarrow \epsilon_c=0.311\ln(r_s)...`, agrees with
+      wigner
+   -  **Quantum Monte Carlo**
