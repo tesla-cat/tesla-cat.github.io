@@ -3,6 +3,8 @@ Density Functional Theory
 ===================================================
 
 .. toctree::
+	OLD-Hartree-Fock-Method
+	OLD-Density-Functional-Theory
 	Hohenberg-Kohn-Variational-Principle
 	Kohn-Sham-Equations
 	1D-DFT-In-Python

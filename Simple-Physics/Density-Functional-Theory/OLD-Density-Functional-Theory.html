@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Hohenberg Kohn Variational Principle &mdash; Simple Physics  documentation</title>
+  <title>OLD Density Functional Theory &mdash; Simple Physics  documentation</title>
   
 
   
@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Kohn Sham Equations" href="Kohn-Sham-Equations.html" />
-    <link rel="prev" title="OLD Density Functional Theory" href="OLD-Density-Functional-Theory.html" /> 
+    <link rel="next" title="Hohenberg Kohn Variational Principle" href="Hohenberg-Kohn-Variational-Principle.html" />
+    <link rel="prev" title="OLD Hartree Fock Method" href="OLD-Hartree-Fock-Method.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -96,13 +96,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../Quantum-Optics/index.html">Quantum Optics</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Density Functional Theory</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="OLD-Hartree-Fock-Method.html">OLD Hartree Fock Method</a></li>
-<li class="toctree-l2"><a class="reference internal" href="OLD-Density-Functional-Theory.html">OLD Density Functional Theory</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Hohenberg Kohn Variational Principle</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">OLD Density Functional Theory</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#dependency">Dependency</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#what-is-the-problem">What is the problem ?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#derivation">Derivation</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="Hohenberg-Kohn-Variational-Principle.html">Hohenberg Kohn Variational Principle</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Kohn-Sham-Equations.html">Kohn Sham Equations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="1D-DFT-In-Python.html">1D DFT In Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="1D-DPFT-In-Python.html">1D DPFT In Python</a></li>
@@ -179,13 +179,13 @@
         
           <li><a href="index.html">Density Functional Theory</a> &raquo;</li>
         
-      <li>Hohenberg Kohn Variational Principle</li>
+      <li>OLD Density Functional Theory</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/Density-Functional-Theory/Hohenberg-Kohn-Variational-Principle.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/Density-Functional-Theory/OLD-Density-Functional-Theory.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -198,38 +198,71 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="hohenberg-kohn-variational-principle">
-<h1>Hohenberg Kohn Variational Principle<a class="headerlink" href="#hohenberg-kohn-variational-principle" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="old-density-functional-theory">
+<h1>OLD Density Functional Theory<a class="headerlink" href="#old-density-functional-theory" title="Permalink to this headline">¶</a></h1>
 <dl class="field-list simple">
 <dt class="field-odd">Date</dt>
-<dd class="field-odd"><p>13 Sep 2019</p>
+<dd class="field-odd"><p>28 July 2019</p>
 </dd>
 </dl>
 <div class="section" id="dependency">
 <h2>Dependency<a class="headerlink" href="#dependency" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#schrodinger-equation">Schrodinger Equation</a></p></li>
+<li><p><a class="reference internal" href="#born-oppenheimer-approximation">Born Oppenheimer Approximation</a></p></li>
+<li><p><a class="reference internal" href="#functional">Functional</a></p></li>
+</ul>
 </div>
 <div class="section" id="what-is-the-problem">
-<h2>What is the problem ?<a class="headerlink" href="#what-is-the-problem" title="Permalink to this headline">¶</a></h2>
+<span id="functional"></span><span id="born-oppenheimer-approximation"></span><span id="schrodinger-equation"></span><h2>What is the problem ?<a class="headerlink" href="#what-is-the-problem" title="Permalink to this headline">¶</a></h2>
+<p>Calculate the approximate wavefunction and energy for atoms</p>
 </div>
 <div class="section" id="derivation">
 <h2>Derivation<a class="headerlink" href="#derivation" title="Permalink to this headline">¶</a></h2>
-<p><strong>Step 1</strong> Recall the textbook <span class="xref std std-doc">Variational Principle</span> to find <strong>Ground State</strong> energy <span class="math notranslate nohighlight">\(E\)</span></p>
-<div class="math notranslate nohighlight">
-\[\begin{align*}
-&amp; E_{GS} = \min\limits_{\psi} \langle \psi|H|\psi \rangle
-\end{align*}\]</div>
-<p><strong>Step 2</strong> Hohenberg Kohn Variational Principle (Constrained Search Method by Levy and Lieb)</p>
+<p><strong>Step 1</strong> Hohenberg Kohn theorem</p>
+<p><span class="math notranslate nohighlight">\(n(r)\)</span>: groundstate electron density</p>
+<p><span class="math notranslate nohighlight">\(v(r)\)</span>: external potential</p>
+<p>Then <a class="reference internal" href="#functional">Functional</a> <span class="math notranslate nohighlight">\(v=v[n]\)</span>, meaning if we observe some <span class="math notranslate nohighlight">\(n(r)\)</span>, then we know exactly what potential <span class="math notranslate nohighlight">\(v(r)\)</span> generates such density distribution</p>
+<p><strong>Step 2</strong> Proof of <strong>Step 1</strong></p>
+<p><em>TO BE ADDED</em></p>
+<p><strong>Step 3</strong> The energy</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align*}
-&amp; \underbrace{n(r)}_{\text{Electron Density}} =
-  \underbrace{|\psi(r)|^2}_{\text{Probability to find it at } r} \\
-&amp; \text{EACH wavefunction }\psi(r) \text{ gives ONE density distribution }n(r)\\
-&amp; \text{But EACH }n(r) \text{ may be generated by MANY }\psi(r)  \\
-&amp; \Rightarrow \psi_n^{(i)}(r) \text{ so that } n(r)= |\psi_n^{(1)}(r)|^2 = |\psi_n^{(2)}(r)|^2 = ...\\
-&amp; \text{Thus first fix }n, \text{ find }
-        F[n]\equiv \min\limits_{i} \langle \psi_n^{(i)}|T+U_{\text{Interaction}}|\psi_n^{(i)} \rangle \\
-&amp; \text{Then find } E_{GS} = \min\limits_{n} F[n]+\int \underbrace{v_{\text{External}}(r)}_{\text{Energy per particle}} n(r)dr
+E[n] &amp; = T+U+V = T[n]+U[n]+\int n(r)v(r) \; d^3r\\
+&amp; where\\
+&amp; T = \text{Kinetic energy of electrons}\\
+&amp; U = \text{Electric potential}\\
+&amp; V = \text{Total external potential}
 \end{align*}\end{split}\]</div>
+<p><strong>Step 4</strong> Kohn-Sham approach to evaluate The energy</p>
+<p>Introduce single particle orbitals <span class="math notranslate nohighlight">\(\chi_i\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+&amp; T=T_{\text{single particle}} + T_{\text{correlation}} = T_s+T_c \\
+&amp; T_s = T_s\{\chi_i[n]\}\\
+&amp; \text{Introduce:}\\
+&amp; E_{xc} = (T-T_s)+(U-U_H)\\
+&amp; \Rightarrow\\
+E[n] &amp; = T_s\{\chi_i[n]\}+U_H+E_{xc}+V
+\end{align*}\end{split}\]</div>
+<p>The idea above is to leave all the non-trivial parts to <span class="math notranslate nohighlight">\(E_{xc}=E_{x}+E_{c}\)</span></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x\)</span> stands for exchange energy due to the Pauli Principle</p></li>
+<li><p><span class="math notranslate nohighlight">\(c\)</span> stands for correlation energy, <span class="math notranslate nohighlight">\(T_c\)</span> is part of <span class="math notranslate nohighlight">\(E_c\)</span></p></li>
+</ul>
+<p>We have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+&amp; T_s = ...\text{ trivial expression we know} \\
+&amp; U_H = ...\text{ trivial expression we know} \\
+&amp; E_x = ???\text{ can only be calculated after approximation(step 5)} \\
+&amp; E_c = ???\text{ can only be calculated after approximation(step 5)}
+\end{align*}\end{split}\]</div>
+<p><strong>Step 5</strong> Approximations to find <span class="math notranslate nohighlight">\(E_{xc}\)</span></p>
+<p><em>TO BE ADDED</em></p>
+<p><strong>Step 6</strong> Get the groundstate energy by minimizing <span class="math notranslate nohighlight">\(E[n]\)</span> wrt <span class="math notranslate nohighlight">\(n\)</span></p>
+<p><strong>Kohn-Sham Equations</strong></p>
+<p><strong>TO BE CONTINUED</strong></p>
 </div>
 </div>
 
@@ -241,10 +274,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Kohn-Sham-Equations.html" class="btn btn-neutral float-right" title="Kohn Sham Equations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="Hohenberg-Kohn-Variational-Principle.html" class="btn btn-neutral float-right" title="Hohenberg Kohn Variational Principle" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="OLD-Density-Functional-Theory.html" class="btn btn-neutral float-left" title="OLD Density Functional Theory" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="OLD-Hartree-Fock-Method.html" class="btn btn-neutral float-left" title="OLD Hartree Fock Method" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
