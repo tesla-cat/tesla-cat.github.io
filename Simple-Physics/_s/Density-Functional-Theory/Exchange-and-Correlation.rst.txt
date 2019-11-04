@@ -18,7 +18,7 @@ Non-Interacting
    & \text{planewave eigenstates}:e^{ikr}\\
    & \text{Fermi wavevector}:k_F^\sigma =\max k^\sigma\\
    & k^\sigma \text{ means dependence on }\sigma  \\
-   & \text{Average Energy}: {T_\text{tot}^\sigma\over N}={\int dk\; k^2/2\over \int dk }={3\over 5}{1\over2}(k_F^\sigma)^2={3\over 5} E_F^\sigma\\ 
+   & \text{Average Energy}: {T_\text{tot}^\sigma\over N}={\int dk\; k^2/2\over \int dk }={3\over 5}{1\over2}(k_F^\sigma)^2={3\over 5} E_F^\sigma\\
    \end{align*}
 
 Interacting
@@ -51,27 +51,29 @@ Hartree Fock Equation and Exchange Energy
    & \Rightarrow V_{\text{e-e}}+V_{\text{e-ion}}=0 \\
    \end{align*}
 
--  claim: planewave :math:`e^{ikr}` are still eigenstates
+- claim: planewave $e^{ikr}$ are still eigenstates
 
 .. math::
 
    \begin{align*}
    & \text{Proof by substitution}\\
    & E_ke^{ikr}={1\over2}k^2 e^{ikr} -\sum_{k'} \underbrace{\int dr'{ e^{-ik'r'}e^{ikr'}e^{ik'r} \over|r-r'|} }_I\\
-   & I=e^{ik'r} \int dr'{ e^{i(k-k')r'} \over|r-r'|}=e^{ik'r}e^{i(k-k')r} \int du{ e^{i(k-k')u} \over u} \\
-   &\qquad = e^{ikr} {4\pi\over |k-k'|^2} \qquad \boxed{}\\
+   & I=e^{ik'r} \int dr'{ e^{i(k-k')r'} \over|r-r'|}=e^{ik'r}e^{i(k-k')r} \int_{|\vec{u}|>0} d\vec{u}{ e^{i(k-k')\vec{u}} \over |\vec{u}|} \\
+   &\qquad = e^{ikr} 4\pi \int_{u=0}^{\infty} du \; ue^{i(k-k')u}\\
+   & \qquad = 2\times \text{integration by parts}\\
+   &\qquad = e^{ikr} {4\pi\over (k-k')^2} \qquad \boxed{}\\
    \end{align*}
 
--  finding eigenvalues
+- finding eigenvalues
 
 .. math::
 
    \begin{align*}
-   & \sum_{k'}{4\pi\over |k-k'|^2}\to \int {d\vec{k}'\over (2\pi)^3}{4\pi\over |\vec{k}-\vec{k}'|^2}\\
+   & \sum_{k'}{4\pi\over (k-k')^2}\to \int {d\vec{k}'\over (2\pi)^3}{4\pi\over (\vec{k}-\vec{k}')^2}\\
    &={4\pi\over(2\pi)^2}\int \sin\theta \;d\theta\int_0^{k_F} dk'{k'^2\over k^2-2kk'\cos\theta +k'^2} \\
-   & = {4\pi\over(2\pi)^2}\int_0^{k_F}{k'^2\over 2kk'} dk'\ln( k^2+2kk's +k'^2 )_{s=-1}^1  \\ 
+   & = {4\pi\over(2\pi)^2}\int_0^{k_F}{k'^2\over 2kk'} dk'\ln( k^2+2kk's +k'^2 )_{s=-1}^1  \\
    & = {1\over 2\pi}\int_0^{k_F}{k'\over k} dk' \left| {k^2+2kk' +k'^2 \over k^2-2kk's +k'^2} \right| \\
-   & = {1\over \pi}\int_0^{k_F}{k'\over k} dk' \left| {k+k' \over k-k'} \right| =...\\  
+   & = {1\over \pi}\int_0^{k_F}{k'\over k} dk' \left| {k+k' \over k-k'} \right| =...\\
    & \Rightarrow \boxed{E_k={1\over 2}k^2-{k_F\over \pi }f({k\over k_F})\\
    f(x)=1+{1-x^2\over 2x}\ln|{1+x\over 1-x}| } \\
    \end{align*}

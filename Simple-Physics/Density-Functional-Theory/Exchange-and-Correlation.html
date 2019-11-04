@@ -252,21 +252,23 @@
 &amp; \Rightarrow V_{\text{e-e}}+V_{\text{e-ion}}=0 \\
 \end{align*}\end{split}\]</div>
 <ul class="simple">
-<li><p>claim: planewave <span class="math notranslate nohighlight">\(e^{ikr}\)</span> are still eigenstates</p></li>
+<li><p>claim: planewave $e^{ikr}$ are still eigenstates</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align*}
 &amp; \text{Proof by substitution}\\
 &amp; E_ke^{ikr}={1\over2}k^2 e^{ikr} -\sum_{k'} \underbrace{\int dr'{ e^{-ik'r'}e^{ikr'}e^{ik'r} \over|r-r'|} }_I\\
-&amp; I=e^{ik'r} \int dr'{ e^{i(k-k')r'} \over|r-r'|}=e^{ik'r}e^{i(k-k')r} \int du{ e^{i(k-k')u} \over u} \\
-&amp;\qquad = e^{ikr} {4\pi\over |k-k'|^2} \qquad \boxed{}\\
+&amp; I=e^{ik'r} \int dr'{ e^{i(k-k')r'} \over|r-r'|}=e^{ik'r}e^{i(k-k')r} \int_{|\vec{u}|&gt;0} d\vec{u}{ e^{i(k-k')\vec{u}} \over |\vec{u}|} \\
+&amp;\qquad = e^{ikr} 4\pi \int_{u=0}^{\infty} du \; ue^{i(k-k')u}\\
+&amp; \qquad = 2\times \text{integration by parts}\\
+&amp;\qquad = e^{ikr} {4\pi\over (k-k')^2} \qquad \boxed{}\\
 \end{align*}\end{split}\]</div>
 <ul class="simple">
 <li><p>finding eigenvalues</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align*}
-&amp; \sum_{k'}{4\pi\over |k-k'|^2}\to \int {d\vec{k}'\over (2\pi)^3}{4\pi\over |\vec{k}-\vec{k}'|^2}\\
+&amp; \sum_{k'}{4\pi\over (k-k')^2}\to \int {d\vec{k}'\over (2\pi)^3}{4\pi\over (\vec{k}-\vec{k}')^2}\\
 &amp;={4\pi\over(2\pi)^2}\int \sin\theta \;d\theta\int_0^{k_F} dk'{k'^2\over k^2-2kk'\cos\theta +k'^2} \\
 &amp; = {4\pi\over(2\pi)^2}\int_0^{k_F}{k'^2\over 2kk'} dk'\ln( k^2+2kk's +k'^2 )_{s=-1}^1  \\
 &amp; = {1\over 2\pi}\int_0^{k_F}{k'\over k} dk' \left| {k^2+2kk' +k'^2 \over k^2-2kk's +k'^2} \right| \\
