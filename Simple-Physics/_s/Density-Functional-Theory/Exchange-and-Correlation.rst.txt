@@ -51,7 +51,7 @@ Hartree Fock Equation and Exchange Energy
    & \Rightarrow V_{\text{e-e}}+V_{\text{e-ion}}=0 \\
    \end{align*}
 
-- claim: planewave $e^{ikr}$ are still eigenstates
+- claim: planewave :math:`e^{ikr}` are still eigenstates
 
 .. math::
 
@@ -78,8 +78,8 @@ Hartree Fock Equation and Exchange Energy
    f(x)=1+{1-x^2\over 2x}\ln|{1+x\over 1-x}| } \\
    \end{align*}
 
--  interpretation: **exchange term reduces :math:`E`, by making
-   :math:`e^-` with same spin apart from each other**
+-  **interpretation:** exchange term reduces :math:`E`, by making
+   :math:`e^-` with same spin apart from each other
 
 -  total energy. **I haven’t read the note on why the following is ture
    yet**
@@ -100,8 +100,8 @@ correlation
    & E_c:=E_{\text{real}}-T-E_x
    \end{align*}
 
--  **collective behavior of :math:`e^-` to screen and decrease Coulomb
-   interaction**
+-  collective behavior of :math:`e^-` to screen and decrease Coulomb
+   interaction
 
    -  **Unlike Exchange, correlation becomes more pronounced for
       opposite spins since they are more close**
