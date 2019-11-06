@@ -100,19 +100,24 @@
 <li class="toctree-l2"><a class="reference internal" href="Hohenberg-Kohn-Variational-Principle.html">Hohenberg Kohn Variational Principle</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Kohn-Sham-Equations.html">Kohn Sham Equations</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Exchange and Correlation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-the-idea">What is the idea?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#electron-gas">Electron gas</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#non-interacting">Non-Interacting</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#interacting">Interacting</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#hartree-fock-equation-and-exchange-energy">Hartree Fock Equation and Exchange Energy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hartree-fock-equation">Hartree Fock Equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exchange-energy">Exchange Energy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#task-contact-interaction">Task: contact interaction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#correlation">correlation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#helper-delta-function">Helper: Delta Function</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="1D-DFT-In-Python.html">1D DFT In Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="1D-DPFT-In-Python.html">1D DPFT In Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="DFT-In-Momentum-Space.html">DFT In Momentum Space</a></li>
 <li class="toctree-l2"><a class="reference internal" href="1D-DPFT-In-Momentum-Space.html">1D DPFT In Python (Momentum Space)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Density-Matrix.html">Density Matrix</a></li>
 </ul>
 </li>
 </ul>
@@ -210,6 +215,16 @@
 <dd class="field-odd"><p>3 Nov 2019</p>
 </dd>
 </dl>
+<div class="section" id="what-is-the-idea">
+<h2>What is the idea?<a class="headerlink" href="#what-is-the-idea" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>The task is to find the exchange term</p></li>
+<li><p>In local density approximation (LDA), the exchange term is from
+Hatree Fock Theory, and the correlation term is from Quantum Monte
+Carlo</p></li>
+<li><p>Thus first review Hatree Fock theory</p></li>
+</ul>
+</div>
 <div class="section" id="electron-gas">
 <h2>Electron gas<a class="headerlink" href="#electron-gas" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="non-interacting">
@@ -221,7 +236,7 @@
 &amp; \text{planewave eigenstates}:e^{ikr}\\
 &amp; \text{Fermi wavevector}:k_F^\sigma =\max k^\sigma\\
 &amp; k^\sigma \text{ means dependence on }\sigma  \\
-&amp; \text{Average Energy}: {T_\text{tot}^\sigma\over N}={\int dk\; k^2/2\over \int dk }={3\over 5}{1\over2}(k_F^\sigma)^2={3\over 5} E_F^\sigma\\
+&amp; \text{Average Energy}: {T_\text{tot}^\sigma\over N}={\int dk\; k^2/2\over \int dk }={3\over 10}(k_F^\sigma)^2\\
 \end{align*}\end{split}\]</div>
 </div>
 <div class="section" id="interacting">
@@ -235,12 +250,60 @@
 \end{align*}\end{split}\]</div>
 </div>
 </div>
-<div class="section" id="hartree-fock-equation-and-exchange-energy">
-<h2>Hartree Fock Equation and Exchange Energy<a class="headerlink" href="#hartree-fock-equation-and-exchange-energy" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="hartree-fock-equation">
+<h2>Hartree Fock Equation<a class="headerlink" href="#hartree-fock-equation" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>only consider <strong>exchange</strong></p></li>
 <li><p>interacting electron gas can be solved analytically at HF level</p></li>
+<li><p>hamiltonian</p></li>
 </ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+&amp; H=\sum_i^{N_e}{-\nabla_i^2\over 2}-\sum_i^{N_e}\sum_I^{N_n}{Z_I\over |r_i-R_I|}
++{1\over 2}\sum_i^{N_e}\sum_{j\ne i}^{N_e} {1\over |r_i-r_j|}+{1\over 2}\sum_I^{N_n}\sum_{J\ne I}^{N_n}{Z_I Z_J\over |R_I-R_J|}\\
+&amp; = H_e+H_n \\
+&amp; H_e\equiv \sum_i h_1(r_i)+{1\over 2}\sum_{i\ne j}h_2(r_i,r_j) \\
+\end{align*}\end{split}\]</div>
+<ul class="simple">
+<li><p>wavefunction approximated by slater determinant</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+&amp; \Phi = {1\over \sqrt{N!} }
+        \begin{vmatrix}
+            \phi_1(x_1) &amp; \phi_2(x_1) &amp; ... &amp; \phi_N(x_1)\\
+            \phi_1(x_2) &amp; \phi_2(x_2) &amp; ... &amp; \phi_N(x_2)\\
+            ...\\
+            \phi_1(x_N) &amp; \phi_2(x_N) &amp; ... &amp; \phi_N(x_N)
+        \end{vmatrix} \\
+\end{align*}\end{split}\]</div>
+<ul class="simple">
+<li><p>total energy</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+&amp; E_{HF}=\langle \Phi| H_e|\Phi \rangle=\sum_i \langle \phi_i| h_1|\phi_i \rangle +\boxed{{1\over 2}\times}\sum_{i, j} [ \langle \phi_i \phi_j| h_2|\phi_i\phi_j \rangle - \langle \phi_j\phi_i| h_2|\phi_i \phi_j \rangle ] \\
+\end{align*}\end{split}\]</div>
+<ul class="simple">
+<li><p>variational principle</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+&amp; \phi_k\to\phi_k+\delta\phi_k\Rightarrow \delta\left[ \langle \Phi| H_e|\Phi \rangle - \sum_{i,j} \lambda_{ij}(\langle \phi_i|\ \phi_j \rangle -\delta_{ij} )\right]=0 \\
+&amp; h_1\phi_k(x_1)+\sum_i\left[ \int dx_2\; \phi_i^*(x_2) h_2 \phi_i(x_2)\phi_k(x_1) -\int dx_2\; \phi_i^*(x_2) h_2 \phi_i(x_1)\phi_k(x_2) \right] =\sum_i \lambda_{ki}\phi_i(x_1)\\
+&amp; \left[ h_1+\sum_i(J_i-K_i) \right]\phi_k=\sum_i \lambda_{ki}\phi_i \\
+&amp; \text{diagnalize } \lambda_{ki}=\delta_{ki}\epsilon_k  \\
+\end{align*}\end{split}\]</div>
+<ul class="simple">
+<li><p>total energy is <strong>NOT</strong> sum of eigenvalues</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+&amp; \sum_k \epsilon_k = \sum_i \langle \phi_i| h_1|\phi_i \rangle +\boxed{1\times}\sum_{i, j} [ \langle \phi_i \phi_j| h_2|\phi_i\phi_j \rangle - \langle \phi_j\phi_i| h_2|\phi_i \phi_j \rangle ] \\
+\end{align*}\end{split}\]</div>
+</div>
+<div class="section" id="exchange-energy">
+<h2>Exchange Energy<a class="headerlink" href="#exchange-energy" title="Permalink to this headline">¶</a></h2>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align*}
 &amp; E_i\phi_i(r)=\left[{-\nabla^2\over 2}+V_{\text{e-e}} +V_{\text{e-ion}}\right]\phi_i(r) \\
@@ -277,15 +340,44 @@
 f(x)=1+{1-x^2\over 2x}\ln|{1+x\over 1-x}| } \\
 \end{align*}\end{split}\]</div>
 <ul class="simple">
-<li><p><strong>interpretation:</strong> exchange term reduces <span class="math notranslate nohighlight">\(E\)</span>, by making
+<li><p>interpretation: exchange term reduces <span class="math notranslate nohighlight">\(E\)</span>, by making
 <span class="math notranslate nohighlight">\(e^-\)</span> with same spin apart from each other</p></li>
-<li><p>total energy. <strong>I haven’t read the note on why the following is ture
-yet</strong></p></li>
+<li><p>total energy</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align*}
-&amp; E_{HF}={2V\over (2\pi)^3}4\pi\int_0^{k_F} k^2\left[{k^2\over 2}-{1\over 2}{k_F\over \pi}f({k\over k_F})\right] \\
-&amp; \epsilon_x={E_{HF}\over N}=...={2.21\over r_s^2}-{0.916\over r_s}
+&amp; E_{HF}={1\over (2\pi)^3}4\pi\int_0^{k_F} k^2\left[{k^2\over 2}+\boxed{{1\over 2}\times}\left(-{k_F\over \pi}f({k\over k_F})\right)\right] \\
+&amp; {E_{HF}\over N}=...={2.21\over r_s^2}\underbrace{-{0.916\over r_s}}_{\epsilon_x}
+\end{align*}\end{split}\]</div>
+</div>
+<div class="section" id="task-contact-interaction">
+<h2>Task: contact interaction<a class="headerlink" href="#task-contact-interaction" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>contact interaction: <span class="math notranslate nohighlight">\({1\over |r-r'|}\to \delta(r-r')\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+&amp; \sum_j \int dr' \phi_j^*(r')\phi_j(r)\phi_i(r')\delta(r-r') \quad \text{exchange} \\
+&amp; \Rightarrow I=e^{ik'r}\int dr' e^{i(k-k')r'}
+\delta(r-r')=e^{ikr}\qquad \boxed \\
+\end{align*}\end{split}\]</div>
+<ul class="simple">
+<li><p>finding eigenvalues</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+&amp; \sum_{k'} 1\to \int{d\vec{k}' \over (2\pi)^3}={1\over(2\pi)^3}4\pi {k_F^3\over 3}\\
+&amp; \Rightarrow E_k={1\over 2}k^2-{k_F^3\over 6 \pi^2} \\
+\end{align*}\end{split}\]</div>
+<ul class="simple">
+<li><p>total energy (the previous case did not multiply spin factor
+<span class="math notranslate nohighlight">\(2\)</span>)</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+&amp; E_{HF}={2\over (2\pi)^3}4\pi\int_0^{k_F} k^2\left[{k^2\over 2}+\boxed{{1\over 2}\times}\left(-{k_F^3\over 6 \pi^2}\right)\right] \\
+&amp;\quad = {1\over 10\pi^2}k_F^5 -{1\over 36\pi^4}k_F^6 \\
+&amp; n={2\over(2\pi)^3}4\pi {k_F^3\over 3}={1\over 3\pi^2}k_F^3 \\
 \end{align*}\end{split}\]</div>
 </div>
 <div class="section" id="correlation">
@@ -315,6 +407,14 @@ wigner</p></li>
 </ul>
 </li>
 </ul>
+</div>
+<div class="section" id="helper-delta-function">
+<h2>Helper: Delta Function<a class="headerlink" href="#helper-delta-function" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+&amp; f(x)={1\over 2\pi} \int dk\; e^{ikx}\left[\int dx' \;e^{-ikx'}f(x') \right] \\
+&amp; =\int dx' \; f(x')\underbrace{{1\over 2\pi}\int dk\; e^{ik(x-x')}}_{\delta(x-x')}  \\
+\end{align*}\end{split}\]</div>
 </div>
 </div>
 

@@ -1,0 +1,225 @@
+
+Exchange and Correlation
+========================
+
+:date: 3 Nov 2019
+
+What is the idea?
+-----------------
+
+-  The task is to find the exchange term
+-  In local density approximation (LDA), the exchange term is from
+   Hatree Fock Theory, and the correlation term is from Quantum Monte
+   Carlo
+-  Thus first review Hatree Fock theory
+
+Electron gas
+------------
+
+Non-Interacting
+~~~~~~~~~~~~~~~
+
+.. math::
+
+   \begin{align*}
+   & r_s:\text{radius of sphere with one }e^- \quad 4\pi {r_s^3\over 3}={1\over n}\\
+   & \sigma:\text{spin}\\
+   & \text{planewave eigenstates}:e^{ikr}\\
+   & \text{Fermi wavevector}:k_F^\sigma =\max k^\sigma\\
+   & k^\sigma \text{ means dependence on }\sigma  \\
+   & \text{Average Energy}: {T_\text{tot}^\sigma\over N}={\int dk\; k^2/2\over \int dk }={3\over 10}(k_F^\sigma)^2\\
+   \end{align*}
+
+Interacting
+~~~~~~~~~~~
+
+.. math::
+
+   \begin{align*}
+   & H= \sum_i {-\nabla^2\over2}
+   \underbrace{+{1\over 2} \sum_{i\ne j}{1\over |r_i-r_j|}}_{V_{\text{e-e}}}
+   \underbrace{-{1\over2}\int drdr'{n(r)n(r')\over |r-r'|}}_{V_{\text{e-ion}}} \\
+   & \text{with assumption }n_{\text{ion}}(r)=n(r) \\
+   \end{align*}
+
+Hartree Fock Equation
+---------------------
+
+-  only consider **exchange**
+
+-  interacting electron gas can be solved analytically at HF level
+
+-  hamiltonian
+
+.. math::
+
+   \begin{align*}
+   & H=\sum_i^{N_e}{-\nabla_i^2\over 2}-\sum_i^{N_e}\sum_I^{N_n}{Z_I\over |r_i-R_I|}
+   +{1\over 2}\sum_i^{N_e}\sum_{j\ne i}^{N_e} {1\over |r_i-r_j|}+{1\over 2}\sum_I^{N_n}\sum_{J\ne I}^{N_n}{Z_I Z_J\over |R_I-R_J|}\\
+   & = H_e+H_n \\
+   & H_e\equiv \sum_i h_1(r_i)+{1\over 2}\sum_{i\ne j}h_2(r_i,r_j) \\
+   \end{align*}
+
+-  wavefunction approximated by slater determinant
+
+.. math::
+
+   \begin{align*}
+   & \Phi = {1\over \sqrt{N!} }
+           \begin{vmatrix}
+               \phi_1(x_1) & \phi_2(x_1) & ... & \phi_N(x_1)\\
+               \phi_1(x_2) & \phi_2(x_2) & ... & \phi_N(x_2)\\
+               ...\\
+               \phi_1(x_N) & \phi_2(x_N) & ... & \phi_N(x_N)
+           \end{vmatrix} \\
+   \end{align*}
+
+-  total energy
+
+.. math::
+
+   \begin{align*}
+   & E_{HF}=\langle \Phi| H_e|\Phi \rangle=\sum_i \langle \phi_i| h_1|\phi_i \rangle +\boxed{{1\over 2}\times}\sum_{i, j} [ \langle \phi_i \phi_j| h_2|\phi_i\phi_j \rangle - \langle \phi_j\phi_i| h_2|\phi_i \phi_j \rangle ] \\
+   \end{align*}
+
+-  variational principle
+
+.. math::
+
+   \begin{align*}
+   & \phi_k\to\phi_k+\delta\phi_k\Rightarrow \delta\left[ \langle \Phi| H_e|\Phi \rangle - \sum_{i,j} \lambda_{ij}(\langle \phi_i|\ \phi_j \rangle -\delta_{ij} )\right]=0 \\
+   & h_1\phi_k(x_1)+\sum_i\left[ \int dx_2\; \phi_i^*(x_2) h_2 \phi_i(x_2)\phi_k(x_1) -\int dx_2\; \phi_i^*(x_2) h_2 \phi_i(x_1)\phi_k(x_2) \right] =\sum_i \lambda_{ki}\phi_i(x_1)\\
+   & \left[ h_1+\sum_i(J_i-K_i) \right]\phi_k=\sum_i \lambda_{ki}\phi_i \\
+   & \text{diagnalize } \lambda_{ki}=\delta_{ki}\epsilon_k  \\
+   \end{align*}
+
+-  total energy is **NOT** sum of eigenvalues
+
+.. math::
+
+   \begin{align*}
+   & \sum_k \epsilon_k = \sum_i \langle \phi_i| h_1|\phi_i \rangle +\boxed{1\times}\sum_{i, j} [ \langle \phi_i \phi_j| h_2|\phi_i\phi_j \rangle - \langle \phi_j\phi_i| h_2|\phi_i \phi_j \rangle ] \\
+   \end{align*}
+
+Exchange Energy
+---------------
+
+.. math::
+
+   \begin{align*}
+   & E_i\phi_i(r)=\left[{-\nabla^2\over 2}+V_{\text{e-e}} +V_{\text{e-ion}}\right]\phi_i(r) \\
+   & \qquad \qquad\boxed{- \sum_j \delta_{\sigma_i\sigma_j} \int dr' {\phi_j^*(r')\phi_i(r')\phi_j(r)\over|r-r'|} \quad\text{exchange}}\\
+   & i,j\text{ are combined orbit/spin indices} \\
+   &V_{\text{e-e}} = \sum_j \int dr' {|\phi_j(r')|^2\over |r-r'|}= \int dr' {\sum_j|\phi_j(r')|^2\over |r-r'|}=\int dr' {n(r')\over |r-r'|}\\
+   &V_{\text{e-ion}} = \sum_k -{Z_k\over |r-R_k|}\to\int -{n(R)dR\over |r-R|} \\
+   & \text{with assumption }n_{\text{ion}}(r)=n(r) \\
+   & \Rightarrow V_{\text{e-e}}+V_{\text{e-ion}}=0 \\
+   \end{align*}
+
+-  claim: planewave :math:`e^{ikr}` are still eigenstates
+
+.. math::
+
+   \begin{align*}
+   & \text{Proof by substitution}\\
+   & E_ke^{ikr}={1\over2}k^2 e^{ikr} -\sum_{k'} \underbrace{\int dr'{ e^{-ik'r'}e^{ikr'}e^{ik'r} \over|r-r'|} }_I\\
+   & I=e^{ik'r} \int dr'{ e^{i(k-k')r'} \over|r-r'|}=e^{ik'r}e^{i(k-k')r} \int_{|\vec{u}|>0} d\vec{u}{ e^{i(k-k')\vec{u}} \over |\vec{u}|} \\
+   &\qquad = e^{ikr} 4\pi \int_{u=0}^{\infty} du \; ue^{i(k-k')u}\\
+   & \qquad = 2\times \text{integration by parts}\\
+   &\qquad = e^{ikr} {4\pi\over (k-k')^2} \qquad \boxed{}\\
+   \end{align*}
+
+-  finding eigenvalues
+
+.. math::
+
+   \begin{align*}
+   & \sum_{k'}{4\pi\over (k-k')^2}\to \int {d\vec{k}'\over (2\pi)^3}{4\pi\over (\vec{k}-\vec{k}')^2}\\
+   &={4\pi\over(2\pi)^2}\int \sin\theta \;d\theta\int_0^{k_F} dk'{k'^2\over k^2-2kk'\cos\theta +k'^2} \\
+   & = {4\pi\over(2\pi)^2}\int_0^{k_F}{k'^2\over 2kk'} dk'\ln( k^2+2kk's +k'^2 )_{s=-1}^1  \\
+   & = {1\over 2\pi}\int_0^{k_F}{k'\over k} dk' \left| {k^2+2kk' +k'^2 \over k^2-2kk's +k'^2} \right| \\
+   & = {1\over \pi}\int_0^{k_F}{k'\over k} dk' \left| {k+k' \over k-k'} \right| =...\\
+   & \Rightarrow \boxed{E_k={1\over 2}k^2-{k_F\over \pi }f({k\over k_F})\\
+   f(x)=1+{1-x^2\over 2x}\ln|{1+x\over 1-x}| } \\
+   \end{align*}
+
+-  interpretation: exchange term reduces :math:`E`, by making
+   :math:`e^-` with same spin apart from each other
+
+-  total energy
+
+.. math::
+
+   \begin{align*}
+   & E_{HF}={1\over (2\pi)^3}4\pi\int_0^{k_F} k^2\left[{k^2\over 2}+\boxed{{1\over 2}\times}\left(-{k_F\over \pi}f({k\over k_F})\right)\right] \\
+   & {E_{HF}\over N}=...={2.21\over r_s^2}\underbrace{-{0.916\over r_s}}_{\epsilon_x}
+   \end{align*}
+
+Task: contact interaction
+-------------------------
+
+-  contact interaction: :math:`{1\over |r-r'|}\to \delta(r-r')`
+
+.. math::
+
+   \begin{align*}
+   & \sum_j \int dr' \phi_j^*(r')\phi_j(r)\phi_i(r')\delta(r-r') \quad \text{exchange} \\
+   & \Rightarrow I=e^{ik'r}\int dr' e^{i(k-k')r'}
+   \delta(r-r')=e^{ikr}\qquad \boxed \\
+   \end{align*}
+
+-  finding eigenvalues
+
+.. math::
+
+   \begin{align*}
+   & \sum_{k'} 1\to \int{d\vec{k}' \over (2\pi)^3}={1\over(2\pi)^3}4\pi {k_F^3\over 3}\\
+   & \Rightarrow E_k={1\over 2}k^2-{k_F^3\over 6 \pi^2} \\
+   \end{align*}
+
+-  total energy (the previous case did not multiply spin factor
+   :math:`2`)
+
+.. math::
+
+   \begin{align*}
+   & E_{HF}={2\over (2\pi)^3}4\pi\int_0^{k_F} k^2\left[{k^2\over 2}+\boxed{{1\over 2}\times}\left(-{k_F^3\over 6 \pi^2}\right)\right] \\
+   &\quad = {1\over 10\pi^2}k_F^5 -{1\over 36\pi^4}k_F^6 \\
+   & n={2\over(2\pi)^3}4\pi {k_F^3\over 3}={1\over 3\pi^2}k_F^3 \\
+   \end{align*}
+
+correlation
+-----------
+
+.. math::
+
+   \begin{align*}
+   & E_c:=E_{\text{real}}-T-E_x
+   \end{align*}
+
+-  collective behavior of :math:`e^-` to screen and decrease Coulomb
+   interaction
+
+   -  **Unlike Exchange, correlation becomes more pronounced for
+      opposite spins since they are more close**
+
+-  attempts
+
+   -  **Wigner crystal** solved exactly for small :math:`r_s` by
+      assuming :math:`\epsilon_c\to \text{const}` for large
+      :math:`r_s\Rightarrow \epsilon_c=-{0.44\over r_s+7.8}`
+   -  **Gellman and Breuckner** summed an infinite series of Feynman
+      diagrams and calculated exactly for large
+      :math:`r_s\Rightarrow \epsilon_c=0.311\ln(r_s)...`, agrees with
+      wigner
+   -  **Quantum Monte Carlo**
+
+Helper: Delta Function
+----------------------
+
+.. math::
+
+   \begin{align*}
+   & f(x)={1\over 2\pi} \int dk\; e^{ikx}\left[\int dx' \;e^{-ikx'}f(x') \right] \\
+   & =\int dx' \; f(x')\underbrace{{1\over 2\pi}\int dk\; e^{ik(x-x')}}_{\delta(x-x')}  \\
+   \end{align*}
