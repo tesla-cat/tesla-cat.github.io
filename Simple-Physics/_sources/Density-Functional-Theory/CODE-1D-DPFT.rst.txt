@@ -1,5 +1,5 @@
 
-1D DPFT In Python
+CODE 1D DPFT
 =======================
 
 :Date: 8 Oct 2019

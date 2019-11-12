@@ -1,7 +1,5 @@
 DFT In Momentum Space
-========================
-
-:date: 29 oct 2019
+===========================
 
 
 Intro
@@ -92,7 +90,7 @@ Approximations
    & \boxed{= \text{Tr}[f(H-\mu)]\approx \text{Tr}[(H-\mu)\eta(\mu-H)]  }\\
    & \Rightarrow \begin{cases}
    &\boxed{ N\approx \text{Tr}[\eta(\mu-H)]  }\\
-   &\boxed{ n(r')\approx 2\langle r'|\eta(\mu-H)|r' \rangle  }
+   &\boxed{ n(r')\approx 2\langle r'|\eta(\mu-H)|r' \rangle  } 
    \end{cases}
    \end{align*}
 
@@ -126,7 +124,7 @@ Approximations
 .. math::
 
    \begin{align*}
-   \boxed{ n(p')\approx 2\langle p'|\eta(\mu-H)|p' \rangle  }
+   \boxed{ n(p')\approx 2\langle p'|\eta(\mu-H)|p' \rangle  } 
    \end{align*}
 
 Thomas Fermi Approximation
@@ -138,7 +136,7 @@ Thomas Fermi Approximation
    & E_1^{TF}[T-\mu]=g\int {drdp\over (2\pi)^3}[ T(p)+V_{\text{ext}}(r)-\mu ]\eta(\mu -T-V_{\text{ext}}) \\
    &\Rightarrow n={\delta E_1^{TF} \over \delta T}= g\int {dr \over (2\pi)^3} 1\cdot \eta(\mu -T-V_{\text{ext}})\\
    &= g{1 \over (2\pi)^3} {4\over 3}\pi R^3={g \over 6\pi^3}R^3 \\
-   &\text{Where }R \text{ is the radius of the sphere such that } \mu -T-V_{\text{ext}}>0
+   &\text{Where }R \text{ is the radius of the sphere such that } \mu -T-V_{\text{ext}}>0 
    \end{align*}
 
 Task
@@ -157,9 +155,12 @@ Task
 .. math::
 
    \begin{align*}
-   & E_{\text{int}}={1\over 2}\int dr' dr'' n(r')n(r'')\delta(r-r'')\\
-   & ={1\over 2} \int dr' n^2(r') \\
-   & ={1\over 2} \int dr' 2\int {dp'\over (2\pi)^3} \eta(R(p')-r') 2\int {dp''\over (2\pi)^3} \eta(R(p'')-r') \\
-   & ={1\over 2} \int dr' 2\int {dp'\over (2\pi)^3}2\int {dp''\over (2\pi)^3}\; \eta(R(p')-r')\; \eta(R(p'')-r') \\
-   & ={1\over 2}  2\int {dp'\over (2\pi)^3}2\int {dp''\over (2\pi)^3} 4\pi{R_<^3\over 3} \\
+   & n^{(2)} (r,r';r,r')= \underbrace{n^{(1)}(r,r)n^{(1)}(r',r')}_{\text{Hatree}}\underbrace{ -{1\over 2}n^{(1)}(r,r')n^{(1)}(r',r)}_{\text{Exchange}} \quad\boxed{{1\over 2}???} \\
+   & n^{(1)}(r,r)=n(r) \\
+   & E_{\text{int}}= \int dr dr' \delta(r-r')n^{(2)} (r,r';r,r') \\
+   & ={1\over 2} \int dr n^2(r) \\
+   & ={1\over 2} \int dr 2\int {dp\over (2\pi)^3} \eta(R(p)-r) 2\int {dp'\over (2\pi)^3} \eta(R(p')-r) \\
+   & ={1\over 2} \int dr 2\int {dp\over (2\pi)^3}2\int {dp'\over (2\pi)^3}\; \eta(R(p)-r)\; \eta(R(p')-r) \\
+   & ={1\over 2}  2\int {dp\over (2\pi)^3}2\int {dp'\over (2\pi)^3} 4\pi{R_<^3\over 3} \\
+   & ={1\over 2}  2\int {dp\over (2\pi)^3}2\int {dp'\over (2\pi)^3} 4\pi{1\over 3}{6\pi^3\over g}n_< \\
    \end{align*}

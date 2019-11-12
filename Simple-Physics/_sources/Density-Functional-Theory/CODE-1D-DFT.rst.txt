@@ -1,6 +1,6 @@
 
 
-1D DFT In Python
+CODE 1D DFT
 =======================
 
 Note

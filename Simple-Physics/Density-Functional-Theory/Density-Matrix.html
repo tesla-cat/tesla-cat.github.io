@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Experimental Physics: SoC FPGA Design" href="../Experimental-Physics-SoC-FPGA-Design/index.html" />
-    <link rel="prev" title="1D DPFT In Python (Momentum Space)" href="1D-DPFT-In-Momentum-Space.html" /> 
+    <link rel="next" title="CODE 1D DFT" href="CODE-1D-DFT.html" />
+    <link rel="prev" title="DFT In Momentum Space" href="DFT-In-Momentum-Space.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -100,11 +100,14 @@
 <li class="toctree-l2"><a class="reference internal" href="Hohenberg-Kohn-Variational-Principle.html">Hohenberg Kohn Variational Principle</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Kohn-Sham-Equations.html">Kohn Sham Equations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Exchange-and-Correlation.html">Exchange and Correlation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="1D-DFT-In-Python.html">1D DFT In Python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="1D-DPFT-In-Python.html">1D DPFT In Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="DFT-In-Momentum-Space.html">DFT In Momentum Space</a></li>
-<li class="toctree-l2"><a class="reference internal" href="1D-DPFT-In-Momentum-Space.html">1D DPFT In Python (Momentum Space)</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Density Matrix</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Density Matrix</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#task">Task</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CODE-1D-DFT.html">CODE 1D DFT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CODE-1D-DPFT.html">CODE 1D DPFT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CODE-1D-DPFT-Momentum-Space.html">CODE 1D DPFT Momentum Space</a></li>
 </ul>
 </li>
 </ul>
@@ -204,7 +207,7 @@
 </dl>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align*}
-&amp; \phi_m(x)=\begin{pmatrix}\alpha_m(x) \\ \beta_m(x) \\ \end{pmatrix} \quad \text{spin up and down} \\
+&amp; \phi_m(x)=\begin{pmatrix}a_m(x) \\ b_m(x) \\ \end{pmatrix} \quad \text{spin up and down} \\
 &amp; \psi(x_1,...x_N)={1\over \sqrt{N!}} \det_{m,l}\phi_m(x_l) \qquad \phi_m(x_l)=\langle x_l | \phi_m \rangle \\
 &amp; \quad (N! \text{ of possible permutations}) \\
 &amp; \quad={1\over \sqrt{N!}} \sum_{i=1}^{N!} (-1)^{P(i_1,i_2,...i_N)} \phi_{i_1}(x_1)\phi_{i_2}(x_2)...\phi_{i_N}(x_N) \\
@@ -218,6 +221,13 @@
 &amp; \quad ={1\over (N-1)!}\int dx_2...dx_N  \sum_{i=1}^{N!}  \phi_{i_1}(x)\phi_{i_2}(x_2)...\phi_{i_N}(x_N) \\
 &amp; \qquad \qquad \qquad \qquad \qquad \qquad \qquad \phi^*_{i_1}(y)\phi^*_{i_2}(x_2)...\phi^*_{i_N}(x_N)\\
 &amp; \quad ={1\over (N-1)!}  \sum_{i_1=1}^{N}  \phi_{i_1}(x)\phi^*_{i_1}(y) (N-1)! \\
+&amp; \quad = \sum_{m=1}^{N}  \begin{pmatrix}
+  a_m(x)a_m^*(y) &amp; a_m(x)b_m^*(y) \\
+  b_m(x)a_m^*(y) &amp; b_m(x)b_m^*(y) \\
+\end{pmatrix} \equiv \begin{pmatrix}
+  n_{uu}(x;y) &amp; n_{ud}(x;y) \\
+  n_{du}(x;y) &amp; n_{dd}(x;y) \\
+\end{pmatrix} \\
 &amp; \boxed{\text{two particle density matrix}} \\
 &amp; \text{there are }{N(N-1)\over 2} \text{ particles pairs} \\
 &amp; n(x,x';y,y')={N(N-1)\over 2}\int dx_3...dx_N \psi(x,x'...x_N)\psi^*(y,y'...x_N) \\
@@ -228,7 +238,25 @@
 &amp; \quad ={1\over 2(N-2)!}\int dx_3...dx_N  \sum_{i=1}^{N!}  \phi_{i_1}(x)\phi_{i_2}(x')...\phi_{i_N}(x_N) \\
 &amp; \qquad \qquad \qquad \qquad \qquad \qquad \qquad [\phi^*_{i_1}(y)\phi^*_{i_2}(y')...\phi^*_{i_N}(x_N)- \phi^*_{i_2}(y)\phi^*_{i_1}(y')...\phi^*_{i_N}(x_N)]\\
 &amp; \quad ={1\over 2} \sum_{i_1,i_2\ne i_1}^{N,N}  \phi_{i_1}(x)\phi_{i_2}(x') [\phi^*_{i_1}(y)\phi^*_{i_2}(y')- \phi^*_{i_2}(y)\phi^*_{i_1}(y')]\\
+&amp; \quad ={1\over 2}
+\begin{pmatrix}
+  n_{uu}(x;y) &amp; n_{ud}(x;y) \\
+  n_{du}(x;y) &amp; n_{dd}(x;y) \\
+\end{pmatrix} \otimes
+\begin{pmatrix}
+  n_{uu}(x';y') &amp; n_{ud}(x';y') \\
+  n_{du}(x';y') &amp; n_{dd}(x';y') \\
+\end{pmatrix}-...\\
+&amp; \quad ={1\over 2} [n(x;y)\otimes n(x';y')-n(x;y')\otimes n(x';y)] \quad \boxed{T_{23}???} \\
 \end{align*}\end{split}\]</div>
+<div class="section" id="task">
+<h2>Task<a class="headerlink" href="#task" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+&amp; E_{\text{int}}= \int dr dr' \delta(r-r')n^{(2)} (r,r';r,r') \\
+&amp; \quad = \int dr dr'  \\
+\end{align*}\end{split}\]</div>
+</div>
 </div>
 
 
@@ -239,10 +267,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../Experimental-Physics-SoC-FPGA-Design/index.html" class="btn btn-neutral float-right" title="Experimental Physics: SoC FPGA Design" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="CODE-1D-DFT.html" class="btn btn-neutral float-right" title="CODE 1D DFT" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="1D-DPFT-In-Momentum-Space.html" class="btn btn-neutral float-left" title="1D DPFT In Python (Momentum Space)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="DFT-In-Momentum-Space.html" class="btn btn-neutral float-left" title="DFT In Momentum Space" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1D DPFT In Python (Momentum Space)" href="1D-DPFT-In-Momentum-Space.html" />
-    <link rel="prev" title="1D DPFT In Python" href="1D-DPFT-In-Python.html" /> 
+    <link rel="next" title="Density Matrix" href="Density-Matrix.html" />
+    <link rel="prev" title="Exchange and Correlation" href="Exchange-and-Correlation.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -100,8 +100,6 @@
 <li class="toctree-l2"><a class="reference internal" href="Hohenberg-Kohn-Variational-Principle.html">Hohenberg Kohn Variational Principle</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Kohn-Sham-Equations.html">Kohn Sham Equations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Exchange-and-Correlation.html">Exchange and Correlation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="1D-DFT-In-Python.html">1D DFT In Python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="1D-DPFT-In-Python.html">1D DPFT In Python</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">DFT In Momentum Space</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#intro">Intro</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#history">History</a></li>
@@ -123,8 +121,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#task">Task</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="1D-DPFT-In-Momentum-Space.html">1D DPFT In Python (Momentum Space)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Density-Matrix.html">Density Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CODE-1D-DFT.html">CODE 1D DFT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CODE-1D-DPFT.html">CODE 1D DPFT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CODE-1D-DPFT-Momentum-Space.html">CODE 1D DPFT Momentum Space</a></li>
 </ul>
 </li>
 </ul>
@@ -217,11 +217,6 @@
             
   <div class="section" id="dft-in-momentum-space">
 <h1>DFT In Momentum Space<a class="headerlink" href="#dft-in-momentum-space" title="Permalink to this headline">¶</a></h1>
-<dl class="field-list simple">
-<dt class="field-odd">date</dt>
-<dd class="field-odd"><p>29 oct 2019</p>
-</dd>
-</dl>
 <div class="section" id="intro">
 <h2>Intro<a class="headerlink" href="#intro" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="history">
@@ -370,11 +365,14 @@ of independent particle description? <strong>No</strong></p></li>
 \end{align*}\end{split}\]</div>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align*}
-&amp; E_{\text{int}}={1\over 2}\int dr' dr'' n(r')n(r'')\delta(r-r'')\\
-&amp; ={1\over 2} \int dr' n^2(r') \\
-&amp; ={1\over 2} \int dr' 2\int {dp'\over (2\pi)^3} \eta(R(p')-r') 2\int {dp''\over (2\pi)^3} \eta(R(p'')-r') \\
-&amp; ={1\over 2} \int dr' 2\int {dp'\over (2\pi)^3}2\int {dp''\over (2\pi)^3}\; \eta(R(p')-r')\; \eta(R(p'')-r') \\
-&amp; ={1\over 2}  2\int {dp'\over (2\pi)^3}2\int {dp''\over (2\pi)^3} 4\pi{R_&lt;^3\over 3} \\
+&amp; n^{(2)} (r,r';r,r')= \underbrace{n^{(1)}(r,r)n^{(1)}(r',r')}_{\text{Hatree}}\underbrace{ -{1\over 2}n^{(1)}(r,r')n^{(1)}(r',r)}_{\text{Exchange}} \quad\boxed{{1\over 2}???} \\
+&amp; n^{(1)}(r,r)=n(r) \\
+&amp; E_{\text{int}}= \int dr dr' \delta(r-r')n^{(2)} (r,r';r,r') \\
+&amp; ={1\over 2} \int dr n^2(r) \\
+&amp; ={1\over 2} \int dr 2\int {dp\over (2\pi)^3} \eta(R(p)-r) 2\int {dp'\over (2\pi)^3} \eta(R(p')-r) \\
+&amp; ={1\over 2} \int dr 2\int {dp\over (2\pi)^3}2\int {dp'\over (2\pi)^3}\; \eta(R(p)-r)\; \eta(R(p')-r) \\
+&amp; ={1\over 2}  2\int {dp\over (2\pi)^3}2\int {dp'\over (2\pi)^3} 4\pi{R_&lt;^3\over 3} \\
+&amp; ={1\over 2}  2\int {dp\over (2\pi)^3}2\int {dp'\over (2\pi)^3} 4\pi{1\over 3}{6\pi^3\over g}n_&lt; \\
 \end{align*}\end{split}\]</div>
 </div>
 </div>
@@ -387,10 +385,10 @@ of independent particle description? <strong>No</strong></p></li>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="1D-DPFT-In-Momentum-Space.html" class="btn btn-neutral float-right" title="1D DPFT In Python (Momentum Space)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="Density-Matrix.html" class="btn btn-neutral float-right" title="Density Matrix" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="1D-DPFT-In-Python.html" class="btn btn-neutral float-left" title="1D DPFT In Python" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="Exchange-and-Correlation.html" class="btn btn-neutral float-left" title="Exchange and Correlation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

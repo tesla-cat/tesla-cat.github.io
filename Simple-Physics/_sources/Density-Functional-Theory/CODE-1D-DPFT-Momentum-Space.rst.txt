@@ -1,5 +1,5 @@
 
-1D DPFT In Python (Momentum Space)
+CODE 1D DPFT Momentum Space
 ==================================
 
 Thomas Fermi Approximation
