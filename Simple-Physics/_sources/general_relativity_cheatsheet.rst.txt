@@ -1,0 +1,65 @@
+
+.. math::
+
+   \begin{align*}
+   & \boxed{\text{Contra}: A'^{a}={\partial x'^{a} \over \partial x^{b}} A^{b} \quad \text{Co}: A'_a={\partial x^{b} \over \partial x'^{a}} A_b} \\
+   & \text{ Metric Tensor: } ds^2= g_{ab}dx^{a}dx^{b}=g'_{cd}dx'^{c}dx'^{d}\\
+       & \Rightarrow g_{ab} {\partial x^{a} \over \partial x'^{c}} d x'^{c} {\partial x^{b} \over \partial x'^{d}} d x'^{d}=g'_{cd}dx'^{c}dx'^{d}\\
+       & \Rightarrow \boxed{
+           g'_{cd} = {\partial x^{a} \over \partial x'^{c}} {\partial x^{b} \over \partial x'^{d}} g_{ab} 
+       } \\
+       & \text{ Inverse Metric Tensor: } g^{ab} \text{ is defined by } g^{ab} g_{bc} = \delta^a_c\\
+       & \;\;\;\; \text{Transformation Law: } g'^{ab} = {\partial x'^{a} \over \partial x^{c}}{\partial x'^{b} \over \partial x^{d}} g^{cd}\\
+       & \;\;\;\; \text{Proof: } g'^{ab} g'_{bc} = \text{use above}= \delta^a_c \Rightarrow \text{Agree with definition}\\
+   &\boxed{\text{Schwarzschild}\\
+     ds^2 = -(1-{2M\over r}) dt^2+(1-{2M\over r})^{-1} dr^2
+               +r^2 d\theta^2+ r^2 \sin^2 \theta d\phi^2 }\\
+   \end{align*}
+
+.. math::
+
+   \begin{align*}
+   & \text{Notation}:\boxed{\alpha=a \quad \beta=b \quad \mu=c \quad \nu=d \quad \sigma=e}\\
+   & \text{Axiom}: \boxed{\nabla_c g_{ab}=0\quad \Gamma^c_{ab}=\Gamma^c_{ba} } \\
+   & \text{Metric}: \boxed{g_{ab}g^{bc}=\delta_a^c \quad g_{ab}g^{ab}=4 } \\
+   & \text{Velocity}: \boxed{u_au^a=-1 \quad u_a\partial_b u^a=0 } \\
+   & \text{LIF}: \boxed{g\to \eta \quad \partial g\to 0 \quad \Gamma\to 0 }\\
+   & \text{Christoffel}:\boxed{\partial_a \mathbf{e}_b\equiv \Gamma^c_{ab}\mathbf{e}_c\\
+   \Gamma^c_{ab}= {1\over 2} g^{cd}(-\partial_d g_{ab}+\partial_? g_{??}+\partial_? g_{??}) \\
+   abd\quad bda \\
+   \text{Proof}:\partial_c g_{ab}=\Gamma_{ca}^d g_{db}+\Gamma_{cb}^d g_{da} }\\
+   &  \boxed{\text{Gradient}\\
+   \begin{cases}
+   d\mathbf{A}=(\nabla_bA^a)dx^b\mathbf{e}_a \\
+   \nabla_b(A^aB_a)=A^a\nabla_bB_a+B_a\nabla_bA^a=\partial_b(A^aB_a) \\
+   \end{cases} \\
+   \Rightarrow \nabla_c T^a_b=\partial_cT^a_b +\Gamma^a_{cd}T^d_b-\Gamma^d_{cb}T^a_d }  \\
+   & \boxed{\text{Riemann}\\
+   {d\mathbf{u}\over d\tau}=0\Rightarrow {d^2x^a\over d\tau^2}+\Gamma^a_{bc}u^bu^c=0 \quad\text{Geodesic} \\
+   \Rightarrow {d^2n^a\over d\tau^2}+2\Gamma^a_{bc}(u_b{dn^c\over d\tau})+u^bu^cn^d\partial_d \Gamma^a_{bc}=0 \\
+   ({d\mathbf{n}\over d\tau})^a={dn^a\over d\tau}+n^c\Gamma^a_{bc}u^b \quad
+   ({d^2\mathbf{n}\over d\tau^2})^a\equiv R^a_{bcd}u^bu^cn^d\\
+   \boxed{U^b\nabla_bV^a=0\Rightarrow \Delta V^a=-{1\over 2}R^a_{bcd}V^b \oint x^c dx^d}\\
+   \Rightarrow R^a_{bcd}=\partial_?\Gamma^a_{b?}-\partial_?\Gamma^a_{b?}+ \Gamma^a_{?e}\Gamma^e_{b?}-\Gamma^a_{?e}\Gamma^e_{b?} \\
+   cd\quad dc \quad cd \quad dc \\
+   \text{LIF}: R_{abcd}={1\over 2}(\partial_? \partial_? g_{??} +\partial_? \partial_? g_{??}-\partial_? \partial_? g_{??}-\partial_? \partial_? g_{??}) \\
+   \boxed{bc}ad \quad adbc\quad \boxed{bd}ac\quad acbd  } \\
+   & \text{Ricci}: \text{tensor}: \times g^{ac}\Rightarrow  R_{bd}(=R_{db})   \\
+   & \text{Bianchi 1}: \boxed{\nabla_? R_{ab??}+\nabla_? R_{ab??}+\nabla_? R_{ab??}=0\\ ecd\quad cde \quad dec
+   } \\
+   & \text{Bianchi 2}: \times g^{ac}\Rightarrow \nabla_e R_{bd}+\nabla^a R_{abde}-\nabla_d R_{be}=0 \\
+   & \text{Bianchi 3}: \times g^{be}\Rightarrow \nabla^b(2R_{bd}-g_{db}R)=0 \\
+   &  \boxed{\text{Energy-Momentum Tensor}\\
+   n_0={N\over V_0}={\rho_0\over m}={n\over u_0} \quad \rho\equiv{Np^0\over V}=\rho_0u^0u^0\\
+   \text{Dust}:T^{0i}=np^i={(nv_iA_i\Delta t)p^0\over A_i\Delta t} \\
+   \boxed{(np^i)(v_xdt)dydz=T^{ix}|_x dtdydz  \\
+   \text{Flux}: dp^i=(-{\partial T^{ix}\over \partial x}...)dtdxdydz = } \\
+   T^{ab}=(\rho_0+P_0)u^au^b+P_0g^{ab} \quad \boxed{1}\nabla_bT^{ab}=0\\
+   \boxed{1}\times u_a \Rightarrow \text{Continuity}:\boxed{2} \partial_b(\rho_0u^b)+P_0\partial_b u^b=0 \\
+   \boxed{2}\times u_a-\boxed{1}\Rightarrow (u^au^b+g^{ab})\partial_b P_0+(\rho_0+P_0)u^b\partial_b u^a=0  }\\
+   & \boxed{\text{Einstein}\\
+     \boxed{1}R^{ab}-{1\over 2}g^{ab}R+\Lambda g^{ab}=\kappa T^{ab} \\
+     \times g_{ab}\Rightarrow \boxed{2}-R+4\Lambda=\kappa T \\
+     \boxed{1}-\boxed{2}\times {1\over 2}g^{ab}\Rightarrow R^{ab}-\Lambda g^{ab}=\kappa(T^{ab}-{1\over 2}g^{ab}T) }\\
+   \end{align*}
+
