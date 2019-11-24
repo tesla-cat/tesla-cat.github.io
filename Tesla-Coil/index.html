@@ -1,133 +1,209 @@
 <!DOCTYPE html>
-<!-- saved from url=(0051)https://threejs.org/examples/webgl_loader_gltf.html -->
+<!-- saved from url=(0051)https://threejs.org/examples/webgl_loader_obj2.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>three.js webgl - glTF loader</title>
+		<title>three.js webgl - OBJLoader2 basic usage</title>
 
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<link type="text/css" rel="stylesheet" href="../main.css">
+		<link type="text/css" rel="stylesheet" href="./three.js webgl - OBJLoader2 basic usage_files/main.css">
+		<style>
+			#glFullscreen {
+				width: 100%;
+				height: 100vh;
+				min-width: 640px;
+				min-height: 360px;
+				position: relative;
+				overflow: hidden;
+				z-index: 0;
+			}
+			#example {
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				background-color: #000000;
+			}
+			#feedback {
+				color: darkorange;
+			}
+			#dat {
+				user-select: none;
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-Index: 200;
+			}
+		</style>
+
 	</head>
 
 	<body>
+		<div id="glFullscreen">
+			<canvas id="example" width="1853" height="976"></canvas>
+		</div>
+		<div id="dat">
+
+		</div>
 		<div id="info">
-			<a href="http://threejs.org/" target="_blank" rel="noopener">three.js</a> - GLTFLoader<br>
-			Battle Damaged Sci-fi Helmet by
-			<a href="https://sketchfab.com/theblueturtle_" target="_blank" rel="noopener">theblueturtle_</a><br>
-			<a href="https://hdrihaven.com/hdri/?h=pedestrian_overpass" target="_blank" rel="noopener">Pedestrian Overpass</a> by <a href="https://hdrihaven.com/" target="_blank" rel="noopener">HDRI Haven</a>
+			<a href="http://threejs.org/" target="_blank" rel="noopener">three.js</a> - OBJLoader2 direct loader test
+			<div id="feedback"></div>
 		</div>
 
 		<script type="module">
 
+			'use strict';
+
 			import * as THREE from '../build/three.module.js';
 
-			import Stats from '../jsm/libs/stats.module.js';
+			import { TrackballControls } from "../jsm/controls/TrackballControls.js";
 
-			import { OrbitControls } from '../jsm/controls/OrbitControls.js';
-			import { GLTFLoader } from '../jsm/loaders/GLTFLoader.js';
-			import { RGBELoader } from '../jsm/loaders/RGBELoader.js';
-			import { PMREMGenerator } from '../jsm/pmrem/PMREMGenerator.js';
-			import { PMREMCubeUVPacker } from '../jsm/pmrem/PMREMCubeUVPacker.js';
+			import { MTLLoader } from "../jsm/loaders/MTLLoader.js";
+			import { OBJLoader2 } from "../jsm/loaders/OBJLoader2.js";
+			import { MtlObjBridge } from "../jsm/loaders/obj2/bridge/MtlObjBridge.js";
 
-			var container, stats, controls;
-			var camera, scene, renderer;
 
-			init();
-			animate();
+			const OBJLoader2Example = function ( elementToBindTo ) {
+				this.renderer = null;
+				this.canvas = elementToBindTo;
+				this.aspectRatio = 10;
+				this.recalcAspectRatio();
 
-			function init() {
+				this.scene = null;
+				this.cameraDefaults = {
+					posCamera: new THREE.Vector3( 100, 100, 400.0 ),
+					posCameraTarget: new THREE.Vector3( 0, 0, 0 ),
+					near: 1,
+					far: 1000,
+					fov: 100
+				};
+				this.camera = null;
+				this.cameraTarget = this.cameraDefaults.posCameraTarget;
 
-				container = document.createElement( 'div' );
-				document.body.appendChild( container );
+				this.controls = null;
+			};
 
-				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 20 );
-				camera.position.set( - 1.8, 0.9, 2.7 );
+			OBJLoader2Example.prototype = {
 
-				scene = new THREE.Scene();
+				constructor: OBJLoader2Example,
 
-				new RGBELoader()
-					.setDataType( THREE.UnsignedByteType )
-					.setPath( 'textures/equirectangular/' )
-					.load( 'pedestrian_overpass_2k.hdr', function ( texture ) {
-
-						var options = {
-							minFilter: texture.minFilter,
-							magFilter: texture.magFilter
-						};
-
-						scene.background = new THREE.WebGLRenderTargetCube( 1024, 1024, options ).fromEquirectangularTexture( renderer, texture );
-
-						var pmremGenerator = new PMREMGenerator( scene.background.texture );
-						pmremGenerator.update( renderer );
-
-						var pmremCubeUVPacker = new PMREMCubeUVPacker( pmremGenerator.cubeLods );
-						pmremCubeUVPacker.update( renderer );
-
-						var envMap = pmremCubeUVPacker.CubeUVRenderTarget.texture;
-
-						// model
-
-						var loader = new GLTFLoader().setPath( 'models/gltf/DamagedHelmet/glTF/' );
-						loader.load( 'SimpleQcw.gltf', function ( gltf ) {
-
-							gltf.scene.traverse( function ( child ) {
-
-								if ( child.isMesh ) {
-
-									child.material.envMap = envMap;
-
-								}
-
-							} );
-
-							scene.add( gltf.scene );
-
-						} );
-
-						pmremGenerator.dispose();
-						pmremCubeUVPacker.dispose();
-
+				initGL: function () {
+					this.renderer = new THREE.WebGLRenderer( {
+						canvas: this.canvas,
+						antialias: true,
+						autoClear: true
 					} );
+					this.renderer.setClearColor( 0x050505 );
 
-				renderer = new THREE.WebGLRenderer( { antialias: true } );
-				renderer.setPixelRatio( window.devicePixelRatio );
-				renderer.setSize( window.innerWidth, window.innerHeight );
-				renderer.gammaOutput = true;
-				container.appendChild( renderer.domElement );
+					this.scene = new THREE.Scene();
 
-				controls = new OrbitControls( camera, renderer.domElement );
-				controls.target.set( 0, - 0.2, - 0.2 );
-				controls.update();
+					this.camera = new THREE.PerspectiveCamera( this.cameraDefaults.fov, this.aspectRatio, this.cameraDefaults.near, this.cameraDefaults.far );
+					this.resetCamera();
+					this.controls = new TrackballControls( this.camera, this.renderer.domElement );
+					//this.controls.panSpeed=5;
+					this.controls.rotateSpeed=5;
 
-				window.addEventListener( 'resize', onWindowResize, false );
+					let ambientLight = new THREE.AmbientLight( 0x404040 );
+					let directionalLight1 = new THREE.DirectionalLight( 0xC0C090 );
+					let directionalLight2 = new THREE.DirectionalLight( 0xC0C090 );
 
-				// stats
-				stats = new Stats();
-				container.appendChild( stats.dom );
+					directionalLight1.position.set( - 100, - 50, 100 );
+					directionalLight2.position.set( 100, 50, - 100 );
 
-			}
+					this.scene.add( directionalLight1 );
+					this.scene.add( directionalLight2 );
+					this.scene.add( ambientLight );
 
-			function onWindowResize() {
+					let helper = new THREE.GridHelper( 1200, 60, 0xFF4444, 0x404040 );
+					this.scene.add( helper );
+				},
 
-				camera.aspect = window.innerWidth / window.innerHeight;
-				camera.updateProjectionMatrix();
+				initContent: function () {
+					let modelName = 'female02';
+					this._reportProgress( { detail: { text: 'Loading: ' + modelName } } );
 
-				renderer.setSize( window.innerWidth, window.innerHeight );
 
-			}
+					let scope = this;
+					let objLoader2 = new OBJLoader2();
+					let callbackOnLoad = function ( object3d ) {
+						scope.scene.add( object3d );
+						console.log( 'Loading complete: ' + modelName );
+						scope._reportProgress( { detail: { text: '' } } );
+					};
 
-			//
+					let onLoadMtl = function ( mtlParseResult ) {
+						objLoader2.setModelName( modelName );
+						objLoader2.setLogging( true, true );
+						objLoader2.addMaterials( MtlObjBridge.addMaterialsFromMtlLoader( mtlParseResult ), true );
+						objLoader2.load( 'SimpleQCW.obj', callbackOnLoad, null, null, null );
+					};
+					let mtlLoader = new MTLLoader();
+					mtlLoader.load( 'SimpleQCW.mtl', onLoadMtl );
+				},
 
-			function animate() {
+				_reportProgress: function ( event ) {
+					let output = '';
+					if ( event.detail !== null && event.detail !== undefined && event.detail.text ) {
 
-				requestAnimationFrame( animate );
+						output = event.detail.text;
 
-				renderer.render( scene, camera );
+					}
+					console.log( 'Progress: ' + output );
+					document.getElementById( 'feedback' ).innerHTML = output;
+				},
 
-				stats.update();
+				resizeDisplayGL: function () {
+					this.controls.handleResize();
 
-			}
+					this.recalcAspectRatio();
+					this.renderer.setSize( this.canvas.offsetWidth, this.canvas.offsetHeight, false );
+
+					this.updateCamera();
+				},
+
+				recalcAspectRatio: function () {
+					this.aspectRatio = (this.canvas.offsetHeight === 0) ? 1 : this.canvas.offsetWidth / this.canvas.offsetHeight;
+				},
+
+				resetCamera: function () {
+					this.camera.position.copy( this.cameraDefaults.posCamera );
+					this.cameraTarget.copy( this.cameraDefaults.posCameraTarget );
+
+					this.updateCamera();
+				},
+
+				updateCamera: function () {
+					this.camera.aspect = this.aspectRatio;
+					this.camera.lookAt( this.cameraTarget );
+					this.camera.updateProjectionMatrix();
+				},
+
+				render: function () {
+					if ( !this.renderer.autoClear ) this.renderer.clear();
+					this.controls.update();
+					this.renderer.render( this.scene, this.camera );
+				}
+			};
+
+			let app = new OBJLoader2Example( document.getElementById( 'example' ) );
+
+			let resizeWindow = function () {
+				app.resizeDisplayGL();
+			};
+
+			let render = function () {
+				requestAnimationFrame( render );
+				app.render();
+			};
+
+			window.addEventListener( 'resize', resizeWindow, false );
+
+			console.log( 'Starting initialisation phase...' );
+			app.initGL();
+			app.resizeDisplayGL();
+			app.initContent();
+
+			render();
 
 		</script>
 
 
-
-<div><canvas width="1853" height="976" tabindex="0" style="width: 1853px; height: 976px;"></canvas><div style="position: fixed; top: 0px; left: 0px; cursor: pointer; opacity: 0.9; z-index: 10000;"><canvas width="80" height="48" style="width: 80px; height: 48px; display: block;"></canvas><canvas width="80" height="48" style="width: 80px; height: 48px; display: none;"></canvas><canvas width="80" height="48" style="width: 80px; height: 48px; display: none;"></canvas></div></div></body></html>
+</body></html>
