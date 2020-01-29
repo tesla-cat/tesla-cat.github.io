@@ -1,0 +1,327 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>OLD Hartree Fock Method &mdash; My-Study-Notes  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="OLD Density Functional Theory" href="OLD-Density-Functional-Theory.html" />
+    <link rel="prev" title="Density Functional Theory" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> My-Study-Notes
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Math</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Math/index.html">Math</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Neurotechnology</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Neuromorphic-Vision/index.html">Neuromorphic Vision</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Electronics and Coding</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Experimental-Physics-SoC-FPGA-Design/index.html">Experimental Physics: SoC FPGA Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Django/index.html">Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Signal-Processing/index.html">Signal Processing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Machine Learning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Machine-Learning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption"><span class="caption-text">BioPhysics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Biomolecular-Physics/index.html">Biomolecular Physics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Mechanics-Feynman-Path-Integral/index.html">Quantum Mechanics: Feynman Path Integral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Computation/index.html">Quantum Computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Optics/index.html">Quantum Optics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Density Functional Theory</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">OLD Hartree Fock Method</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dependency">Dependency</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-the-problem">What is the problem ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#derivation">Derivation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="OLD-Density-Functional-Theory.html">OLD Density Functional Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hohenberg-Kohn-Variational-Principle.html">Hohenberg Kohn Variational Principle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Kohn-Sham-Equations.html">Kohn Sham Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exchange-and-Correlation.html">Exchange and Correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DFT-In-Momentum-Space.html">DFT In Momentum Space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Density-Matrix.html">Density Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CODE-1D-DFT.html">CODE 1D DFT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CODE-1D-DPFT.html">CODE 1D DPFT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CODE-1D-DPFT-Momentum-Space.html">CODE 1D DPFT Momentum Space</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Statistical Mechanics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Thermodynamics-And-Statistical-Mechanics/index.html">Thermodynamics And Statistical Mechanics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Relativity</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Relativity/index.html">Relativity</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Papers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Papers-Quantum-Computers/index.html">Papers: Quantum Computers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">My-Study-Notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Density Functional Theory</a> &raquo;</li>
+        
+      <li>OLD Hartree Fock Method</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Density-Functional-Theory/OLD-Hartree-Fock-Method.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="old-hartree-fock-method">
+<h1>OLD Hartree Fock Method<a class="headerlink" href="#old-hartree-fock-method" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Date</dt>
+<dd class="field-odd"><p>27 July 2019</p>
+</dd>
+</dl>
+<div class="section" id="dependency">
+<h2>Dependency<a class="headerlink" href="#dependency" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#schrodinger-equation">Schrodinger Equation</a></p></li>
+<li><p><a class="reference internal" href="#slater-determinant">Slater Determinant</a></p></li>
+<li><p><a class="reference internal" href="#born-oppenheimer-approximation">Born Oppenheimer Approximation</a></p></li>
+<li><p><a class="reference internal" href="#lagrange-multiplier">Lagrange Multiplier</a></p></li>
+</ul>
+</div>
+<div class="section" id="what-is-the-problem">
+<span id="lagrange-multiplier"></span><span id="born-oppenheimer-approximation"></span><span id="slater-determinant"></span><span id="schrodinger-equation"></span><h2>What is the problem ?<a class="headerlink" href="#what-is-the-problem" title="Permalink to this headline">¶</a></h2>
+<p>Calculate the approximate wavefunction and energy for atoms</p>
+</div>
+<div class="section" id="derivation">
+<h2>Derivation<a class="headerlink" href="#derivation" title="Permalink to this headline">¶</a></h2>
+<p><strong>Step 1</strong> Approximate the wavefunction using <a class="reference internal" href="#slater-determinant">Slater Determinant</a></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\Psi = {1\over \sqrt{N!} }
+        \begin{vmatrix}
+                \chi_1(x_1) &amp; \chi_2(x_1) &amp; ... &amp; \chi_N(x_1)\\
+                \chi_1(x_2) &amp; \chi_2(x_2) &amp; ... &amp; \chi_N(x_2)\\
+                ...\\
+                \chi_1(x_N) &amp; \chi_2(x_N) &amp; ... &amp; \chi_N(x_N)
+        \end{vmatrix}\end{split}\]</div>
+<p><strong>Step 2</strong> The system Hamiltonian after <a class="reference internal" href="#born-oppenheimer-approximation">Born Oppenheimer Approximation</a></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+&amp; H = \sum\limits_i h(i) + \sum\limits_{i&lt;j} v(i,j) + V_{NN} \\
+&amp; where \\
+&amp; h(i) = -{1\over 2}\nabla_i^2 - \sum\limits_A {Z_A\over r_{iA}} \\
+&amp; v(i,j) = {1\over r_{ij}}
+\end{align*}\end{split}\]</div>
+<p><strong>Step 3</strong> The energy</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+        E &amp; = \langle \Psi |H| \Psi \rangle \\
+          &amp; = \sum\limits_i \langle i|h|i \rangle
+                 +{1\over 2} \sum\limits_{ij}[ii|jj]-[ij|ji] \\
+&amp; where\\
+&amp; \langle i|h|j \rangle = \int dx_1 \; \chi_i^* h \chi_j\\
+&amp; [ij|kl] = \int dx_1 dx_2 \; \chi_i^* \chi_j {1\over r_{ij}} \chi_k^* \chi_l
+\end{align*}\end{split}\]</div>
+<p><strong>Step 4</strong> Use <a class="reference internal" href="#lagrange-multiplier">Lagrange Multiplier</a> to minimize the energy wrt changes in the orbitals <span class="math notranslate nohighlight">\(\chi_i \to \chi_i+\delta \chi_i\)</span></p>
+<p>under constraint <span class="math notranslate nohighlight">\(\langle i|j \rangle = \delta_{ij}\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+&amp; L = E - \sum\limits_{ij} \epsilon_{ij} [\langle i|j \rangle - \delta_{ij}]\\
+&amp; \delta L =0 \Rightarrow \boxed{
+        f \chi_i = \epsilon_i \chi_i
+}\\
+&amp; where \\
+&amp; \text{Fock operator  }
+        f \equiv h + \sum\limits_j J_j - K_j\\
+&amp; - where \\
+&amp; \text{Coulomb operator  }
+        J_j(x_1) = \int dx_2 \; |\chi_j(x_2)|^2 {1\over r_{12}} \\
+&amp; \text{Exchange operator  }
+        K_j(x_1) \chi_i(x_1) = \left[ \int dx_2\; \chi_j^*(x_2) {1\over r_{12}} \chi_i(x_2)\right] \chi_j(x_1) \\
+\end{align*}\end{split}\]</div>
+<p><strong>Step 5</strong> Introducing basis functions to transform the above <strong>integral equation</strong> into a <strong>matrix equation</strong></p>
+<p><strong>TO BE CONTINUED</strong></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="OLD-Density-Functional-Theory.html" class="btn btn-neutral float-right" title="OLD Density Functional Theory" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Density Functional Theory" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Tesla Cat
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

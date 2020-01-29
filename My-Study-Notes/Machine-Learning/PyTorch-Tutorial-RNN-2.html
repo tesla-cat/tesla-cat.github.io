@@ -1,0 +1,510 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>PyTorch Tutorial RNN 2 &mdash; My-Study-Notes  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Awesome Stock Ai" href="Awesome-Stock-Ai.html" />
+    <link rel="prev" title="PyTorch Tutorial RNN 1" href="PyTorch-Tutorial-RNN-1.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> My-Study-Notes
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Math</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Math/index.html">Math</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Neurotechnology</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Neuromorphic-Vision/index.html">Neuromorphic Vision</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Electronics and Coding</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Experimental-Physics-SoC-FPGA-Design/index.html">Experimental Physics: SoC FPGA Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Django/index.html">Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Signal-Processing/index.html">Signal Processing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Machine Learning</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Machine Learning</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="PyTorch-Get-Started.html">PyTorch Get Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PyTorch-Tutorial-DQN.html">Reinforcement-Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PyTorch-Tutorial-RNN-1.html">PyTorch Tutorial RNN 1</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">PyTorch Tutorial RNN 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Awesome-Stock-Ai.html">Awesome Stock Ai</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PyTorch-Tutorial-Transformer.html">PyTorch Tutorial Transformer</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">BioPhysics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Biomolecular-Physics/index.html">Biomolecular Physics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Mechanics-Feynman-Path-Integral/index.html">Quantum Mechanics: Feynman Path Integral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Computation/index.html">Quantum Computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Optics/index.html">Quantum Optics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Density-Functional-Theory/index.html">Density Functional Theory</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Statistical Mechanics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Thermodynamics-And-Statistical-Mechanics/index.html">Thermodynamics And Statistical Mechanics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Relativity</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Relativity/index.html">Relativity</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Papers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Papers-Quantum-Computers/index.html">Papers: Quantum Computers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">My-Study-Notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Machine Learning</a> &raquo;</li>
+        
+      <li>PyTorch Tutorial RNN 2</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Machine-Learning/PyTorch-Tutorial-RNN-2.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pytorch-tutorial-rnn-2">
+<h1>PyTorch Tutorial RNN 2<a class="headerlink" href="#pytorch-tutorial-rnn-2" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">date</dt>
+<dd class="field-odd"><p>22 oct 2019</p>
+</dd>
+</dl>
+<p><a class="reference external" href="https://download.pytorch.org/tutorial/data.zip">download data</a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="nb">open</span><span class="p">;</span><span class="kn">import</span> <span class="nn">re</span><span class="p">;</span><span class="kn">import</span> <span class="nn">unicodedata</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span><span class="p">;</span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="k">class</span> <span class="nc">Language</span><span class="p">:</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">word2index</span><span class="o">=</span><span class="p">{};</span> <span class="bp">self</span><span class="o">.</span><span class="n">word2count</span><span class="o">=</span><span class="p">{}</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">index2word</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="s2">&quot;SOS&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="s2">&quot;EOS&quot;</span><span class="p">};</span><span class="bp">self</span><span class="o">.</span><span class="n">nWords</span><span class="o">=</span><span class="mi">2</span>
+  <span class="k">def</span> <span class="nf">addSentence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">sentence</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">sentence</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">):</span>
+      <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">word2index</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">word2index</span><span class="p">[</span><span class="n">word</span><span class="p">]</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">nWords</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">word2count</span><span class="p">[</span><span class="n">word</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index2word</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">nWords</span><span class="p">]</span><span class="o">=</span><span class="n">word</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nWords</span><span class="o">+=</span><span class="mi">1</span>
+      <span class="k">else</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">word2count</span><span class="p">[</span><span class="n">word</span><span class="p">]</span><span class="o">+=</span><span class="mi">1</span>
+
+<span class="k">class</span> <span class="nc">GetTranslation</span><span class="p">:</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="nb">file</span><span class="p">,</span><span class="n">maxLen</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">maxLen</span><span class="o">=</span><span class="n">maxLen</span>
+    <span class="n">lines</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">pairs</span><span class="o">=</span><span class="p">[[</span><span class="bp">self</span><span class="o">.</span><span class="n">normalizeString</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)]</span>
+           <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">lang1</span><span class="o">=</span><span class="n">Language</span><span class="p">();</span> <span class="bp">self</span><span class="o">.</span><span class="n">lang2</span><span class="o">=</span><span class="n">Language</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">pairs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filterPairs</span><span class="p">(</span><span class="n">pairs</span><span class="p">);</span><span class="k">print</span><span class="p">(</span><span class="s2">&quot;len(pairs)=&quot;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">pairs</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pairs</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">lang1</span><span class="o">.</span><span class="n">addSentence</span><span class="p">(</span><span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">lang2</span><span class="o">.</span><span class="n">addSentence</span><span class="p">(</span><span class="n">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;lang1&quot;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">lang1</span><span class="o">.</span><span class="n">nWords</span><span class="p">);</span><span class="k">print</span><span class="p">(</span><span class="s2">&quot;lang2&quot;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">lang2</span><span class="o">.</span><span class="n">nWords</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">normalizeString</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">s</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">unicodeToAscii</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+    <span class="n">s</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;([.!?])&quot;</span><span class="p">,</span><span class="sa">r</span><span class="s2">&quot; \1&quot;</span><span class="p">,</span><span class="n">s</span><span class="p">);</span><span class="n">s</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[^a-zA-Z.!?]+&quot;</span><span class="p">,</span><span class="sa">r</span><span class="s2">&quot; &quot;</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">s</span>
+  <span class="k">def</span> <span class="nf">unicodeToAscii</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">unicodedata</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="s1">&#39;NFD&#39;</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
+      <span class="k">if</span> <span class="n">unicodedata</span><span class="o">.</span><span class="n">category</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">!=</span><span class="s1">&#39;Mn&#39;</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">filterPairs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pairs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">pair</span> <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">pairs</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">keepPair</span><span class="p">(</span><span class="n">pair</span><span class="p">)]</span>
+  <span class="k">def</span> <span class="nf">keepPair</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pair</span><span class="p">):</span>
+    <span class="n">englishPrefixes</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;i am &quot;</span><span class="p">,</span> <span class="s2">&quot;i m &quot;</span><span class="p">,</span><span class="s2">&quot;he is&quot;</span><span class="p">,</span> <span class="s2">&quot;he s &quot;</span><span class="p">,</span>
+      <span class="s2">&quot;she is&quot;</span><span class="p">,</span> <span class="s2">&quot;she s &quot;</span><span class="p">,</span><span class="s2">&quot;you are&quot;</span><span class="p">,</span> <span class="s2">&quot;you re &quot;</span><span class="p">,</span>
+      <span class="s2">&quot;we are&quot;</span><span class="p">,</span> <span class="s2">&quot;we re &quot;</span><span class="p">,</span><span class="s2">&quot;they are&quot;</span><span class="p">,</span> <span class="s2">&quot;they re &quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">))</span><span class="o">&lt;</span><span class="bp">self</span><span class="o">.</span><span class="n">maxLen</span>\
+      <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">))</span><span class="o">&lt;</span><span class="bp">self</span><span class="o">.</span><span class="n">maxLen</span>\
+      <span class="ow">and</span> <span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">englishPrefixes</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">samplePair</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">pair</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pairs</span><span class="p">)</span>
+    <span class="c1">#print(&quot;pair&quot;,pair)</span>
+    <span class="n">inputSeq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sentenceToSeq</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lang1</span><span class="p">,</span><span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">targetSeq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sentenceToSeq</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lang2</span><span class="p">,</span><span class="n">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">inputSeq</span><span class="p">,</span><span class="n">targetSeq</span>
+  <span class="k">def</span> <span class="nf">sentenceToSeq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">language</span><span class="p">,</span><span class="n">sentence</span><span class="p">):</span>
+    <span class="n">seq</span><span class="o">=</span><span class="p">[</span><span class="n">language</span><span class="o">.</span><span class="n">word2index</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">sentence</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)]</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># &quot;EOS = 1&quot;</span>
+    <span class="k">return</span> <span class="n">seq</span>
+
+<span class="n">getTranslation</span><span class="o">=</span><span class="n">GetTranslation</span><span class="p">(</span><span class="s1">&#39;eng-fra.txt&#39;</span><span class="p">)</span>
+<span class="n">getTranslation</span><span class="o">.</span><span class="n">samplePair</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">pairs</span><span class="p">)</span><span class="o">=</span> <span class="mi">135842</span>
+<span class="n">lang1</span> <span class="mi">2803</span>
+<span class="n">lang2</span> <span class="mi">4345</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">([</span><span class="mi">129</span><span class="p">,</span> <span class="mi">124</span><span class="p">,</span> <span class="mi">713</span><span class="p">,</span> <span class="mi">606</span><span class="p">,</span> <span class="mi">695</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">210</span><span class="p">,</span> <span class="mi">925</span><span class="p">,</span> <span class="mi">1328</span><span class="p">,</span> <span class="mi">115</span><span class="p">,</span> <span class="mi">528</span><span class="p">,</span> <span class="mi">2744</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span><span class="p">;</span> <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="kn">as</span> <span class="nn">nn</span><span class="p">;</span> <span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">optim</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="kn">as</span> <span class="nn">F</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+
+<span class="k">class</span> <span class="nc">EncoderRNN</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">inputSize</span><span class="p">,</span><span class="n">hiddenSize</span><span class="p">):</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">EncoderRNN</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">hiddenSize</span><span class="o">=</span><span class="n">hiddenSize</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">inputSize</span><span class="p">,</span><span class="n">hiddenSize</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">gru</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">GRU</span><span class="p">(</span><span class="n">input_size</span><span class="o">=</span><span class="n">hiddenSize</span><span class="p">,</span><span class="n">hidden_size</span><span class="o">=</span><span class="n">hiddenSize</span><span class="p">)</span>
+  <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="nb">input</span><span class="p">,</span><span class="n">hidden</span><span class="p">):</span>
+    <span class="n">embedded</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gru</span><span class="p">(</span><span class="n">embedded</span><span class="p">,</span><span class="n">hidden</span><span class="p">)</span> <span class="c1"># output, hidden</span>
+  <span class="k">def</span> <span class="nf">initHidden</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">hiddenSize</span><span class="p">,</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">class DecoderRNN(nn.Module):</span>
+<span class="sd">  def __init__(self,hiddenSize,outputSize):</span>
+<span class="sd">    super(DecoderRNN,self).__init__()</span>
+<span class="sd">    self.hiddenSize=hiddenSize</span>
+<span class="sd">    self.embedding=nn.Embedding(outputSize,hiddenSize)</span>
+<span class="sd">    self.gru=nn.GRU(input_size=hiddenSize,hidden_size=hiddenSize)</span>
+<span class="sd">    self.outLinear=nn.Linear(hiddenSize,outputSize)</span>
+<span class="sd">    self.softmax=nn.LogSoftmax(dim=1)</span>
+<span class="sd">  def forward(self,input,hidden):</span>
+<span class="sd">    embedded=F.relu(self.embedding(input).view(1,1,-1))</span>
+<span class="sd">    output,hidden=self.gru(embeded,hidden)</span>
+<span class="sd">    output=self.softmax(self.outLinear(output[0]))</span>
+<span class="sd">    return output,hidden</span>
+<span class="sd">  def initHidden(self):</span>
+<span class="sd">    return torch.zeros(1,1,self.hiddenSize,device=device)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="k">class</span> <span class="nc">AttentionDecoder</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">hiddenSize</span><span class="p">,</span><span class="n">outputSize</span><span class="p">,</span><span class="n">dropoutProb</span><span class="p">,</span><span class="n">maxLen</span><span class="p">):</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">AttentionDecoder</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">hiddenSize</span><span class="o">=</span><span class="n">hiddenSize</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">outputSize</span><span class="p">,</span><span class="n">hiddenSize</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">attention</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hiddenSize</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span><span class="n">maxLen</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">attentionCombine</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hiddenSize</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span><span class="n">hiddenSize</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">dropoutProb</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">gru</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">GRU</span><span class="p">(</span><span class="n">input_size</span><span class="o">=</span><span class="n">hiddenSize</span><span class="p">,</span><span class="n">hidden_size</span><span class="o">=</span><span class="n">hiddenSize</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">outLinear</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hiddenSize</span><span class="p">,</span><span class="n">outputSize</span><span class="p">)</span>
+  <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="nb">input</span><span class="p">,</span><span class="n">hidden</span><span class="p">,</span><span class="n">encoderOutputs</span><span class="p">):</span>
+    <span class="n">embedded</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+    <span class="c1"># see graph</span>
+    <span class="n">attentionWeights</span><span class="o">=</span><span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attention</span><span class="p">(</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">embedded</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">hidden</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">),</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span>
+    <span class="p">)</span>
+    <span class="n">attentionApplied</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bmm</span><span class="p">(</span><span class="n">attentionWeights</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+                               <span class="n">encoderOutputs</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+    <span class="n">output</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">embedded</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">attentionApplied</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">output</span><span class="o">=</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attentionCombine</span><span class="p">(</span><span class="n">output</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+    <span class="n">output</span><span class="p">,</span><span class="n">hidden</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gru</span><span class="p">(</span><span class="n">output</span><span class="p">,</span><span class="n">hidden</span><span class="p">)</span>
+    <span class="n">output</span><span class="o">=</span><span class="n">F</span><span class="o">.</span><span class="n">log_softmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">outLinear</span><span class="p">(</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">output</span><span class="p">,</span><span class="n">hidden</span><span class="p">,</span><span class="n">attentionWeights</span>
+  <span class="k">def</span> <span class="nf">initHidden</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">hiddenSize</span><span class="p">],</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Agent</span><span class="p">:</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">maxLen</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">hiddenSize</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span>
+               <span class="n">teacherForcingProb</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;eng-fra.txt&#39;</span><span class="p">,</span>
+               <span class="n">dropoutProb</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span><span class="n">learnRate</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">maxLen</span><span class="o">=</span><span class="n">maxLen</span><span class="p">;</span> <span class="bp">self</span><span class="o">.</span><span class="n">hiddenSize</span><span class="o">=</span><span class="n">hiddenSize</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">teacherForcingProb</span><span class="o">=</span><span class="n">teacherForcingProb</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">getTranslation</span><span class="o">=</span><span class="n">GetTranslation</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">maxLen</span><span class="p">)</span>
+    <span class="n">lang1nWords</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">getTranslation</span><span class="o">.</span><span class="n">lang1</span><span class="o">.</span><span class="n">nWords</span>
+    <span class="n">lang2nWords</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">getTranslation</span><span class="o">.</span><span class="n">lang2</span><span class="o">.</span><span class="n">nWords</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">encoder</span><span class="o">=</span><span class="n">EncoderRNN</span><span class="p">(</span><span class="n">lang1nWords</span><span class="p">,</span><span class="n">hiddenSize</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">encoderOptimizer</span><span class="o">=</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">encoder</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span>
+                                    <span class="n">lr</span><span class="o">=</span><span class="n">learnRate</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">decoder</span><span class="o">=</span><span class="n">AttentionDecoder</span><span class="p">(</span><span class="n">hiddenSize</span><span class="p">,</span><span class="n">lang2nWords</span><span class="p">,</span>
+                                  <span class="n">dropoutProb</span><span class="p">,</span><span class="n">maxLen</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">decoderOptimizer</span><span class="o">=</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">decoder</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span>
+                                    <span class="n">lr</span><span class="o">=</span><span class="n">learnRate</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">criterion</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">NLLLoss</span><span class="p">()</span>
+
+  <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">nIterations</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">losses</span><span class="o">=</span><span class="p">[];</span><span class="n">lossTotal</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">for</span> <span class="nb">iter</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nIterations</span><span class="p">):</span>
+      <span class="n">pair</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">getTranslation</span><span class="o">.</span><span class="n">samplePair</span><span class="p">()</span>
+      <span class="n">inputTensor</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">,</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="n">targetTensor</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">,</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="n">loss</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">trainOne</span><span class="p">(</span><span class="n">inputTensor</span><span class="p">,</span><span class="n">targetTensor</span><span class="p">)</span>
+      <span class="n">lossTotal</span><span class="o">+=</span><span class="n">loss</span>
+      <span class="k">if</span> <span class="nb">iter</span><span class="o">%</span><span class="mi">100</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lossTotal</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;lossTotal:&quot;</span><span class="p">,</span><span class="n">lossTotal</span><span class="p">);</span><span class="n">lossTotal</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">losses</span><span class="p">);</span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+  <span class="k">def</span> <span class="nf">trainOne</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">inputTensor</span><span class="p">,</span><span class="n">targetTensor</span><span class="p">):</span>
+    <span class="n">encoderHidden</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">encoder</span><span class="o">.</span><span class="n">initHidden</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">encoderOptimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">();</span><span class="bp">self</span><span class="o">.</span><span class="n">decoderOptimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+    <span class="n">inputLen</span><span class="o">=</span><span class="n">inputTensor</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="n">targetLen</span><span class="o">=</span><span class="n">targetTensor</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">encoderOutputs</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">maxLen</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">hiddenSize</span><span class="p">],</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">loss</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">inputLen</span><span class="p">):</span>
+      <span class="n">encoderOutput</span><span class="p">,</span><span class="n">encoderHidden</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">encoder</span><span class="p">(</span>
+          <span class="n">inputTensor</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">encoderHidden</span><span class="p">)</span>
+      <span class="n">encoderOutputs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">encoderOutput</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">decoderInput</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mi">0</span><span class="p">]],</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> <span class="c1"># &quot;SOS = 0&quot;</span>
+    <span class="n">decoderHidden</span><span class="o">=</span><span class="n">encoderHidden</span>
+    <span class="n">useTeacherForcing</span><span class="o">=</span><span class="bp">True</span> <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span><span class="o">&lt;</span><span class="bp">self</span><span class="o">.</span><span class="n">teacherForcingProb</span> <span class="k">else</span> <span class="bp">False</span>
+    <span class="k">if</span> <span class="n">useTeacherForcing</span><span class="p">:</span> <span class="c1"># target as next input</span>
+      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">targetLen</span><span class="p">):</span>
+        <span class="n">decoderOutput</span><span class="p">,</span><span class="n">decoderHidden</span><span class="p">,</span><span class="n">decoderAttention</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">decoder</span><span class="p">(</span>
+            <span class="n">decoderInput</span><span class="p">,</span><span class="n">decoderHidden</span><span class="p">,</span><span class="n">encoderOutputs</span><span class="p">)</span>
+        <span class="n">loss</span><span class="o">+=</span><span class="bp">self</span><span class="o">.</span><span class="n">criterion</span><span class="p">(</span><span class="n">decoderOutput</span><span class="p">,</span><span class="n">targetTensor</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">decoderInput</span><span class="o">=</span><span class="n">targetTensor</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span> <span class="c1"># prediction as next input</span>
+      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">targetLen</span><span class="p">):</span>
+        <span class="n">decoderOutput</span><span class="p">,</span><span class="n">decoderHidden</span><span class="p">,</span><span class="n">decoderAttention</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">decoder</span><span class="p">(</span>
+            <span class="n">decoderInput</span><span class="p">,</span><span class="n">decoderHidden</span><span class="p">,</span><span class="n">encoderOutputs</span><span class="p">)</span>
+        <span class="n">topValue</span><span class="p">,</span><span class="n">topIndex</span><span class="o">=</span><span class="n">decoderOutput</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">decoderInput</span><span class="o">=</span><span class="n">topIndex</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span> <span class="c1"># detach from graph, just an input</span>
+        <span class="n">loss</span><span class="o">+=</span><span class="bp">self</span><span class="o">.</span><span class="n">criterion</span><span class="p">(</span><span class="n">decoderOutput</span><span class="p">,</span><span class="n">targetTensor</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">decoderInput</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span> <span class="k">break</span>  <span class="c1"># &quot;EOS = 1&quot;</span>
+    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">();</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">encoderOptimizer</span><span class="o">.</span><span class="n">step</span><span class="p">();</span><span class="bp">self</span><span class="o">.</span><span class="n">decoderOptimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="o">/</span><span class="n">targetLen</span>
+
+<span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+<span class="n">agent</span><span class="o">=</span><span class="n">Agent</span><span class="p">()</span>
+<span class="n">agent</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="mi">5000</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">pairs</span><span class="p">)</span><span class="o">=</span> <span class="mi">135842</span>
+<span class="n">lang1</span> <span class="mi">2803</span>
+<span class="n">lang2</span> <span class="mi">4345</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">8.382897271050346</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">484.00090956952846</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">415.5288609262497</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">398.90406545078946</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">392.74038437283235</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">401.41351437265905</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">413.63684746575706</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">423.95259078987056</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">387.9253147038201</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">400.4369891666231</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">375.9564390962088</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">369.40357372420175</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">375.159505275696</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">368.3363914232405</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">351.4931094124203</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">345.763414468084</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">340.3649337579335</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">316.76592836039407</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">336.15329839994024</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">331.5485665635458</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">338.0610604653282</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">322.1913966966053</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">319.4010247374338</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">340.254363073243</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">332.29101278441306</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">337.0906412942068</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">314.36265838524656</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">325.3588539819868</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">318.25481532036326</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">315.2033801824328</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">341.89669475025596</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">317.06151219171187</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">324.6426379143246</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">335.2526238774497</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">312.68326999043666</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">311.76144389992675</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">308.2723661736837</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">317.88990014621186</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">292.26333829259113</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">296.26249667103343</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">323.83813181585725</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">319.55471047219766</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">300.0589878778609</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">298.32901718692165</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">315.3292742059345</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">291.8655293184614</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">306.4530454408553</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">319.7169124440542</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">293.4895835475317</span>
+<span class="n">lossTotal</span><span class="p">:</span> <span class="mf">308.7035841949402</span>
+</pre></div>
+</div>
+<img alt="../_images/PyTorch-Tutorial-RNN-2-output_2_1.png" src="../_images/PyTorch-Tutorial-RNN-2-output_2_1.png" />
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Awesome-Stock-Ai.html" class="btn btn-neutral float-right" title="Awesome Stock Ai" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="PyTorch-Tutorial-RNN-1.html" class="btn btn-neutral float-left" title="PyTorch Tutorial RNN 1" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Tesla Cat
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,897 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Processor-FPGA Communication: Using FIFO FPGA Part &mdash; My-Study-Notes  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Processor-FPGA Communication: Using FIFO Processor Part" href="Processor-FPGA-Communication-Using-FIFO-Processor-Part.html" />
+    <link rel="prev" title="FAILED Processor-FPGA Communication: Using FIFO Processor Part" href="FAILED-Processor-FPGA-Communication-Using-FIFO-Processor-Part.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> My-Study-Notes
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Math</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Math/index.html">Math</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Neurotechnology</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Neuromorphic-Vision/index.html">Neuromorphic Vision</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Electronics and Coding</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Experimental Physics: SoC FPGA Design</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Design-Plan.html">Design Plan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Linux-Tips.html">Linux Tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Processor-FPGA-Communication-FPGA-Part.html">Processor-FPGA Communication: FPGA Part</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Processor-FPGA-Communication-Processor-Part.html">Processor-FPGA Communication: Processor Part</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FAILED-Processor-FPGA-Communication-Using-FIFO-FPGA-Part.html">FAILED Processor-FPGA Communication: Using FIFO FPGA Part</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FAILED-Processor-FPGA-Communication-Using-FIFO-Processor-Part.html">FAILED Processor-FPGA Communication: Using FIFO Processor Part</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Processor-FPGA Communication: Using FIFO FPGA Part</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-the-idea">What is the idea?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-are-we-gonna-do">What are we gonna do?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-fifo-works">How FIFO works</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#use-the-fifo-library-in-quartus">Use the FIFO library in quartus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-pio-in-platform-designer">Create PIO in Platform Designer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modify-the-standard-de10-nano-soc-ghrd-v">Modify the Standard <code class="code docutils literal notranslate"><span class="pre">DE10_NANO_SoC_GHRD.v</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-full-code">The full code</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Processor-FPGA-Communication-Using-FIFO-Processor-Part.html">Processor-FPGA Communication: Using FIFO Processor Part</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Nodejs-Talking-To-C-Executable-1.html">Nodejs Talking To C Executable 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Nodejs-Talking-To-C-Executable-2.html">Nodejs Talking To C Executable 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Verilog-DataSender.html">Verilog DataSender</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Verilog-My16ChannelCounter.html">Verilog My16ChannelCounter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Verilog-MemoryMapper.html">Verilog MemoryMapper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Nodejs-RESTful-API-Basic.html">Nodejs RESTful API Basic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Summary.html">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Nodejs-RESTful-API-Email-Verification.html">Nodejs RESTful API Email Verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Nodejs-RESTful-API-Production.html">Nodejs RESTful API Production</a></li>
+<li class="toctree-l2"><a class="reference internal" href="React-Native-Redux-1.html">React Native Redux 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="React-Native-Redux-2.html">React Native Redux 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="React-Native-Redux-3.html">React Native Redux 3</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Django/index.html">Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Signal-Processing/index.html">Signal Processing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Machine Learning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Machine-Learning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption"><span class="caption-text">BioPhysics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Biomolecular-Physics/index.html">Biomolecular Physics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Mechanics-Feynman-Path-Integral/index.html">Quantum Mechanics: Feynman Path Integral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Computation/index.html">Quantum Computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Optics/index.html">Quantum Optics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Density-Functional-Theory/index.html">Density Functional Theory</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Statistical Mechanics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Thermodynamics-And-Statistical-Mechanics/index.html">Thermodynamics And Statistical Mechanics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Relativity</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Relativity/index.html">Relativity</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Papers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Papers-Quantum-Computers/index.html">Papers: Quantum Computers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">My-Study-Notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Experimental Physics: SoC FPGA Design</a> &raquo;</li>
+        
+      <li>Processor-FPGA Communication: Using FIFO FPGA Part</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Experimental-Physics-SoC-FPGA-Design/Processor-FPGA-Communication-Using-FIFO-FPGA-Part.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="processor-fpga-communication-using-fifo-fpga-part">
+<h1>Processor-FPGA Communication: Using FIFO FPGA Part<a class="headerlink" href="#processor-fpga-communication-using-fifo-fpga-part" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Date</dt>
+<dd class="field-odd"><p>20 Sep 2019</p>
+</dd>
+</dl>
+<div class="section" id="what-is-the-idea">
+<h2>What is the idea?<a class="headerlink" href="#what-is-the-idea" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Your custom module, for example a counter, wants to send data to HPS (processor)</p></li>
+<li><p>FIFO is a buffer, it buffers data until the processor has time to read it</p></li>
+</ul>
+</div>
+<div class="section" id="what-are-we-gonna-do">
+<h2>What are we gonna do?<a class="headerlink" href="#what-are-we-gonna-do" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>We will write a simple counter in the <strong>FPGA Part</strong>, the counter increases <span class="math notranslate nohighlight">\(1\)</span> every <code class="code docutils literal notranslate"><span class="pre">clk</span></code> cycle</p></li>
+<li><p>This counter makes a write request every <span class="math notranslate nohighlight">\(2^{24}\)</span> <code class="code docutils literal notranslate"><span class="pre">clk</span></code> cycle to the FIFO, and writes the counter value to the FIFO</p></li>
+<li><p>To FIFO read port is connected to 3 PIOs generated by Platform Designer(Qsys), these 3 PIOs can be directly accessed by the Processor via memory mapping, since this memory is shared by the FPGA and Processor</p></li>
+<li><p>Meanwhile, the 8 LEDs on the DE10-NANO board are connected to <code class="code docutils literal notranslate"><span class="pre">usedw</span></code> (<strong>used words</strong>) which indicates the number of data stored in the FIFO</p></li>
+<li><p>We will write a simple reader in the <strong>Processor Part</strong></p></li>
+<li><p>User execute the compiled C code in the terminal, then they type in number of data to read</p></li>
+<li><p>They will see read data printed to the terminal, as well as the decrease in number indicated by the LED</p></li>
+</ul>
+</div>
+<div class="section" id="how-fifo-works">
+<h2>How FIFO works<a class="headerlink" href="#how-fifo-works" title="Permalink to this headline">¶</a></h2>
+<p>The following IO definition corresponds to FIFO modules generated by Quartus library</p>
+<ul class="simple">
+<li><p>Each data in FIFO is called a “word”, the number of words currently in FIFO is <code class="code docutils literal notranslate"><span class="pre">usedw</span></code> (<strong>used words</strong>)</p></li>
+<li><p>Writing to a FIFO: make <code class="code docutils literal notranslate"><span class="pre">wrreq</span></code> (<strong>write request</strong>) HIGH for one <code class="code docutils literal notranslate"><span class="pre">clk</span></code> cycle, then whatever is at input <code class="code docutils literal notranslate"><span class="pre">data</span></code> gets written to the FIFO</p></li>
+<li><p>Reading from the FIFO: make <code class="code docutils literal notranslate"><span class="pre">rdreq</span></code> (<strong>read request</strong>) HIGH for one <code class="code docutils literal notranslate"><span class="pre">clk</span></code> cycle, then the old value of <code class="code docutils literal notranslate"><span class="pre">q</span></code> (<strong>queue</strong>) gets cleared <code class="code docutils literal notranslate"><span class="pre">q</span></code> has a new value</p></li>
+<li><p>Don’t write to FIFO when <code class="code docutils literal notranslate"><span class="pre">full</span></code> is HIGH. Don’t read from FIFO when <code class="code docutils literal notranslate"><span class="pre">empty</span></code> is HIGH</p></li>
+<li><p>If <code class="code docutils literal notranslate"><span class="pre">wrreq</span></code> is HIGH for 5 <code class="code docutils literal notranslate"><span class="pre">clk</span></code> cycles, 5 data get written into the FIFO, If <code class="code docutils literal notranslate"><span class="pre">rdreq</span></code> is HIGH for 5 <code class="code docutils literal notranslate"><span class="pre">clk</span></code> cycles, 5 data get cleared from the FIFO. That is why usually you don’t want these signals to be HIGH for more than 1 <code class="code docutils literal notranslate"><span class="pre">clk</span></code> cycle</p></li>
+</ul>
+<div class="highlight-verilog notranslate"><div class="highlight"><pre><span></span><span class="c1">// The following shows signal flow, &quot;&lt;---&gt;&quot; represents wires, &lt;===&gt; represents memory-map</span>
+<span class="c1">// MyModule &lt;---&gt; FIFO Module &lt;---&gt; PIOs in Qsys generated Module(DE10_NANO_SoC_GHRD) &lt;===&gt; HPS</span>
+
+        <span class="cm">/* FIFO module description</span>
+<span class="cm">                input clock;</span>
+
+<span class="cm">                // Write side by FPGA</span>
+<span class="cm">                input           wrreq;  // write request</span>
+<span class="cm">                input   [31:0]  data;   // data to write</span>
+<span class="cm">                output        full;</span>
+
+<span class="cm">                // Read side by HPS, more accurately,</span>
+<span class="cm">                // Parallel IO(PIO) from Qsys generated Module</span>
+<span class="cm">                // We need two 32 bits PIOs:</span>
+<span class="cm">                //    1. PIO_FifoReadDataQueue: maps to q</span>
+<span class="cm">                //    2. PIO_FifoReadControl:   maps to rdreq,empty</span>
+<span class="cm">                input           rdreq;  // read request</span>
+<span class="cm">                output [31:0] q;      // data queue to read</span>
+<span class="cm">                output        empty;</span>
+
+<span class="cm">                // Fill level, number of &quot;used words&quot; in the queue</span>
+<span class="cm">                output [7:0]  usedw;  // number of used words</span>
+<span class="cm">        */</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="use-the-fifo-library-in-quartus">
+<h2>Use the FIFO library in quartus<a class="headerlink" href="#use-the-fifo-library-in-quartus" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Find and create a FIFO module from the library</p></li>
+</ul>
+<div class="figure align-default">
+<img alt="../_images/Stage-3_FIFOlibrary1.png" src="../_images/Stage-3_FIFOlibrary1.png" />
+</div>
+<ul class="simple">
+<li><p>Setup the module details</p></li>
+</ul>
+<div class="figure align-default">
+<img alt="../_images/Stage-3_FIFOlibrary2.png" src="../_images/Stage-3_FIFOlibrary2.png" />
+</div>
+<ul class="simple">
+<li><p>Then these files will be generated</p></li>
+</ul>
+<div class="figure align-default">
+<img alt="../_images/Stage-3_FIFOlibrary3.png" src="../_images/Stage-3_FIFOlibrary3.png" />
+</div>
+<ul class="simple">
+<li><p>Include <code class="code docutils literal notranslate"><span class="pre">FIFO.qip</span></code> file into your project</p></li>
+</ul>
+<div class="figure align-default">
+<img alt="../_images/Stage-3_FIFOlibrary4.png" src="../_images/Stage-3_FIFOlibrary4.png" />
+</div>
+</div>
+<div class="section" id="create-pio-in-platform-designer">
+<h2>Create PIO in Platform Designer<a class="headerlink" href="#create-pio-in-platform-designer" title="Permalink to this headline">¶</a></h2>
+<p><strong>Create PIO (Parallel IO) in Platform Designer (Qsys) to connect to FIFO module</strong></p>
+<ul class="simple">
+<li><p>Search PIO</p></li>
+</ul>
+<div class="figure align-default">
+<img alt="../_images/Stage-3_PIOqsys1.png" src="../_images/Stage-3_PIOqsys1.png" />
+</div>
+<ul class="simple">
+<li><p>Create the necessary connections</p></li>
+</ul>
+<div class="figure align-default">
+<img alt="../_images/Stage-3_PIOqsys2.png" src="../_images/Stage-3_PIOqsys2.png" />
+</div>
+<ul class="simple">
+<li><p>Download the following Qsys file to see the details</p></li>
+</ul>
+<p><a class="reference download internal" download="" href="../_downloads/da11d89e022da3f8553d84a16d2c2aa7/soc_system.qsys"><code class="xref download docutils literal notranslate"><span class="pre">soc_system.qsys</span></code></a></p>
+</div>
+<div class="section" id="modify-the-standard-de10-nano-soc-ghrd-v">
+<h2>Modify the Standard <code class="code docutils literal notranslate"><span class="pre">DE10_NANO_SoC_GHRD.v</span></code><a class="headerlink" href="#modify-the-standard-de10-nano-soc-ghrd-v" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>create wires that are use to connect different modules in Verilog</p></li>
+</ul>
+<div class="highlight-verilog notranslate"><div class="highlight"><pre><span></span><span class="c1">// Wires to connect Custom Sub-Modules:</span>
+        <span class="c1">// Write side by FPGA</span>
+        <span class="kt">wire</span>        <span class="n">wire_FIFOwriteRequest</span><span class="p">;</span>
+        <span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">wire_FIFOwriteData</span><span class="p">;</span>
+        <span class="kt">wire</span>        <span class="n">wire_FIFOwriteFull</span><span class="p">;</span>
+        <span class="c1">// Read side by HPS, more accurately,</span>
+        <span class="c1">// Parallel IO(PIO) from Qsys generated Module(DE10_NANO_SoC_GHRD)</span>
+        <span class="kt">wire</span>        <span class="n">wire_FIFOreadRequest</span><span class="p">;</span>
+        <span class="kt">wire</span>        <span class="n">wire_FIFOreadRequestShortPulse</span><span class="p">;</span>
+                <span class="n">ToShortPulse</span> <span class="n">toShortPulse_FIFOreadRequest</span><span class="p">(</span>
+                        <span class="p">.</span><span class="n">clk</span><span class="p">(</span><span class="n">fpga_clk_50</span><span class="p">),</span>
+                        <span class="p">.</span><span class="n">longPulse</span><span class="p">(</span><span class="n">wire_FIFOreadRequest</span><span class="p">),</span>
+                        <span class="p">.</span><span class="n">shortPulse</span><span class="p">(</span><span class="n">wire_FIFOreadRequestShortPulse</span><span class="p">),</span>
+                <span class="p">);</span>
+
+        <span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">wire_FIFOreadDataQueue</span><span class="p">;</span>
+        <span class="kt">wire</span>        <span class="n">wire_FIFOreadEmpty</span><span class="p">;</span>
+        <span class="kt">wire</span> <span class="p">[</span><span class="mh">7</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span>  <span class="n">wire_FIFOnumberOfUsedWords</span><span class="p">;</span>
+
+        <span class="k">assign</span> <span class="no">LED</span> <span class="o">=</span> <span class="n">wire_FIFOnumberOfUsedWords</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Connect the <strong>module</strong> generated by Platform Designer (<code class="code docutils literal notranslate"><span class="pre">soc_system</span></code>) to the wires</p></li>
+</ul>
+<div class="highlight-verilog notranslate"><div class="highlight"><pre><span></span><span class="c1">//=======================================================</span>
+<span class="c1">//  Structural coding</span>
+<span class="c1">//=======================================================</span>
+<span class="n">soc_system</span> <span class="n">u0</span><span class="p">(</span>
+        <span class="c1">// other default connections...</span>
+
+        <span class="c1">//OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO</span>
+        <span class="c1">// Begin Code added by me Part 1: IO Mapping</span>
+                <span class="c1">// FIFO</span>
+                <span class="p">.</span><span class="n">fiforeadrequest_external_connection_export</span><span class="p">(</span><span class="n">wire_FIFOreadRequest</span><span class="p">),</span>      <span class="c1">//output (to FPGA) PIO</span>
+                <span class="p">.</span><span class="n">fiforeaddataqueue_external_connection_export</span><span class="p">(</span><span class="n">wire_FIFOreadDataQueue</span><span class="p">),</span>  <span class="c1">//input  (to HPS)  PIO</span>
+                <span class="p">.</span><span class="n">fiforeadempty_external_connection_export</span><span class="p">(</span><span class="n">wire_FIFOreadEmpty</span><span class="p">),</span>          <span class="c1">//input  (to HPS)  PIO</span>
+        <span class="c1">// End Code added by me Part 1: IO Mapping</span>
+        <span class="c1">//OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Connect the FIFO to the wires</p></li>
+</ul>
+<div class="highlight-verilog notranslate"><div class="highlight"><pre><span></span><span class="no">FIFO</span> <span class="n">fifo</span><span class="p">(</span>
+        <span class="p">.</span><span class="n">clock</span><span class="p">(</span><span class="n">fpga_clk_50</span><span class="p">),</span>
+        <span class="c1">// Write side by FPGA</span>
+        <span class="p">.</span><span class="n">wrreq</span><span class="p">(</span><span class="n">wire_FIFOwriteRequest</span><span class="p">),</span>
+        <span class="p">.</span><span class="n">data</span><span class="p">(</span><span class="n">wire_FIFOwriteData</span><span class="p">),</span>
+        <span class="p">.</span><span class="n">full</span><span class="p">(</span><span class="n">wire_FIFOwriteFull</span><span class="p">),</span>
+        <span class="c1">// Read side by HPS, more accurately,</span>
+        <span class="c1">// Parallel IO(PIO) from Qsys generated Module</span>
+        <span class="p">.</span><span class="n">rdreq</span><span class="p">(</span><span class="n">wire_FIFOreadRequestShortPulse</span><span class="p">),</span>
+        <span class="p">.</span><span class="n">q</span><span class="p">(</span><span class="n">wire_FIFOreadDataQueue</span><span class="p">),</span>
+        <span class="p">.</span><span class="n">empty</span><span class="p">(</span><span class="n">wire_FIFOreadEmpty</span><span class="p">),</span>
+
+        <span class="p">.</span><span class="n">usedw</span><span class="p">(</span><span class="n">wire_FIFOnumberOfUsedWords</span><span class="p">),</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Connect MyModule (defined later) to the wires</p></li>
+</ul>
+<div class="highlight-verilog notranslate"><div class="highlight"><pre><span></span><span class="n">MyModule</span> <span class="n">myModule</span><span class="p">(</span>
+        <span class="p">.</span><span class="n">clk</span><span class="p">(</span><span class="n">fpga_clk_50</span><span class="p">),</span>
+        <span class="p">.</span><span class="n">FIFOwriteRequest</span><span class="p">(</span><span class="n">wire_FIFOwriteRequest</span><span class="p">),</span>
+        <span class="p">.</span><span class="n">FIFOwriteData</span><span class="p">(</span><span class="n">wire_FIFOwriteData</span><span class="p">),</span>
+        <span class="p">.</span><span class="n">FIFOwriteFull</span><span class="p">(</span><span class="n">wire_FIFOwriteFull</span><span class="p">),</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>defined MyModule and module ToShortPulse</p></li>
+</ul>
+<div class="highlight-verilog notranslate"><div class="highlight"><pre><span></span><span class="c1">//OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO</span>
+<span class="c1">// Begin Code added by me Part 3: MyModule</span>
+        <span class="k">module</span> <span class="n">MyModule</span><span class="p">(</span>
+                <span class="k">input</span> <span class="n">clk</span><span class="p">,</span>
+                <span class="k">output</span>            <span class="n">FIFOwriteRequest</span><span class="p">,</span>
+                <span class="k">output</span> <span class="kt">reg</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">FIFOwriteData</span><span class="p">,</span>
+                <span class="k">input</span>             <span class="n">FIFOwriteFull</span>
+        <span class="p">);</span>
+                <span class="n">ToShortPulse</span> <span class="n">toShortPulse_FIFOwriteRequest</span><span class="p">(</span>
+                        <span class="p">.</span><span class="n">clk</span><span class="p">(</span><span class="n">clk</span><span class="p">),</span>
+                        <span class="p">.</span><span class="n">longPulse</span><span class="p">(</span><span class="n">FIFOwriteData</span><span class="p">[</span><span class="mh">24</span><span class="p">]</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">FIFOwriteFull</span><span class="p">),</span>
+                        <span class="p">.</span><span class="n">shortPulse</span><span class="p">(</span><span class="n">FIFOwriteRequest</span><span class="p">),</span>
+                <span class="p">);</span>
+                <span class="k">always</span> <span class="p">@(</span><span class="k">posedge</span> <span class="n">clk</span><span class="p">)</span> <span class="k">begin</span>
+                        <span class="n">FIFOwriteData</span> <span class="o">&lt;=</span> <span class="n">FIFOwriteData</span><span class="o">+</span><span class="mh">1</span><span class="p">;</span>
+                <span class="k">end</span>
+        <span class="k">endmodule</span>
+
+        <span class="c1">// Module to make longPulse into shortPulse</span>
+        <span class="k">module</span> <span class="n">ToShortPulse</span><span class="p">(</span>
+                <span class="k">input</span> <span class="n">clk</span><span class="p">,</span>
+                <span class="k">input</span> <span class="n">longPulse</span><span class="p">,</span>
+                <span class="k">output</span> <span class="kt">reg</span> <span class="n">shortPulse</span>
+        <span class="p">);</span>
+                <span class="kt">reg</span> <span class="n">last_longPulse</span><span class="p">;</span>
+
+                <span class="k">always</span> <span class="p">@</span> <span class="p">(</span><span class="k">posedge</span> <span class="n">clk</span><span class="p">)</span> <span class="k">begin</span>
+                        <span class="n">shortPulse</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="n">last_longPulse</span><span class="o">==</span><span class="mh">0</span> <span class="o">&amp;&amp;</span> <span class="n">longPulse</span><span class="o">==</span><span class="mh">1</span><span class="p">)</span><span class="o">?</span><span class="mh">1</span><span class="o">:</span><span class="mh">0</span><span class="p">;</span>
+                        <span class="n">last_longPulse</span> <span class="o">&lt;=</span> <span class="n">longPulse</span><span class="p">;</span>
+                <span class="k">end</span>
+        <span class="k">endmodule</span>
+
+<span class="c1">// End Code added by me Part 3: MyModule</span>
+<span class="c1">//OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-full-code">
+<h2>The full code<a class="headerlink" href="#the-full-code" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-verilog notranslate"><div class="highlight"><pre><span></span><span class="c1">//=======================================================</span>
+<span class="c1">//  This code is generated by Terasic System Builder</span>
+<span class="c1">//=======================================================</span>
+
+<span class="k">module</span> <span class="n">DE10_NANO_SoC_GHRD</span><span class="p">(</span>
+
+    <span class="c1">//////////// CLOCK //////////</span>
+    <span class="k">input</span>               <span class="no">FPGA_CLK1_50</span><span class="p">,</span>
+    <span class="k">input</span>               <span class="no">FPGA_CLK2_50</span><span class="p">,</span>
+    <span class="k">input</span>               <span class="no">FPGA_CLK3_50</span><span class="p">,</span>
+
+    <span class="c1">//////////// HDMI //////////</span>
+    <span class="k">inout</span>               <span class="no">HDMI_I2C_SCL</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="no">HDMI_I2C_SDA</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="no">HDMI_I2S</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="no">HDMI_LRCLK</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="no">HDMI_MCLK</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="no">HDMI_SCLK</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="no">HDMI_TX_CLK</span><span class="p">,</span>
+    <span class="k">output</span>   <span class="p">[</span><span class="mh">23</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="no">HDMI_TX_D</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="no">HDMI_TX_DE</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="no">HDMI_TX_HS</span><span class="p">,</span>
+    <span class="k">input</span>               <span class="no">HDMI_TX_INT</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="no">HDMI_TX_VS</span><span class="p">,</span>
+
+    <span class="c1">//////////// HPS //////////</span>
+    <span class="k">inout</span>               <span class="no">HPS_CONV_USB_N</span><span class="p">,</span>
+    <span class="k">output</span>   <span class="p">[</span><span class="mh">14</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="no">HPS_DDR3_ADDR</span><span class="p">,</span>
+    <span class="k">output</span>   <span class="p">[</span> <span class="mh">2</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="no">HPS_DDR3_BA</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="no">HPS_DDR3_CAS_N</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="no">HPS_DDR3_CK_N</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="no">HPS_DDR3_CK_P</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="no">HPS_DDR3_CKE</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="no">HPS_DDR3_CS_N</span><span class="p">,</span>
+    <span class="k">output</span>   <span class="p">[</span> <span class="mh">3</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="no">HPS_DDR3_DM</span><span class="p">,</span>
+    <span class="k">inout</span>    <span class="p">[</span><span class="mh">31</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="no">HPS_DDR3_DQ</span><span class="p">,</span>
+    <span class="k">inout</span>    <span class="p">[</span> <span class="mh">3</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="no">HPS_DDR3_DQS_N</span><span class="p">,</span>
+    <span class="k">inout</span>    <span class="p">[</span> <span class="mh">3</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="no">HPS_DDR3_DQS_P</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="no">HPS_DDR3_ODT</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="no">HPS_DDR3_RAS_N</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="no">HPS_DDR3_RESET_N</span><span class="p">,</span>
+    <span class="k">input</span>               <span class="no">HPS_DDR3_RZQ</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="no">HPS_DDR3_WE_N</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="no">HPS_ENET_GTX_CLK</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="no">HPS_ENET_INT_N</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="no">HPS_ENET_MDC</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="no">HPS_ENET_MDIO</span><span class="p">,</span>
+    <span class="k">input</span>               <span class="no">HPS_ENET_RX_CLK</span><span class="p">,</span>
+    <span class="k">input</span>    <span class="p">[</span> <span class="mh">3</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="no">HPS_ENET_RX_DATA</span><span class="p">,</span>
+    <span class="k">input</span>               <span class="no">HPS_ENET_RX_DV</span><span class="p">,</span>
+    <span class="k">output</span>   <span class="p">[</span> <span class="mh">3</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="no">HPS_ENET_TX_DATA</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="no">HPS_ENET_TX_EN</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="no">HPS_GSENSOR_INT</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="no">HPS_I2C0_SCLK</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="no">HPS_I2C0_SDAT</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="no">HPS_I2C1_SCLK</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="no">HPS_I2C1_SDAT</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="no">HPS_KEY</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="no">HPS_LED</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="no">HPS_LTC_GPIO</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="no">HPS_SD_CLK</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="no">HPS_SD_CMD</span><span class="p">,</span>
+    <span class="k">inout</span>    <span class="p">[</span> <span class="mh">3</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="no">HPS_SD_DATA</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="no">HPS_SPIM_CLK</span><span class="p">,</span>
+    <span class="k">input</span>               <span class="no">HPS_SPIM_MISO</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="no">HPS_SPIM_MOSI</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="no">HPS_SPIM_SS</span><span class="p">,</span>
+    <span class="k">input</span>               <span class="no">HPS_UART_RX</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="no">HPS_UART_TX</span><span class="p">,</span>
+    <span class="k">input</span>               <span class="no">HPS_USB_CLKOUT</span><span class="p">,</span>
+    <span class="k">inout</span>    <span class="p">[</span> <span class="mh">7</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="no">HPS_USB_DATA</span><span class="p">,</span>
+    <span class="k">input</span>               <span class="no">HPS_USB_DIR</span><span class="p">,</span>
+    <span class="k">input</span>               <span class="no">HPS_USB_NXT</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="no">HPS_USB_STP</span><span class="p">,</span>
+
+    <span class="c1">//////////// KEY //////////</span>
+    <span class="k">input</span>    <span class="p">[</span> <span class="mh">1</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="no">KEY</span><span class="p">,</span>
+
+    <span class="c1">//////////// LED //////////</span>
+    <span class="k">output</span>   <span class="p">[</span> <span class="mh">7</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="no">LED</span><span class="p">,</span>
+
+    <span class="c1">//////////// SW //////////</span>
+    <span class="k">input</span>    <span class="p">[</span> <span class="mh">3</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="no">SW</span>
+<span class="p">);</span>
+
+
+
+<span class="c1">//=======================================================</span>
+<span class="c1">//  REG/WIRE declarations</span>
+<span class="c1">//=======================================================</span>
+<span class="kt">wire</span> <span class="n">hps_fpga_reset_n</span><span class="p">;</span>
+<span class="kt">wire</span>     <span class="p">[</span><span class="mh">1</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>     <span class="n">fpga_debounced_buttons</span><span class="p">;</span>
+<span class="kt">wire</span>     <span class="p">[</span><span class="mh">6</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>     <span class="n">fpga_led_internal</span><span class="p">;</span>
+<span class="kt">wire</span>     <span class="p">[</span><span class="mh">2</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>     <span class="n">hps_reset_req</span><span class="p">;</span>
+<span class="kt">wire</span>                <span class="n">hps_cold_reset</span><span class="p">;</span>
+<span class="kt">wire</span>                <span class="n">hps_warm_reset</span><span class="p">;</span>
+<span class="kt">wire</span>                <span class="n">hps_debug_reset</span><span class="p">;</span>
+<span class="kt">wire</span>     <span class="p">[</span><span class="mh">27</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="n">stm_hw_events</span><span class="p">;</span>
+<span class="kt">wire</span>                <span class="n">fpga_clk_50</span><span class="p">;</span>
+<span class="c1">// connection of internal logics</span>
+<span class="c1">//assign LED[7: 1] = fpga_led_internal;</span>
+<span class="k">assign</span> <span class="n">fpga_clk_50</span> <span class="o">=</span> <span class="no">FPGA_CLK1_50</span><span class="p">;</span>
+<span class="k">assign</span> <span class="n">stm_hw_events</span> <span class="o">=</span> <span class="p">{{</span><span class="mh">15</span><span class="p">{</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">}},</span> <span class="no">SW</span><span class="p">,</span> <span class="n">fpga_led_internal</span><span class="p">,</span> <span class="n">fpga_debounced_buttons</span><span class="p">};</span>
+
+
+
+<span class="c1">//=======================================================</span>
+<span class="c1">//  Structural coding</span>
+<span class="c1">//=======================================================</span>
+<span class="n">soc_system</span> <span class="n">u0</span><span class="p">(</span>
+               <span class="c1">//Clock&amp;Reset</span>
+               <span class="p">.</span><span class="n">clk_clk</span><span class="p">(</span><span class="no">FPGA_CLK1_50</span><span class="p">),</span>                                      <span class="c1">//                            clk.clk</span>
+               <span class="p">.</span><span class="n">reset_reset_n</span><span class="p">(</span><span class="n">hps_fpga_reset_n</span><span class="p">),</span>                            <span class="c1">//                          reset.reset_n</span>
+               <span class="c1">//HPS ddr3</span>
+               <span class="p">.</span><span class="n">memory_mem_a</span><span class="p">(</span><span class="no">HPS_DDR3_ADDR</span><span class="p">),</span>                                <span class="c1">//                         memory.mem_a</span>
+               <span class="p">.</span><span class="n">memory_mem_ba</span><span class="p">(</span><span class="no">HPS_DDR3_BA</span><span class="p">),</span>                                 <span class="c1">//                               .mem_ba</span>
+               <span class="p">.</span><span class="n">memory_mem_ck</span><span class="p">(</span><span class="no">HPS_DDR3_CK_P</span><span class="p">),</span>                               <span class="c1">//                               .mem_ck</span>
+               <span class="p">.</span><span class="n">memory_mem_ck_n</span><span class="p">(</span><span class="no">HPS_DDR3_CK_N</span><span class="p">),</span>                             <span class="c1">//                               .mem_ck_n</span>
+               <span class="p">.</span><span class="n">memory_mem_cke</span><span class="p">(</span><span class="no">HPS_DDR3_CKE</span><span class="p">),</span>                               <span class="c1">//                               .mem_cke</span>
+               <span class="p">.</span><span class="n">memory_mem_cs_n</span><span class="p">(</span><span class="no">HPS_DDR3_CS_N</span><span class="p">),</span>                             <span class="c1">//                               .mem_cs_n</span>
+               <span class="p">.</span><span class="n">memory_mem_ras_n</span><span class="p">(</span><span class="no">HPS_DDR3_RAS_N</span><span class="p">),</span>                           <span class="c1">//                               .mem_ras_n</span>
+               <span class="p">.</span><span class="n">memory_mem_cas_n</span><span class="p">(</span><span class="no">HPS_DDR3_CAS_N</span><span class="p">),</span>                           <span class="c1">//                               .mem_cas_n</span>
+               <span class="p">.</span><span class="n">memory_mem_we_n</span><span class="p">(</span><span class="no">HPS_DDR3_WE_N</span><span class="p">),</span>                             <span class="c1">//                               .mem_we_n</span>
+               <span class="p">.</span><span class="n">memory_mem_reset_n</span><span class="p">(</span><span class="no">HPS_DDR3_RESET_N</span><span class="p">),</span>                       <span class="c1">//                               .mem_reset_n</span>
+               <span class="p">.</span><span class="n">memory_mem_dq</span><span class="p">(</span><span class="no">HPS_DDR3_DQ</span><span class="p">),</span>                                 <span class="c1">//                               .mem_dq</span>
+               <span class="p">.</span><span class="n">memory_mem_dqs</span><span class="p">(</span><span class="no">HPS_DDR3_DQS_P</span><span class="p">),</span>                             <span class="c1">//                               .mem_dqs</span>
+               <span class="p">.</span><span class="n">memory_mem_dqs_n</span><span class="p">(</span><span class="no">HPS_DDR3_DQS_N</span><span class="p">),</span>                           <span class="c1">//                               .mem_dqs_n</span>
+               <span class="p">.</span><span class="n">memory_mem_odt</span><span class="p">(</span><span class="no">HPS_DDR3_ODT</span><span class="p">),</span>                               <span class="c1">//                               .mem_odt</span>
+               <span class="p">.</span><span class="n">memory_mem_dm</span><span class="p">(</span><span class="no">HPS_DDR3_DM</span><span class="p">),</span>                                 <span class="c1">//                               .mem_dm</span>
+               <span class="p">.</span><span class="n">memory_oct_rzqin</span><span class="p">(</span><span class="no">HPS_DDR3_RZQ</span><span class="p">),</span>                             <span class="c1">//                               .oct_rzqin</span>
+               <span class="c1">//HPS ethernet</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_TX_CLK</span><span class="p">(</span><span class="no">HPS_ENET_GTX_CLK</span><span class="p">),</span>    <span class="c1">//                   hps_0_hps_io.hps_io_emac1_inst_TX_CLK</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_TXD0</span><span class="p">(</span><span class="no">HPS_ENET_TX_DATA</span><span class="p">[</span><span class="mh">0</span><span class="p">]),</span>   <span class="c1">//                               .hps_io_emac1_inst_TXD0</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_TXD1</span><span class="p">(</span><span class="no">HPS_ENET_TX_DATA</span><span class="p">[</span><span class="mh">1</span><span class="p">]),</span>   <span class="c1">//                               .hps_io_emac1_inst_TXD1</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_TXD2</span><span class="p">(</span><span class="no">HPS_ENET_TX_DATA</span><span class="p">[</span><span class="mh">2</span><span class="p">]),</span>   <span class="c1">//                               .hps_io_emac1_inst_TXD2</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_TXD3</span><span class="p">(</span><span class="no">HPS_ENET_TX_DATA</span><span class="p">[</span><span class="mh">3</span><span class="p">]),</span>   <span class="c1">//                               .hps_io_emac1_inst_TXD3</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_RXD0</span><span class="p">(</span><span class="no">HPS_ENET_RX_DATA</span><span class="p">[</span><span class="mh">0</span><span class="p">]),</span>   <span class="c1">//                               .hps_io_emac1_inst_RXD0</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_MDIO</span><span class="p">(</span><span class="no">HPS_ENET_MDIO</span><span class="p">),</span>         <span class="c1">//                               .hps_io_emac1_inst_MDIO</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_MDC</span><span class="p">(</span><span class="no">HPS_ENET_MDC</span><span class="p">),</span>           <span class="c1">//                               .hps_io_emac1_inst_MDC</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_RX_CTL</span><span class="p">(</span><span class="no">HPS_ENET_RX_DV</span><span class="p">),</span>      <span class="c1">//                               .hps_io_emac1_inst_RX_CTL</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_TX_CTL</span><span class="p">(</span><span class="no">HPS_ENET_TX_EN</span><span class="p">),</span>      <span class="c1">//                               .hps_io_emac1_inst_TX_CTL</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_RX_CLK</span><span class="p">(</span><span class="no">HPS_ENET_RX_CLK</span><span class="p">),</span>     <span class="c1">//                               .hps_io_emac1_inst_RX_CLK</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_RXD1</span><span class="p">(</span><span class="no">HPS_ENET_RX_DATA</span><span class="p">[</span><span class="mh">1</span><span class="p">]),</span>   <span class="c1">//                               .hps_io_emac1_inst_RXD1</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_RXD2</span><span class="p">(</span><span class="no">HPS_ENET_RX_DATA</span><span class="p">[</span><span class="mh">2</span><span class="p">]),</span>   <span class="c1">//                               .hps_io_emac1_inst_RXD2</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_RXD3</span><span class="p">(</span><span class="no">HPS_ENET_RX_DATA</span><span class="p">[</span><span class="mh">3</span><span class="p">]),</span>   <span class="c1">//                               .hps_io_emac1_inst_RXD3</span>
+               <span class="c1">//HPS SD card</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_sdio_inst_CMD</span><span class="p">(</span><span class="no">HPS_SD_CMD</span><span class="p">),</span>              <span class="c1">//                               .hps_io_sdio_inst_CMD</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_sdio_inst_D0</span><span class="p">(</span><span class="no">HPS_SD_DATA</span><span class="p">[</span><span class="mh">0</span><span class="p">]),</span>           <span class="c1">//                               .hps_io_sdio_inst_D0</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_sdio_inst_D1</span><span class="p">(</span><span class="no">HPS_SD_DATA</span><span class="p">[</span><span class="mh">1</span><span class="p">]),</span>           <span class="c1">//                               .hps_io_sdio_inst_D1</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_sdio_inst_CLK</span><span class="p">(</span><span class="no">HPS_SD_CLK</span><span class="p">),</span>              <span class="c1">//                               .hps_io_sdio_inst_CLK</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_sdio_inst_D2</span><span class="p">(</span><span class="no">HPS_SD_DATA</span><span class="p">[</span><span class="mh">2</span><span class="p">]),</span>           <span class="c1">//                               .hps_io_sdio_inst_D2</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_sdio_inst_D3</span><span class="p">(</span><span class="no">HPS_SD_DATA</span><span class="p">[</span><span class="mh">3</span><span class="p">]),</span>           <span class="c1">//                               .hps_io_sdio_inst_D3</span>
+               <span class="c1">//HPS USB</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_D0</span><span class="p">(</span><span class="no">HPS_USB_DATA</span><span class="p">[</span><span class="mh">0</span><span class="p">]),</span>          <span class="c1">//                               .hps_io_usb1_inst_D0</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_D1</span><span class="p">(</span><span class="no">HPS_USB_DATA</span><span class="p">[</span><span class="mh">1</span><span class="p">]),</span>          <span class="c1">//                               .hps_io_usb1_inst_D1</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_D2</span><span class="p">(</span><span class="no">HPS_USB_DATA</span><span class="p">[</span><span class="mh">2</span><span class="p">]),</span>          <span class="c1">//                               .hps_io_usb1_inst_D2</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_D3</span><span class="p">(</span><span class="no">HPS_USB_DATA</span><span class="p">[</span><span class="mh">3</span><span class="p">]),</span>          <span class="c1">//                               .hps_io_usb1_inst_D3</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_D4</span><span class="p">(</span><span class="no">HPS_USB_DATA</span><span class="p">[</span><span class="mh">4</span><span class="p">]),</span>          <span class="c1">//                               .hps_io_usb1_inst_D4</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_D5</span><span class="p">(</span><span class="no">HPS_USB_DATA</span><span class="p">[</span><span class="mh">5</span><span class="p">]),</span>          <span class="c1">//                               .hps_io_usb1_inst_D5</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_D6</span><span class="p">(</span><span class="no">HPS_USB_DATA</span><span class="p">[</span><span class="mh">6</span><span class="p">]),</span>          <span class="c1">//                               .hps_io_usb1_inst_D6</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_D7</span><span class="p">(</span><span class="no">HPS_USB_DATA</span><span class="p">[</span><span class="mh">7</span><span class="p">]),</span>          <span class="c1">//                               .hps_io_usb1_inst_D7</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_CLK</span><span class="p">(</span><span class="no">HPS_USB_CLKOUT</span><span class="p">),</span>          <span class="c1">//                               .hps_io_usb1_inst_CLK</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_STP</span><span class="p">(</span><span class="no">HPS_USB_STP</span><span class="p">),</span>             <span class="c1">//                               .hps_io_usb1_inst_STP</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_DIR</span><span class="p">(</span><span class="no">HPS_USB_DIR</span><span class="p">),</span>             <span class="c1">//                               .hps_io_usb1_inst_DIR</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_NXT</span><span class="p">(</span><span class="no">HPS_USB_NXT</span><span class="p">),</span>             <span class="c1">//                               .hps_io_usb1_inst_NXT</span>
+               <span class="c1">//HPS SPI</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_spim1_inst_CLK</span><span class="p">(</span><span class="no">HPS_SPIM_CLK</span><span class="p">),</span>           <span class="c1">//                               .hps_io_spim1_inst_CLK</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_spim1_inst_MOSI</span><span class="p">(</span><span class="no">HPS_SPIM_MOSI</span><span class="p">),</span>         <span class="c1">//                               .hps_io_spim1_inst_MOSI</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_spim1_inst_MISO</span><span class="p">(</span><span class="no">HPS_SPIM_MISO</span><span class="p">),</span>         <span class="c1">//                               .hps_io_spim1_inst_MISO</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_spim1_inst_SS0</span><span class="p">(</span><span class="no">HPS_SPIM_SS</span><span class="p">),</span>            <span class="c1">//                               .hps_io_spim1_inst_SS0</span>
+               <span class="c1">//HPS UART</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_uart0_inst_RX</span><span class="p">(</span><span class="no">HPS_UART_RX</span><span class="p">),</span>             <span class="c1">//                               .hps_io_uart0_inst_RX</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_uart0_inst_TX</span><span class="p">(</span><span class="no">HPS_UART_TX</span><span class="p">),</span>             <span class="c1">//                               .hps_io_uart0_inst_TX</span>
+               <span class="c1">//HPS I2C1</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_i2c0_inst_SDA</span><span class="p">(</span><span class="no">HPS_I2C0_SDAT</span><span class="p">),</span>           <span class="c1">//                               .hps_io_i2c0_inst_SDA</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_i2c0_inst_SCL</span><span class="p">(</span><span class="no">HPS_I2C0_SCLK</span><span class="p">),</span>           <span class="c1">//                               .hps_io_i2c0_inst_SCL</span>
+               <span class="c1">//HPS I2C2</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_i2c1_inst_SDA</span><span class="p">(</span><span class="no">HPS_I2C1_SDAT</span><span class="p">),</span>           <span class="c1">//                               .hps_io_i2c1_inst_SDA</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_i2c1_inst_SCL</span><span class="p">(</span><span class="no">HPS_I2C1_SCLK</span><span class="p">),</span>           <span class="c1">//                               .hps_io_i2c1_inst_SCL</span>
+               <span class="c1">//GPIO</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_gpio_inst_GPIO09</span><span class="p">(</span><span class="no">HPS_CONV_USB_N</span><span class="p">),</span>       <span class="c1">//                               .hps_io_gpio_inst_GPIO09</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_gpio_inst_GPIO35</span><span class="p">(</span><span class="no">HPS_ENET_INT_N</span><span class="p">),</span>       <span class="c1">//                               .hps_io_gpio_inst_GPIO35</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_gpio_inst_GPIO40</span><span class="p">(</span><span class="no">HPS_LTC_GPIO</span><span class="p">),</span>         <span class="c1">//                               .hps_io_gpio_inst_GPIO40</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_gpio_inst_GPIO53</span><span class="p">(</span><span class="no">HPS_LED</span><span class="p">),</span>              <span class="c1">//                               .hps_io_gpio_inst_GPIO53</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_gpio_inst_GPIO54</span><span class="p">(</span><span class="no">HPS_KEY</span><span class="p">),</span>              <span class="c1">//                               .hps_io_gpio_inst_GPIO54</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_gpio_inst_GPIO61</span><span class="p">(</span><span class="no">HPS_GSENSOR_INT</span><span class="p">),</span>      <span class="c1">//                               .hps_io_gpio_inst_GPIO61</span>
+               <span class="c1">//FPGA Partion</span>
+               <span class="p">.</span><span class="n">led_pio_external_connection_export</span><span class="p">(</span><span class="n">fpga_led_internal</span><span class="p">),</span>      <span class="c1">//    led_pio_external_connection.export</span>
+               <span class="p">.</span><span class="n">dipsw_pio_external_connection_export</span><span class="p">(</span><span class="no">SW</span><span class="p">),</span>                   <span class="c1">//  dipsw_pio_external_connection.export</span>
+               <span class="p">.</span><span class="n">button_pio_external_connection_export</span><span class="p">(</span><span class="n">fpga_debounced_buttons</span><span class="p">),</span>
+                                                                            <span class="c1">// button_pio_external_connection.export</span>
+               <span class="p">.</span><span class="n">hps_0_h2f_reset_reset_n</span><span class="p">(</span><span class="n">hps_fpga_reset_n</span><span class="p">),</span>                  <span class="c1">//                hps_0_h2f_reset.reset_n</span>
+               <span class="p">.</span><span class="n">hps_0_f2h_cold_reset_req_reset_n</span><span class="p">(</span><span class="o">~</span><span class="n">hps_cold_reset</span><span class="p">),</span>          <span class="c1">//       hps_0_f2h_cold_reset_req.reset_n</span>
+               <span class="p">.</span><span class="n">hps_0_f2h_debug_reset_req_reset_n</span><span class="p">(</span><span class="o">~</span><span class="n">hps_debug_reset</span><span class="p">),</span>        <span class="c1">//      hps_0_f2h_debug_reset_req.reset_n</span>
+               <span class="p">.</span><span class="n">hps_0_f2h_stm_hw_events_stm_hwevents</span><span class="p">(</span><span class="n">stm_hw_events</span><span class="p">),</span>        <span class="c1">//        hps_0_f2h_stm_hw_events.stm_hwevents</span>
+               <span class="p">.</span><span class="n">hps_0_f2h_warm_reset_req_reset_n</span><span class="p">(</span><span class="o">~</span><span class="n">hps_warm_reset</span><span class="p">),</span>          <span class="c1">//       hps_0_f2h_warm_reset_req.reset_n</span>
+
+<span class="c1">//OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO</span>
+<span class="c1">// Begin Code added by me Part 1: IO Mapping</span>
+                                        <span class="c1">// FIFO</span>
+                                        <span class="p">.</span><span class="n">fiforeadrequest_external_connection_export</span><span class="p">(</span><span class="n">wire_FIFOreadRequest</span><span class="p">),</span>      <span class="c1">//output (to FPGA) PIO</span>
+                                        <span class="p">.</span><span class="n">fiforeaddataqueue_external_connection_export</span><span class="p">(</span><span class="n">wire_FIFOreadDataQueue</span><span class="p">),</span>  <span class="c1">//input  (to HPS)  PIO</span>
+                                        <span class="p">.</span><span class="n">fiforeadempty_external_connection_export</span><span class="p">(</span><span class="n">wire_FIFOreadEmpty</span><span class="p">),</span>          <span class="c1">//input  (to HPS)  PIO</span>
+<span class="c1">// End Code added by me Part 1: IO Mapping</span>
+<span class="c1">//OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO</span>
+           <span class="p">);</span>
+
+<span class="c1">// Debounce logic to clean out glitches within 1ms</span>
+<span class="n">debounce</span> <span class="n">debounce_inst</span><span class="p">(</span>
+             <span class="p">.</span><span class="n">clk</span><span class="p">(</span><span class="n">fpga_clk_50</span><span class="p">),</span>
+             <span class="p">.</span><span class="n">reset_n</span><span class="p">(</span><span class="n">hps_fpga_reset_n</span><span class="p">),</span>
+             <span class="p">.</span><span class="n">data_in</span><span class="p">(</span><span class="no">KEY</span><span class="p">),</span>
+             <span class="p">.</span><span class="n">data_out</span><span class="p">(</span><span class="n">fpga_debounced_buttons</span><span class="p">)</span>
+         <span class="p">);</span>
+<span class="k">defparam</span> <span class="n">debounce_inst</span><span class="p">.</span><span class="no">WIDTH</span> <span class="o">=</span> <span class="mh">2</span><span class="p">;</span>
+<span class="k">defparam</span> <span class="n">debounce_inst</span><span class="p">.</span><span class="no">POLARITY</span> <span class="o">=</span> <span class="s">&quot;LOW&quot;</span><span class="p">;</span>
+<span class="k">defparam</span> <span class="n">debounce_inst</span><span class="p">.</span><span class="no">TIMEOUT</span> <span class="o">=</span> <span class="mh">50000</span><span class="p">;</span>               <span class="c1">// at 50Mhz this is a debounce time of 1ms</span>
+<span class="k">defparam</span> <span class="n">debounce_inst</span><span class="p">.</span><span class="no">TIMEOUT_WIDTH</span> <span class="o">=</span> <span class="mh">16</span><span class="p">;</span>            <span class="c1">// ceil(log2(TIMEOUT))</span>
+
+<span class="c1">// Source/Probe megawizard instance</span>
+<span class="n">hps_reset</span> <span class="n">hps_reset_inst</span><span class="p">(</span>
+              <span class="p">.</span><span class="n">source_clk</span><span class="p">(</span><span class="n">fpga_clk_50</span><span class="p">),</span>
+              <span class="p">.</span><span class="n">source</span><span class="p">(</span><span class="n">hps_reset_req</span><span class="p">)</span>
+          <span class="p">);</span>
+
+<span class="n">altera_edge_detector</span> <span class="n">pulse_cold_reset</span><span class="p">(</span>
+                         <span class="p">.</span><span class="n">clk</span><span class="p">(</span><span class="n">fpga_clk_50</span><span class="p">),</span>
+                         <span class="p">.</span><span class="n">rst_n</span><span class="p">(</span><span class="n">hps_fpga_reset_n</span><span class="p">),</span>
+                         <span class="p">.</span><span class="n">signal_in</span><span class="p">(</span><span class="n">hps_reset_req</span><span class="p">[</span><span class="mh">0</span><span class="p">]),</span>
+                         <span class="p">.</span><span class="n">pulse_out</span><span class="p">(</span><span class="n">hps_cold_reset</span><span class="p">)</span>
+                     <span class="p">);</span>
+<span class="k">defparam</span> <span class="n">pulse_cold_reset</span><span class="p">.</span><span class="no">PULSE_EXT</span> <span class="o">=</span> <span class="mh">6</span><span class="p">;</span>
+<span class="k">defparam</span> <span class="n">pulse_cold_reset</span><span class="p">.</span><span class="no">EDGE_TYPE</span> <span class="o">=</span> <span class="mh">1</span><span class="p">;</span>
+<span class="k">defparam</span> <span class="n">pulse_cold_reset</span><span class="p">.</span><span class="no">IGNORE_RST_WHILE_BUSY</span> <span class="o">=</span> <span class="mh">1</span><span class="p">;</span>
+
+<span class="n">altera_edge_detector</span> <span class="n">pulse_warm_reset</span><span class="p">(</span>
+                         <span class="p">.</span><span class="n">clk</span><span class="p">(</span><span class="n">fpga_clk_50</span><span class="p">),</span>
+                         <span class="p">.</span><span class="n">rst_n</span><span class="p">(</span><span class="n">hps_fpga_reset_n</span><span class="p">),</span>
+                         <span class="p">.</span><span class="n">signal_in</span><span class="p">(</span><span class="n">hps_reset_req</span><span class="p">[</span><span class="mh">1</span><span class="p">]),</span>
+                         <span class="p">.</span><span class="n">pulse_out</span><span class="p">(</span><span class="n">hps_warm_reset</span><span class="p">)</span>
+                     <span class="p">);</span>
+<span class="k">defparam</span> <span class="n">pulse_warm_reset</span><span class="p">.</span><span class="no">PULSE_EXT</span> <span class="o">=</span> <span class="mh">2</span><span class="p">;</span>
+<span class="k">defparam</span> <span class="n">pulse_warm_reset</span><span class="p">.</span><span class="no">EDGE_TYPE</span> <span class="o">=</span> <span class="mh">1</span><span class="p">;</span>
+<span class="k">defparam</span> <span class="n">pulse_warm_reset</span><span class="p">.</span><span class="no">IGNORE_RST_WHILE_BUSY</span> <span class="o">=</span> <span class="mh">1</span><span class="p">;</span>
+
+<span class="n">altera_edge_detector</span> <span class="n">pulse_debug_reset</span><span class="p">(</span>
+                         <span class="p">.</span><span class="n">clk</span><span class="p">(</span><span class="n">fpga_clk_50</span><span class="p">),</span>
+                         <span class="p">.</span><span class="n">rst_n</span><span class="p">(</span><span class="n">hps_fpga_reset_n</span><span class="p">),</span>
+                         <span class="p">.</span><span class="n">signal_in</span><span class="p">(</span><span class="n">hps_reset_req</span><span class="p">[</span><span class="mh">2</span><span class="p">]),</span>
+                         <span class="p">.</span><span class="n">pulse_out</span><span class="p">(</span><span class="n">hps_debug_reset</span><span class="p">)</span>
+                     <span class="p">);</span>
+<span class="k">defparam</span> <span class="n">pulse_debug_reset</span><span class="p">.</span><span class="no">PULSE_EXT</span> <span class="o">=</span> <span class="mh">32</span><span class="p">;</span>
+<span class="k">defparam</span> <span class="n">pulse_debug_reset</span><span class="p">.</span><span class="no">EDGE_TYPE</span> <span class="o">=</span> <span class="mh">1</span><span class="p">;</span>
+<span class="k">defparam</span> <span class="n">pulse_debug_reset</span><span class="p">.</span><span class="no">IGNORE_RST_WHILE_BUSY</span> <span class="o">=</span> <span class="mh">1</span><span class="p">;</span>
+
+<span class="kt">reg</span> <span class="p">[</span><span class="mh">25</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span> <span class="n">counter</span><span class="p">;</span>
+<span class="kt">reg</span> <span class="n">led_level</span><span class="p">;</span>
+<span class="k">always</span> <span class="p">@(</span><span class="k">posedge</span> <span class="n">fpga_clk_50</span> <span class="k">or</span> <span class="k">negedge</span> <span class="n">hps_fpga_reset_n</span><span class="p">)</span> <span class="k">begin</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">~</span><span class="n">hps_fpga_reset_n</span><span class="p">)</span> <span class="k">begin</span>
+        <span class="n">counter</span> <span class="o">&lt;=</span> <span class="mh">0</span><span class="p">;</span>
+        <span class="n">led_level</span> <span class="o">&lt;=</span> <span class="mh">0</span><span class="p">;</span>
+    <span class="k">end</span>
+
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">counter</span> <span class="o">==</span> <span class="mh">24999999</span><span class="p">)</span> <span class="k">begin</span>
+        <span class="n">counter</span> <span class="o">&lt;=</span> <span class="mh">0</span><span class="p">;</span>
+        <span class="n">led_level</span> <span class="o">&lt;=</span> <span class="o">~</span><span class="n">led_level</span><span class="p">;</span>
+    <span class="k">end</span>
+    <span class="k">else</span>
+        <span class="n">counter</span> <span class="o">&lt;=</span> <span class="n">counter</span> <span class="o">+</span> <span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span>
+<span class="k">end</span>
+
+<span class="c1">//assign LED[0] = led_level;</span>
+
+<span class="c1">//OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO</span>
+<span class="c1">// Begin Code added by me Part 2:</span>
+<span class="c1">// The following shows signal flow, &quot;&lt;---&gt;&quot; represents wires, &lt;===&gt; represents memory-map</span>
+<span class="c1">// MyModule &lt;---&gt; FIFO Module &lt;---&gt; PIOs in Qsys generated Module(DE10_NANO_SoC_GHRD) &lt;===&gt; HPS</span>
+
+        <span class="cm">/* FIFO module description</span>
+<span class="cm">                input clock;</span>
+
+<span class="cm">                // Write side by FPGA</span>
+<span class="cm">                input           wrreq;  // write request</span>
+<span class="cm">                input   [31:0]  data;   // data to write</span>
+<span class="cm">                output        full;</span>
+
+<span class="cm">                // Read side by HPS, more accurately,</span>
+<span class="cm">                // Parallel IO(PIO) from Qsys generated Module</span>
+<span class="cm">                // We need two 32 bits PIOs:</span>
+<span class="cm">                //    1. PIO_FifoReadDataQueue: maps to q</span>
+<span class="cm">                //    2. PIO_FifoReadControl:   maps to rdreq,empty</span>
+<span class="cm">                input           rdreq;  // read request</span>
+<span class="cm">                output [31:0] q;      // data queue to read</span>
+<span class="cm">                output        empty;</span>
+
+<span class="cm">                // Fill level, number of &quot;used words&quot; in the queue</span>
+<span class="cm">                output [7:0]  usedw;  // number of used words</span>
+<span class="cm">        */</span>
+
+        <span class="c1">// Wires to connect Custom Sub-Modules:</span>
+                <span class="c1">// Write side by FPGA</span>
+                <span class="kt">wire</span>        <span class="n">wire_FIFOwriteRequest</span><span class="p">;</span>
+                <span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">wire_FIFOwriteData</span><span class="p">;</span>
+                <span class="kt">wire</span>        <span class="n">wire_FIFOwriteFull</span><span class="p">;</span>
+                <span class="c1">// Read side by HPS, more accurately,</span>
+                <span class="c1">// Parallel IO(PIO) from Qsys generated Module(DE10_NANO_SoC_GHRD)</span>
+                <span class="kt">wire</span>        <span class="n">wire_FIFOreadRequest</span><span class="p">;</span>
+                <span class="kt">wire</span>        <span class="n">wire_FIFOreadRequestShortPulse</span><span class="p">;</span>
+                        <span class="n">ToShortPulse</span> <span class="n">toShortPulse_FIFOreadRequest</span><span class="p">(</span>
+                                <span class="p">.</span><span class="n">clk</span><span class="p">(</span><span class="n">fpga_clk_50</span><span class="p">),</span>
+                                <span class="p">.</span><span class="n">longPulse</span><span class="p">(</span><span class="n">wire_FIFOreadRequest</span><span class="p">),</span>
+                                <span class="p">.</span><span class="n">shortPulse</span><span class="p">(</span><span class="n">wire_FIFOreadRequestShortPulse</span><span class="p">),</span>
+                        <span class="p">);</span>
+
+                <span class="kt">wire</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">wire_FIFOreadDataQueue</span><span class="p">;</span>
+                <span class="kt">wire</span>        <span class="n">wire_FIFOreadEmpty</span><span class="p">;</span>
+                <span class="kt">wire</span> <span class="p">[</span><span class="mh">7</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span>  <span class="n">wire_FIFOnumberOfUsedWords</span><span class="p">;</span>
+
+                <span class="k">assign</span> <span class="no">LED</span> <span class="o">=</span> <span class="n">wire_FIFOnumberOfUsedWords</span><span class="p">;</span>
+
+        <span class="c1">// Custom Sub-Modules:</span>
+                <span class="no">FIFO</span> <span class="n">fifo</span><span class="p">(</span>
+                        <span class="p">.</span><span class="n">clock</span><span class="p">(</span><span class="n">fpga_clk_50</span><span class="p">),</span>
+                        <span class="c1">// Write side by FPGA</span>
+                        <span class="p">.</span><span class="n">wrreq</span><span class="p">(</span><span class="n">wire_FIFOwriteRequest</span><span class="p">),</span>
+                        <span class="p">.</span><span class="n">data</span><span class="p">(</span><span class="n">wire_FIFOwriteData</span><span class="p">),</span>
+                        <span class="p">.</span><span class="n">full</span><span class="p">(</span><span class="n">wire_FIFOwriteFull</span><span class="p">),</span>
+                        <span class="c1">// Read side by HPS, more accurately,</span>
+                        <span class="c1">// Parallel IO(PIO) from Qsys generated Module</span>
+                        <span class="p">.</span><span class="n">rdreq</span><span class="p">(</span><span class="n">wire_FIFOreadRequestShortPulse</span><span class="p">),</span>
+                        <span class="p">.</span><span class="n">q</span><span class="p">(</span><span class="n">wire_FIFOreadDataQueue</span><span class="p">),</span>
+                        <span class="p">.</span><span class="n">empty</span><span class="p">(</span><span class="n">wire_FIFOreadEmpty</span><span class="p">),</span>
+
+                        <span class="p">.</span><span class="n">usedw</span><span class="p">(</span><span class="n">wire_FIFOnumberOfUsedWords</span><span class="p">),</span>
+                <span class="p">);</span>
+
+                <span class="n">MyModule</span> <span class="n">myModule</span><span class="p">(</span>
+                        <span class="p">.</span><span class="n">clk</span><span class="p">(</span><span class="n">fpga_clk_50</span><span class="p">),</span>
+                        <span class="p">.</span><span class="n">FIFOwriteRequest</span><span class="p">(</span><span class="n">wire_FIFOwriteRequest</span><span class="p">),</span>
+                        <span class="p">.</span><span class="n">FIFOwriteData</span><span class="p">(</span><span class="n">wire_FIFOwriteData</span><span class="p">),</span>
+                        <span class="p">.</span><span class="n">FIFOwriteFull</span><span class="p">(</span><span class="n">wire_FIFOwriteFull</span><span class="p">),</span>
+                <span class="p">);</span>
+
+                <span class="cm">/* In the IO mapping at the beginning of this file</span>
+<span class="cm">                        soc_system u0(</span>
+<span class="cm">                                ...</span>
+<span class="cm">                                .fiforeadrequest_external_connection_export(wire_FIFOreadRequest),      //output (to FPGA) PIO</span>
+<span class="cm">                                .fiforeaddataqueue_external_connection_export(wire_FIFOreadDataQueue),  //input  (to HPS)  PIO</span>
+<span class="cm">                                .fiforeadempty_external_connection_export(wire_FIFOreadEmpty),          //input  (to HPS)  PIO</span>
+<span class="cm">                                ...</span>
+<span class="cm">                        );</span>
+<span class="cm">                */</span>
+
+<span class="c1">// End Code added by me Part 2</span>
+<span class="c1">//OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO</span>
+
+<span class="k">endmodule</span>
+
+<span class="c1">//===========================================================</span>
+
+<span class="c1">//OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO</span>
+<span class="c1">// Begin Code added by me Part 3: MyModule</span>
+        <span class="k">module</span> <span class="n">MyModule</span><span class="p">(</span>
+                <span class="k">input</span> <span class="n">clk</span><span class="p">,</span>
+                <span class="k">output</span>            <span class="n">FIFOwriteRequest</span><span class="p">,</span>
+                <span class="k">output</span> <span class="kt">reg</span> <span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">FIFOwriteData</span><span class="p">,</span>
+                <span class="k">input</span>             <span class="n">FIFOwriteFull</span>
+        <span class="p">);</span>
+                <span class="n">ToShortPulse</span> <span class="n">toShortPulse_FIFOwriteRequest</span><span class="p">(</span>
+                        <span class="p">.</span><span class="n">clk</span><span class="p">(</span><span class="n">clk</span><span class="p">),</span>
+                        <span class="p">.</span><span class="n">longPulse</span><span class="p">(</span><span class="n">FIFOwriteData</span><span class="p">[</span><span class="mh">24</span><span class="p">]</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">FIFOwriteFull</span><span class="p">),</span>
+                        <span class="p">.</span><span class="n">shortPulse</span><span class="p">(</span><span class="n">FIFOwriteRequest</span><span class="p">),</span>
+                <span class="p">);</span>
+                <span class="k">always</span> <span class="p">@(</span><span class="k">posedge</span> <span class="n">clk</span><span class="p">)</span> <span class="k">begin</span>
+                        <span class="n">FIFOwriteData</span> <span class="o">&lt;=</span> <span class="n">FIFOwriteData</span><span class="o">+</span><span class="mh">1</span><span class="p">;</span>
+                <span class="k">end</span>
+        <span class="k">endmodule</span>
+
+        <span class="c1">// Module to make longPulse into shortPulse</span>
+        <span class="k">module</span> <span class="n">ToShortPulse</span><span class="p">(</span>
+                <span class="k">input</span> <span class="n">clk</span><span class="p">,</span>
+                <span class="k">input</span> <span class="n">longPulse</span><span class="p">,</span>
+                <span class="k">output</span> <span class="kt">reg</span> <span class="n">shortPulse</span>
+        <span class="p">);</span>
+                <span class="kt">reg</span> <span class="n">last_longPulse</span><span class="p">;</span>
+
+                <span class="k">always</span> <span class="p">@</span> <span class="p">(</span><span class="k">posedge</span> <span class="n">clk</span><span class="p">)</span> <span class="k">begin</span>
+                        <span class="n">shortPulse</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="n">last_longPulse</span><span class="o">==</span><span class="mh">0</span> <span class="o">&amp;&amp;</span> <span class="n">longPulse</span><span class="o">==</span><span class="mh">1</span><span class="p">)</span><span class="o">?</span><span class="mh">1</span><span class="o">:</span><span class="mh">0</span><span class="p">;</span>
+                        <span class="n">last_longPulse</span> <span class="o">&lt;=</span> <span class="n">longPulse</span><span class="p">;</span>
+                <span class="k">end</span>
+        <span class="k">endmodule</span>
+
+<span class="c1">// End Code added by me Part 3: MyModule</span>
+<span class="c1">//OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Processor-FPGA-Communication-Using-FIFO-Processor-Part.html" class="btn btn-neutral float-right" title="Processor-FPGA Communication: Using FIFO Processor Part" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="FAILED-Processor-FPGA-Communication-Using-FIFO-Processor-Part.html" class="btn btn-neutral float-left" title="FAILED Processor-FPGA Communication: Using FIFO Processor Part" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Tesla Cat
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

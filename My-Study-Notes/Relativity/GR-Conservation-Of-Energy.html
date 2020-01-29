@@ -1,0 +1,321 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>GR: Conservation Of Energy &mdash; My-Study-Notes  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Papers: Quantum Computers" href="../Papers-Quantum-Computers/index.html" />
+    <link rel="prev" title="GR: Solving Geodesic Equation" href="GR-Solving-Geodesic-Equation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> My-Study-Notes
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Math</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Math/index.html">Math</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Neurotechnology</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Neuromorphic-Vision/index.html">Neuromorphic Vision</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Electronics and Coding</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Experimental-Physics-SoC-FPGA-Design/index.html">Experimental Physics: SoC FPGA Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Django/index.html">Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Signal-Processing/index.html">Signal Processing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Machine Learning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Machine-Learning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption"><span class="caption-text">BioPhysics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Biomolecular-Physics/index.html">Biomolecular Physics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Mechanics-Feynman-Path-Integral/index.html">Quantum Mechanics: Feynman Path Integral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Computation/index.html">Quantum Computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Optics/index.html">Quantum Optics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Density-Functional-Theory/index.html">Density Functional Theory</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Statistical Mechanics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Thermodynamics-And-Statistical-Mechanics/index.html">Thermodynamics And Statistical Mechanics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Relativity</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Relativity</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Special-vs-General-Relativity.html">Special vs General Relativity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Coordinate-Transformation-And-Tensors.html">Coordinate Transformation And Tensors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SR-Lorentz-Transformation.html">SR: Lorentz Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GR-Solving-Geodesic-Equation.html">GR: Solving Geodesic Equation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">GR: Conservation Of Energy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#derivation">Derivation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Papers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Papers-Quantum-Computers/index.html">Papers: Quantum Computers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">My-Study-Notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Relativity</a> &raquo;</li>
+        
+      <li>GR: Conservation Of Energy</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Relativity/GR-Conservation-Of-Energy.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="gr-conservation-of-energy">
+<h1>GR: Conservation Of Energy<a class="headerlink" href="#gr-conservation-of-energy" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Date</dt>
+<dd class="field-odd"><p>26 Sep 2019</p>
+</dd>
+</dl>
+<div class="section" id="derivation">
+<h2>Derivation<a class="headerlink" href="#derivation" title="Permalink to this headline">¶</a></h2>
+<p><strong>Step 1</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+  &amp; \text{I. Earlier we had}\\
+  &amp; ds^2 = -(1-{r_s\over r}) dt^2+(1-{r_s\over r})^{-1} dr^2
+                  +r^2 d\theta^2+ r^2 \sin^2 \theta d\phi^2\\
+  &amp; u^2=u\cdot u = g_{ab}{dx^{(a)} \over d\tau}{dx^{(b)} \over d\tau}
+     = {ds^2\over -ds^2} =-1\\
+  &amp; (1-{r_s\over r}) {dt\over d\tau}=\text{const}\equiv e
+  \;\;\;\;\;\;\;\; r^2 \sin^2 \theta {d\phi \over d\tau}=\text{const}\equiv l \\
+  &amp; \text{II. Consider the case }\theta ={\pi\over 2} \text{ (Plane Orbit)}\\
+  &amp; \Rightarrow   g_{00} ({dt \over d\tau})^2 + g_{11} ({dr \over d\tau})^2 +
+          g_{33} ({d\phi \over d\tau})^2 = -1 \\
+  &amp; \Rightarrow
+          -(1-{r_s\over r}) ({dt \over d\tau})^2 +
+          (1-{r_s\over r})^{-1} ({dr \over d\tau})^2 +
+          r^2 ({d\phi \over d\tau})^2 = -1 \\
+  &amp; \Rightarrow
+          -(1-{r_s\over r})^{-1} e^2 +
+          (1-{r_s\over r})^{-1} ({dr \over d\tau})^2 +
+          {l^2\over r^2} = -1 \\
+  &amp; \Rightarrow
+          - e^2 +
+           ({dr \over d\tau})^2 +
+          (1-{r_s\over r}){l^2\over r^2} = -(1-{r_s\over r}) \\
+  &amp; \Rightarrow
+          \underbrace{ {1\over 2}({dr \over d\tau})^2 }_{\text{Kinetic}} +
+          \underbrace{ (-{1\over 2}){r_s\over r}+{1\over 2}{l^2\over r^2}\boxed{-{1\over 2}{r_s l^2\over r^3}} }_{\text{Potential } \tilde{V}}=
+          \underbrace{ {1\over 2}(e^2-1)\equiv \tilde{E} }_{\text{Total}} \\
+  &amp; \;\;\;\; {d\tilde{E}\over d\tau}=0\Rightarrow
+  {d^2r \over d\tau^2} =-{M\over r^2}+{l^2\over r^3}-{3Ml^2\over r^4}\\
+  &amp; \;\;\;\; \text{Recall when }r\gg r_s \Rightarrow r_s\approx 2M \\
+  &amp; \;\;\;\; \text{In Newtonian: }\underbrace{ {1\over 2}({dr \over d\tau})^2 }_{\text{Kinetic}} +
+\underbrace{ (-){M\over r}+{1\over 2}{l^2\over r^2} }_{\text{Potential}}=
+    \underbrace{ E }_{\text{Total}} \\
+  &amp; \text{III. Applications}\\
+  &amp; (1)\text{ Possible + Stable circular orbits:}\\
+  &amp; \;\;\;\;{d\tilde{V}\over dr}=0 \Rightarrow
+          r={l^2\pm \sqrt{ l^4-12M^2l^2 }\over 2M}
+          ={6M\over 1\pm \sqrt{ 1-12M^2/l^2 }}\\
+  &amp; \;\;\;\;{d^2\tilde{V}\over dr^2}&gt;0 \Rightarrow {2\over r}\underbrace{(-{M\over r^2}+{l^2\over r^3}-{3Ml^2\over r^4})}_{=-d\tilde{V}/ dr=0} +{l^2\over r^4}-{6Ml^2\over r^5}&gt;0 \\
+  &amp; \;\;\;\; \;\;\;\; \Rightarrow  l&gt;\sqrt{12}M, r&gt;6M \\
+  &amp; (2)\text{ Perihelion Shift:}\\
+  &amp; \;\;\;\; r^2  {d\phi \over d\tau}= l \Rightarrow {dr\over d\tau}={l\over r^2}{dr\over d\phi}
+          \;\;\;\; \;\;\;\; u\equiv {1\over r} \\
+  &amp; \;\;\;\; \Rightarrow \tilde{E}={1\over 2}(-l{du\over d\phi})^2
+          -Mu+{1\over 2}l^2u^2-Ml^2u^3\\
+  &amp; \;\;\;\; {d\tilde{E}\over d\phi }\overset{!}{=}0 \Rightarrow
+          {d^2 u\over d\phi^2}-{M\over l^2}+ u-M 3u^2=0 \\
+  &amp; \;\;\;\; \text{Perturbation theory: } u=u_0+c u_1 \;\;\;\; |u_1|\ll |u_0| \\
+  &amp; \;\;\;\; {d^2 u_0\over d\phi^2}-{M\over l^2}+ u_0=0 \;\; [1]\Rightarrow u_0= {M\over l^2}(1+\epsilon\cos\phi) \\
+  &amp; \;\;\;\; {d^2 cu_1\over d\phi^2}+ cu_1-c M 3u_0^2=0 \;\; [2] \\
+  &amp; \;\;\;\; \text{Note that we will let }c=1 \text{ at the end, you can} \\
+  &amp; \;\;\;\; \text{sum up [1] and [2] to check consistency}\\
+  &amp; \;\;\;\; \text{Assume } u_1(\phi)=A+B\phi\sin\phi+C\phi\cos\phi+D\sin2\phi+E\cos2\phi\\
+  &amp; \;\;\;\; \Rightarrow A= {3M^3\over l^4}(1+{\epsilon^2\over 2}), B={3M^3\epsilon\over l^4}, E=-{M^3 \epsilon^2\over 2l^4} \\
+  &amp; \;\;\;\; \text{Finally }u\approx {M\over l^2}(1+\epsilon\cos\phi+ {3M^2\epsilon\over l^2}\phi\sin\phi) \\
+  &amp; \;\;\;\; \approx {M\over l^2}(1+\epsilon\cos[(1-{3M^2\over l^2})\phi]) \Rightarrow \Delta \phi\approx 2\pi(1+{3M^2\over l^2}) \\
+  &amp; \;\;\;\; \text{Semi-major Axis of elliptical orbit: } a={l^2\over M(1-\epsilon^2)}\\
+  \end{align*}\end{split}\]</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Papers-Quantum-Computers/index.html" class="btn btn-neutral float-right" title="Papers: Quantum Computers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="GR-Solving-Geodesic-Equation.html" class="btn btn-neutral float-left" title="GR: Solving Geodesic Equation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Tesla Cat
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

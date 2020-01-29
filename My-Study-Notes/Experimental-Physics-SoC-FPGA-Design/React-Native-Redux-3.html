@@ -1,0 +1,609 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>React Native Redux 3 &mdash; My-Study-Notes  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Django" href="../Django/index.html" />
+    <link rel="prev" title="React Native Redux 2" href="React-Native-Redux-2.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> My-Study-Notes
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Math</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Math/index.html">Math</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Neurotechnology</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Neuromorphic-Vision/index.html">Neuromorphic Vision</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Electronics and Coding</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Experimental Physics: SoC FPGA Design</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Design-Plan.html">Design Plan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Linux-Tips.html">Linux Tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Processor-FPGA-Communication-FPGA-Part.html">Processor-FPGA Communication: FPGA Part</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Processor-FPGA-Communication-Processor-Part.html">Processor-FPGA Communication: Processor Part</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FAILED-Processor-FPGA-Communication-Using-FIFO-FPGA-Part.html">FAILED Processor-FPGA Communication: Using FIFO FPGA Part</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FAILED-Processor-FPGA-Communication-Using-FIFO-Processor-Part.html">FAILED Processor-FPGA Communication: Using FIFO Processor Part</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Processor-FPGA-Communication-Using-FIFO-FPGA-Part.html">Processor-FPGA Communication: Using FIFO FPGA Part</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Processor-FPGA-Communication-Using-FIFO-Processor-Part.html">Processor-FPGA Communication: Using FIFO Processor Part</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Nodejs-Talking-To-C-Executable-1.html">Nodejs Talking To C Executable 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Nodejs-Talking-To-C-Executable-2.html">Nodejs Talking To C Executable 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Verilog-DataSender.html">Verilog DataSender</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Verilog-My16ChannelCounter.html">Verilog My16ChannelCounter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Verilog-MemoryMapper.html">Verilog MemoryMapper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Nodejs-RESTful-API-Basic.html">Nodejs RESTful API Basic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Summary.html">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Nodejs-RESTful-API-Email-Verification.html">Nodejs RESTful API Email Verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Nodejs-RESTful-API-Production.html">Nodejs RESTful API Production</a></li>
+<li class="toctree-l2"><a class="reference internal" href="React-Native-Redux-1.html">React Native Redux 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="React-Native-Redux-2.html">React Native Redux 2</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">React Native Redux 3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-the-idea">What is the idea?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functions-moviefinder-js">functions/movieFinder.js</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#components-movielist-js">components/MovieList.js</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#components-moviedetail-js">components/MovieDetail.js</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#components-episodes-js">components/Episodes.js</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#components-styles-js">components/styles.js</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#actions-home-js">actions/Home.js</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reducers-home-js">reducers/Home.js</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Django/index.html">Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Signal-Processing/index.html">Signal Processing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Machine Learning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Machine-Learning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption"><span class="caption-text">BioPhysics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Biomolecular-Physics/index.html">Biomolecular Physics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Mechanics-Feynman-Path-Integral/index.html">Quantum Mechanics: Feynman Path Integral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Computation/index.html">Quantum Computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Optics/index.html">Quantum Optics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Density-Functional-Theory/index.html">Density Functional Theory</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Statistical Mechanics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Thermodynamics-And-Statistical-Mechanics/index.html">Thermodynamics And Statistical Mechanics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Relativity</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Relativity/index.html">Relativity</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Papers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Papers-Quantum-Computers/index.html">Papers: Quantum Computers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">My-Study-Notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Experimental Physics: SoC FPGA Design</a> &raquo;</li>
+        
+      <li>React Native Redux 3</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Experimental-Physics-SoC-FPGA-Design/React-Native-Redux-3.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="react-native-redux-3">
+<h1>React Native Redux 3<a class="headerlink" href="#react-native-redux-3" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Date</dt>
+<dd class="field-odd"><p>13 Oct 2019</p>
+</dd>
+</dl>
+<div class="section" id="what-is-the-idea">
+<h2>What is the idea?<a class="headerlink" href="#what-is-the-idea" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Add</dt><dd><ul>
+<li><p>Added movieFinder, a function to get movies by parsing XML</p></li>
+<li><p>Added MovieList, MovieDetail, Episodes Components</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Moved</dt><dd><ul>
+<li><p>Moved all styles to a single file</p></li>
+<li><p>Moved all actions to a single file</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Modified</dt><dd><ul>
+<li><p>Modified reducers for Home</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="functions-moviefinder-js">
+<h2>functions/movieFinder.js<a class="headerlink" href="#functions-moviefinder-js" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">parseString</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;react-native-xml2js&#39;</span><span class="p">).</span><span class="nx">parseString</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">movieFinder</span><span class="p">(</span><span class="nx">uriPrefix</span><span class="p">,</span><span class="nx">keyword</span><span class="p">,</span><span class="nx">callback</span><span class="p">){</span>
+  <span class="kd">var</span> <span class="nx">results</span><span class="o">=</span><span class="p">[]</span>
+  <span class="nx">fetchVideos</span><span class="p">(</span><span class="nx">uriPrefix</span><span class="o">+</span><span class="s2">&quot;&amp;wd=&quot;</span><span class="o">+</span><span class="nx">keyword</span><span class="p">,(</span><span class="nx">vids</span><span class="p">)=&gt;{</span>
+    <span class="nx">vids</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">vid</span><span class="p">)=&gt;{</span>
+      <span class="nx">fetchVideos</span><span class="p">(</span><span class="nx">uriPrefix</span><span class="o">+</span><span class="s2">&quot;ac=videolist&amp;ids=&quot;</span><span class="o">+</span><span class="nx">vid</span><span class="p">.</span><span class="nx">id</span><span class="p">[</span><span class="mi">0</span><span class="p">],(</span><span class="nx">vids</span><span class="p">)=&gt;{</span>
+        <span class="nx">vids</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">dl</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">dd</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">dd</span><span class="p">)=&gt;{</span>
+          <span class="k">if</span><span class="p">(</span><span class="nx">dd</span><span class="p">.</span><span class="nx">$</span><span class="p">.</span><span class="nx">flag</span><span class="o">==</span><span class="s2">&quot;ckm3u8&quot;</span><span class="p">){</span>
+            <span class="kd">var</span> <span class="nx">eps</span><span class="o">=</span><span class="nx">dd</span><span class="p">.</span><span class="nx">_</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">)</span>
+            <span class="kd">var</span> <span class="nx">episodes</span><span class="o">=</span><span class="p">[]</span>
+            <span class="nx">eps</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">ep</span><span class="p">)=&gt;{</span>
+              <span class="kd">var</span> <span class="nx">episode</span><span class="o">=</span><span class="nx">ep</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&quot;$&quot;</span><span class="p">)</span>
+              <span class="nx">episodes</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span><span class="nx">label</span><span class="o">:</span><span class="nx">episode</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="nx">uri</span><span class="o">:</span><span class="nx">episode</span><span class="p">[</span><span class="mi">1</span><span class="p">]})</span>
+            <span class="p">})</span>
+            <span class="kd">var</span> <span class="nx">result</span><span class="o">=</span><span class="p">{</span>
+              <span class="nx">name</span><span class="o">:</span> <span class="nx">vids</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">name</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+              <span class="nx">pic</span><span class="o">:</span> <span class="nx">vids</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">pic</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+              <span class="nx">episodes</span><span class="o">:</span><span class="nx">episodes</span><span class="p">,</span>
+            <span class="p">}</span>
+            <span class="nx">callback</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span>
+          <span class="p">}</span>
+        <span class="p">})</span>
+      <span class="p">})</span>
+    <span class="p">})</span>
+  <span class="p">})</span>
+<span class="p">}</span>
+
+<span class="c1">// ===================================</span>
+<span class="kr">const</span> <span class="nx">fetchVideos</span><span class="o">=</span><span class="p">(</span><span class="nx">uri</span><span class="p">,</span><span class="nx">callback</span><span class="p">)=&gt;{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">uri</span><span class="p">)</span>
+  <span class="nx">fetch</span><span class="p">(</span><span class="nx">uri</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="p">=&gt;</span><span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">())</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)=&gt;{</span>
+      <span class="nx">parseString</span><span class="p">(</span><span class="nx">response</span><span class="p">,(</span><span class="nx">err</span><span class="p">,</span><span class="nx">result</span><span class="p">)=&gt;{</span>
+        <span class="kd">var</span> <span class="nx">videos</span> <span class="o">=</span> <span class="nx">result</span><span class="p">.</span><span class="nx">rss</span><span class="p">.</span><span class="nx">list</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">video</span>
+        <span class="nx">callback</span><span class="p">(</span><span class="nx">videos</span><span class="p">)</span>
+      <span class="p">})</span>
+    <span class="p">})</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>To use:</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">uriPrefix</span> <span class="o">=</span> <span class="s2">&quot;https://cj.okzy.tv/inc/api1s.php?&quot;</span>
+<span class="kr">const</span> <span class="nx">keyword</span> <span class="o">=</span> <span class="s2">&quot;硅谷&quot;</span>
+<span class="nx">movieFinder</span><span class="p">(</span><span class="nx">uriPrefix</span><span class="p">,</span><span class="nx">keyword</span><span class="p">,(</span><span class="nx">result</span><span class="p">)=&gt;{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="components-movielist-js">
+<h2>components/MovieList.js<a class="headerlink" href="#components-movielist-js" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span>import React,{Component} from &#39;react&#39;
+import {FlatList,View,Modal,TouchableOpacity,Text} from &#39;react-native&#39;
+import {bindActionCreators} from &#39;redux&#39;
+import {connect} from &#39;react-redux&#39;
+
+import styles from &#39;./styles&#39;
+import MovieDetail from &#39;./MovieDetail&#39;
+import {changeMovie} from &#39;../actions/Home&#39;
+
+class MovieList extends Component{
+  state={modalVisible:false}
+  flipModal=()=&gt;{
+    this.setState({modalVisible:!this.state.modalVisible})
+  }
+
+  render(){
+    return(
+      &lt;View&gt;
+        &lt;Modal animationType=&quot;slide&quot; transparent={true}
+          visible={this.state.modalVisible}&gt;
+          &lt;View style={styles.Modal}&gt;
+            &lt;TouchableOpacity style={styles.ModalCloseButton}
+              onPress={()=&gt;this.flipModal()}&gt;
+              &lt;Text style={styles.TextWhite}&gt;收起&lt;/Text&gt;
+            &lt;/TouchableOpacity&gt;
+            &lt;TouchableOpacity style={styles.ModalItems}
+              onPress={()=&gt;this.flipModal()}&gt;
+
+              &lt;FlatList data={this.props.Home.movies}
+                style={{backgroundColor:&#39;transparent&#39;}}
+                renderItem={({item})=&gt;(
+                  &lt;TouchableOpacity style={styles.ModalCloseButton}
+                    onPress={()=&gt;{
+                      this.flipModal()
+                      this.props.changeMovie(item)
+                    }}&gt;
+                    &lt;MovieDetail movie={item}/&gt;
+                  &lt;/TouchableOpacity&gt;
+                )}
+                keyExtractor={item=&gt;item.name}
+              /&gt;
+
+            &lt;/TouchableOpacity&gt;
+          &lt;/View&gt;
+        &lt;/Modal&gt;
+        &lt;TouchableOpacity style={styles.ModalOpenButton}
+          onPress={()=&gt;this.flipModal()}&gt;
+          &lt;Text style={styles.TextWhite}&gt;影视列表&lt;/Text&gt;
+        &lt;/TouchableOpacity&gt;
+      &lt;/View&gt;
+    )
+  }
+}
+
+const mapStateToProps=(state)=&gt;{
+  const {Home}=state
+  return {Home}
+}
+const mapActionToProps=action=&gt;(
+  bindActionCreators({changeMovie},action)
+)
+export default connect(mapStateToProps,mapActionToProps)(MovieList)
+</pre></div>
+</div>
+</div>
+<div class="section" id="components-moviedetail-js">
+<h2>components/MovieDetail.js<a class="headerlink" href="#components-moviedetail-js" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span>import React,{Component} from &#39;react&#39;
+import {View,Text,Image} from &#39;react-native&#39;
+
+import styles from &#39;./styles&#39;
+
+export default class MovieDetail extends Component{
+  render(){
+    return(
+      &lt;View style={styles.MovieDetailBody}&gt;
+        &lt;Text style={styles.MovieDetailName}&gt;
+          {this.props.movie.name}&lt;/Text&gt;
+        &lt;Image style={styles.MovieDetailImage}
+          source={{uri: this.props.movie.pic}}/&gt;
+      &lt;/View&gt;
+    )
+  }
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="components-episodes-js">
+<h2>components/Episodes.js<a class="headerlink" href="#components-episodes-js" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span>import React,{Component} from &#39;react&#39;
+import {FlatList,View,Modal,TouchableOpacity,Text} from &#39;react-native&#39;
+import {bindActionCreators} from &#39;redux&#39;
+import {connect} from &#39;react-redux&#39;
+
+import styles from &#39;./styles&#39;
+import {changeMovie} from &#39;../actions/Home&#39;
+
+class Episodes extends Component{
+  state={modalVisible:false}
+  flipModal=()=&gt;{
+    this.setState({modalVisible:!this.state.modalVisible})
+  }
+
+  render(){
+    return(
+      &lt;View&gt;
+        &lt;Modal animationType=&quot;slide&quot; transparent={true}
+          visible={this.state.modalVisible}&gt;
+          &lt;View style={styles.Modal}&gt;
+            &lt;TouchableOpacity style={styles.ModalCloseButton}
+              onPress={()=&gt;this.flipModal()}&gt;
+              &lt;Text style={styles.TextWhite}&gt;收起&lt;/Text&gt;
+            &lt;/TouchableOpacity&gt;
+            &lt;TouchableOpacity style={styles.ModalItems}
+              onPress={()=&gt;this.flipModal()}&gt;
+
+              &lt;FlatList data={this.props.Home.currentMovie.episodes}
+                style={{backgroundColor:&#39;transparent&#39;}}
+                renderItem={({item})=&gt;(
+                  &lt;TouchableOpacity style={styles.ModalCloseButton}
+                    onPress={()=&gt;{
+                      this.flipModal()
+                      var currentMovie = this.props.Home.currentMovie
+                      currentMovie.currentEpisode = item
+                      this.props.changeMovie(currentMovie)
+                    }}&gt;
+                    &lt;Text style={styles.TextWhite}&gt;{item.label}&lt;/Text&gt;
+                  &lt;/TouchableOpacity&gt;
+                )}
+                keyExtractor={item=&gt;item.label}
+              /&gt;
+
+            &lt;/TouchableOpacity&gt;
+          &lt;/View&gt;
+        &lt;/Modal&gt;
+        &lt;TouchableOpacity style={styles.ModalOpenButton}
+          onPress={()=&gt;this.flipModal()}&gt;
+          &lt;Text style={styles.TextWhite}&gt;选集&lt;/Text&gt;
+        &lt;/TouchableOpacity&gt;
+      &lt;/View&gt;
+    )
+  }
+}
+
+const mapStateToProps=(state)=&gt;{
+  const {Home}=state
+  return {Home}
+}
+const mapActionToProps=action=&gt;(
+  bindActionCreators({changeMovie},action)
+)
+export default connect(mapStateToProps,mapActionToProps)(Episodes)
+</pre></div>
+</div>
+</div>
+<div class="section" id="components-styles-js">
+<h2>components/styles.js<a class="headerlink" href="#components-styles-js" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span><span class="nx">StyleSheet</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-native&#39;</span>
+
+<span class="kr">const</span> <span class="nx">ButtonCommon</span><span class="o">=</span><span class="p">{</span>
+  <span class="nx">alignItems</span><span class="o">:</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+  <span class="nx">borderWidth</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span><span class="nx">borderRadius</span><span class="o">:</span><span class="mi">10</span><span class="p">,</span><span class="nx">borderColor</span><span class="o">:</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
+  <span class="c1">//backgroundColor:&#39;black&#39;,</span>
+  <span class="nx">margin</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span>
+  <span class="nx">padding</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">TextCommon</span><span class="o">=</span><span class="p">{</span>
+  <span class="nx">fontSize</span><span class="o">:</span><span class="mi">18</span><span class="p">,</span><span class="nx">fontWeight</span><span class="o">:</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">styles</span> <span class="o">=</span> <span class="nx">StyleSheet</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
+  <span class="nx">Modal</span><span class="o">:</span><span class="p">{</span><span class="nx">alignItems</span><span class="o">:</span><span class="s1">&#39;flex-end&#39;</span><span class="p">,</span><span class="nx">paddingRight</span><span class="o">:</span><span class="mi">120</span><span class="p">},</span>
+  <span class="nx">ModalOpenButton</span><span class="o">:</span><span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span> <span class="nx">ButtonCommon</span><span class="p">),</span>
+  <span class="nx">ModalCloseButton</span><span class="o">:</span><span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span> <span class="nx">ButtonCommon</span><span class="p">),</span>
+  <span class="nx">ModalItems</span><span class="o">:</span><span class="p">{</span><span class="nx">backgroundColor</span><span class="o">:</span><span class="s1">&#39;black&#39;</span><span class="p">},</span>
+  <span class="nx">MovieDetailBody</span><span class="o">:</span><span class="p">{</span><span class="nx">flexDirection</span><span class="o">:</span><span class="s1">&#39;row-reverse&#39;</span><span class="p">},</span>
+  <span class="nx">MovieDetailImage</span><span class="o">:</span><span class="p">{</span><span class="nx">width</span><span class="o">:</span><span class="mi">60</span><span class="p">,</span><span class="nx">height</span><span class="o">:</span><span class="mi">90</span><span class="p">},</span>
+  <span class="nx">MovieDetailName</span><span class="o">:</span><span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({</span><span class="nx">color</span><span class="o">:</span><span class="s1">&#39;white&#39;</span><span class="p">},</span> <span class="nx">TextCommon</span><span class="p">),</span>
+  <span class="nx">TextWhite</span><span class="o">:</span><span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({</span><span class="nx">color</span><span class="o">:</span><span class="s1">&#39;white&#39;</span><span class="p">},</span> <span class="nx">TextCommon</span><span class="p">),</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="actions-home-js">
+<h2>actions/Home.js<a class="headerlink" href="#actions-home-js" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">export</span> <span class="kr">const</span> <span class="nx">changeMovie</span> <span class="o">=</span> <span class="nx">payload</span><span class="p">=&gt;({</span>
+    <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;changeMovie&quot;</span><span class="p">,</span>
+    <span class="nx">payload</span><span class="o">:</span> <span class="nx">payload</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="reducers-home-js">
+<h2>reducers/Home.js<a class="headerlink" href="#reducers-home-js" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">movie1</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">id</span><span class="o">:</span><span class="mi">214</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;硅谷第四季&quot;</span><span class="p">,</span> <span class="nx">area</span><span class="o">:</span> <span class="s2">&quot;美国&quot;</span><span class="p">,</span> <span class="nx">year</span><span class="o">:</span> <span class="mi">2017</span><span class="p">,</span>
+    <span class="nx">pic</span><span class="o">:</span> <span class="s2">&quot;https://facebook.github.io/react-native/img/tiny_logo.png&quot;</span><span class="p">,</span>
+    <span class="nx">currentEpisode</span><span class="o">:</span> <span class="p">{</span><span class="nx">label</span><span class="o">:</span><span class="s2">&quot;第01集&quot;</span><span class="p">,</span><span class="nx">uri</span><span class="o">:</span><span class="s2">&quot;https://youku.com-youku.net/20180604/9320_35c569aa/index.m3u8&quot;</span><span class="p">},</span>
+    <span class="nx">episodes</span><span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span><span class="nx">label</span><span class="o">:</span><span class="s2">&quot;第01集&quot;</span><span class="p">,</span><span class="nx">uri</span><span class="o">:</span><span class="s2">&quot;https://youku.com-youku.net/20180604/9320_35c569aa/index.m3u8&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="nx">label</span><span class="o">:</span><span class="s2">&quot;第02集&quot;</span><span class="p">,</span><span class="nx">uri</span><span class="o">:</span><span class="s2">&quot;https://youku.com-youku.net/20180604/9321_75f7c37c/index.m3u8&quot;</span><span class="p">},</span>
+    <span class="p">],</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">movie2</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">id</span><span class="o">:</span><span class="mi">214</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;硅谷第4季&quot;</span><span class="p">,</span> <span class="nx">area</span><span class="o">:</span> <span class="s2">&quot;美国&quot;</span><span class="p">,</span> <span class="nx">year</span><span class="o">:</span> <span class="mi">2017</span><span class="p">,</span>
+    <span class="nx">pic</span><span class="o">:</span> <span class="s2">&quot;https://facebook.github.io/react-native/img/tiny_logo.png&quot;</span><span class="p">,</span>
+    <span class="nx">currentEpisode</span><span class="o">:</span> <span class="p">{</span><span class="nx">label</span><span class="o">:</span><span class="s2">&quot;第02集&quot;</span><span class="p">,</span><span class="nx">uri</span><span class="o">:</span><span class="s2">&quot;https://youku.com-youku.net/20180604/9321_75f7c37c/index.m3u8&quot;</span><span class="p">},</span>
+    <span class="nx">episodes</span><span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span><span class="nx">label</span><span class="o">:</span><span class="s2">&quot;第01集&quot;</span><span class="p">,</span><span class="nx">uri</span><span class="o">:</span><span class="s2">&quot;https://youku.com-youku.net/20180604/9320_35c569aa/index.m3u8&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="nx">label</span><span class="o">:</span><span class="s2">&quot;第02集&quot;</span><span class="p">,</span><span class="nx">uri</span><span class="o">:</span><span class="s2">&quot;https://youku.com-youku.net/20180604/9321_75f7c37c/index.m3u8&quot;</span><span class="p">},</span>
+    <span class="p">],</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">initialState</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">currentMovie</span><span class="o">:</span> <span class="nx">movie1</span><span class="p">,</span>
+    <span class="nx">movies</span><span class="o">:</span><span class="p">[</span><span class="nx">movie1</span><span class="p">,</span> <span class="nx">movie2</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">HomeReducer</span> <span class="o">=</span> <span class="p">(</span><span class="nx">state</span><span class="o">=</span><span class="nx">initialState</span><span class="p">,</span> <span class="nx">action</span><span class="p">)=&gt;{</span>
+    <span class="k">switch</span><span class="p">(</span><span class="nx">action</span><span class="p">.</span><span class="nx">type</span><span class="p">){</span>
+        <span class="k">case</span> <span class="s2">&quot;changeMovie&quot;</span><span class="o">:</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">action</span><span class="p">.</span><span class="nx">payload</span><span class="o">==</span><span class="kc">null</span><span class="p">){</span>
+                <span class="kd">var</span> <span class="nx">randomIndex</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="o">*</span><span class="nx">state</span><span class="p">.</span><span class="nx">movies</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;changeMovie&quot;</span><span class="p">,</span><span class="nx">randomIndex</span><span class="p">)</span>
+                <span class="k">return</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span> <span class="nx">state</span><span class="p">,</span> <span class="p">{</span>
+                    <span class="nx">currentMovie</span><span class="o">:</span> <span class="nx">state</span><span class="p">.</span><span class="nx">movies</span><span class="p">[</span><span class="nx">randomIndex</span><span class="p">]</span>
+                  <span class="p">})</span>
+            <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">action</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
+                <span class="k">return</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span> <span class="nx">state</span><span class="p">,</span> <span class="p">{</span>
+                    <span class="nx">currentMovie</span><span class="o">:</span> <span class="nx">action</span><span class="p">.</span><span class="nx">payload</span>
+                  <span class="p">})</span>
+            <span class="p">}</span>
+
+        <span class="k">default</span><span class="o">:</span>
+            <span class="k">return</span> <span class="nx">state</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">HomeReducer</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Django/index.html" class="btn btn-neutral float-right" title="Django" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="React-Native-Redux-2.html" class="btn btn-neutral float-left" title="React Native Redux 2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Tesla Cat
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

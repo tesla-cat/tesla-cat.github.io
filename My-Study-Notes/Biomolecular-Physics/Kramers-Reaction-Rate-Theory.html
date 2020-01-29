@@ -1,0 +1,320 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Kramers Reaction Rate Theory &mdash; My-Study-Notes  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Quantum Mechanics: Feynman Path Integral" href="../Quantum-Mechanics-Feynman-Path-Integral/index.html" />
+    <link rel="prev" title="Non-equilibrium Thermodynamics" href="Non-equilibrium-Thermodynamics.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> My-Study-Notes
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Math</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Math/index.html">Math</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Neurotechnology</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Neuromorphic-Vision/index.html">Neuromorphic Vision</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Electronics and Coding</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Experimental-Physics-SoC-FPGA-Design/index.html">Experimental Physics: SoC FPGA Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Django/index.html">Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Signal-Processing/index.html">Signal Processing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Machine Learning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Machine-Learning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption"><span class="caption-text">BioPhysics</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Biomolecular Physics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Master-Equation.html">Master Equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hartree-Fock-Method.html">Hartree Fock Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Density-Functional-Theory.html">Density Functional Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Free-Energy-Calculation.html">Free Energy Calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Non-equilibrium-Thermodynamics.html">Non-equilibrium Thermodynamics</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Kramers Reaction Rate Theory</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dependency">Dependency</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-the-problem">What is the problem ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#derivation">Derivation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Mechanics-Feynman-Path-Integral/index.html">Quantum Mechanics: Feynman Path Integral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Computation/index.html">Quantum Computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Optics/index.html">Quantum Optics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Density-Functional-Theory/index.html">Density Functional Theory</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Statistical Mechanics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Thermodynamics-And-Statistical-Mechanics/index.html">Thermodynamics And Statistical Mechanics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Relativity</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Relativity/index.html">Relativity</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Papers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Papers-Quantum-Computers/index.html">Papers: Quantum Computers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">My-Study-Notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Biomolecular Physics</a> &raquo;</li>
+        
+      <li>Kramers Reaction Rate Theory</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Biomolecular-Physics/Kramers-Reaction-Rate-Theory.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="kramers-reaction-rate-theory">
+<h1>Kramers Reaction Rate Theory<a class="headerlink" href="#kramers-reaction-rate-theory" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Date</dt>
+<dd class="field-odd"><p>28 July 2019</p>
+</dd>
+</dl>
+<div class="section" id="dependency">
+<h2>Dependency<a class="headerlink" href="#dependency" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#statistical-mechanics">Statistical Mechanics</a></p></li>
+<li><p><a class="reference internal" href="#boltzmann-factor">Boltzmann Factor</a></p></li>
+</ul>
+</div>
+<div class="section" id="what-is-the-problem">
+<span id="boltzmann-factor"></span><span id="statistical-mechanics"></span><h2>What is the problem ?<a class="headerlink" href="#what-is-the-problem" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default" id="id1">
+<img alt="../_images/Kramers-Reaction-Rate-Theory-1.PNG" src="../_images/Kramers-Reaction-Rate-Theory-1.PNG" />
+<p class="caption"><span class="caption-text"><em>TO BE MODIFIED</em></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="math notranslate nohighlight">
+\[\require{mhchem}
+\ce{A &lt;=&gt; B -&gt;[k^+] C}\]</div>
+<p>Let the transition state <span class="math notranslate nohighlight">\(B\)</span> correspond to <strong>reaction coordinate</strong> <span class="math notranslate nohighlight">\(x=x^{\ne}\)</span></p>
+</div>
+<div class="section" id="derivation">
+<h2>Derivation<a class="headerlink" href="#derivation" title="Permalink to this headline">¶</a></h2>
+<p><strong>Step 1</strong> <strong>Transition State Theory (TST)</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+&amp; k^+ = {\text{flux} \over N_A} \\
+&amp; \text{and}\\
+&amp; \text{flux} = \underbrace{{N^{\ne} \over \Delta x}}_{\text{density}}
+        \underbrace{\langle v^{\ne} \rangle}_{velocity} \\
+&amp; {N^{\ne} \over N_A} = {z^{\ne} \over z_A} \; (\text{Boltzmann Factor})\\
+\Rightarrow &amp; k^+ = {z^{\ne} \over z_A} {\langle v^{\ne} \rangle \over \Delta x}
+\end{align*}\end{split}\]</div>
+<p><strong>Step 2</strong> Find <span class="math notranslate nohighlight">\(z^{\ne}\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+&amp; z^{\ne} = {1\over h} \int dp
+        \int_{x^{\ne}-{\Delta x \over 2}}^{x^{\ne}+{\Delta x \over 2}}
+        dx \; \exp[{p^2\over 2m}+V(x)] \\
+&amp;\text{Assume } V=const \text{ around } x^{\ne}\\
+\Rightarrow z^{\ne} &amp; = {1\over h} \Delta x\; e^{-\beta V(x^{\ne})}
+        \sqrt{2\pi m \beta}
+\end{align*}\end{split}\]</div>
+<p><strong>Step 3</strong> Find <span class="math notranslate nohighlight">\(z^A\)</span></p>
+<p><em>TO BE ADDED</em></p>
+<p><strong>Step 4</strong> Find <span class="math notranslate nohighlight">\(\langle v^{\ne} \rangle\)</span></p>
+<p><em>TO BE ADDED</em></p>
+<p><strong>Step 5</strong> Combining above</p>
+<div class="math notranslate nohighlight">
+\[\boxed{
+        k^+ = {\omega_A \over 2\pi}e^{-\beta V(x^{\ne})} \;\;\; \text{TST}
+}\]</div>
+<p><strong>Step 6</strong> Modify <strong>TST</strong> to get <strong>Kramers Theory</strong></p>
+<p><em>TO BE FURTHER EXPLAINED</em></p>
+<div class="math notranslate nohighlight">
+\[\boxed{
+        k^+ = {1\over \omega_B}\left(-{\gamma \over 2}+\sqrt{{\gamma^2 \over 4}+\omega_B^2}\right)
+        \left\{
+                {\omega_A \over 2\pi}e^{-\beta V(x^{\ne})}
+        \right\} \;\;\; \text{Kramers}
+}\]</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Quantum-Mechanics-Feynman-Path-Integral/index.html" class="btn btn-neutral float-right" title="Quantum Mechanics: Feynman Path Integral" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Non-equilibrium-Thermodynamics.html" class="btn btn-neutral float-left" title="Non-equilibrium Thermodynamics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Tesla Cat
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
