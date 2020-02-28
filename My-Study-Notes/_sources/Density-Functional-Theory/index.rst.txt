@@ -13,6 +13,7 @@ Density Functional Theory
 	CODE-1D-DFT
 	CODE-1D-DPFT
 	CODE-1D-DPFT-Momentum-Space
+	CODE-3D-DPFT-Momentum-Space
 	
 	
 	

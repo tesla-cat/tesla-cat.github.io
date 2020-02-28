@@ -1,0 +1,484 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Initialize &mdash; My-Study-Notes  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> My-Study-Notes
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Math</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Math/index.html">Math</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Neurotechnology</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Neuromorphic-Vision/index.html">Neuromorphic Vision</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Electronics and Coding</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Experimental-Physics-SoC-FPGA-Design/index.html">Experimental Physics: SoC FPGA Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Django/index.html">Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Signal-Processing/index.html">Signal Processing</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Machine Learning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Machine-Learning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption"><span class="caption-text">BioPhysics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Biomolecular-Physics/index.html">Biomolecular Physics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Quantum-Mechanics-Feynman-Path-Integral/index.html">Quantum Mechanics: Feynman Path Integral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Quantum-Computation/index.html">Quantum Computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Quantum-Optics/index.html">Quantum Optics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Density Functional Theory</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Statistical Mechanics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Thermodynamics-And-Statistical-Mechanics/index.html">Thermodynamics And Statistical Mechanics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Relativity</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Relativity/index.html">Relativity</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Papers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Papers-Quantum-Computers/index.html">Papers: Quantum Computers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">My-Study-Notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+      <li>Initialize</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/Density-Functional-Theory/imgs/DPFTM/DPFTM.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p>$ T_{<a href="#id1"><span class="problematic" id="id2">:raw-latex:`\text{int}`</span></a>} =
+<a href="#id3"><span class="problematic" id="id4">:raw-latex:`\int {d\pmb{k}}`[{:raw-latex:`</span></a>pmb{mu}`<sup>2:raw-latex:</sup>over <cite>3}-{(:raw-latex:</cite>pmb{mu}`:raw-latex:<cite>cdot</cite><a href="#id5"><span class="problematic" id="id6">:raw-latex:`\pmb{k}`</span></a>)`2:raw-latex:<cite>over `:raw-latex:</cite>pmb{k}`^2}]
+<a href="#id7"><span class="problematic" id="id8">:raw-latex:`\eta[\rho(\pmb{p}+\hbar \pmb{k})-\rho(\pmb{p})] `:raw-latex:`</span></a>qquad <cite>:raw-latex:</cite>text{where }`:raw-latex:<cite>eta `:raw-latex:</cite>text{ is Heaviside step func}`
+$</p>
+<div class="section" id="initialize">
+<h1>Initialize<a class="headerlink" href="#initialize" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span> <span class="k">as</span> <span class="nn">tc</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">gpu</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cuda:0&#39;</span> <span class="k">if</span> <span class="n">tc</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="funcs">
+<h1>Funcs<a class="headerlink" href="#funcs" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">consts</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;kx&#39;</span><span class="p">,</span><span class="s1">&#39;ky&#39;</span><span class="p">,</span><span class="s1">&#39;kz&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;Tkin&#39;</span><span class="p">,</span><span class="s1">&#39;TkinPrime&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;TintIntegrand&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">variables</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s1">&#39;rho&#39;</span><span class="p">,</span><span class="s1">&#39;rhoPrime&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;Tint&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<div class="section" id="gettkin">
+<h2>getTkin<a class="headerlink" href="#gettkin" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">getTkin</span><span class="p">(</span><span class="n">o</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">z</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="gettintintegrand">
+<h2>getTintIntegrand<a class="headerlink" href="#gettintintegrand" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">getTintIntegrand</span><span class="p">(</span><span class="n">o</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">kz</span><span class="p">):</span>
+  <span class="n">c</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;Tint&#39;</span><span class="p">]</span>
+  <span class="n">mu</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="s1">&#39;muVec&#39;</span><span class="p">]</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">mu2over3</span> <span class="o">-</span> <span class="p">(</span><span class="n">mu</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">kx</span> <span class="o">+</span><span class="n">mu</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">ky</span> <span class="o">+</span><span class="n">mu</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">kz</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">kx</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">ky</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">kz</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">c</span><span class="p">[</span><span class="s1">&#39;strength&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">i</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="make-space">
+<h2>make space<a class="headerlink" href="#make-space" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">makeSpace</span><span class="p">(</span><span class="n">p0</span><span class="p">,</span><span class="n">p1</span><span class="p">,</span><span class="n">Np</span><span class="p">):</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="n">y</span> <span class="o">=</span> <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">p0</span><span class="p">,</span><span class="n">p1</span><span class="p">,</span><span class="n">Np</span><span class="p">)</span>
+  <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+  <span class="n">z</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span>
+
+<span class="k">def</span> <span class="nf">makeSpaceForTint</span><span class="p">(</span><span class="n">o</span><span class="p">):</span>
+  <span class="n">c</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;space&#39;</span><span class="p">]</span>
+  <span class="n">muVec</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;Tint&#39;</span><span class="p">][</span><span class="s1">&#39;muVec&#39;</span><span class="p">]</span>
+  <span class="n">p0</span><span class="p">,</span><span class="n">p1</span><span class="p">,</span><span class="n">Np</span><span class="p">,</span><span class="n">Nk</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="s1">&#39;p0&#39;</span><span class="p">],</span><span class="o">-</span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;p0&#39;</span><span class="p">],</span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;Np&#39;</span><span class="p">],</span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;Nk&#39;</span><span class="p">]</span>
+  <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="n">Nk</span><span class="p">,</span><span class="n">Nk</span><span class="p">,</span><span class="n">Nk</span><span class="p">,</span><span class="n">Np</span><span class="p">,</span><span class="n">Np</span><span class="p">,</span><span class="n">Np</span><span class="p">]</span>
+
+  <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">makeSpace</span><span class="p">(</span><span class="n">p0</span><span class="p">,</span><span class="n">p1</span><span class="p">,</span><span class="n">Np</span><span class="p">)</span>
+  <span class="n">x_</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="p">);</span> <span class="n">x_</span><span class="p">[:][:][:]</span> <span class="o">=</span> <span class="n">x</span>
+  <span class="n">y_</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="p">);</span> <span class="n">y_</span><span class="p">[:][:][:]</span> <span class="o">=</span> <span class="n">y</span>
+  <span class="n">z_</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="p">);</span> <span class="n">z_</span><span class="p">[:][:][:]</span> <span class="o">=</span> <span class="n">z</span>
+
+  <span class="n">k</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">p0</span><span class="p">,</span><span class="n">p1</span><span class="p">,</span><span class="n">Nk</span><span class="p">)</span>
+  <span class="n">kx</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+  <span class="n">ky</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+  <span class="n">kz</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nk</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nk</span><span class="p">):</span>
+      <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nk</span><span class="p">):</span>
+        <span class="n">kx</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">k</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">ky</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">k</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+        <span class="n">kz</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">k</span><span class="p">[</span><span class="n">l</span><span class="p">]</span>
+
+  <span class="n">o</span><span class="o">.</span><span class="n">mu2over3</span> <span class="o">=</span> <span class="p">(</span><span class="n">muVec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">muVec</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">muVec</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span>
+
+  <span class="n">o</span><span class="o">.</span><span class="n">TkinPrime</span> <span class="o">=</span> <span class="n">getTkin</span><span class="p">(</span><span class="n">o</span><span class="p">,</span><span class="n">x_</span><span class="o">+</span><span class="n">kx</span><span class="p">,</span> <span class="n">y_</span><span class="o">+</span><span class="n">ky</span><span class="p">,</span> <span class="n">z_</span><span class="o">+</span><span class="n">kz</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">gpu</span><span class="p">)</span>
+  <span class="n">o</span><span class="o">.</span><span class="n">Tkin</span> <span class="o">=</span> <span class="n">getTkin</span><span class="p">(</span><span class="n">o</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">gpu</span><span class="p">)</span>
+  <span class="n">o</span><span class="o">.</span><span class="n">x</span><span class="p">,</span><span class="n">o</span><span class="o">.</span><span class="n">y</span><span class="p">,</span><span class="n">o</span><span class="o">.</span><span class="n">z</span><span class="p">,</span><span class="n">o</span><span class="o">.</span><span class="n">k</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">gpu</span><span class="p">),</span><span class="n">y</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">gpu</span><span class="p">),</span><span class="n">z</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">gpu</span><span class="p">),</span><span class="n">k</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">gpu</span><span class="p">)</span>
+  <span class="n">o</span><span class="o">.</span><span class="n">kx</span><span class="p">,</span><span class="n">o</span><span class="o">.</span><span class="n">ky</span><span class="p">,</span><span class="n">o</span><span class="o">.</span><span class="n">kz</span> <span class="o">=</span> <span class="n">kx</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">gpu</span><span class="p">),</span><span class="n">ky</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">gpu</span><span class="p">),</span><span class="n">kz</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">gpu</span><span class="p">)</span>
+  <span class="n">o</span><span class="o">.</span><span class="n">TintIntegrand</span> <span class="o">=</span> <span class="n">getTintIntegrand</span><span class="p">(</span><span class="n">o</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">kz</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">gpu</span><span class="p">)</span>
+  <span class="n">o</span><span class="o">.</span><span class="n">Tint</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">gpu</span><span class="p">)</span>
+  <span class="n">o</span><span class="o">.</span><span class="n">rho</span>  <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">gpu</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="getrho">
+<h2>getRho<a class="headerlink" href="#getrho" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">getRho</span><span class="p">(</span><span class="n">o</span><span class="p">,</span><span class="n">T</span><span class="p">):</span>
+  <span class="n">c</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;const&#39;</span><span class="p">]</span>
+  <span class="n">muMinusT</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="s1">&#39;mu&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">T</span>
+  <span class="n">muMinusT</span><span class="p">[</span><span class="n">muMinusT</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="n">rho</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">muMinusT</span><span class="p">,</span><span class="mf">1.5</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">rho</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tint">
+<h2>Tint<a class="headerlink" href="#tint" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">getTintByArray</span><span class="p">(</span><span class="n">o</span><span class="p">):</span>
+  <span class="n">Tint</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">o</span><span class="o">.</span><span class="n">kx</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">gpu</span><span class="p">);</span> <span class="n">Tint</span><span class="p">[:][:][:]</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">Tint</span>
+  <span class="n">rho</span>  <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">o</span><span class="o">.</span><span class="n">kx</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">gpu</span><span class="p">);</span>  <span class="n">rho</span><span class="p">[:][:][:]</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">rho</span>
+  <span class="n">rhoPrime</span> <span class="o">=</span> <span class="n">getRho</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="n">o</span><span class="o">.</span><span class="n">TkinPrime</span> <span class="o">+</span> <span class="n">Tint</span><span class="p">)</span>
+  <span class="n">stepFunc</span> <span class="o">=</span> <span class="n">rhoPrime</span> <span class="o">&gt;</span> <span class="n">rho</span>
+  <span class="n">Tint</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">TintIntegrand</span> <span class="o">*</span> <span class="n">stepFunc</span>
+  <span class="k">return</span> <span class="n">Tint</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">getTintByLoop</span><span class="p">(</span><span class="n">o</span><span class="p">):</span>
+  <span class="n">Tint</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">o</span><span class="o">.</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">gpu</span><span class="p">)</span>
+  <span class="k">for</span> <span class="n">kx</span> <span class="ow">in</span> <span class="n">o</span><span class="o">.</span><span class="n">k</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">ky</span> <span class="ow">in</span> <span class="n">o</span><span class="o">.</span><span class="n">k</span><span class="p">:</span>
+      <span class="k">for</span> <span class="n">kz</span> <span class="ow">in</span> <span class="n">o</span><span class="o">.</span><span class="n">k</span><span class="p">:</span>
+        <span class="n">TkinPrime</span> <span class="o">=</span> <span class="n">getTkin</span><span class="p">(</span><span class="n">o</span><span class="p">,</span><span class="n">o</span><span class="o">.</span><span class="n">x</span><span class="o">+</span><span class="n">kx</span><span class="p">,</span><span class="n">o</span><span class="o">.</span><span class="n">y</span><span class="o">+</span><span class="n">ky</span><span class="p">,</span><span class="n">o</span><span class="o">.</span><span class="n">z</span><span class="o">+</span><span class="n">kz</span><span class="p">)</span>
+        <span class="n">rhoPrime</span> <span class="o">=</span> <span class="n">getRho</span><span class="p">(</span><span class="n">o</span><span class="p">,</span><span class="n">TkinPrime</span><span class="o">+</span><span class="n">o</span><span class="o">.</span><span class="n">Tint</span><span class="p">)</span>
+        <span class="n">stepFunc</span> <span class="o">=</span> <span class="n">rhoPrime</span> <span class="o">&gt;</span> <span class="n">o</span><span class="o">.</span><span class="n">rho</span>
+        <span class="n">Tint</span><span class="p">[</span><span class="n">stepFunc</span><span class="p">]</span> <span class="o">+=</span> <span class="n">getTintIntegrand</span><span class="p">(</span><span class="n">o</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">kz</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">Tint</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="main-class">
+<h1>Main class<a class="headerlink" href="#main-class" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DPFTM</span><span class="p">(</span><span class="n">tc</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">config</span><span class="p">):</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">DPFTM</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
+    <span class="n">makeSpaceForTint</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;loop&#39;</span><span class="p">][</span><span class="s1">&#39;Imax&#39;</span><span class="p">]):</span>
+      <span class="n">oldRho</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rho</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">rho</span> <span class="o">=</span> <span class="n">getRho</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">Tkin</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">Tint</span><span class="p">)</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">tc</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">tc</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">oldRho</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">rho</span><span class="p">))</span><span class="o">&lt;</span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;loop&#39;</span><span class="p">][</span><span class="s1">&#39;sumDiffRho&#39;</span><span class="p">]):</span> <span class="k">break</span>
+      <span class="k">if</span> <span class="n">c</span><span class="p">[</span><span class="s1">&#39;Tint&#39;</span><span class="p">][</span><span class="s1">&#39;method&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;array&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">Tint</span> <span class="o">=</span> <span class="n">getTintByArray</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+      <span class="k">elif</span> <span class="n">c</span><span class="p">[</span><span class="s1">&#39;Tint&#39;</span><span class="p">][</span><span class="s1">&#39;method&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;loop&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">Tint</span> <span class="o">=</span> <span class="n">getTintByLoop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rho</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="run-one-test">
+<h2>run one test<a class="headerlink" href="#run-one-test" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">config</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;undefined&#39;</span><span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;start: &#39;</span><span class="o">+</span><span class="n">label</span><span class="p">);</span> <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">process_time</span><span class="p">()</span>
+  <span class="n">dpftm</span> <span class="o">=</span> <span class="n">DPFTM</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">tc</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span> <span class="n">dpftm</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">DataParallel</span><span class="p">(</span><span class="n">dpftm</span><span class="p">)</span>
+  <span class="n">dpftm</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">gpu</span><span class="p">)</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;config&#39;</span><span class="p">:</span><span class="n">config</span><span class="p">,</span><span class="s1">&#39;label&#39;</span><span class="p">:</span><span class="n">label</span><span class="p">,</span><span class="s1">&#39;rho&#39;</span><span class="p">:</span><span class="n">dpftm</span><span class="p">(),</span>
+            <span class="s1">&#39;time&#39;</span><span class="p">:</span><span class="n">time</span><span class="o">.</span><span class="n">process_time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">}</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;finished in </span><span class="si">{t:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]))</span>
+  <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="save-and-plot">
+<h2>save and plot<a class="headerlink" href="#save-and-plot" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="n">results</span><span class="p">,</span><span class="n">savePath</span><span class="p">,</span><span class="n">filename</span><span class="p">):</span>
+  <span class="c1">#filename += time.strftime(&quot;%Y%m%d-%H%M%S&quot;)</span>
+  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">savePath</span><span class="o">+</span><span class="n">filename</span><span class="o">+</span><span class="s1">&#39;.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">handle</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="n">pickle</span><span class="o">.</span><span class="n">HIGHEST_PROTOCOL</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="n">results</span><span class="p">,</span><span class="n">savePath</span><span class="p">,</span><span class="n">filename</span><span class="p">):</span>
+  <span class="n">mid</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;config&#39;</span><span class="p">][</span><span class="s1">&#39;space&#39;</span><span class="p">][</span><span class="s1">&#39;Np&#39;</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+  <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span><span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+  <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;rho&#39;</span><span class="p">][</span><span class="n">mid</span><span class="p">][</span><span class="n">mid</span><span class="p">][:],</span><span class="n">label</span><span class="o">=</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">])</span>
+  <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;rho&#39;</span><span class="p">][</span><span class="n">mid</span><span class="p">][:][</span><span class="n">mid</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">])</span>
+  <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;rho&#39;</span><span class="p">][:][</span><span class="n">mid</span><span class="p">][</span><span class="n">mid</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">])</span>
+  <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+  <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">filename</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">savePath</span><span class="o">+</span><span class="n">filename</span><span class="o">+</span><span class="s1">&#39;.png&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="run-many-tests">
+<h2>run many tests<a class="headerlink" href="#run-many-tests" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">config0</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;space&#39;</span><span class="p">:{</span><span class="s1">&#39;p0&#39;</span><span class="p">:</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="s1">&#39;Np&#39;</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="s1">&#39;Nk&#39;</span><span class="p">:</span><span class="mi">10</span><span class="p">},</span>
+    <span class="s1">&#39;loop&#39;</span><span class="p">:{</span><span class="s1">&#39;Imax&#39;</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="s1">&#39;sumDiffRho&#39;</span><span class="p">:</span><span class="mf">1e-3</span><span class="p">},</span>
+    <span class="s1">&#39;const&#39;</span><span class="p">:{</span><span class="s1">&#39;mu&#39;</span><span class="p">:</span><span class="mi">10</span><span class="p">},</span>
+    <span class="s1">&#39;Tint&#39;</span><span class="p">:{</span><span class="s1">&#39;muVec&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span><span class="s1">&#39;strength&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;method&#39;</span><span class="p">:</span><span class="s1">&#39;array&#39;</span><span class="p">},</span>
+<span class="p">}</span>
+<span class="n">testCases</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;space&#39;</span><span class="p">:{</span>
+        <span class="s1">&#39;p0&#39;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span>
+        <span class="c1">#&#39;Nk&#39;:range(10,40,10),</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;Tint&#39;</span><span class="p">:{</span>
+        <span class="s1">&#39;strength&#39;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span>
+        <span class="s1">&#39;method&#39;</span><span class="p">:[</span><span class="s1">&#39;array&#39;</span><span class="p">,</span><span class="s1">&#39;loop&#39;</span><span class="p">],</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+
+<span class="kn">from</span> <span class="nn">google.colab</span> <span class="k">import</span> <span class="n">drive</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+
+<span class="k">def</span> <span class="nf">testMany</span><span class="p">(</span><span class="n">testCases</span><span class="p">,</span><span class="n">savePath</span><span class="p">):</span>
+  <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
+  <span class="k">for</span> <span class="n">key1</span> <span class="ow">in</span> <span class="n">testCases</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">key2</span> <span class="ow">in</span> <span class="n">testCases</span><span class="p">[</span><span class="n">key1</span><span class="p">]:</span>
+      <span class="n">results</span> <span class="o">=</span> <span class="p">[];</span> <span class="n">filename</span> <span class="o">=</span> <span class="n">key1</span><span class="o">+</span><span class="s1">&#39;.&#39;</span><span class="o">+</span><span class="n">key2</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">filename</span><span class="p">)</span>
+      <span class="n">config</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">config0</span><span class="p">)</span>
+      <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">testCases</span><span class="p">[</span><span class="n">key1</span><span class="p">][</span><span class="n">key2</span><span class="p">]:</span>
+        <span class="n">config</span><span class="p">[</span><span class="n">key1</span><span class="p">][</span><span class="n">key2</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test</span><span class="p">(</span><span class="n">config</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)))</span>  <span class="c1">#&#39;{s:.2f}&#39;.format(s=value)</span>
+      <span class="n">save</span><span class="p">(</span><span class="n">results</span><span class="p">,</span><span class="n">savePath</span><span class="p">,</span><span class="n">filename</span><span class="p">)</span>
+      <span class="n">plot</span><span class="p">(</span><span class="n">results</span><span class="p">,</span><span class="n">savePath</span><span class="p">,</span><span class="n">filename</span><span class="p">)</span>
+
+<span class="n">savePath</span><span class="o">=</span><span class="s1">&#39;/content/drive/My Drive/Colab Notebooks/DPFTMoutput/&#39;</span>
+<span class="n">testMany</span><span class="p">(</span><span class="n">testCases</span><span class="p">,</span><span class="n">savePath</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Drive</span> <span class="n">already</span> <span class="n">mounted</span> <span class="n">at</span> <span class="o">/</span><span class="n">content</span><span class="o">/</span><span class="n">drive</span><span class="p">;</span> <span class="n">to</span> <span class="n">attempt</span> <span class="n">to</span> <span class="n">forcibly</span> <span class="n">remount</span><span class="p">,</span> <span class="n">call</span> <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s2">&quot;/content/drive&quot;</span><span class="p">,</span> <span class="n">force_remount</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span>
+
+<span class="n">space</span><span class="o">.</span><span class="n">p0</span>
+<span class="n">start</span><span class="p">:</span> <span class="o">-</span><span class="mf">30.0</span>
+<span class="n">finished</span> <span class="ow">in</span> <span class="mf">0.96</span>
+<span class="n">start</span><span class="p">:</span> <span class="o">-</span><span class="mf">21.666666666666664</span>
+<span class="n">finished</span> <span class="ow">in</span> <span class="mf">0.96</span>
+<span class="n">start</span><span class="p">:</span> <span class="o">-</span><span class="mf">13.333333333333332</span>
+<span class="n">finished</span> <span class="ow">in</span> <span class="mf">0.96</span>
+<span class="n">start</span><span class="p">:</span> <span class="o">-</span><span class="mf">5.0</span>
+<span class="n">finished</span> <span class="ow">in</span> <span class="mf">0.94</span>
+</pre></div>
+</div>
+<img alt="../../../_images/output_25_1.png" src="../../../_images/output_25_1.png" />
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Tint</span><span class="o">.</span><span class="n">strength</span>
+<span class="n">start</span><span class="p">:</span> <span class="mf">0.0</span>
+<span class="n">finished</span> <span class="ow">in</span> <span class="mf">0.94</span>
+<span class="n">start</span><span class="p">:</span> <span class="mf">0.3333333333333333</span>
+<span class="n">finished</span> <span class="ow">in</span> <span class="mf">42.76</span>
+<span class="n">start</span><span class="p">:</span> <span class="mf">0.6666666666666666</span>
+<span class="n">finished</span> <span class="ow">in</span> <span class="mf">42.09</span>
+<span class="n">start</span><span class="p">:</span> <span class="mf">1.0</span>
+<span class="n">finished</span> <span class="ow">in</span> <span class="mf">41.85</span>
+</pre></div>
+</div>
+<img alt="../../../_images/output_25_3.png" src="../../../_images/output_25_3.png" />
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Tint</span><span class="o">.</span><span class="n">method</span>
+<span class="n">start</span><span class="p">:</span> <span class="n">array</span>
+<span class="n">finished</span> <span class="ow">in</span> <span class="mf">0.94</span>
+<span class="n">start</span><span class="p">:</span> <span class="n">loop</span>
+<span class="n">finished</span> <span class="ow">in</span> <span class="mf">1.20</span>
+</pre></div>
+</div>
+<img alt="../../../_images/output_25_5.png" src="../../../_images/output_25_5.png" />
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Tesla Cat
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
