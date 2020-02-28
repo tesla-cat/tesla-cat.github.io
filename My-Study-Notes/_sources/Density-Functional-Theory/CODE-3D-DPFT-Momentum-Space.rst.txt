@@ -1,10 +1,27 @@
-CODE 3D DPFT Momentum Space
-==================================
 
+CODE 3D DPFT Momentum Space
+===========================
 
 :date: 28 Feb 2020
 
+Highlight
+~~~~~~~~~
 
+-  **3d** implementation of DPFT
+-  **multi GPU** acceleration using **PyTorch**
+-  used **6d tensor** instead of for-loop for acceleration
+
+Todo
+~~~~
+
+-  use suzuki-trotter for rho
+-  save and recovery
+
+.. math::
+
+   \begin{align*}
+   & T_{\text{int}} = \int {d\pmb{k}}[{\pmb{\mu}^2\over 3}-{(\pmb{\mu}\cdot\pmb{k})^2\over \pmb{k}^2}] \eta[\rho(\pmb{p}+\hbar \pmb{k})-\rho(\pmb{p})] \\
+   \end{align*}
 
 Initialize
 ----------
@@ -154,7 +171,9 @@ Main class
           if(tc.sum(tc.abs(oldRho-self.rho))<c['loop']['sumDiffRho']): break
           if c['Tint']['method'] == 'array': self.Tint = getTintByArray(self)
           elif c['Tint']['method'] == 'loop': self.Tint = getTintByLoop(self)
-        return self.rho.cpu().numpy()
+        rho = self.rho.cpu().numpy()
+        tc.cuda.empty_cache()
+        return rho
 
 Usage
 -----
@@ -204,19 +223,22 @@ run many tests
 .. code:: ipython3
 
     config0 = {
-        'space':{'p0':-5,'Np':20,'Nk':10},
+        'space':{'p0':-5,'Np':30,'Nk':20},
         'loop':{'Imax':100,'sumDiffRho':1e-3},
         'const':{'mu':10},
-        'Tint':{'muVec':[0,0,10],'strength':0,'method':'array'},
+        'Tint':{'muVec':[0,0,10],'strength':1,'method':'array'},
     }
     testCases = {
         'space':{
-            'p0':np.linspace(-30,-5,4),
-            #'Nk':range(10,40,10),
+            'p0':np.linspace(-20,-5,4),
+        },
+        'const':{
+            'mu':np.linspace(1,100,4),
         },
         'Tint':{
             'strength':np.linspace(0,1,4),
             'method':['array','loop'],
+            'muVec':[ [0,0,z] for z in np.linspace(1,100,4) ],
         },
     }
     
@@ -244,21 +266,39 @@ run many tests
 
 .. parsed-literal::
 
-    Drive already mounted at /content/drive; to attempt to forcibly remount, call drive.mount("/content/drive", force_remount=True).
+    Mounted at /content/drive
     
     space.p0
-    start: -30.0
-    finished in 0.96
-    start: -21.666666666666664
-    finished in 0.96
-    start: -13.333333333333332
-    finished in 0.96
+    start: -20.0
+    finished in 1081.05
+    start: -15.0
+    finished in 1051.63
+    start: -10.0
+    finished in 1045.05
     start: -5.0
-    finished in 0.94
+    finished in 1020.56
 
 
 
-.. image:: imgs/DPFTM/output_25_1.png
+.. image:: imgs/CODE-3D-DPFT-Momentum-Space/output_27_1.png
+
+
+.. parsed-literal::
+
+    
+    const.mu
+    start: 1.0
+    finished in 1045.80
+    start: 34.0
+    finished in 950.94
+    start: 67.0
+    finished in 866.85
+    start: 100.0
+    finished in 811.09
+
+
+
+.. image:: imgs/CODE-3D-DPFT-Momentum-Space/output_27_3.png
 
 
 .. parsed-literal::
@@ -266,17 +306,17 @@ run many tests
     
     Tint.strength
     start: 0.0
-    finished in 0.94
+    finished in 21.63
     start: 0.3333333333333333
-    finished in 42.76
+    finished in 1014.87
     start: 0.6666666666666666
-    finished in 42.09
+    finished in 1017.29
     start: 1.0
-    finished in 41.85
+    finished in 1016.45
 
 
 
-.. image:: imgs/DPFTM/output_25_3.png
+.. image:: imgs/CODE-3D-DPFT-Momentum-Space/output_27_5.png
 
 
 .. parsed-literal::
@@ -284,11 +324,29 @@ run many tests
     
     Tint.method
     start: array
-    finished in 0.94
+    finished in 1013.86
     start: loop
-    finished in 1.20
+    finished in 7154.09
 
 
 
-.. image:: imgs/DPFTM/output_25_5.png
+.. image:: imgs/CODE-3D-DPFT-Momentum-Space/output_27_7.png
+
+
+.. parsed-literal::
+
+    
+    Tint.muVec
+    start: [0, 0, 1.0]
+    finished in 1117.56
+    start: [0, 0, 34.0]
+    finished in 1015.45
+    start: [0, 0, 67.0]
+    finished in 1014.28
+    start: [0, 0, 100.0]
+    finished in 1017.37
+
+
+
+.. image:: imgs/CODE-3D-DPFT-Momentum-Space/output_27_9.png
 
