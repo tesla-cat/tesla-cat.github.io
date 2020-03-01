@@ -22,8 +22,9 @@ Content
 	:caption: Electronics and Coding
 
 	Experimental-Physics-SoC-FPGA-Design/index
-	Django/index
+	Code-Snippets/index
 	Signal-Processing/index
+	Django/index
 
 .. toctree::
 	:caption: Machine Learning

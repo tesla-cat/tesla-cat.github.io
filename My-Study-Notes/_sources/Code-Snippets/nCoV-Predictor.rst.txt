@@ -1,0 +1,41 @@
+
+nCoV Predictor
+=============================================================
+
+:Date: 1 Mar 2019
+
+- code
+
+.. code-block:: python
+    
+    import urllib.request, json 
+    import matplotlib.pyplot as plt
+    import numpy as np
+    from scipy.optimize import curve_fit
+
+    url = 'https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5'
+
+    with urllib.request.urlopen(url) as dataUrl:
+        data = json.loads(dataUrl.read().decode())['data']
+        data = json.loads(data)
+        for key, value in data.items():
+            print(key)
+
+    chinaDayList = data["chinaDayList"]
+    confirm = [i['confirm'] for i in chinaDayList]
+    date = [i['date'] for i in chinaDayList]
+
+    plt.plot(date,confirm,'.',label='original data')
+
+    def logistic(x, a, b, c):
+        return a/(1+np.exp(-b*(x-c)))
+
+    xdata = np.array(range(len(confirm)))
+    popt, pcov = curve_fit(logistic, xdata, confirm)
+    xdata *=2
+    plt.plot(xdata, logistic(xdata, *popt), 'r-',
+             label='fit: a=%5.3f, b=%5.3f, c=%5.3f' % tuple(popt))
+    plt.title('nCoV china total: logistic regression')
+    plt.legend()
+    plt.show()
+
