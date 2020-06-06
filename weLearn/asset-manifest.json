@@ -1,21 +1,22 @@
 {
   "files": {
-    "app.js": "/static/js/app.45408958.chunk.js",
-    "app.js.map": "/static/js/app.45408958.chunk.js.map",
-    "runtime~app.js": "/static/js/runtime~app.4b0f5a04.js",
-    "runtime~app.js.map": "/static/js/runtime~app.4b0f5a04.js.map",
-    "static/js/2.d4cf3394.chunk.js": "/static/js/2.d4cf3394.chunk.js",
-    "static/js/2.d4cf3394.chunk.js.map": "/static/js/2.d4cf3394.chunk.js.map",
-    "favicon-16.png": "/favicon-16.png",
-    "favicon-32.png": "/favicon-32.png",
-    "favicon.ico": "/favicon.ico",
+    "main.css": "/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/static/js/main.c1877d7d.chunk.js",
+    "main.js.map": "/static/js/main.c1877d7d.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.a335b144.js",
+    "runtime-main.js.map": "/static/js/runtime-main.a335b144.js.map",
+    "static/js/2.ad2ce4dd.chunk.js": "/static/js/2.ad2ce4dd.chunk.js",
+    "static/js/2.ad2ce4dd.chunk.js.map": "/static/js/2.ad2ce4dd.chunk.js.map",
     "index.html": "/index.html",
-    "manifest.json": "/manifest.json",
-    "serve.json": "/serve.json"
+    "precache-manifest.159486b503e0fc527870ba1a4d46e58f.js": "/precache-manifest.159486b503e0fc527870ba1a4d46e58f.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.5ecd60fb.chunk.css.map": "/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.ad2ce4dd.chunk.js.LICENSE.txt": "/static/js/2.ad2ce4dd.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime~app.4b0f5a04.js",
-    "static/js/2.d4cf3394.chunk.js",
-    "static/js/app.45408958.chunk.js"
+    "static/js/runtime-main.a335b144.js",
+    "static/js/2.ad2ce4dd.chunk.js",
+    "static/css/main.5ecd60fb.chunk.css",
+    "static/js/main.c1877d7d.chunk.js"
   ]
 }
