@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>PyTorch Get Started &mdash; My-Study-Notes  documentation</title>
+  <title>PyTorch Get Started &mdash; My Study Notes  documentation</title>
   
 
   
@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -51,7 +51,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> My-Study-Notes
+            <a href="../index.html" class="icon icon-home"> My Study Notes
           
 
           
@@ -81,13 +81,12 @@
               
             
             
-              <p class="caption"><span class="caption-text">Math</span></p>
+              <p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Math/index.html">Math</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Neurotechnology</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Neuromorphic-Vision/index.html">Neuromorphic Vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Computation/index.html">Quantum Computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Mechanics-Feynman-Path-Integral/index.html">Quantum Mechanics: Feynman Path Integral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Optics/index.html">Quantum Optics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Density-Functional-Theory/index.html">Density Functional Theory</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Electronics and Coding</span></p>
 <ul>
@@ -123,13 +122,6 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Biomolecular-Physics/index.html">Biomolecular Physics</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Quantum-Mechanics-Feynman-Path-Integral/index.html">Quantum Mechanics: Feynman Path Integral</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Quantum-Computation/index.html">Quantum Computation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Quantum-Optics/index.html">Quantum Optics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Density-Functional-Theory/index.html">Density Functional Theory</a></li>
-</ul>
 <p class="caption"><span class="caption-text">Statistical Mechanics</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Thermodynamics-And-Statistical-Mechanics/index.html">Thermodynamics And Statistical Mechanics</a></li>
@@ -138,9 +130,9 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Relativity/index.html">Relativity</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Papers</span></p>
+<p class="caption"><span class="caption-text">Neurotechnology</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Papers-Quantum-Computers/index.html">Papers: Quantum Computers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Neuromorphic-Vision/index.html">Neuromorphic Vision</a></li>
 </ul>
 
             
@@ -155,7 +147,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">My-Study-Notes</a>
+          <a href="../index.html">My Study Notes</a>
         
       </nav>
 
@@ -220,7 +212,7 @@
 </div>
 <div class="section" id="what-is-pytorch">
 <h2>WHAT IS PYTORCH?<a class="headerlink" href="#what-is-pytorch" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span><span class="p">;</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span><span class="p">;</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="n">x</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span> <span class="c1"># shape=[2,3]</span>
 <span class="n">x</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>  <span class="c1"># shape=[2,3]</span>
@@ -228,29 +220,29 @@
 <span class="n">x</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>
 <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">new_ones</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">double</span><span class="p">)</span> <span class="c1"># shape=[2,3]</span>
 <span class="n">x</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">randn_like</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]);</span><span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]);</span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
 
 <span class="n">y</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span> <span class="c1"># shape=[2,3]</span>
-<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">);</span><span class="k">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">));</span>
-<span class="k">print</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">add_</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="c1"># y is changed</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">);</span><span class="nb">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">));</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">add_</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="c1"># y is changed</span>
 
 <span class="n">a</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">([</span><span class="mi">6</span><span class="p">]);</span><span class="n">b</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
-<span class="n">a</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">numpy</span><span class="p">();</span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="n">x</span><span class="o">.</span><span class="n">add_</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># a changes with x !</span>
+<span class="n">a</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">numpy</span><span class="p">();</span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">x</span><span class="o">.</span><span class="n">add_</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># a changes with x !</span>
 
 <span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">3</span><span class="p">])</span> <span class="c1"># shape=[3]</span>
 <span class="n">b</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 <span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">out</span><span class="o">=</span><span class="n">a</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">);</span><span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="c1"># b changes with a !</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">);</span><span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="c1"># b changes with a !</span>
 
 <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
 <span class="n">y</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> <span class="c1"># create on &quot;device&quot; directly</span>
 <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span> <span class="c1"># alternative</span>
 <span class="n">z</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="n">y</span>
-<span class="k">print</span><span class="p">(</span><span class="n">z</span><span class="p">);</span><span class="k">print</span><span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">));</span><span class="k">print</span><span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span><span class="n">torch</span><span class="o">.</span><span class="n">double</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">);</span><span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">));</span><span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span><span class="n">torch</span><span class="o">.</span><span class="n">double</span><span class="p">))</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([[</span> <span class="mf">1.3245</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1591</span><span class="p">,</span>  <span class="mf">0.5772</span><span class="p">],</span>
@@ -282,20 +274,20 @@
 </div>
 <div class="section" id="autograd">
 <h2>AUTOGRAD<a class="headerlink" href="#autograd" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Wrong usage: Used by a AND b&quot;</span><span class="p">)</span>
-<span class="n">x</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="n">requires_grad</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Wrong usage: Used by a AND b&quot;</span><span class="p">)</span>
+<span class="n">x</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">a</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="n">b</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">a</span><span class="o">.</span><span class="n">backward</span><span class="p">();</span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">);</span><span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span> <span class="c1"># da/dx</span>
-<span class="n">b</span><span class="o">.</span><span class="n">backward</span><span class="p">();</span><span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">);</span><span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span> <span class="c1"># db/dx</span>
+<span class="n">a</span><span class="o">.</span><span class="n">backward</span><span class="p">();</span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">);</span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span> <span class="c1"># da/dx</span>
+<span class="n">b</span><span class="o">.</span><span class="n">backward</span><span class="p">();</span><span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">);</span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span> <span class="c1"># db/dx</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Right usage: Used by a OR b&quot;</span><span class="p">)</span>
-<span class="n">x</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="n">requires_grad</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Right usage: Used by a OR b&quot;</span><span class="p">)</span>
+<span class="n">x</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">a</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">a</span><span class="o">.</span><span class="n">backward</span><span class="p">();</span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">);</span><span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span> <span class="c1"># da/dx</span>
+<span class="n">a</span><span class="o">.</span><span class="n">backward</span><span class="p">();</span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">);</span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span> <span class="c1"># da/dx</span>
 
-<span class="n">x</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="n">requires_grad</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">x</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">b</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">b</span><span class="o">.</span><span class="n">backward</span><span class="p">();</span><span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">);</span><span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span> <span class="c1"># db/dx</span>
+<span class="n">b</span><span class="o">.</span><span class="n">backward</span><span class="p">();</span><span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">);</span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span> <span class="c1"># db/dx</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Wrong</span> <span class="n">usage</span><span class="p">:</span> <span class="n">Used</span> <span class="n">by</span> <span class="n">a</span> <span class="n">AND</span> <span class="n">b</span>
@@ -315,14 +307,14 @@
         <span class="p">[</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]])</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">([</span><span class="mi">3</span><span class="p">],</span> <span class="n">requires_grad</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">([</span><span class="mi">3</span><span class="p">],</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">y</span><span class="o">=</span><span class="n">x</span><span class="o">*</span><span class="mi">2</span>
-<span class="n">v</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">([</span><span class="mi">3</span><span class="p">],</span> <span class="n">requires_grad</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">v</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">([</span><span class="mi">3</span><span class="p">],</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">y</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
 
 <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
-  <span class="k">print</span><span class="p">((</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">((</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([</span><span class="o">-</span><span class="mf">0.9035</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0756</span><span class="p">,</span>  <span class="mf">1.8223</span><span class="p">])</span>
@@ -350,8 +342,8 @@
 <p class="caption"><span class="caption-text">image.png</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="kn">as</span> <span class="nn">nn</span>
-<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="kn">as</span> <span class="nn">F</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
 
 <span class="k">class</span> <span class="nc">Net</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -376,15 +368,15 @@
       <span class="n">numFeatures</span><span class="o">*=</span><span class="n">s</span>
     <span class="k">return</span> <span class="n">numFeatures</span>
 
-<span class="n">net</span><span class="o">=</span><span class="n">Net</span><span class="p">();</span><span class="k">print</span><span class="p">(</span><span class="n">net</span><span class="p">)</span>
+<span class="n">net</span><span class="o">=</span><span class="n">Net</span><span class="p">();</span><span class="nb">print</span><span class="p">(</span><span class="n">net</span><span class="p">)</span>
 <span class="n">params</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">params</span><span class="p">)):</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">params</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">params</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
 <span class="n">batchSize</span><span class="o">=</span><span class="mi">2</span>
 <span class="nb">input</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">([</span><span class="n">batchSize</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="mi">32</span><span class="p">])</span>
 <span class="n">output</span><span class="o">=</span><span class="n">net</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">output</span><span class="p">);</span><span class="k">print</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">);</span><span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
 <span class="c1">#==================================</span>
 <span class="c1"># Begin Custom optimizer</span>
@@ -393,10 +385,10 @@
 <span class="n">target</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="n">criterion</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">()</span> <span class="c1"># This is a class</span>
 <span class="n">loss</span><span class="o">=</span><span class="n">criterion</span><span class="p">(</span><span class="n">output</span><span class="p">,</span><span class="n">target</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span>
 <span class="n">grad_fn</span><span class="o">=</span><span class="n">loss</span><span class="o">.</span><span class="n">grad_fn</span>
 <span class="k">while</span><span class="p">(</span><span class="n">grad_fn</span><span class="p">):</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">grad_fn</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">grad_fn</span><span class="p">)</span>
   <span class="k">try</span><span class="p">:</span>
     <span class="n">grad_fn</span><span class="o">=</span><span class="n">grad_fn</span><span class="o">.</span><span class="n">next_functions</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
   <span class="k">except</span><span class="p">:</span>
@@ -404,9 +396,9 @@
 <span class="c1"># Clear existing gradients</span>
 <span class="c1"># else gradients will be accumulated to existing gradients</span>
 <span class="n">net</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;net.conv1.bias.grad before backward:&#39;</span><span class="p">,</span><span class="n">net</span><span class="o">.</span><span class="n">conv1</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;net.conv1.bias.grad before backward:&#39;</span><span class="p">,</span><span class="n">net</span><span class="o">.</span><span class="n">conv1</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
 <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;net.conv1.bias.grad after backward:&#39;</span><span class="p">,</span><span class="n">net</span><span class="o">.</span><span class="n">conv1</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;net.conv1.bias.grad after backward:&#39;</span><span class="p">,</span><span class="n">net</span><span class="o">.</span><span class="n">conv1</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
 
 <span class="n">learnRate</span><span class="o">=</span><span class="mf">0.01</span>
 <span class="k">for</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="n">net</span><span class="o">.</span><span class="n">parameters</span><span class="p">():</span>
@@ -416,7 +408,7 @@
 
 <span class="c1">#==================================</span>
 <span class="c1"># Begin Torch optimizer</span>
-<span class="kn">import</span> <span class="nn">torch.optim</span> <span class="kn">as</span> <span class="nn">optim</span>
+<span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
 <span class="n">optimizer</span><span class="o">=</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span><span class="n">lr</span><span class="o">=</span><span class="n">learnRate</span><span class="p">)</span>
 <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
 <span class="n">output</span><span class="o">=</span><span class="n">net</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>

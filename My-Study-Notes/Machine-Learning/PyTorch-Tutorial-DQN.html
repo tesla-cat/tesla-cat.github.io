@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Reinforcement-Learning &mdash; My-Study-Notes  documentation</title>
+  <title>Reinforcement-Learning &mdash; My Study Notes  documentation</title>
   
 
   
@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -51,7 +51,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> My-Study-Notes
+            <a href="../index.html" class="icon icon-home"> My Study Notes
           
 
           
@@ -81,13 +81,12 @@
               
             
             
-              <p class="caption"><span class="caption-text">Math</span></p>
+              <p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Math/index.html">Math</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Neurotechnology</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Neuromorphic-Vision/index.html">Neuromorphic Vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Computation/index.html">Quantum Computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Mechanics-Feynman-Path-Integral/index.html">Quantum Mechanics: Feynman Path Integral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Optics/index.html">Quantum Optics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Density-Functional-Theory/index.html">Density Functional Theory</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Electronics and Coding</span></p>
 <ul>
@@ -128,13 +127,6 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Biomolecular-Physics/index.html">Biomolecular Physics</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Quantum-Mechanics-Feynman-Path-Integral/index.html">Quantum Mechanics: Feynman Path Integral</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Quantum-Computation/index.html">Quantum Computation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Quantum-Optics/index.html">Quantum Optics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Density-Functional-Theory/index.html">Density Functional Theory</a></li>
-</ul>
 <p class="caption"><span class="caption-text">Statistical Mechanics</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Thermodynamics-And-Statistical-Mechanics/index.html">Thermodynamics And Statistical Mechanics</a></li>
@@ -143,9 +135,9 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Relativity/index.html">Relativity</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Papers</span></p>
+<p class="caption"><span class="caption-text">Neurotechnology</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Papers-Quantum-Computers/index.html">Papers: Quantum Computers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Neuromorphic-Vision/index.html">Neuromorphic Vision</a></li>
 </ul>
 
             
@@ -160,7 +152,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">My-Study-Notes</a>
+          <a href="../index.html">My Study Notes</a>
         
       </nav>
 
@@ -330,17 +322,17 @@ from the original algorithm.</p>
 <div class="section" id="imports">
 <h3>1. imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
 <span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">ImageGrab</span>
 <span class="kn">import</span> <span class="nn">cv2</span>
 <span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="kn">as</span> <span class="nn">nn</span>
-<span class="kn">import</span> <span class="nn">torch.optim</span> <span class="kn">as</span> <span class="nn">optim</span>
-<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="kn">as</span> <span class="nn">F</span>
-<span class="kn">import</span> <span class="nn">torchvision.transforms</span> <span class="kn">as</span> <span class="nn">T</span>
-<span class="kn">import</span> <span class="nn">torchvision.transforms.functional</span> <span class="kn">as</span> <span class="nn">TTF</span>
-<span class="kn">import</span> <span class="nn">pyautogui</span> <span class="kn">as</span> <span class="nn">pag</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="kn">import</span> <span class="nn">torchvision.transforms</span> <span class="k">as</span> <span class="nn">T</span>
+<span class="kn">import</span> <span class="nn">torchvision.transforms.functional</span> <span class="k">as</span> <span class="nn">TTF</span>
+<span class="kn">import</span> <span class="nn">pyautogui</span> <span class="k">as</span> <span class="nn">pag</span>
 
 <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
 </pre></div>
@@ -361,7 +353,7 @@ from the original algorithm.</p>
 <span class="c1"># implicitly inherits from the &#39;object&#39; class in Python3</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mem_size</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mem_size</span> <span class="o">=</span> <span class="n">mem_size</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">memory</span> <span class="o">=</span> <span class="p">[</span><span class="bp">None</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mem_size</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">memory</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mem_size</span><span class="p">)]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
@@ -372,11 +364,11 @@ from the original algorithm.</p>
         <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">memory</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">)</span>
 
 <span class="n">mem</span> <span class="o">=</span> <span class="n">ReplayMemory</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mem</span><span class="o">.</span><span class="n">memory</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mem</span><span class="o">.</span><span class="n">memory</span><span class="p">))</span>
 
 <span class="n">mem</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
 <span class="n">mem</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">mem</span><span class="o">.</span><span class="n">memory</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mem</span><span class="o">.</span><span class="n">memory</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -403,17 +395,17 @@ from the original algorithm.</p>
         <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bn3</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv3</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;dqn:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;dqn:&#39;</span><span class="p">)</span>
 <span class="n">dqn</span> <span class="o">=</span> <span class="n">DQN</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span><span class="mi">6</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">dqn</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;dqn2:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;dqn2:&#39;</span><span class="p">)</span>
 <span class="n">dqn2</span> <span class="o">=</span> <span class="n">DQN</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span><span class="mi">6</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">dqn</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -442,7 +434,7 @@ from the original algorithm.</p>
         <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bn3</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv3</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">get_img</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">scr_region</span><span class="p">,</span><span class="n">display</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_img</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">scr_region</span><span class="p">,</span><span class="n">display</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="c1"># input: screen region, output: PyTorch tensor</span>
         <span class="n">img</span> <span class="o">=</span> <span class="n">ImageGrab</span><span class="o">.</span><span class="n">grab</span><span class="p">(</span><span class="n">bbox</span><span class="o">=</span><span class="n">scr_region</span><span class="p">)</span>
         <span class="n">img</span> <span class="o">=</span> <span class="n">TTF</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">chw</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
@@ -455,9 +447,9 @@ from the original algorithm.</p>
 
 <span class="n">dqn</span> <span class="o">=</span> <span class="n">DQN</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span>
 <span class="n">game_scr</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">300</span><span class="p">,</span><span class="mi">900</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
-<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
     <span class="n">img</span> <span class="o">=</span> <span class="n">dqn</span><span class="o">.</span><span class="n">get_img</span><span class="p">(</span><span class="n">game_scr</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -500,7 +492,7 @@ torch.no_grad()”</a></p>
         <span class="n">transitions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">memory</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">BATCH_SIZE</span><span class="p">)</span>
         <span class="c1"># converts batch-array of Transitions to Transition of batch-arrays:</span>
         <span class="n">batch</span> <span class="o">=</span> <span class="n">Transition</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">transitions</span><span class="p">))</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span>
 
         <span class="n">state_batch</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">state</span><span class="p">)</span>
         <span class="n">action_batch</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">action</span><span class="p">)</span>
@@ -587,18 +579,18 @@ torch.no_grad()”</a></p>
     <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="n">agent</span><span class="o">.</span><span class="n">TARGET_UPDATE</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">agent</span><span class="o">.</span><span class="n">target_net</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">agent</span><span class="o">.</span><span class="n">actual_net</span><span class="o">.</span><span class="n">state_dict</span><span class="p">())</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;finished&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;finished&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="code-rewrite">
 <h2>Code Rewrite<a class="headerlink" href="#code-rewrite" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span><span class="p">;</span> <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="kn">as</span> <span class="nn">nn</span><span class="p">;</span> <span class="kn">import</span> <span class="nn">torch.optim</span> <span class="kn">as</span> <span class="nn">optim</span>
-<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="kn">as</span> <span class="nn">F</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span><span class="p">;</span> <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span><span class="p">;</span> <span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
 <span class="kn">import</span> <span class="nn">math</span><span class="p">;</span> <span class="kn">import</span> <span class="nn">random</span><span class="p">;</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span><span class="p">;</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span><span class="p">;</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
 <span class="n">Transition</span><span class="o">=</span><span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Transition&#39;</span><span class="p">,</span>
@@ -610,7 +602,7 @@ torch.no_grad()”</a></p>
     <span class="bp">self</span><span class="o">.</span><span class="n">memory</span> <span class="o">=</span> <span class="p">[];</span> <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="mi">0</span>
 
   <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">memory</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">memSize</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">memory</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">memory</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">memSize</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">memory</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">memory</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">]</span> <span class="o">=</span> <span class="n">Transition</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">memSize</span>
 

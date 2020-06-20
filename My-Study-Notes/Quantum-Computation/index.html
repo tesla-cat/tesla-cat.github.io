@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Quantum Computation &mdash; My-Study-Notes  documentation</title>
+  <title>Quantum Computation &mdash; My Study Notes  documentation</title>
   
 
   
@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Quantum Circuits" href="Quantum-Circuits.html" />
-    <link rel="prev" title="Propagator" href="../Quantum-Mechanics-Feynman-Path-Integral/Propagator.html" /> 
+    <link rel="next" title="QuTiP Notes 1" href="QuTiP-Notes-1/QuTiP-Notes-1.html" />
+    <link rel="prev" title="Content" href="../index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -51,7 +51,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> My-Study-Notes
+            <a href="../index.html" class="icon icon-home"> My Study Notes
           
 
           
@@ -81,13 +81,15 @@
               
             
             
-              <p class="caption"><span class="caption-text">Math</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Math/index.html">Math</a></li>
+              <p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quantum Computation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="QuTiP-Notes-1/QuTiP-Notes-1.html">QuTiP Notes 1</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Neurotechnology</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Neuromorphic-Vision/index.html">Neuromorphic Vision</a></li>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Mechanics-Feynman-Path-Integral/index.html">Quantum Mechanics: Feynman Path Integral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Optics/index.html">Quantum Optics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Density-Functional-Theory/index.html">Density Functional Theory</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Electronics and Coding</span></p>
 <ul>
@@ -104,16 +106,6 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Biomolecular-Physics/index.html">Biomolecular Physics</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../Quantum-Mechanics-Feynman-Path-Integral/index.html">Quantum Mechanics: Feynman Path Integral</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Quantum Computation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Quantum-Circuits.html">Quantum Circuits</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../Quantum-Optics/index.html">Quantum Optics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Density-Functional-Theory/index.html">Density Functional Theory</a></li>
-</ul>
 <p class="caption"><span class="caption-text">Statistical Mechanics</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Thermodynamics-And-Statistical-Mechanics/index.html">Thermodynamics And Statistical Mechanics</a></li>
@@ -122,9 +114,9 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Relativity/index.html">Relativity</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Papers</span></p>
+<p class="caption"><span class="caption-text">Neurotechnology</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Papers-Quantum-Computers/index.html">Papers: Quantum Computers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Neuromorphic-Vision/index.html">Neuromorphic Vision</a></li>
 </ul>
 
             
@@ -139,7 +131,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">My-Study-Notes</a>
+          <a href="../index.html">My Study Notes</a>
         
       </nav>
 
@@ -193,11 +185,26 @@
 <h1>Quantum Computation<a class="headerlink" href="#quantum-computation" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="Quantum-Circuits.html">Quantum Circuits</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Quantum-Circuits.html#dependency">Dependency</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Quantum-Circuits.html#what-is-the-problem">What is the problem ?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Quantum-Circuits.html#code">Code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Quantum-Circuits.html#derivation">Derivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuTiP-Notes-1/QuTiP-Notes-1.html">QuTiP Notes 1</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="QuTiP-Notes-1/QuTiP-Notes-1.html#introduction-to-qutip">Introduction to QuTiP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="QuTiP-Notes-1/QuTiP-Notes-1.html#state-vectors-density-matrices-operators">State vectors, Density matrices, Operators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QuTiP-Notes-1/QuTiP-Notes-1.html#composite-systems-jaynes-cummings-model">Composite systems &amp; Jaynes-Cummings model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QuTiP-Notes-1/QuTiP-Notes-1.html#unitary-dynamics">Unitary dynamics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="QuTiP-Notes-1/QuTiP-Notes-1.html#wigner-functions">Wigner functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QuTiP-Notes-1/QuTiP-Notes-1.html#cavity-qubit-gates">Cavity-qubit gates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QuTiP-Notes-1/QuTiP-Notes-1.html#cqed-in-the-dispersive-regime">cQED in the dispersive regime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QuTiP-Notes-1/QuTiP-Notes-1.html#superconducting-charge-qubits">Superconducting charge qubits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QuTiP-Notes-1/QuTiP-Notes-1.html#gallery-of-wigner-functions">Gallery of Wigner functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QuTiP-Notes-1/QuTiP-Notes-1.html#optimal-control-overview">Optimal control - Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="QuTiP-Notes-1/QuTiP-Notes-1.html#grape-2005">GRAPE (2005)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QuTiP-Notes-1/QuTiP-Notes-1.html#crab-2014-test-result-slow-and-inaccurate">CRAB (2014) <code class="docutils literal notranslate"><span class="pre">Test</span> <span class="pre">result:</span> <span class="pre">Slow</span> <span class="pre">and</span> <span class="pre">inaccurate</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="QuTiP-Notes-1/QuTiP-Notes-1.html#optimal-control-hadamard">Optimal control - Hadamard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QuTiP-Notes-1/QuTiP-Notes-1.html#optimal-control-qft">Optimal control - QFT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QuTiP-Notes-1/QuTiP-Notes-1.html#optimal-control-lindbladian">Optimal control - Lindbladian</a></li>
 </ul>
 </li>
 </ul>
@@ -212,10 +219,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Quantum-Circuits.html" class="btn btn-neutral float-right" title="Quantum Circuits" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="QuTiP-Notes-1/QuTiP-Notes-1.html" class="btn btn-neutral float-right" title="QuTiP Notes 1" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../Quantum-Mechanics-Feynman-Path-Integral/Propagator.html" class="btn btn-neutral float-left" title="Propagator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../index.html" class="btn btn-neutral float-left" title="Content" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

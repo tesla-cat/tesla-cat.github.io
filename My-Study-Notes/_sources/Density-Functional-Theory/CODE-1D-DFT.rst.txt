@@ -383,100 +383,100 @@ Wrap up
 
     import numpy as np
     import matplotlib.pyplot as plt
-    
+
     def Integrate(x,y,axis = 0):
       dx = x[1] - x[0]
       return np.sum(y*dx, axis = axis)
-    
+
     def GetDensity(N_total, psi, x):
       I = Integrate(x,psi**2)
-      normalized_psi = psi/np.sqrt(I)[None,:] 
-      
+      normalized_psi = psi/np.sqrt(I)[None,:]
+
       N_k = [2 for _ in range(N_total//2)]
       if N_total % 2:
         N_k.append(1)
-      
+
       n = np.zeros_like(normalized_psi[:,0])
       for N_k_, psi in zip(N_k, normalized_psi.T):
         n += N_k_ * (psi**2)
       return n
-    
+
     def GetExchange(n,x):
       ExchangeEnergy = -3/4 * (3/np.pi)**(1/3) * Integrate(x, n**(4/3))
       ExchangePotential = - (3/np.pi)**(1/3) * n**(1/3)
       return ExchangeEnergy, ExchangePotential
-    
+
     def GetHartree(n,x,epsilon=1e-1):
       dx = x[1]-x[0]
       HartreeEnergy = 1/2*np.sum(n[None,:]*n[:,None]/np.sqrt((x[None,:]-x[:,None])**2+epsilon)*dx*dx)
       HartreePotential = np.sum(n[None,:]/np.sqrt((x[None,:]-x[:,None])**2+epsilon)*dx, axis=-1)
       return HartreeEnergy, HartreePotential
-    
+
     class SimpleDFT:
       def __init__(self, N_total=17, x_begin=-5, x_end=5, n_grid = 200,
                   hbar = 1, m = 1):
-        self.n_grid = n_grid 
+        self.n_grid = n_grid
         self.N_total = N_total
         self.x = np.linspace(x_begin,x_end,n_grid)
-        self.dx = x[1] - x[0]
-        self.D = np.diagflat(np.ones(n_grid-1),1) - np.eye(n_grid) 
+        self.dx = self.x[1] - self.x[0]
+        self.D = np.diagflat(np.ones(n_grid-1),1) - np.eye(n_grid)
         self.D = self.D / self.dx
         self.D2 = - self.D.dot( self.D.T )
         self.D2[-1,-1] = self.D2[0,0] #The derivative may not be well defined at the end of the grid
-        self.H_FreeParticle = - (hbar**2/(2*m)) * D2
-      
+        self.H_FreeParticle = - (hbar**2/(2*m)) * self.D2
+
       def FreeParticle(self):
         Potential = 0
         self.Solve("FreeParticle",Potential)
-        
+
       def HarmonicPotential(self,k=1):
         Potential = np.diagflat(k * self.x*self.x)
         self.Solve("Harmonic Potential", Potential)
-        
+
       def PotentialWell(self, width = 4,center =0):
         Potential = np.full_like(self.x,1e10)
         Potential[np.logical_and(self.x> center-width/2, self.x< center+width/2)] = 0
         Potential = np.diagflat(Potential)
         self.Solve("Potential Well", Potential)
-        
+
       def Solve(self,PotentialName, Potential):
         _,_,n_NoInt = self.SolveSingleParticle(  PotentialName, Potential)
         _,_,n_DFT   = self.SolveManyParticle( PotentialName, Potential)
         plt.title("Density: "+PotentialName)
         plt.plot(n_NoInt,label="n_NoInt"), plt.plot(n_DFT,label="n_DFT")
         plt.legend(), plt.show()
-         
+
       def SolveSingleParticle(self,PotentialName, Potential):
         H = self.H_FreeParticle + Potential
-        EigenValue, EigenVector = np.linalg.eigh(H)  
-        n = GetDensity(self.N_total, EigenVector, x)
+        EigenValue, EigenVector = np.linalg.eigh(H)
+        n = GetDensity(self.N_total, EigenVector, self.x)
         plt.title("SingleParticle: "+PotentialName)
         for i in range(5):
-          plt.plot(x,EigenVector[:,i], label=f"EigenValue: {EigenValue[i]:.3f}")
+          plt.plot(self.x,EigenVector[:,i], label=f"EigenValue: {EigenValue[i]:.3f}")
         plt.legend(), plt.show()
         return EigenValue, EigenVector, n
-      
+
       def SolveManyParticle(self, PotentialName, Potential):
         n = np.zeros(self.n_grid)
         LastEnergy = float("inf")
-    
+
         for i in range(1000):
-          ExchangeEnergy, ExchangePotential = GetExchange(n,x)
-          HartreeEnergy, HartreePotential = GetHartree(n,x)
-          H = H_FreeParticle + Potential + np.diagflat(ExchangePotential+HartreePotential)
+          ExchangeEnergy, ExchangePotential = GetExchange(n,self.x)
+          HartreeEnergy, HartreePotential = GetHartree(n,self.x)
+          H = self.H_FreeParticle + Potential + np.diagflat(ExchangePotential+HartreePotential)
           EigenValue, EigenVector = np.linalg.eigh(H)
           change = abs(EigenValue[0]-LastEnergy)
           LastEnergy = EigenValue[0]
           #print("Ground State Energy:",EigenValue[0],".. Change:",change)
           if change < 1e-5:
             break
-          n = GetDensity(self.N_total, EigenVector, x)
+          n = GetDensity(self.N_total, EigenVector, self.x)
         plt.title("ManyParticle: "+PotentialName)
         for i in range(5):
-          plt.plot(x,EigenVector[:,i], label=f"EigenValue: {EigenValue[i]:.3f}")
+          plt.plot(self.x,EigenVector[:,i], label=f"EigenValue: {EigenValue[i]:.3f}")
         plt.legend(), plt.show()
         return EigenValue, EigenVector, n
-    
+
     # usage
     SimpleDFT_1 = SimpleDFT()
     SimpleDFT_1.FreeParticle()

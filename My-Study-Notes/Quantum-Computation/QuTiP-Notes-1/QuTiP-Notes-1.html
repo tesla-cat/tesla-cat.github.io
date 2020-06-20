@@ -1,0 +1,952 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>QuTiP Notes 1 &mdash; My Study Notes  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Quantum Mechanics: Feynman Path Integral" href="../../Quantum-Mechanics-Feynman-Path-Integral/index.html" />
+    <link rel="prev" title="Quantum Computation" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> My Study Notes
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Quantum Computation</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">QuTiP Notes 1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction-to-qutip">Introduction to QuTiP</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#state-vectors-density-matrices-operators">State vectors, Density matrices, Operators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#composite-systems-jaynes-cummings-model">Composite systems &amp; Jaynes-Cummings model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#unitary-dynamics">Unitary dynamics</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#wigner-functions">Wigner functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cavity-qubit-gates">Cavity-qubit gates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cqed-in-the-dispersive-regime">cQED in the dispersive regime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#superconducting-charge-qubits">Superconducting charge qubits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gallery-of-wigner-functions">Gallery of Wigner functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optimal-control-overview">Optimal control - Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#grape-2005">GRAPE (2005)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#crab-2014-test-result-slow-and-inaccurate">CRAB (2014) <code class="docutils literal notranslate"><span class="pre">Test</span> <span class="pre">result:</span> <span class="pre">Slow</span> <span class="pre">and</span> <span class="pre">inaccurate</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#optimal-control-hadamard">Optimal control - Hadamard</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optimal-control-qft">Optimal control - QFT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optimal-control-lindbladian">Optimal control - Lindbladian</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Quantum-Mechanics-Feynman-Path-Integral/index.html">Quantum Mechanics: Feynman Path Integral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Quantum-Optics/index.html">Quantum Optics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Density-Functional-Theory/index.html">Density Functional Theory</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Electronics and Coding</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Experimental-Physics-SoC-FPGA-Design/index.html">Experimental Physics: SoC FPGA Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Code-Snippets/index.html">Code Snippets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Signal-Processing/index.html">Signal Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Django/index.html">Django</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Machine Learning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Machine-Learning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption"><span class="caption-text">BioPhysics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Biomolecular-Physics/index.html">Biomolecular Physics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Statistical Mechanics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Thermodynamics-And-Statistical-Mechanics/index.html">Thermodynamics And Statistical Mechanics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Relativity</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Relativity/index.html">Relativity</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Neurotechnology</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Neuromorphic-Vision/index.html">Neuromorphic Vision</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">My Study Notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Quantum Computation</a> &raquo;</li>
+        
+      <li>QuTiP Notes 1</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/Quantum-Computation/QuTiP-Notes-1/QuTiP-Notes-1.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="qutip-notes-1">
+<h1>QuTiP Notes 1<a class="headerlink" href="#qutip-notes-1" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">As a concrete plan, let’s try the following: - Get a copy of the
+Schuster code from git - Implement one example of finding the control
+pulses for creating a non-trivial quantum state in a one cavity
+coupled to a transmon with some realistic parameters</div>
+<div class="line">- Verify with qutip that it has indeed created the state by plotting
+its Wigner function and density matrix - Replace the existing grape
+algorithm with your version, see if it does the same thing and if it’s
+faster/slower</div>
+</div>
+<p>Useful qutip tutorials:</p>
+<ul class="simple">
+<li><p>Basics</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Introduction</span> <span class="pre">to</span> <span class="pre">QuTiP</span></code></p></li>
+<li><p>Superoperators, Pauli basis and channel contraction</p></li>
+</ul>
+</li>
+<li><p>Visualization</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Wigner</span> <span class="pre">functions</span></code></p></li>
+</ul>
+</li>
+<li><p>Quantum mechanics lectures with QuTiP</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Jaynes-Cummings</span> <span class="pre">model</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Cavity-qubit</span> <span class="pre">gates</span></code></p>
+<ul>
+<li><p><strong>key: time dependent Hamiltonian strength</strong></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cQED</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">dispersive</span> <span class="pre">regime</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Superconducting</span> <span class="pre">charge</span> <span class="pre">qubits</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Gallery</span> <span class="pre">of</span> <span class="pre">Wigner</span> <span class="pre">functions</span></code></p></li>
+</ul>
+</li>
+<li><p>Optimal control</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Overview</span></code></p></li>
+<li><p>GRAPE (GRadient Ascent Pulse Engineering)</p>
+<ul>
+<li><p>second order gradient ascent</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Hadamard</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">QFT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Lindbladian</span></code></p></li>
+<li><p>Symplectic</p></li>
+</ul>
+</li>
+<li><p>~first order gradient ascent~</p>
+<ul>
+<li><p>~CNOT (2017)~ <strong>1 hour</strong></p></li>
+<li><p>~iSWAP (2017)~ <strong>20 s</strong></p></li>
+<li><p>~Single-qubit rotation (2017)~ <strong>1 min</strong></p></li>
+<li><p>~Toffoli gate (2017)~ <strong>20 hours</strong></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>CRAB (Chopped RAndom Basis)</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">QFT</span> <span class="pre">(CRAB)</span></code></p></li>
+<li><p>~State to state (CRAB)~</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">from</span> <span class="nn">qutip</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+<div class="section" id="introduction-to-qutip">
+<h2>Introduction to QuTiP<a class="headerlink" href="#introduction-to-qutip" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="state-vectors-density-matrices-operators">
+<h3>State vectors, Density matrices, Operators<a class="headerlink" href="#state-vectors-density-matrices-operators" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Hermitian: <span class="math notranslate nohighlight">\(A^{\dagger}=A\)</span></p></li>
+</ul>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># basis(2,1), fock(2,1), coherent(N=2,alpha=1)</span>
+<span class="c1"># fock_dm(2,1), coherent_dm(2,1), thermal_dm(2,1)</span>
+<span class="c1"># sigmax(), sigmay(), sigmaz()</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">destroy</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">create</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span>       <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">a</span><span class="o">.</span><span class="n">dag</span><span class="p">())</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">a</span><span class="o">.</span><span class="n">dag</span><span class="p">())</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="composite-systems-jaynes-cummings-model">
+<h3>Composite systems &amp; Jaynes-Cummings model<a class="headerlink" href="#composite-systems-jaynes-cummings-model" title="Permalink to this headline">¶</a></h3>
+<p>Jaynes-Cumming model:</p>
+<div class="math notranslate nohighlight">
+\[H = \hbar \omega_c a^\dagger a + \frac{1}{2}\hbar\omega_a\sigma_z + \hbar g(a^\dagger + a)(\sigma_- + \sigma_+)\]</div>
+<p>Rotating-wave approximation:</p>
+<div class="math notranslate nohighlight">
+\[H_{\rm RWA} = \hbar \omega_c a^\dagger a + \frac{1}{2}\hbar\omega_a\sigma_z + \hbar g(a^\dagger\sigma_- + a\sigma_+)\]</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Hjc</span><span class="p">(</span><span class="n">dimC</span><span class="p">,</span><span class="n">omegaC</span><span class="p">,</span><span class="n">omegaA</span><span class="p">,</span><span class="n">g</span><span class="p">,</span><span class="n">rotWavApprox</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">destroy</span><span class="p">(</span><span class="n">dimC</span><span class="p">),</span><span class="n">qeye</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">sm</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">qeye</span><span class="p">(</span><span class="n">dimC</span><span class="p">),</span><span class="n">destroy</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">rotWavApprox</span><span class="p">:</span> <span class="n">inte</span> <span class="o">=</span> <span class="n">g</span> <span class="o">*</span> <span class="p">(</span> <span class="n">a</span><span class="o">*</span><span class="n">sm</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span> <span class="o">+</span> <span class="n">a</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span><span class="o">*</span><span class="n">sm</span> <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span> <span class="n">inte</span> <span class="o">=</span> <span class="n">g</span> <span class="o">*</span> <span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">a</span><span class="o">.</span><span class="n">dag</span><span class="p">())</span> <span class="o">*</span> <span class="p">(</span><span class="n">sm</span><span class="o">+</span><span class="n">sm</span><span class="o">.</span><span class="n">dag</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">inte</span> <span class="o">+</span> <span class="n">omegaC</span><span class="o">*</span><span class="n">a</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span><span class="o">*</span><span class="n">a</span> \
+        <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">omegaA</span><span class="o">*</span><span class="n">tensor</span><span class="p">(</span><span class="n">qeye</span><span class="p">(</span><span class="n">dimC</span><span class="p">),</span><span class="n">sigmaz</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="unitary-dynamics">
+<h3>Unitary dynamics<a class="headerlink" href="#unitary-dynamics" title="Permalink to this headline">¶</a></h3>
+<p><strong>Note</strong> <code class="docutils literal notranslate"><span class="pre">mesolve</span></code> returns either <code class="docutils literal notranslate"><span class="pre">result.expect</span></code> (when <code class="docutils literal notranslate"><span class="pre">e_ops</span></code> is
+not empty) or <code class="docutils literal notranslate"><span class="pre">result.states</span></code>, but not both</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="n">result</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">numExpect</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">expect</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numExpect</span><span class="p">):</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">i</span> <span class="k">if</span> <span class="n">labels</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">expect</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="n">dimC</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">H</span> <span class="o">=</span> <span class="n">Hjc</span><span class="p">(</span><span class="n">dimC</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">psi0</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">fock</span><span class="p">(</span><span class="n">dimC</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="n">fock</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="c1"># find expectation for</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">qeye</span><span class="p">(</span><span class="n">dimC</span><span class="p">),</span><span class="n">sigmax</span><span class="p">())</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">qeye</span><span class="p">(</span><span class="n">dimC</span><span class="p">),</span><span class="n">sigmaz</span><span class="p">())</span>
+<span class="n">aC</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">destroy</span><span class="p">(</span><span class="n">dimC</span><span class="p">),</span><span class="n">qeye</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">NC</span> <span class="o">=</span> <span class="n">aC</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span> <span class="o">*</span> <span class="n">aC</span>
+<span class="n">aA</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">qeye</span><span class="p">(</span><span class="n">dimC</span><span class="p">),</span><span class="n">destroy</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">NA</span> <span class="o">=</span> <span class="n">aA</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span> <span class="o">*</span> <span class="n">aA</span>
+<span class="c1"># collapse operators</span>
+<span class="n">C1</span> <span class="o">=</span> <span class="mf">0.2</span><span class="o">*</span><span class="n">aC</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">mesolve</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">psi0</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="p">[</span><span class="n">C1</span><span class="p">],</span> <span class="p">[</span><span class="n">NC</span><span class="p">,</span><span class="n">NA</span><span class="p">])</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">result</span><span class="p">,[</span><span class="s1">&#39;NC&#39;</span><span class="p">,</span><span class="s1">&#39;NA&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_11_0.png" src="../../_images/output_11_0.png" />
+</div>
+</div>
+<div class="section" id="wigner-functions">
+<h2>Wigner functions<a class="headerlink" href="#wigner-functions" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plotWigner</span><span class="p">(</span><span class="n">rhoList</span><span class="p">):</span>
+    <span class="n">figGrid</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">rhoList</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">2.5</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">rhoList</span><span class="p">),</span><span class="mi">5</span><span class="p">))</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">rho</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rhoList</span><span class="p">):</span>
+        <span class="n">W</span> <span class="o">=</span> <span class="n">wigner</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">(</span><span class="n">figGrid</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">idx</span><span class="p">),</span> <span class="n">colspan</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">mpl</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="o">-.</span><span class="mi">25</span><span class="p">,</span><span class="o">.</span><span class="mi">25</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;RdBu&#39;</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">mesolve</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">psi0</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="p">[</span><span class="n">C1</span><span class="p">],</span> <span class="p">[])</span>
+<span class="k">def</span> <span class="nf">getRhoCavity</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="k">return</span> <span class="n">ptrace</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">states</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">rhoList</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">getRhoCavity</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">20</span><span class="p">)))</span>
+<span class="n">plotWigner</span><span class="p">(</span><span class="n">rhoList</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_13_0.png" src="../../_images/output_13_0.png" />
+</div>
+<div class="section" id="cavity-qubit-gates">
+<h2>Cavity-qubit gates<a class="headerlink" href="#cavity-qubit-gates" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fToOmega</span><span class="p">(</span><span class="n">f</span><span class="p">):</span> <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span>
+
+
+<span class="n">dimC</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">aC</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">destroy</span><span class="p">(</span><span class="n">dimC</span><span class="p">),</span><span class="n">qeye</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="n">qeye</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">aQ1</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">qeye</span><span class="p">(</span><span class="n">dimC</span><span class="p">),</span><span class="n">destroy</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="n">qeye</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">aQ2</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">qeye</span><span class="p">(</span><span class="n">dimC</span><span class="p">),</span><span class="n">qeye</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="n">destroy</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">NC</span>  <span class="o">=</span> <span class="n">aC</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span>  <span class="o">*</span> <span class="n">aC</span>
+<span class="n">NQ1</span> <span class="o">=</span> <span class="n">aQ1</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span> <span class="o">*</span> <span class="n">aQ1</span>
+<span class="n">NQ2</span> <span class="o">=</span> <span class="n">aQ2</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span> <span class="o">*</span> <span class="n">aQ2</span>
+
+<span class="n">ZQ1</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">qeye</span><span class="p">(</span><span class="n">dimC</span><span class="p">),</span><span class="n">sigmaz</span><span class="p">(),</span><span class="n">qeye</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">ZQ2</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">qeye</span><span class="p">(</span><span class="n">dimC</span><span class="p">),</span><span class="n">qeye</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="n">sigmaz</span><span class="p">())</span>
+
+<span class="n">g1</span> <span class="o">=</span> <span class="n">fToOmega</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">g2</span> <span class="o">=</span> <span class="n">fToOmega</span><span class="p">(</span><span class="mf">0.0125</span><span class="p">)</span>
+<span class="n">HCQ1</span> <span class="o">=</span> <span class="n">g1</span> <span class="o">*</span> <span class="p">(</span><span class="n">aC</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span> <span class="o">*</span> <span class="n">aQ1</span> <span class="o">+</span> <span class="n">aC</span> <span class="o">*</span> <span class="n">aQ1</span><span class="o">.</span><span class="n">dag</span><span class="p">())</span>
+<span class="n">HCQ2</span> <span class="o">=</span> <span class="n">g2</span> <span class="o">*</span> <span class="p">(</span><span class="n">aC</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span> <span class="o">*</span> <span class="n">aQ2</span> <span class="o">+</span> <span class="n">aC</span> <span class="o">*</span> <span class="n">aQ2</span><span class="o">.</span><span class="n">dag</span><span class="p">())</span>
+
+<span class="n">omegaC0</span> <span class="o">=</span> <span class="n">fToOmega</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">omegaQ10</span> <span class="o">=</span> <span class="n">fToOmega</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">omegaQ20</span> <span class="o">=</span> <span class="n">fToOmega</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">t0Q1</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">TQ1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">g1</span><span class="p">)</span>
+<span class="n">t0Q2</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="n">TQ2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">g2</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">t0</span><span class="p">,</span><span class="n">h1</span><span class="p">,</span><span class="n">h2</span><span class="p">,</span><span class="n">w</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">h1</span><span class="o">+</span><span class="p">(</span><span class="n">h2</span><span class="o">-</span><span class="n">h1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">t</span><span class="o">&gt;</span><span class="n">t0</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">omegaC</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">omegaC0</span>
+<span class="k">def</span> <span class="nf">omegaQ1</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">h2</span> <span class="o">=</span> <span class="n">omegaC0</span> <span class="o">-</span> <span class="n">omegaQ10</span>
+    <span class="k">return</span> <span class="n">omegaQ10</span> <span class="o">+</span> <span class="n">step</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">t0Q1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">h2</span><span class="p">)</span> <span class="o">-</span> <span class="n">step</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">t0Q1</span><span class="o">+</span><span class="n">TQ1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">h2</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">omegaQ2</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">h2</span> <span class="o">=</span> <span class="n">omegaC0</span> <span class="o">-</span> <span class="n">omegaQ20</span>
+    <span class="k">return</span> <span class="n">omegaQ20</span> <span class="o">+</span> <span class="n">step</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">t0Q2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">h2</span><span class="p">)</span> <span class="o">-</span> <span class="n">step</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">t0Q2</span><span class="o">+</span><span class="n">TQ2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">h2</span><span class="p">)</span>
+
+<span class="n">Ht</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[</span><span class="n">NC</span><span class="p">,</span><span class="n">omegaC</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">ZQ1</span><span class="p">,</span><span class="n">omegaQ1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">ZQ2</span><span class="p">,</span><span class="n">omegaQ2</span><span class="p">],</span>
+       <span class="n">HCQ1</span><span class="o">+</span><span class="n">HCQ2</span> <span class="p">]</span>
+<span class="n">psi0</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">fock</span><span class="p">(</span><span class="n">dimC</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="n">fock</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">fock</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">mesolve</span><span class="p">(</span><span class="n">Ht</span><span class="p">,</span><span class="n">psi0</span><span class="p">,</span><span class="n">t</span><span class="p">,[],[</span><span class="n">NC</span><span class="p">,</span><span class="n">NQ1</span><span class="p">,</span><span class="n">NQ2</span><span class="p">])</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">result</span><span class="p">,[</span><span class="s1">&#39;NC&#39;</span><span class="p">,</span><span class="s1">&#39;NQ1&#39;</span><span class="p">,</span><span class="s1">&#39;NQ2&#39;</span><span class="p">])</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">mesolve</span><span class="p">(</span><span class="n">Ht</span><span class="p">,</span><span class="n">psi0</span><span class="p">,</span><span class="n">t</span><span class="p">,[],[])</span>
+<span class="n">rhoQubits</span> <span class="o">=</span> <span class="n">ptrace</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">states</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="kn">from</span> <span class="nn">qutip.qip.operations</span> <span class="kn">import</span> <span class="n">phasegate</span><span class="p">,</span><span class="n">sqrtiswap</span>
+<span class="n">rhoQubitsIdeal</span> <span class="o">=</span> <span class="n">ket2dm</span><span class="p">(</span>
+    <span class="n">tensor</span><span class="p">(</span><span class="n">phasegate</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">phasegate</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+    <span class="o">*</span> <span class="n">sqrtiswap</span><span class="p">()</span>
+    <span class="o">*</span> <span class="n">tensor</span><span class="p">(</span><span class="n">fock</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">fock</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="p">)</span>
+
+<span class="n">fidelity</span><span class="p">(</span><span class="n">rhoQubits</span><span class="p">,</span><span class="n">rhoQubitsIdeal</span><span class="p">),</span> \
+<span class="n">concurrence</span><span class="p">(</span><span class="n">rhoQubits</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_15_0.png" src="../../_images/output_15_0.png" />
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mf">0.01969740679409353</span><span class="p">,</span> <span class="mf">0.9999376665389423</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="cqed-in-the-dispersive-regime">
+<h2>cQED in the dispersive regime<a class="headerlink" href="#cqed-in-the-dispersive-regime" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>qubit-resonator system</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle H = \omega_r a^\dagger a - \frac{1}{2} \omega_q \sigma_z + g (a^\dagger + a) \sigma_x\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(g\)</span> : dipole interaction strength</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Delta = |\omega_r-\omega_q|\)</span> : detuning</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Delta \gg g\)</span> : dispersive regime</p></li>
+</ul>
+</li>
+<li><p>Dispersive regime: effective Hamiltonian</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle H_{\text{eff}} = \omega_r a^\dagger a - \frac{1}{2}\omega_q \sigma_z +
+\underbrace{\chi}_{g^2/\Delta}
+(a^\dagger a  + 1/2) \sigma_z\]</div>
+</li>
+<li><p>The dispersive regime can be used to resolve the photon number states
+of a microwave resonator by monitoring a qubit that was coupled to
+the resonator.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.nature.com/articles/nature05461">D. I. Schuster et al., Resolving photon number states in a
+superconducting circuit, Nature 445, 515
+(2007)</a></p></li>
+</ul>
+</li>
+<li><p>Two-operator two-time correlation function</p>
+<div class="math notranslate nohighlight">
+\[\left&lt;A(t+\tau)B(t)\right&gt;\]</div>
+</li>
+</ul>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dimC</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">omegaC</span> <span class="o">=</span> <span class="n">fToOmega</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">omegaQ</span> <span class="o">=</span> <span class="n">fToOmega</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">chi</span> <span class="o">=</span> <span class="n">fToOmega</span><span class="p">(</span><span class="mf">0.025</span><span class="p">)</span>
+
+<span class="n">aC</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">destroy</span><span class="p">(</span><span class="n">dimC</span><span class="p">),</span><span class="n">qeye</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">aQ</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">qeye</span><span class="p">(</span><span class="n">dimC</span><span class="p">),</span><span class="n">destroy</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">NC</span> <span class="o">=</span> <span class="n">aC</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span><span class="o">*</span><span class="n">aC</span>
+<span class="n">NQ</span> <span class="o">=</span> <span class="n">aQ</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span><span class="o">*</span><span class="n">aQ</span>
+<span class="n">xC</span> <span class="o">=</span> <span class="n">aC</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span><span class="o">+</span><span class="n">aC</span>
+<span class="n">xQ</span> <span class="o">=</span> <span class="n">aQ</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span><span class="o">+</span><span class="n">aQ</span>
+
+<span class="n">ZQ</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">qeye</span><span class="p">(</span><span class="n">dimC</span><span class="p">),</span><span class="n">sigmaz</span><span class="p">())</span>
+<span class="n">XQ</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">qeye</span><span class="p">(</span><span class="n">dimC</span><span class="p">),</span><span class="n">sigmax</span><span class="p">())</span>
+
+<span class="n">I</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">qeye</span><span class="p">(</span><span class="n">dimC</span><span class="p">),</span><span class="n">qeye</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># something is wrong with the tutorial ?</span>
+<span class="c1"># H = omegaC*NC - 0.5*omegaQ*ZQ + chi*(NC+0.5*I)*ZQ</span>
+<span class="n">H</span> <span class="o">=</span> <span class="n">omegaC</span><span class="o">*</span><span class="p">(</span><span class="n">NC</span><span class="o">+</span><span class="mf">0.5</span><span class="o">*</span><span class="n">I</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">omegaQ</span><span class="o">*</span><span class="n">ZQ</span> <span class="o">+</span> <span class="n">chi</span><span class="o">*</span><span class="p">(</span><span class="n">NC</span><span class="o">+</span><span class="mf">0.5</span><span class="o">*</span><span class="n">I</span><span class="p">)</span><span class="o">*</span><span class="n">ZQ</span>
+<span class="n">psi0</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span> <span class="n">coherent</span><span class="p">(</span><span class="n">dimC</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="p">)),</span>
+              <span class="p">(</span><span class="n">fock</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">+</span><span class="n">fock</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">unit</span><span class="p">()</span> <span class="p">)</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">mesolve</span><span class="p">(</span><span class="n">H</span><span class="p">,</span><span class="n">psi0</span><span class="p">,</span><span class="n">t</span><span class="p">,[],[</span><span class="n">xC</span><span class="p">])</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">result</span><span class="p">,[</span><span class="s1">&#39;xC&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_17_0.png" src="../../_images/output_17_0.png" />
+<p><strong>Important</strong>: For spectrum, the choice of <span class="math notranslate nohighlight">\(t\)</span> is crucial, note
+<code class="docutils literal notranslate"><span class="pre">t</span> <span class="pre">=</span> <span class="pre">np.linspace(0,</span> <span class="pre">1000,</span> <span class="pre">10000)</span></code> below, whereas
+<code class="docutils literal notranslate"><span class="pre">t</span> <span class="pre">=</span> <span class="pre">np.linspace(0,</span> <span class="pre">250,</span> <span class="pre">1000)</span></code> earlier</p>
+<p><strong>Question</strong>: Why FFT spectrum of the correlation between
+<span class="math notranslate nohighlight">\(a^{\dagger},a\)</span> and <span class="math notranslate nohighlight">\(\sigma_x, \sigma_x\)</span> gives you the right
+frequencies ?</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plotCorrelationSpectrum</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">corre</span><span class="p">,</span><span class="n">modifyOmega</span><span class="p">,</span><span class="n">xlims</span><span class="p">):</span>
+    <span class="n">omega</span><span class="p">,</span> <span class="n">spectrum</span> <span class="o">=</span> <span class="n">spectrum_correlation_fft</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">corre</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">corre</span><span class="p">))</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">*</span><span class="n">xlims</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">modifyOmega</span><span class="p">(</span><span class="n">omega</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">spectrum</span><span class="p">))</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">*</span><span class="n">xlims</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+<span class="n">correC</span> <span class="o">=</span> <span class="n">correlation_2op_2t</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">psi0</span><span class="p">,</span> <span class="n">tlist</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">taulist</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">c_ops</span><span class="o">=</span><span class="p">[],</span>
+                           <span class="n">a_op</span><span class="o">=</span><span class="n">aC</span><span class="o">.</span><span class="n">dag</span><span class="p">(),</span> <span class="n">b_op</span><span class="o">=</span><span class="n">aC</span><span class="p">)</span>
+<span class="n">correQ</span> <span class="o">=</span> <span class="n">correlation_2op_2t</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">psi0</span><span class="p">,</span> <span class="n">tlist</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">taulist</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">c_ops</span><span class="o">=</span><span class="p">[],</span>
+                           <span class="n">a_op</span><span class="o">=</span><span class="n">XQ</span><span class="o">.</span><span class="n">dag</span><span class="p">(),</span> <span class="n">b_op</span><span class="o">=</span><span class="n">XQ</span><span class="p">)</span> <span class="c1"># XQ.dag()=XQ</span>
+<span class="k">def</span> <span class="nf">modifyOmegaC</span><span class="p">(</span><span class="n">omega</span><span class="p">):</span> <span class="k">return</span> <span class="p">(</span><span class="n">omega</span><span class="o">-</span><span class="n">omegaC</span><span class="p">)</span><span class="o">/</span><span class="n">chi</span>
+<span class="k">def</span> <span class="nf">modifyOmegaQ</span><span class="p">(</span><span class="n">omega</span><span class="p">):</span> <span class="k">return</span> <span class="p">(</span><span class="n">omega</span><span class="o">-</span><span class="n">omegaQ</span><span class="o">-</span><span class="n">chi</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">chi</span><span class="p">)</span>
+<span class="n">plotCorrelationSpectrum</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">correC</span><span class="p">,</span><span class="n">modifyOmegaC</span><span class="p">,</span>
+                        <span class="n">xlims</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">50</span><span class="p">],[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">]])</span>
+<span class="n">plotCorrelationSpectrum</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">correQ</span><span class="p">,</span><span class="n">modifyOmegaQ</span><span class="p">,</span>
+                        <span class="n">xlims</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">50</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="n">dimC</span><span class="p">]])</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_19_0.png" src="../../_images/output_19_0.png" />
+<img alt="../../_images/output_19_1.png" src="../../_images/output_19_1.png" />
+<p>Compare to the cavity fock state distribution:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">mesolve</span><span class="p">(</span><span class="n">H</span><span class="p">,</span><span class="n">psi0</span><span class="p">,</span><span class="n">t</span><span class="p">,[],[])</span>
+<span class="n">rhoC</span> <span class="o">=</span> <span class="n">ptrace</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">states</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">dimC</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">rhoC</span><span class="o">.</span><span class="n">diag</span><span class="p">()))</span>
+
+<span class="n">rhoList</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">getRhoCavity</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">250</span><span class="p">,</span><span class="mi">20</span><span class="p">)))</span>
+<span class="n">plotWigner</span><span class="p">(</span><span class="n">rhoList</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_21_01.png" src="../../_images/output_21_01.png" />
+<img alt="../../_images/output_21_11.png" src="../../_images/output_21_11.png" />
+</div>
+<div class="section" id="superconducting-charge-qubits">
+<h2>Superconducting charge qubits<a class="headerlink" href="#superconducting-charge-qubits" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>Josephson charge qubit:</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle H = \sum_n 4 E_C (n_g - n)^2 \left|n\right\rangle\left\langle n\right| - \frac{1}{2}E_J\sum_n\left(\left|n+1\right\rangle\left\langle n\right| + \left|n\right\rangle\left\langle n+1\right| \right)\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(E_C\)</span> : Charge energy</p></li>
+<li><p><span class="math notranslate nohighlight">\(E_J\)</span> : Josephson energy</p></li>
+<li><p><span class="math notranslate nohighlight">\(\left| n\right\rangle\)</span> : the charge state with <span class="math notranslate nohighlight">\(n\)</span>
+Cooper-pairs on the island that makes up the charge qubit</p></li>
+<li><p><span class="math notranslate nohighlight">\(n_g\)</span> : <strong>gate bias</strong></p></li>
+</ul>
+</li>
+</ul>
+<p>Schoelkopf: <a class="reference external" href="https://journals.aps.org/pra/abstract/10.1103/PhysRevA.76.042319">J. Koch et al, Phys. Rec. A 76, 042319
+(2007)</a></p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Hcq</span><span class="p">(</span><span class="n">Ec</span><span class="p">,</span><span class="n">Ej</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">ng</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Qobj</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">Ec</span><span class="o">*</span><span class="p">(</span><span class="n">ng</span><span class="o">-</span><span class="n">n</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> \
+                 <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">Ej</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span> \
+                 <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">Ej</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="p">),</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">plotHcqEnergies</span><span class="p">(</span><span class="n">ngVec</span><span class="p">,</span><span class="n">energies</span><span class="p">,</span><span class="n">ymaxs</span><span class="o">=</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">3</span><span class="p">)):</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">16</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span> <span class="nb">len</span><span class="p">(</span><span class="n">energies</span><span class="p">[</span><span class="mi">0</span><span class="p">,:])</span> <span class="p">)</span> <span class="p">:</span>
+        <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ngVec</span><span class="p">,</span> <span class="n">energies</span><span class="p">[:,</span><span class="n">n</span><span class="p">])</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">ymaxs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$n_g$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$E_n$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span> <span class="nb">len</span><span class="p">(</span><span class="n">energies</span><span class="p">[</span><span class="mi">0</span><span class="p">,:])</span> <span class="p">):</span>
+        <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ngVec</span><span class="p">,</span> <span class="p">(</span><span class="n">energies</span><span class="p">[:,</span><span class="n">n</span><span class="p">]</span><span class="o">-</span><span class="n">energies</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">energies</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">energies</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">ymaxs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$n_g$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$(E_n-E_0)/(E_1-E_0)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">ngVec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="c1">#Charge qubit regime</span>
+<span class="n">Ec</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">;</span> <span class="n">Ej</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">energies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">Hcq</span><span class="p">(</span><span class="n">Ec</span><span class="p">,</span> <span class="n">Ej</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">ng</span><span class="p">)</span><span class="o">.</span><span class="n">eigenenergies</span><span class="p">()</span> <span class="k">for</span> <span class="n">ng</span> <span class="ow">in</span> <span class="n">ngVec</span><span class="p">])</span>
+<span class="c1">#plotHcqEnergies(ngVec, energies)</span>
+
+<span class="c1">#Intermediate regime</span>
+<span class="n">Ec</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">;</span> <span class="n">Ej</span> <span class="o">=</span> <span class="mf">5.0</span>
+<span class="n">energies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">Hcq</span><span class="p">(</span><span class="n">Ec</span><span class="p">,</span> <span class="n">Ej</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">ng</span><span class="p">)</span><span class="o">.</span><span class="n">eigenenergies</span><span class="p">()</span> <span class="k">for</span> <span class="n">ng</span> <span class="ow">in</span> <span class="n">ngVec</span><span class="p">])</span>
+<span class="n">plotHcqEnergies</span><span class="p">(</span><span class="n">ngVec</span><span class="p">,</span> <span class="n">energies</span><span class="p">)</span>
+
+<span class="c1">#Transmon regime</span>
+<span class="n">Ec</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">;</span> <span class="n">Ej</span> <span class="o">=</span> <span class="mf">50.0</span>
+<span class="n">energies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">Hcq</span><span class="p">(</span><span class="n">Ec</span><span class="p">,</span> <span class="n">Ej</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">ng</span><span class="p">)</span><span class="o">.</span><span class="n">eigenenergies</span><span class="p">()</span> <span class="k">for</span> <span class="n">ng</span> <span class="ow">in</span> <span class="n">ngVec</span><span class="p">])</span>
+<span class="n">plotHcqEnergies</span><span class="p">(</span><span class="n">ngVec</span><span class="p">,</span> <span class="n">energies</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_24_0.png" src="../../_images/output_24_0.png" />
+<img alt="../../_images/output_24_1.png" src="../../_images/output_24_1.png" />
+<p><strong>Transmon:</strong> - Energy splitting almost independent of the gate bias
+<span class="math notranslate nohighlight">\(n_g\)</span>, thus insensitive to charge noise - But states are not well
+separated</p>
+</div>
+<div class="section" id="gallery-of-wigner-functions">
+<h2>Gallery of Wigner functions<a class="headerlink" href="#gallery-of-wigner-functions" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Superposition of coherent states</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="k">def</span> <span class="nf">dimCtoRho</span><span class="p">(</span><span class="n">dimC</span><span class="p">):</span>
+    <span class="n">psis</span> <span class="o">=</span> <span class="p">[</span><span class="n">coherent</span><span class="p">(</span><span class="n">dimC</span><span class="p">,</span><span class="o">-</span><span class="n">alpha</span><span class="p">),</span> <span class="n">coherent</span><span class="p">(</span><span class="n">dimC</span><span class="p">,</span><span class="n">alpha</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">ket2dm</span><span class="p">(</span> <span class="nb">sum</span><span class="p">(</span><span class="n">psis</span><span class="p">)</span><span class="o">.</span><span class="n">unit</span><span class="p">()</span> <span class="p">)</span>
+<span class="n">rhoList</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">dimCtoRho</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">3</span><span class="p">)))</span>
+<span class="n">plotWigner</span><span class="p">(</span><span class="n">rhoList</span><span class="p">)</span>
+
+<span class="n">dimC</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="k">def</span> <span class="nf">MtoRho</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+    <span class="n">psis</span> <span class="o">=</span> <span class="p">[</span><span class="n">coherent</span><span class="p">(</span><span class="n">dimC</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="n">j</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">m</span><span class="o">/</span><span class="n">M</span><span class="p">))</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">ket2dm</span><span class="p">(</span> <span class="nb">sum</span><span class="p">(</span><span class="n">psis</span><span class="p">)</span><span class="o">.</span><span class="n">unit</span><span class="p">()</span> <span class="p">)</span>
+<span class="n">rhoList</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">MtoRho</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)))</span>
+<span class="n">plotWigner</span><span class="p">(</span><span class="n">rhoList</span><span class="p">)</span>
+
+<span class="c1">#Superposition of Fock states</span>
+<span class="n">dimC</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="k">def</span> <span class="nf">MtoRho</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+    <span class="n">psis</span> <span class="o">=</span> <span class="p">[</span><span class="n">fock</span><span class="p">(</span><span class="n">dimC</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="n">fock</span><span class="p">(</span><span class="n">dimC</span><span class="p">,</span><span class="n">M</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">ket2dm</span><span class="p">(</span> <span class="nb">sum</span><span class="p">(</span><span class="n">psis</span><span class="p">)</span><span class="o">.</span><span class="n">unit</span><span class="p">()</span> <span class="p">)</span>
+<span class="n">rhoList</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">MtoRho</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)))</span>
+<span class="n">plotWigner</span><span class="p">(</span><span class="n">rhoList</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_27_0.png" src="../../_images/output_27_0.png" />
+<img alt="../../_images/output_27_11.png" src="../../_images/output_27_11.png" />
+<img alt="../../_images/output_27_2.png" src="../../_images/output_27_2.png" />
+</div>
+<div class="section" id="optimal-control-overview">
+<h2>Optimal control - Overview<a class="headerlink" href="#optimal-control-overview" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="grape-2005">
+<h3><a class="reference external" href="http://www.org.chemie.tu-muenchen.de/glaser/94(GRAPE_JMR_05).pdf">GRAPE (2005)</a><a class="headerlink" href="#grape-2005" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}H(t) \approx H(t_k) = H_0 + \sum_{j=1}^N u_{jk} H_j\quad\\
+X_k:=e^{-iH(t_k)\Delta t_k}\\
+X(t_k):=X_k X_{k-1}\cdots X_1 X_0\\
+\newcommand{\tr}[0]{\operatorname{tr}} f_{PSU} = \tfrac{1}{d} \big| \tr \{X_{targ}^{\dagger} X(T)\} \big|\\
+\varepsilon = 1 - f_{PSU}\end{split}\]</div>
+<ul class="simple">
+<li><p>Steepest ascent: First order gradient method - The second order</p></li>
+</ul>
+<p>differentials (<strong>Hessian matrix</strong>) can be used to approximate the local
+landscape to a parabola. This way a step (or jump) can be made to where
+the minima would be if it were parabolic. This typically vastly reduces
+the number of iterations, and removes the need to guess a step size. -
+<strong>Newton-Raphson method</strong>: all elements of the Hessian are calculated -
+Hessian is expensive - Quasi-Newton: Approximates the Hessian based on
+successive iterations - Broyden–Fletcher–Goldfarb–Shanno algorithm
+(BFGS):
+<code class="docutils literal notranslate"><span class="pre">scipy.optimize.minimize(fun,</span> <span class="pre">x0,</span> <span class="pre">args=(),</span> <span class="pre">method='L-BFGS-B')</span></code>,
+<a class="reference external" href="http://users.iems.northwestern.edu/~nocedal/PDFfiles/limited.pdf">Limited memory (doesn’t store the entire Hessian) and Bounded (set
+bounds for
+variables)</a>
+- <strong>Catch</strong>: It is more efficient if the gradients can be calculated
+exactly - Closed systems with unitary dynamics - a method using the
+eigendecomposition is used - efficient as it is also used in the
+propagator calculation (to exponentiate the combined Hamiltonian) - Open
+systems and symplectic dynamics - <a class="reference external" href="https://iopscience.iop.org/article/10.1088/1367-2630/14/7/073023/pdf">Frechet derivative (or augmented
+matrix) method is
+used</a></p>
+</div>
+<div class="section" id="crab-2014-test-result-slow-and-inaccurate">
+<h3><a class="reference external" href="https://arxiv.org/pdf/1401.5047.pdf">CRAB (2014)</a> <code class="docutils literal notranslate"><span class="pre">Test</span> <span class="pre">result:</span> <span class="pre">Slow</span> <span class="pre">and</span> <span class="pre">inaccurate</span></code><a class="headerlink" href="#crab-2014-test-result-slow-and-inaccurate" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Introducing a physically motivated function basis that builds up the
+pulse</p></li>
+<li><p><a class="reference external" href="https://journals.aps.org/pra/abstract/10.1103/PhysRevA.92.062343">A ‘dressed’ version has recently been introduced that allows to
+escape local
+minima</a></p></li>
+<li><p>Takes the time evolution as a <strong>black-box</strong> where the pulse goes as
+an input and the cost (e.g. infidelity) value will be returned as an
+output</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="optimal-control-hadamard">
+<h2>Optimal control - Hadamard<a class="headerlink" href="#optimal-control-hadamard" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Drift is <span class="math notranslate nohighlight">\(\sigma_z\)</span> (rotation about <span class="math notranslate nohighlight">\(z\)</span>)</p></li>
+<li><p>Control is <span class="math notranslate nohighlight">\(\sigma_x\)</span> (rotation about <span class="math notranslate nohighlight">\(x\)</span>)</p></li>
+<li><p>Fully controllable: Any unitary target could be chosen</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dt</span></code> must be chosen such that it is small compared with the
+dynamics of the system</p></li>
+<li><p>L-BFGS-B algorithm</p>
+<ul>
+<li><p>At each iteration the gradient of the fidelity error w.r.t. each
+control amplitude in each timeslot is calculated using an exact
+gradient method</p></li>
+<li><p>Using the gradients the algorithm will determine a set of
+piecewise control amplitudes that reduce the fidelity error</p></li>
+<li><p>With repeated iterations an approximation of the Hessian matrix is
+calculated, which enables a quasi 2nd order Newton method for
+finding a minima</p></li>
+</ul>
+</li>
+<li><p><strong>The majority of time is spent calculating the propagators,
+i.e. exponentiating the combined Hamiltonian</strong></p></li>
+</ul>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qutip.qip.operations</span> <span class="kn">import</span> <span class="n">hadamard_transform</span>
+<span class="kn">import</span> <span class="nn">qutip.control.pulseoptim</span> <span class="k">as</span> <span class="nn">cpo</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Hd</span> <span class="o">=</span> <span class="n">sigmaz</span><span class="p">()</span>
+<span class="n">Hcs</span> <span class="o">=</span> <span class="p">[</span><span class="n">sigmax</span><span class="p">()]</span>
+<span class="n">U0</span> <span class="o">=</span> <span class="n">qeye</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">Utarg</span> <span class="o">=</span> <span class="n">hadamard_transform</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">Nt</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">cpo</span><span class="o">.</span><span class="n">optimize_pulse_unitary</span><span class="p">(</span><span class="n">Hd</span><span class="p">,</span><span class="n">Hcs</span><span class="p">,</span><span class="n">U0</span><span class="p">,</span><span class="n">Utarg</span><span class="p">,</span><span class="n">Nt</span><span class="p">,</span><span class="n">T</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">printOptimizeResult</span><span class="p">(</span><span class="n">result</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="n">U</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">U</span><span class="p">):</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Final evolution</span><span class="se">\n</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">evo_full_final</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="o">*</span><span class="mi">20</span> <span class="o">+</span><span class="s1">&#39; &#39;</span><span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot; Summary &quot;</span> <span class="o">+</span> <span class="s1">&#39;*&#39;</span><span class="o">*</span><span class="mi">20</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Final fidelity error </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">fid_err</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Final gradient normal </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">grad_norm_final</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Terminated due to </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">termination_reason</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of iterations </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">num_iter</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Completed in </span><span class="si">{}</span><span class="s2"> HH:MM:SS.US&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">wall_time</span><span class="p">)))</span>
+<span class="n">printOptimizeResult</span><span class="p">(</span><span class="n">result</span><span class="p">,</span><span class="s1">&#39;Hadamard&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<pre class="literal-block"><strong>****************</strong> Hadamard Summary <strong>****************</strong>
+Final fidelity error 9.25592935629993e-13
+Final gradient normal 2.4684918139413004e-05
+Terminated due to Goal achieved
+Number of iterations 4
+Completed in 0:00:00.018038 HH:MM:SS.US</pre>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plotOptimalControl</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">initial</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">initial_amps</span>
+    <span class="n">optimised</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">final_amps</span>
+    <span class="k">def</span> <span class="nf">hstack</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">j</span><span class="p">):</span> <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">x</span><span class="p">[:,</span> <span class="n">j</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">]))</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">initial</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">hstack</span><span class="p">(</span><span class="n">initial</span><span class="p">,</span><span class="n">j</span><span class="p">))</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Initial control&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">optimised</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">hstack</span><span class="p">(</span><span class="n">optimised</span><span class="p">,</span><span class="n">j</span><span class="p">))</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Optimised Control&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="optimal-control-qft">
+<h2>Optimal control - QFT<a class="headerlink" href="#optimal-control-qft" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Two qubits in constant fields in x, y and z</p>
+<ul>
+<li><p>control fields in x and y acting on each qubit</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qutip.qip.algorithms</span> <span class="kn">import</span> <span class="n">qft</span>
+<span class="kn">import</span> <span class="nn">qutip.control.pulsegen</span> <span class="k">as</span> <span class="nn">pulsegen</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">sigmax</span><span class="p">();</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">sigmay</span><span class="p">();</span> <span class="n">Z</span> <span class="o">=</span> <span class="n">sigmaz</span><span class="p">();</span> <span class="n">I</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">qeye</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">Hd</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">X</span><span class="p">)</span><span class="o">+</span><span class="n">tensor</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="n">Y</span><span class="p">)</span><span class="o">+</span><span class="n">tensor</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span><span class="n">Z</span><span class="p">))</span>
+<span class="n">Hcs</span> <span class="o">=</span> <span class="p">[</span><span class="n">tensor</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">I</span><span class="p">),</span><span class="n">tensor</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="n">I</span><span class="p">),</span><span class="n">tensor</span><span class="p">(</span><span class="n">I</span><span class="p">,</span><span class="n">X</span><span class="p">),</span><span class="n">tensor</span><span class="p">(</span><span class="n">I</span><span class="p">,</span><span class="n">Y</span><span class="p">)]</span>
+<span class="n">NHcs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Hcs</span><span class="p">)</span>
+<span class="n">U0</span> <span class="o">=</span> <span class="n">qeye</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">Utarg</span> <span class="o">=</span> <span class="n">qft</span><span class="o">.</span><span class="n">qft</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">Ts</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">];</span> <span class="n">dt</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">Nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span>
+
+<span class="n">pType</span> <span class="o">=</span> <span class="s1">&#39;LIN&#39;</span>  <span class="c1"># gives smooth final pulses</span>
+
+<span class="n">optimizerGRAPE</span> <span class="o">=</span> <span class="n">cpo</span><span class="o">.</span><span class="n">create_pulse_optimizer</span><span class="p">(</span>
+    <span class="n">Hd</span><span class="p">,</span> <span class="n">Hcs</span><span class="p">,</span> <span class="n">U0</span><span class="p">,</span> <span class="n">Utarg</span><span class="p">,</span> <span class="n">Nt</span><span class="p">,</span> <span class="n">Ts</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">init_pulse_type</span><span class="o">=</span><span class="n">pType</span><span class="p">,</span>
+    <span class="n">dyn_type</span><span class="o">=</span><span class="s1">&#39;UNIT&#39;</span><span class="p">,</span> <span class="n">fid_params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;phase_option&#39;</span><span class="p">:</span><span class="s1">&#39;PSU&#39;</span><span class="p">},</span>
+    <span class="n">amp_lbound</span><span class="o">=-</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">amp_ubound</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">optimizerCRAB</span> <span class="o">=</span> <span class="n">cpo</span><span class="o">.</span><span class="n">create_pulse_optimizer</span><span class="p">(</span>
+    <span class="n">Hd</span><span class="p">,</span> <span class="n">Hcs</span><span class="p">,</span> <span class="n">U0</span><span class="p">,</span> <span class="n">Utarg</span><span class="p">,</span> <span class="n">Nt</span><span class="p">,</span> <span class="n">Ts</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">init_pulse_type</span><span class="o">=</span><span class="n">pType</span><span class="p">,</span>
+    <span class="n">dyn_type</span><span class="o">=</span><span class="s1">&#39;UNIT&#39;</span><span class="p">,</span> <span class="n">fid_params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;phase_option&#39;</span><span class="p">:</span><span class="s1">&#39;PSU&#39;</span><span class="p">},</span>
+    <span class="n">alg</span><span class="o">=</span><span class="s1">&#39;CRAB&#39;</span><span class="p">,</span> <span class="n">prop_type</span><span class="o">=</span><span class="s1">&#39;DIAG&#39;</span><span class="p">,</span> <span class="n">fid_type</span><span class="o">=</span><span class="s1">&#39;UNIT&#39;</span><span class="p">,</span>
+    <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">20000</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">runOptimizerGRAPE</span><span class="p">(</span><span class="n">optimizer</span><span class="p">):</span>
+    <span class="n">dynamics</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">dynamics</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">T</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">Ts</span><span class="p">):</span>
+        <span class="n">dynamics</span><span class="o">.</span><span class="n">init_timeslots</span><span class="p">()</span>
+        <span class="n">pulseGen</span> <span class="o">=</span> <span class="n">pulsegen</span><span class="o">.</span><span class="n">create_pulse_gen</span><span class="p">(</span><span class="n">pType</span><span class="p">,</span> <span class="n">dynamics</span><span class="p">)</span>
+        <span class="n">initAmps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">dynamics</span><span class="o">.</span><span class="n">num_tslots</span><span class="p">,</span> <span class="n">NHcs</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">dynamics</span><span class="o">.</span><span class="n">num_ctrls</span><span class="p">):</span>
+            <span class="n">initAmps</span><span class="p">[:,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">pulseGen</span><span class="o">.</span><span class="n">gen_pulse</span><span class="p">()</span>
+        <span class="n">dynamics</span><span class="o">.</span><span class="n">initialize_controls</span><span class="p">(</span><span class="n">initAmps</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">run_optimization</span><span class="p">()</span>
+        <span class="n">printOptimizeResult</span><span class="p">(</span><span class="n">result</span><span class="p">,</span><span class="n">optimizer</span><span class="o">.</span><span class="n">alg</span><span class="o">+</span><span class="s1">&#39; T = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">T</span><span class="p">))</span>
+        <span class="n">plotOptimalControl</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">Ts</span><span class="p">):</span> <span class="c1"># reconfigure the dynamics</span>
+            <span class="n">dynamics</span><span class="o">.</span><span class="n">tau</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">dynamics</span><span class="o">.</span><span class="n">evo_time</span> <span class="o">=</span> <span class="n">Ts</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">dynamics</span><span class="o">.</span><span class="n">num_tslots</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">Ts</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">runOptimizerCRAB</span><span class="p">(</span><span class="n">optimizer</span><span class="p">):</span>
+    <span class="n">dynamics</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">dynamics</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">pulseGen</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">optimizer</span><span class="o">.</span><span class="n">pulse_generator</span><span class="p">):</span>
+        <span class="n">guessGen</span> <span class="o">=</span> <span class="n">pulsegen</span><span class="o">.</span><span class="n">create_pulse_gen</span><span class="p">(</span><span class="s1">&#39;LIN&#39;</span><span class="p">,</span><span class="n">dyn</span><span class="o">=</span><span class="n">dynamics</span><span class="p">)</span>
+        <span class="n">pulseGen</span><span class="o">.</span><span class="n">guess_pulse</span> <span class="o">=</span> <span class="n">guessGen</span><span class="o">.</span><span class="n">gen_pulse</span><span class="p">()</span>
+        <span class="n">pulseGen</span><span class="o">.</span><span class="n">scaling</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">pulseGen</span><span class="o">.</span><span class="n">num_coeffs</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">initAmps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">dynamics</span><span class="o">.</span><span class="n">num_tslots</span><span class="p">,</span><span class="n">dynamics</span><span class="o">.</span><span class="n">num_ctrls</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">dynamics</span><span class="o">.</span><span class="n">num_ctrls</span><span class="p">):</span>
+        <span class="n">pulseGen</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">pulse_generator</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+        <span class="n">pulseGen</span><span class="o">.</span><span class="n">init_pulse</span><span class="p">()</span>
+        <span class="n">initAmps</span><span class="p">[:,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">pulseGen</span><span class="o">.</span><span class="n">gen_pulse</span><span class="p">()</span>
+    <span class="n">dynamics</span><span class="o">.</span><span class="n">initialize_controls</span><span class="p">(</span><span class="n">initAmps</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">run_optimization</span><span class="p">()</span>
+    <span class="n">printOptimizeResult</span><span class="p">(</span><span class="n">result</span><span class="p">,</span><span class="n">optimizer</span><span class="o">.</span><span class="n">alg</span><span class="o">+</span><span class="s1">&#39; T = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Ts</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="n">plotOptimalControl</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="n">runOptimizerGRAPE</span><span class="p">(</span><span class="n">optimizerGRAPE</span><span class="p">)</span>
+<span class="n">runOptimizerCRAB</span><span class="p">(</span><span class="n">optimizerCRAB</span><span class="p">)</span>
+</pre></div>
+</div>
+<pre class="literal-block"><strong>****************</strong> GRAPE T = 6 Summary <strong>****************</strong>
+Final fidelity error 4.697306987822003e-10
+Final gradient normal 3.793240279665759e-06
+Terminated due to function converged
+Number of iterations 30
+Completed in 0:00:01.396245 HH:MM:SS.US</pre>
+<img alt="../../_images/output_37_1.png" src="../../_images/output_37_1.png" />
+<pre class="literal-block"><strong>****************</strong> CRAB T = 6 Summary <strong>****************</strong>
+Final fidelity error 0.4187122771868691
+Final gradient normal 0.0
+Terminated due to Max wall time exceeded
+Number of iterations 5477
+Completed in 0:03:00.013547 HH:MM:SS.US</pre>
+<img alt="../../_images/output_37_3.png" src="../../_images/output_37_3.png" />
+</div>
+<div class="section" id="optimal-control-lindbladian">
+<h2>Optimal control - Lindbladian<a class="headerlink" href="#optimal-control-lindbladian" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Open system</p></li>
+<li><p>Single qubit subject to an <strong>amplitude damping channel</strong></p></li>
+<li><p>Target evolution: Hadamard gate</p></li>
+<li><p>For a <span class="math notranslate nohighlight">\(d\)</span> dimensional quantum system in general we represent
+the Lindbladian as a <span class="math notranslate nohighlight">\(d^2 \times d^2\)</span> dimensional matrix by
+creating the <strong>Liouvillian superoperator</strong></p></li>
+<li><p><strong>Control generators</strong> acting on the qubit are also converted to
+<strong>superoperators</strong></p></li>
+<li><p>The initial and target maps also need to be in <strong>superoperator</strong> form</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sprepost(A,</span> <span class="pre">B)</span></code></p>
+<ul>
+<li><p>Superoperator formed from pre-multiplication by operator A and
+post- multiplication of operator B.</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qutip.superoperator</span> <span class="kn">import</span> <span class="n">liouvillian</span><span class="p">,</span> <span class="n">sprepost</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">sigmax</span><span class="p">();</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">sigmay</span><span class="p">();</span> <span class="n">Z</span> <span class="o">=</span> <span class="n">sigmaz</span><span class="p">();</span> <span class="n">I</span> <span class="o">=</span> <span class="n">qeye</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">sM</span> <span class="o">=</span> <span class="n">sigmam</span><span class="p">()</span>
+<span class="n">hadamard</span> <span class="o">=</span> <span class="n">hadamard_transform</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">tunnelling</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">omegaQ</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">Hd</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">omegaQ</span><span class="o">*</span><span class="n">sigmaz</span><span class="p">()</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">tunnelling</span><span class="o">*</span><span class="n">X</span>
+<span class="n">damping</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">Ld</span> <span class="o">=</span> <span class="n">liouvillian</span><span class="p">(</span><span class="n">Hd</span><span class="p">,</span> <span class="p">[</span><span class="n">damping</span><span class="o">*</span><span class="n">sM</span><span class="p">])</span>
+<span class="n">Lcs</span> <span class="o">=</span> <span class="p">[</span><span class="n">liouvillian</span><span class="p">(</span><span class="n">Z</span><span class="p">),</span> <span class="n">liouvillian</span><span class="p">(</span><span class="n">X</span><span class="p">)]</span>
+<span class="n">NLcs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Lcs</span><span class="p">)</span>
+
+<span class="n">E0</span> <span class="o">=</span> <span class="n">sprepost</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="n">I</span><span class="p">)</span>
+<span class="n">Etarg</span> <span class="o">=</span> <span class="n">sprepost</span><span class="p">(</span><span class="n">hadamard</span><span class="p">,</span> <span class="n">hadamard</span><span class="p">)</span>
+
+<span class="n">Nt</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="n">T</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">cpo</span><span class="o">.</span><span class="n">optimize_pulse</span><span class="p">(</span><span class="n">Ld</span><span class="p">,</span> <span class="n">Lcs</span><span class="p">,</span> <span class="n">E0</span><span class="p">,</span> <span class="n">Etarg</span><span class="p">,</span> <span class="n">Nt</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
+<span class="n">printOptimizeResult</span><span class="p">(</span><span class="n">result</span><span class="p">,</span><span class="s1">&#39;Lindbladian&#39;</span><span class="p">)</span>
+<span class="n">plotOptimalControl</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<pre class="literal-block"><strong>****************</strong> Lindbladian Summary <strong>****************</strong>
+Final fidelity error 0.005845509986664133
+Final gradient normal 9.438858417223121e-06
+Terminated due to function converged
+Number of iterations 167
+Completed in 0:00:01.718335 HH:MM:SS.US</pre>
+<img alt="../../_images/output_40_1.png" src="../../_images/output_40_1.png" />
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../Quantum-Mechanics-Feynman-Path-Integral/index.html" class="btn btn-neutral float-right" title="Quantum Mechanics: Feynman Path Integral" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral float-left" title="Quantum Computation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Tesla Cat
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

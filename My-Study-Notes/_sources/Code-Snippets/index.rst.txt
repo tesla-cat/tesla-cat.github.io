@@ -4,6 +4,8 @@ Code Snippets
 
 .. toctree::
 	Google-Scholar-Filter
+	nCoV-Predictor
+	YouTube-Download
 	
 
 

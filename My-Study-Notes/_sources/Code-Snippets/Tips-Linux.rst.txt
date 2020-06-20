@@ -1,0 +1,154 @@
+
+
+Simple Linux Tips
+=========================
+
+
+
+Could not display an executable file
+--------------------------------------
+
+- Right click -> Properties -> Permissions -> Allow executing file as program
+
+File Permissions
+-------------------------
+
+- Example: :code:`sudo chmod -R 777 .`
+- 755 – commonly used in web server. The owner has all the permissions to read, write and execute. Everyone else can only read and execute, but cannot make changes to the file.
+- 777 – Everyone can read write and execute. 
+- 644 – Only the owner can read and write. Everyone else can only read. No one can execute the file.
+- 655 – Only the owner can read and write, but not execute the file. Everyone else can read and execute, but cannot modify the file.
+
+Set $PATH Variable
+---------------------
+
+- Add this line to :code:`~/.profile` file: :code:`export PATH=$PATH:/myNewDir`
+- Then run command: :code:`source ~/.profile`
+
+Internet Speed
+-----------------
+
+- :code:`sudo nano /etc/gai.conf`
+- remove :code:`#` from :code:`#precedence ::ffff:0:0/96  100` and reboot
+
+Install deb File
+------------------
+
+- :code:`sudo apt install ./filename.deb`
+
+Install Steam
+------------------
+
+.. code-block:: console
+
+  sudo apt-get update
+  sudo apt-get install curl python-apt zenity
+  
+Install Arduino with ESP32
+-------------------------------
+
+.. code-block:: console
+  
+  arduino-linux-setup.sh    # Must do this first
+  install.sh
+  
+  # For ESP32 to work
+  pip install pyserial
+  
+`more info <https://github.com/tesla-cat/FPGA-ESP32-Tesla-Coil#using-esp32-with-arduino-ide>`_
+
+Install Quartus 
+--------------------------
+
+.. code-block:: console
+
+  chmod +x QuartusLiteSetup-19.1.0.670-linux.run
+  ./QuartusLiteSetup-19.1.0.670-linux.run
+
+- Error: :code:`quartus: error while loading shared libraries: libpng12.so.0: cannot open shared object file: No such file or directory`
+- Solution:
+
+.. code-block:: console
+  
+  sudo wget -q -O /tmp/libpng12.deb http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.54-1ubuntu1_amd64.deb
+  sudo dpkg -i /tmp/libpng12.deb 
+  sudo rm /tmp/libpng12.deb
+  
+- Install Download Cable (formerly USB-Blaster) Driver
+- :code:`sudo nano /etc/udev/rules.d/51-usbblaster.rules`
+- Add the following to the file. Restart Quartus.
+
+.. code-block:: console 
+
+  # Intel FPGA Download Cable
+  SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6001", MODE="0666"
+  SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6002", MODE="0666" 
+  SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6003", MODE="0666"   
+  # Intel FPGA Download Cable II
+  SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6010", MODE="0666"
+  SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6810", MODE="0666"
+
+ModelSim Error
+----------------------
+
+- Error: :code:`error while loading shared libraries: libXft.so.2: cannot open shared object file: No such file or directory Error.`
+- Solution: :code:`sudo apt-get install libxft2 libxft2:i386 lib32ncurses5`
+
+Install Intel FPGA SoC EDS (Embedded Development Suite)
+---------------------------------------------------------------
+
+.. code-block:: console
+
+  sudo chmod +x ./SoCEDSSetup-18.1.0.625-linux.run
+  sudo ./SoCEDSSetup-18.1.0.625-linux.run
+
+Install Jekyll
+-----------------------
+
+- Error: :code:`Failed to build gem native extension`
+- Solution: :code:`sudo apt-get install ruby-dev`
+
+Install Android Studio
+--------------------------------
+
+.. code-block:: console
+
+  sudo apt update
+  sudo apt install openjdk-8-jdk
+  sudo snap install android-studio --classic
+  sudo apt install libcanberra-gtk-module libcanberra-gtk3-module
+  sudo android-studio
+
+Right Click On Touch Pad
+--------------------------------
+
+- Just Tap/Click the touch pad anywhere with two fingers!
+
+Angstrom: Install Package 
+------------------------------------------------
+
+.. code-block:: console
+
+  opkg update
+  opkg install [packagename]
+  opkg remove [packagename] --force-removal-of-dependent-packages
+
+React Native Errors
+--------------------------
+.. code-block:: console
+  
+  echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+  npm start --reset-cache
+  
+Windows Powershell Tips
+==============================
+React Native Errors
+-----------------------
+- Error: :code:`.ps1 is not digitally signed`
+- Solution: :code:`Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`
+
+Personal
+===============
+CQT printer
+-------------------
+https://support.quantumlah.org/index.php/C558_Installation_Guide

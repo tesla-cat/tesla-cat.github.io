@@ -11,6 +11,8 @@ Google Scholar Filter
     from urllib.request import urlopen
     from bs4 import BeautifulSoup
 
+    results = []
+
     def search(myfile,filters):
         soup = BeautifulSoup(myfile)
         for row in soup('table', {'id': 'gsc_a_t'})[0].tbody('tr'):
@@ -24,14 +26,20 @@ Google Scholar Filter
                     for text in filters[key]:
                         if text.lower() in result[key]:
                             print(result)
+                            results.append(result)
 
     ## use
     myfile = urlopen('https://scholar.google.com.sg/citations?hl=en&user=VB4WBn0AAAAJ&view_op=list_works&sortby=pubdate').read()
-    myfile = open('Desktop/Xiaogang Liu - Google Scholar Citations.html',"r",encoding='UTF-8').read()
+    filename = 'Desktop/Xiaogang Liu - Google Scholar Citations.html'
+    myfile = open(filename,"r",encoding='UTF-8').read()
     filters = {
         'publisher':['nature'],
     }
     search(myfile,filters)
+
+    import json
+    with open(filename+'.json','w') as f:
+        json.dump(results,f,indent=4, sort_keys=True)
 
 - output
 

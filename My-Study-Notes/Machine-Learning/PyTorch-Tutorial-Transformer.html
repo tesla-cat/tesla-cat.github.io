@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>PyTorch Tutorial Transformer &mdash; My-Study-Notes  documentation</title>
+  <title>PyTorch Tutorial Transformer &mdash; My Study Notes  documentation</title>
   
 
   
@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -51,7 +51,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> My-Study-Notes
+            <a href="../index.html" class="icon icon-home"> My Study Notes
           
 
           
@@ -81,13 +81,12 @@
               
             
             
-              <p class="caption"><span class="caption-text">Math</span></p>
+              <p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Math/index.html">Math</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Neurotechnology</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Neuromorphic-Vision/index.html">Neuromorphic Vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Computation/index.html">Quantum Computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Mechanics-Feynman-Path-Integral/index.html">Quantum Mechanics: Feynman Path Integral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Optics/index.html">Quantum Optics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Density-Functional-Theory/index.html">Density Functional Theory</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Electronics and Coding</span></p>
 <ul>
@@ -116,13 +115,6 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Biomolecular-Physics/index.html">Biomolecular Physics</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Quantum-Mechanics-Feynman-Path-Integral/index.html">Quantum Mechanics: Feynman Path Integral</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Quantum-Computation/index.html">Quantum Computation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Quantum-Optics/index.html">Quantum Optics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Density-Functional-Theory/index.html">Density Functional Theory</a></li>
-</ul>
 <p class="caption"><span class="caption-text">Statistical Mechanics</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Thermodynamics-And-Statistical-Mechanics/index.html">Thermodynamics And Statistical Mechanics</a></li>
@@ -131,9 +123,9 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Relativity/index.html">Relativity</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Papers</span></p>
+<p class="caption"><span class="caption-text">Neurotechnology</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Papers-Quantum-Computers/index.html">Papers: Quantum Computers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Neuromorphic-Vision/index.html">Neuromorphic Vision</a></li>
 </ul>
 
             
@@ -148,7 +140,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">My-Study-Notes</a>
+          <a href="../index.html">My Study Notes</a>
         
       </nav>
 
@@ -209,7 +201,7 @@
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span><span class="p">;</span> <span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="nb">open</span>
 <span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">torch</span><span class="p">;</span> <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="kn">as</span> <span class="nn">nn</span><span class="p">;</span> <span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="kn">as</span> <span class="nn">F</span>
+<span class="kn">import</span> <span class="nn">torch</span><span class="p">;</span> <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span><span class="p">;</span> <span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
 </pre></div>
 </div>
 <div class="section" id="transformer-model">
@@ -240,7 +232,7 @@
     <span class="bp">self</span><span class="o">.</span><span class="n">embedDim</span><span class="o">=</span><span class="n">embedDim</span><span class="p">;</span> <span class="bp">self</span><span class="o">.</span><span class="n">numEmbeds</span><span class="o">=</span><span class="n">numEmbeds</span>
 
     <span class="kn">from</span> <span class="nn">torch.nn</span> <span class="kn">import</span> <span class="n">TransformerEncoder</span><span class="p">,</span> <span class="n">TransformerEncoderLayer</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">inputSeqMask</span><span class="o">=</span><span class="bp">None</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">inputSeqMask</span><span class="o">=</span><span class="kc">None</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">posEncoder</span><span class="o">=</span><span class="n">PosEncoder</span><span class="p">(</span><span class="n">embedDim</span><span class="p">,</span><span class="n">dropoutProb</span><span class="p">)</span>
     <span class="n">encoderLayers</span><span class="o">=</span><span class="n">TransformerEncoderLayer</span><span class="p">(</span><span class="n">embedDim</span><span class="p">,</span><span class="n">nHeads</span><span class="p">,</span>
                                           <span class="n">feedforwardDim</span><span class="p">,</span><span class="n">dropoutProb</span><span class="p">)</span>
@@ -253,13 +245,13 @@
     <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">uniform_</span><span class="p">(</span><span class="o">-</span><span class="n">initRange</span><span class="p">,</span><span class="n">initRange</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">decoderLinear</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">decoderLinear</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">uniform_</span><span class="p">(</span><span class="o">-</span><span class="n">initRange</span><span class="p">,</span><span class="n">initRange</span><span class="p">)</span>
-  <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">inputSeq</span><span class="p">,</span><span class="n">hasMask</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+  <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">inputSeq</span><span class="p">,</span><span class="n">hasMask</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">hasMask</span><span class="p">:</span>
       <span class="n">device</span><span class="o">=</span><span class="n">inputSeq</span><span class="o">.</span><span class="n">device</span>
-      <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputSeqMask</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputSeqMask</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">!=</span><span class="nb">len</span><span class="p">(</span><span class="n">inputSeq</span><span class="p">):</span>
+      <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputSeqMask</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputSeqMask</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">!=</span><span class="nb">len</span><span class="p">(</span><span class="n">inputSeq</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inputSeqMask</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">squareSubsequentMast</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">inputSeq</span><span class="p">))</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-      <span class="bp">self</span><span class="o">.</span><span class="n">inputSeqMask</span><span class="o">=</span><span class="bp">None</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">inputSeqMask</span><span class="o">=</span><span class="kc">None</span>
     <span class="n">inputSeq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">posEncoder</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="p">(</span><span class="n">inputSeq</span><span class="p">)</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">numEmbeds</span><span class="p">))</span>
     <span class="n">outputSeq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">transformerEncoder</span><span class="p">(</span><span class="n">inputSeq</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">inputSeqMask</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">log_softmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">decoderLinear</span><span class="p">(</span><span class="n">outputSeq</span><span class="p">),</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
@@ -323,7 +315,7 @@
     <span class="bp">self</span><span class="o">.</span><span class="n">seqLen</span><span class="o">=</span><span class="n">seqLen</span><span class="p">;</span> <span class="bp">self</span><span class="o">.</span><span class="n">clip</span><span class="o">=</span><span class="n">clip</span><span class="p">;</span> <span class="bp">self</span><span class="o">.</span><span class="n">learnRate</span><span class="o">=</span><span class="n">learnRate</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">corpus</span><span class="o">=</span><span class="n">Corpus</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="n">batchSize</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">trainData</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">trainData</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">numEmbeds</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">dictionary</span><span class="o">.</span><span class="n">indexToWord</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">transformer</span><span class="o">=</span><span class="n">Transformer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">numEmbeds</span><span class="p">,</span><span class="n">embedDim</span><span class="p">,</span><span class="n">nHead</span><span class="p">,</span>
@@ -371,14 +363,14 @@
         <span class="n">p</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">add_</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">learnRate</span><span class="o">*</span><span class="n">p</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
       <span class="n">totalLoss</span><span class="o">+=</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
       <span class="k">if</span> <span class="nb">iter</span><span class="o">%</span><span class="mi">100</span><span class="o">==</span><span class="mi">0</span> <span class="ow">and</span> <span class="nb">iter</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;loss {:5.2f}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">totalLoss</span><span class="o">/</span><span class="mi">100</span><span class="p">));</span> <span class="n">totalLoss</span><span class="o">=</span><span class="mi">0</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;loss </span><span class="si">{:5.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">totalLoss</span><span class="o">/</span><span class="mi">100</span><span class="p">));</span> <span class="n">totalLoss</span><span class="o">=</span><span class="mi">0</span>
   <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">nEpochs</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
       <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nEpochs</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;fuck&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;fuck&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">trainOneEpoch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">trainData</span><span class="p">)</span>
         <span class="n">validLoss</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">validData</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">69</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">69</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">bestValidLoss</span> <span class="ow">or</span> <span class="n">validLoss</span><span class="o">&lt;</span><span class="n">bestValidLoss</span><span class="p">:</span>
           <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">savePath</span><span class="p">,</span><span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">myFile</span><span class="p">:</span>
             <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transformer</span><span class="p">,</span><span class="n">myFile</span><span class="p">)</span>
@@ -386,7 +378,7 @@
         <span class="k">else</span><span class="p">:</span>
           <span class="bp">self</span><span class="o">.</span><span class="n">learnRate</span><span class="o">/=</span><span class="mf">4.0</span> <span class="c1"># anneal learnRate if no improvement</span>
     <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
-      <span class="k">print</span><span class="p">(</span><span class="s1">&#39;fuck you&#39;</span><span class="p">)</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;fuck you&#39;</span><span class="p">)</span>
 
 
 <span class="n">device</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cude&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">)</span>

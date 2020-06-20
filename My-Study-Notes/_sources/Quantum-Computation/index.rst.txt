@@ -3,7 +3,7 @@ Quantum Computation
 ===================================================
 
 .. toctree::
-	Quantum-Circuits
+	QuTiP-Notes-1/QuTiP-Notes-1
 	
 
 

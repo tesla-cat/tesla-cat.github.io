@@ -1,9 +1,0 @@
-
-Survive As A Physics Guy
-===================================================
-
-.. toctree::
-	Talking-To-Girls
-	
-
-

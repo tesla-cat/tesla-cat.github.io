@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Processor-FPGA Communication: Using FIFO FPGA Part &mdash; My-Study-Notes  documentation</title>
+  <title>Processor-FPGA Communication: Using FIFO FPGA Part &mdash; My Study Notes  documentation</title>
   
 
   
@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -51,7 +51,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> My-Study-Notes
+            <a href="../index.html" class="icon icon-home"> My Study Notes
           
 
           
@@ -81,13 +81,12 @@
               
             
             
-              <p class="caption"><span class="caption-text">Math</span></p>
+              <p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Math/index.html">Math</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Neurotechnology</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Neuromorphic-Vision/index.html">Neuromorphic Vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Computation/index.html">Quantum Computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Mechanics-Feynman-Path-Integral/index.html">Quantum Mechanics: Feynman Path Integral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Optics/index.html">Quantum Optics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Density-Functional-Theory/index.html">Density Functional Theory</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Electronics and Coding</span></p>
 <ul class="current">
@@ -135,13 +134,6 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Biomolecular-Physics/index.html">Biomolecular Physics</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Quantum-Mechanics-Feynman-Path-Integral/index.html">Quantum Mechanics: Feynman Path Integral</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Quantum-Computation/index.html">Quantum Computation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Quantum-Optics/index.html">Quantum Optics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Density-Functional-Theory/index.html">Density Functional Theory</a></li>
-</ul>
 <p class="caption"><span class="caption-text">Statistical Mechanics</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Thermodynamics-And-Statistical-Mechanics/index.html">Thermodynamics And Statistical Mechanics</a></li>
@@ -150,9 +142,9 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Relativity/index.html">Relativity</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Papers</span></p>
+<p class="caption"><span class="caption-text">Neurotechnology</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Papers-Quantum-Computers/index.html">Papers: Quantum Computers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Neuromorphic-Vision/index.html">Neuromorphic Vision</a></li>
 </ul>
 
             
@@ -167,7 +159,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">My-Study-Notes</a>
+          <a href="../index.html">My Study Notes</a>
         
       </nav>
 
@@ -352,7 +344,7 @@
         <span class="kt">wire</span>        <span class="n">wire_FIFOreadEmpty</span><span class="p">;</span>
         <span class="kt">wire</span> <span class="p">[</span><span class="mh">7</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span>  <span class="n">wire_FIFOnumberOfUsedWords</span><span class="p">;</span>
 
-        <span class="k">assign</span> <span class="no">LED</span> <span class="o">=</span> <span class="n">wire_FIFOnumberOfUsedWords</span><span class="p">;</span>
+        <span class="k">assign</span> <span class="n">LED</span> <span class="o">=</span> <span class="n">wire_FIFOnumberOfUsedWords</span><span class="p">;</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -378,7 +370,7 @@
 <ul class="simple">
 <li><p>Connect the FIFO to the wires</p></li>
 </ul>
-<div class="highlight-verilog notranslate"><div class="highlight"><pre><span></span><span class="no">FIFO</span> <span class="n">fifo</span><span class="p">(</span>
+<div class="highlight-verilog notranslate"><div class="highlight"><pre><span></span><span class="n">FIFO</span> <span class="n">fifo</span><span class="p">(</span>
         <span class="p">.</span><span class="n">clock</span><span class="p">(</span><span class="n">fpga_clk_50</span><span class="p">),</span>
         <span class="c1">// Write side by FPGA</span>
         <span class="p">.</span><span class="n">wrreq</span><span class="p">(</span><span class="n">wire_FIFOwriteRequest</span><span class="p">),</span>
@@ -454,82 +446,82 @@
 <span class="k">module</span> <span class="n">DE10_NANO_SoC_GHRD</span><span class="p">(</span>
 
     <span class="c1">//////////// CLOCK //////////</span>
-    <span class="k">input</span>               <span class="no">FPGA_CLK1_50</span><span class="p">,</span>
-    <span class="k">input</span>               <span class="no">FPGA_CLK2_50</span><span class="p">,</span>
-    <span class="k">input</span>               <span class="no">FPGA_CLK3_50</span><span class="p">,</span>
+    <span class="k">input</span>               <span class="n">FPGA_CLK1_50</span><span class="p">,</span>
+    <span class="k">input</span>               <span class="n">FPGA_CLK2_50</span><span class="p">,</span>
+    <span class="k">input</span>               <span class="n">FPGA_CLK3_50</span><span class="p">,</span>
 
     <span class="c1">//////////// HDMI //////////</span>
-    <span class="k">inout</span>               <span class="no">HDMI_I2C_SCL</span><span class="p">,</span>
-    <span class="k">inout</span>               <span class="no">HDMI_I2C_SDA</span><span class="p">,</span>
-    <span class="k">inout</span>               <span class="no">HDMI_I2S</span><span class="p">,</span>
-    <span class="k">inout</span>               <span class="no">HDMI_LRCLK</span><span class="p">,</span>
-    <span class="k">inout</span>               <span class="no">HDMI_MCLK</span><span class="p">,</span>
-    <span class="k">inout</span>               <span class="no">HDMI_SCLK</span><span class="p">,</span>
-    <span class="k">output</span>              <span class="no">HDMI_TX_CLK</span><span class="p">,</span>
-    <span class="k">output</span>   <span class="p">[</span><span class="mh">23</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="no">HDMI_TX_D</span><span class="p">,</span>
-    <span class="k">output</span>              <span class="no">HDMI_TX_DE</span><span class="p">,</span>
-    <span class="k">output</span>              <span class="no">HDMI_TX_HS</span><span class="p">,</span>
-    <span class="k">input</span>               <span class="no">HDMI_TX_INT</span><span class="p">,</span>
-    <span class="k">output</span>              <span class="no">HDMI_TX_VS</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="n">HDMI_I2C_SCL</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="n">HDMI_I2C_SDA</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="n">HDMI_I2S</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="n">HDMI_LRCLK</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="n">HDMI_MCLK</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="n">HDMI_SCLK</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="n">HDMI_TX_CLK</span><span class="p">,</span>
+    <span class="k">output</span>   <span class="p">[</span><span class="mh">23</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="n">HDMI_TX_D</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="n">HDMI_TX_DE</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="n">HDMI_TX_HS</span><span class="p">,</span>
+    <span class="k">input</span>               <span class="n">HDMI_TX_INT</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="n">HDMI_TX_VS</span><span class="p">,</span>
 
     <span class="c1">//////////// HPS //////////</span>
-    <span class="k">inout</span>               <span class="no">HPS_CONV_USB_N</span><span class="p">,</span>
-    <span class="k">output</span>   <span class="p">[</span><span class="mh">14</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="no">HPS_DDR3_ADDR</span><span class="p">,</span>
-    <span class="k">output</span>   <span class="p">[</span> <span class="mh">2</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="no">HPS_DDR3_BA</span><span class="p">,</span>
-    <span class="k">output</span>              <span class="no">HPS_DDR3_CAS_N</span><span class="p">,</span>
-    <span class="k">output</span>              <span class="no">HPS_DDR3_CK_N</span><span class="p">,</span>
-    <span class="k">output</span>              <span class="no">HPS_DDR3_CK_P</span><span class="p">,</span>
-    <span class="k">output</span>              <span class="no">HPS_DDR3_CKE</span><span class="p">,</span>
-    <span class="k">output</span>              <span class="no">HPS_DDR3_CS_N</span><span class="p">,</span>
-    <span class="k">output</span>   <span class="p">[</span> <span class="mh">3</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="no">HPS_DDR3_DM</span><span class="p">,</span>
-    <span class="k">inout</span>    <span class="p">[</span><span class="mh">31</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="no">HPS_DDR3_DQ</span><span class="p">,</span>
-    <span class="k">inout</span>    <span class="p">[</span> <span class="mh">3</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="no">HPS_DDR3_DQS_N</span><span class="p">,</span>
-    <span class="k">inout</span>    <span class="p">[</span> <span class="mh">3</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="no">HPS_DDR3_DQS_P</span><span class="p">,</span>
-    <span class="k">output</span>              <span class="no">HPS_DDR3_ODT</span><span class="p">,</span>
-    <span class="k">output</span>              <span class="no">HPS_DDR3_RAS_N</span><span class="p">,</span>
-    <span class="k">output</span>              <span class="no">HPS_DDR3_RESET_N</span><span class="p">,</span>
-    <span class="k">input</span>               <span class="no">HPS_DDR3_RZQ</span><span class="p">,</span>
-    <span class="k">output</span>              <span class="no">HPS_DDR3_WE_N</span><span class="p">,</span>
-    <span class="k">output</span>              <span class="no">HPS_ENET_GTX_CLK</span><span class="p">,</span>
-    <span class="k">inout</span>               <span class="no">HPS_ENET_INT_N</span><span class="p">,</span>
-    <span class="k">output</span>              <span class="no">HPS_ENET_MDC</span><span class="p">,</span>
-    <span class="k">inout</span>               <span class="no">HPS_ENET_MDIO</span><span class="p">,</span>
-    <span class="k">input</span>               <span class="no">HPS_ENET_RX_CLK</span><span class="p">,</span>
-    <span class="k">input</span>    <span class="p">[</span> <span class="mh">3</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="no">HPS_ENET_RX_DATA</span><span class="p">,</span>
-    <span class="k">input</span>               <span class="no">HPS_ENET_RX_DV</span><span class="p">,</span>
-    <span class="k">output</span>   <span class="p">[</span> <span class="mh">3</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="no">HPS_ENET_TX_DATA</span><span class="p">,</span>
-    <span class="k">output</span>              <span class="no">HPS_ENET_TX_EN</span><span class="p">,</span>
-    <span class="k">inout</span>               <span class="no">HPS_GSENSOR_INT</span><span class="p">,</span>
-    <span class="k">inout</span>               <span class="no">HPS_I2C0_SCLK</span><span class="p">,</span>
-    <span class="k">inout</span>               <span class="no">HPS_I2C0_SDAT</span><span class="p">,</span>
-    <span class="k">inout</span>               <span class="no">HPS_I2C1_SCLK</span><span class="p">,</span>
-    <span class="k">inout</span>               <span class="no">HPS_I2C1_SDAT</span><span class="p">,</span>
-    <span class="k">inout</span>               <span class="no">HPS_KEY</span><span class="p">,</span>
-    <span class="k">inout</span>               <span class="no">HPS_LED</span><span class="p">,</span>
-    <span class="k">inout</span>               <span class="no">HPS_LTC_GPIO</span><span class="p">,</span>
-    <span class="k">output</span>              <span class="no">HPS_SD_CLK</span><span class="p">,</span>
-    <span class="k">inout</span>               <span class="no">HPS_SD_CMD</span><span class="p">,</span>
-    <span class="k">inout</span>    <span class="p">[</span> <span class="mh">3</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="no">HPS_SD_DATA</span><span class="p">,</span>
-    <span class="k">output</span>              <span class="no">HPS_SPIM_CLK</span><span class="p">,</span>
-    <span class="k">input</span>               <span class="no">HPS_SPIM_MISO</span><span class="p">,</span>
-    <span class="k">output</span>              <span class="no">HPS_SPIM_MOSI</span><span class="p">,</span>
-    <span class="k">inout</span>               <span class="no">HPS_SPIM_SS</span><span class="p">,</span>
-    <span class="k">input</span>               <span class="no">HPS_UART_RX</span><span class="p">,</span>
-    <span class="k">output</span>              <span class="no">HPS_UART_TX</span><span class="p">,</span>
-    <span class="k">input</span>               <span class="no">HPS_USB_CLKOUT</span><span class="p">,</span>
-    <span class="k">inout</span>    <span class="p">[</span> <span class="mh">7</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="no">HPS_USB_DATA</span><span class="p">,</span>
-    <span class="k">input</span>               <span class="no">HPS_USB_DIR</span><span class="p">,</span>
-    <span class="k">input</span>               <span class="no">HPS_USB_NXT</span><span class="p">,</span>
-    <span class="k">output</span>              <span class="no">HPS_USB_STP</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="n">HPS_CONV_USB_N</span><span class="p">,</span>
+    <span class="k">output</span>   <span class="p">[</span><span class="mh">14</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="n">HPS_DDR3_ADDR</span><span class="p">,</span>
+    <span class="k">output</span>   <span class="p">[</span> <span class="mh">2</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="n">HPS_DDR3_BA</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="n">HPS_DDR3_CAS_N</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="n">HPS_DDR3_CK_N</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="n">HPS_DDR3_CK_P</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="n">HPS_DDR3_CKE</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="n">HPS_DDR3_CS_N</span><span class="p">,</span>
+    <span class="k">output</span>   <span class="p">[</span> <span class="mh">3</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="n">HPS_DDR3_DM</span><span class="p">,</span>
+    <span class="k">inout</span>    <span class="p">[</span><span class="mh">31</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="n">HPS_DDR3_DQ</span><span class="p">,</span>
+    <span class="k">inout</span>    <span class="p">[</span> <span class="mh">3</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="n">HPS_DDR3_DQS_N</span><span class="p">,</span>
+    <span class="k">inout</span>    <span class="p">[</span> <span class="mh">3</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="n">HPS_DDR3_DQS_P</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="n">HPS_DDR3_ODT</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="n">HPS_DDR3_RAS_N</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="n">HPS_DDR3_RESET_N</span><span class="p">,</span>
+    <span class="k">input</span>               <span class="n">HPS_DDR3_RZQ</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="n">HPS_DDR3_WE_N</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="n">HPS_ENET_GTX_CLK</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="n">HPS_ENET_INT_N</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="n">HPS_ENET_MDC</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="n">HPS_ENET_MDIO</span><span class="p">,</span>
+    <span class="k">input</span>               <span class="n">HPS_ENET_RX_CLK</span><span class="p">,</span>
+    <span class="k">input</span>    <span class="p">[</span> <span class="mh">3</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="n">HPS_ENET_RX_DATA</span><span class="p">,</span>
+    <span class="k">input</span>               <span class="n">HPS_ENET_RX_DV</span><span class="p">,</span>
+    <span class="k">output</span>   <span class="p">[</span> <span class="mh">3</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="n">HPS_ENET_TX_DATA</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="n">HPS_ENET_TX_EN</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="n">HPS_GSENSOR_INT</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="n">HPS_I2C0_SCLK</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="n">HPS_I2C0_SDAT</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="n">HPS_I2C1_SCLK</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="n">HPS_I2C1_SDAT</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="n">HPS_KEY</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="n">HPS_LED</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="n">HPS_LTC_GPIO</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="n">HPS_SD_CLK</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="n">HPS_SD_CMD</span><span class="p">,</span>
+    <span class="k">inout</span>    <span class="p">[</span> <span class="mh">3</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="n">HPS_SD_DATA</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="n">HPS_SPIM_CLK</span><span class="p">,</span>
+    <span class="k">input</span>               <span class="n">HPS_SPIM_MISO</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="n">HPS_SPIM_MOSI</span><span class="p">,</span>
+    <span class="k">inout</span>               <span class="n">HPS_SPIM_SS</span><span class="p">,</span>
+    <span class="k">input</span>               <span class="n">HPS_UART_RX</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="n">HPS_UART_TX</span><span class="p">,</span>
+    <span class="k">input</span>               <span class="n">HPS_USB_CLKOUT</span><span class="p">,</span>
+    <span class="k">inout</span>    <span class="p">[</span> <span class="mh">7</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="n">HPS_USB_DATA</span><span class="p">,</span>
+    <span class="k">input</span>               <span class="n">HPS_USB_DIR</span><span class="p">,</span>
+    <span class="k">input</span>               <span class="n">HPS_USB_NXT</span><span class="p">,</span>
+    <span class="k">output</span>              <span class="n">HPS_USB_STP</span><span class="p">,</span>
 
     <span class="c1">//////////// KEY //////////</span>
-    <span class="k">input</span>    <span class="p">[</span> <span class="mh">1</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="no">KEY</span><span class="p">,</span>
+    <span class="k">input</span>    <span class="p">[</span> <span class="mh">1</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="n">KEY</span><span class="p">,</span>
 
     <span class="c1">//////////// LED //////////</span>
-    <span class="k">output</span>   <span class="p">[</span> <span class="mh">7</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="no">LED</span><span class="p">,</span>
+    <span class="k">output</span>   <span class="p">[</span> <span class="mh">7</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="n">LED</span><span class="p">,</span>
 
     <span class="c1">//////////// SW //////////</span>
-    <span class="k">input</span>    <span class="p">[</span> <span class="mh">3</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="no">SW</span>
+    <span class="k">input</span>    <span class="p">[</span> <span class="mh">3</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span>    <span class="n">SW</span>
 <span class="p">);</span>
 
 
@@ -548,8 +540,8 @@
 <span class="kt">wire</span>                <span class="n">fpga_clk_50</span><span class="p">;</span>
 <span class="c1">// connection of internal logics</span>
 <span class="c1">//assign LED[7: 1] = fpga_led_internal;</span>
-<span class="k">assign</span> <span class="n">fpga_clk_50</span> <span class="o">=</span> <span class="no">FPGA_CLK1_50</span><span class="p">;</span>
-<span class="k">assign</span> <span class="n">stm_hw_events</span> <span class="o">=</span> <span class="p">{{</span><span class="mh">15</span><span class="p">{</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">}},</span> <span class="no">SW</span><span class="p">,</span> <span class="n">fpga_led_internal</span><span class="p">,</span> <span class="n">fpga_debounced_buttons</span><span class="p">};</span>
+<span class="k">assign</span> <span class="n">fpga_clk_50</span> <span class="o">=</span> <span class="n">FPGA_CLK1_50</span><span class="p">;</span>
+<span class="k">assign</span> <span class="n">stm_hw_events</span> <span class="o">=</span> <span class="p">{{</span><span class="mh">15</span><span class="p">{</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">}},</span> <span class="n">SW</span><span class="p">,</span> <span class="n">fpga_led_internal</span><span class="p">,</span> <span class="n">fpga_debounced_buttons</span><span class="p">};</span>
 
 
 
@@ -558,84 +550,84 @@
 <span class="c1">//=======================================================</span>
 <span class="n">soc_system</span> <span class="n">u0</span><span class="p">(</span>
                <span class="c1">//Clock&amp;Reset</span>
-               <span class="p">.</span><span class="n">clk_clk</span><span class="p">(</span><span class="no">FPGA_CLK1_50</span><span class="p">),</span>                                      <span class="c1">//                            clk.clk</span>
+               <span class="p">.</span><span class="n">clk_clk</span><span class="p">(</span><span class="n">FPGA_CLK1_50</span><span class="p">),</span>                                      <span class="c1">//                            clk.clk</span>
                <span class="p">.</span><span class="n">reset_reset_n</span><span class="p">(</span><span class="n">hps_fpga_reset_n</span><span class="p">),</span>                            <span class="c1">//                          reset.reset_n</span>
                <span class="c1">//HPS ddr3</span>
-               <span class="p">.</span><span class="n">memory_mem_a</span><span class="p">(</span><span class="no">HPS_DDR3_ADDR</span><span class="p">),</span>                                <span class="c1">//                         memory.mem_a</span>
-               <span class="p">.</span><span class="n">memory_mem_ba</span><span class="p">(</span><span class="no">HPS_DDR3_BA</span><span class="p">),</span>                                 <span class="c1">//                               .mem_ba</span>
-               <span class="p">.</span><span class="n">memory_mem_ck</span><span class="p">(</span><span class="no">HPS_DDR3_CK_P</span><span class="p">),</span>                               <span class="c1">//                               .mem_ck</span>
-               <span class="p">.</span><span class="n">memory_mem_ck_n</span><span class="p">(</span><span class="no">HPS_DDR3_CK_N</span><span class="p">),</span>                             <span class="c1">//                               .mem_ck_n</span>
-               <span class="p">.</span><span class="n">memory_mem_cke</span><span class="p">(</span><span class="no">HPS_DDR3_CKE</span><span class="p">),</span>                               <span class="c1">//                               .mem_cke</span>
-               <span class="p">.</span><span class="n">memory_mem_cs_n</span><span class="p">(</span><span class="no">HPS_DDR3_CS_N</span><span class="p">),</span>                             <span class="c1">//                               .mem_cs_n</span>
-               <span class="p">.</span><span class="n">memory_mem_ras_n</span><span class="p">(</span><span class="no">HPS_DDR3_RAS_N</span><span class="p">),</span>                           <span class="c1">//                               .mem_ras_n</span>
-               <span class="p">.</span><span class="n">memory_mem_cas_n</span><span class="p">(</span><span class="no">HPS_DDR3_CAS_N</span><span class="p">),</span>                           <span class="c1">//                               .mem_cas_n</span>
-               <span class="p">.</span><span class="n">memory_mem_we_n</span><span class="p">(</span><span class="no">HPS_DDR3_WE_N</span><span class="p">),</span>                             <span class="c1">//                               .mem_we_n</span>
-               <span class="p">.</span><span class="n">memory_mem_reset_n</span><span class="p">(</span><span class="no">HPS_DDR3_RESET_N</span><span class="p">),</span>                       <span class="c1">//                               .mem_reset_n</span>
-               <span class="p">.</span><span class="n">memory_mem_dq</span><span class="p">(</span><span class="no">HPS_DDR3_DQ</span><span class="p">),</span>                                 <span class="c1">//                               .mem_dq</span>
-               <span class="p">.</span><span class="n">memory_mem_dqs</span><span class="p">(</span><span class="no">HPS_DDR3_DQS_P</span><span class="p">),</span>                             <span class="c1">//                               .mem_dqs</span>
-               <span class="p">.</span><span class="n">memory_mem_dqs_n</span><span class="p">(</span><span class="no">HPS_DDR3_DQS_N</span><span class="p">),</span>                           <span class="c1">//                               .mem_dqs_n</span>
-               <span class="p">.</span><span class="n">memory_mem_odt</span><span class="p">(</span><span class="no">HPS_DDR3_ODT</span><span class="p">),</span>                               <span class="c1">//                               .mem_odt</span>
-               <span class="p">.</span><span class="n">memory_mem_dm</span><span class="p">(</span><span class="no">HPS_DDR3_DM</span><span class="p">),</span>                                 <span class="c1">//                               .mem_dm</span>
-               <span class="p">.</span><span class="n">memory_oct_rzqin</span><span class="p">(</span><span class="no">HPS_DDR3_RZQ</span><span class="p">),</span>                             <span class="c1">//                               .oct_rzqin</span>
+               <span class="p">.</span><span class="n">memory_mem_a</span><span class="p">(</span><span class="n">HPS_DDR3_ADDR</span><span class="p">),</span>                                <span class="c1">//                         memory.mem_a</span>
+               <span class="p">.</span><span class="n">memory_mem_ba</span><span class="p">(</span><span class="n">HPS_DDR3_BA</span><span class="p">),</span>                                 <span class="c1">//                               .mem_ba</span>
+               <span class="p">.</span><span class="n">memory_mem_ck</span><span class="p">(</span><span class="n">HPS_DDR3_CK_P</span><span class="p">),</span>                               <span class="c1">//                               .mem_ck</span>
+               <span class="p">.</span><span class="n">memory_mem_ck_n</span><span class="p">(</span><span class="n">HPS_DDR3_CK_N</span><span class="p">),</span>                             <span class="c1">//                               .mem_ck_n</span>
+               <span class="p">.</span><span class="n">memory_mem_cke</span><span class="p">(</span><span class="n">HPS_DDR3_CKE</span><span class="p">),</span>                               <span class="c1">//                               .mem_cke</span>
+               <span class="p">.</span><span class="n">memory_mem_cs_n</span><span class="p">(</span><span class="n">HPS_DDR3_CS_N</span><span class="p">),</span>                             <span class="c1">//                               .mem_cs_n</span>
+               <span class="p">.</span><span class="n">memory_mem_ras_n</span><span class="p">(</span><span class="n">HPS_DDR3_RAS_N</span><span class="p">),</span>                           <span class="c1">//                               .mem_ras_n</span>
+               <span class="p">.</span><span class="n">memory_mem_cas_n</span><span class="p">(</span><span class="n">HPS_DDR3_CAS_N</span><span class="p">),</span>                           <span class="c1">//                               .mem_cas_n</span>
+               <span class="p">.</span><span class="n">memory_mem_we_n</span><span class="p">(</span><span class="n">HPS_DDR3_WE_N</span><span class="p">),</span>                             <span class="c1">//                               .mem_we_n</span>
+               <span class="p">.</span><span class="n">memory_mem_reset_n</span><span class="p">(</span><span class="n">HPS_DDR3_RESET_N</span><span class="p">),</span>                       <span class="c1">//                               .mem_reset_n</span>
+               <span class="p">.</span><span class="n">memory_mem_dq</span><span class="p">(</span><span class="n">HPS_DDR3_DQ</span><span class="p">),</span>                                 <span class="c1">//                               .mem_dq</span>
+               <span class="p">.</span><span class="n">memory_mem_dqs</span><span class="p">(</span><span class="n">HPS_DDR3_DQS_P</span><span class="p">),</span>                             <span class="c1">//                               .mem_dqs</span>
+               <span class="p">.</span><span class="n">memory_mem_dqs_n</span><span class="p">(</span><span class="n">HPS_DDR3_DQS_N</span><span class="p">),</span>                           <span class="c1">//                               .mem_dqs_n</span>
+               <span class="p">.</span><span class="n">memory_mem_odt</span><span class="p">(</span><span class="n">HPS_DDR3_ODT</span><span class="p">),</span>                               <span class="c1">//                               .mem_odt</span>
+               <span class="p">.</span><span class="n">memory_mem_dm</span><span class="p">(</span><span class="n">HPS_DDR3_DM</span><span class="p">),</span>                                 <span class="c1">//                               .mem_dm</span>
+               <span class="p">.</span><span class="n">memory_oct_rzqin</span><span class="p">(</span><span class="n">HPS_DDR3_RZQ</span><span class="p">),</span>                             <span class="c1">//                               .oct_rzqin</span>
                <span class="c1">//HPS ethernet</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_TX_CLK</span><span class="p">(</span><span class="no">HPS_ENET_GTX_CLK</span><span class="p">),</span>    <span class="c1">//                   hps_0_hps_io.hps_io_emac1_inst_TX_CLK</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_TXD0</span><span class="p">(</span><span class="no">HPS_ENET_TX_DATA</span><span class="p">[</span><span class="mh">0</span><span class="p">]),</span>   <span class="c1">//                               .hps_io_emac1_inst_TXD0</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_TXD1</span><span class="p">(</span><span class="no">HPS_ENET_TX_DATA</span><span class="p">[</span><span class="mh">1</span><span class="p">]),</span>   <span class="c1">//                               .hps_io_emac1_inst_TXD1</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_TXD2</span><span class="p">(</span><span class="no">HPS_ENET_TX_DATA</span><span class="p">[</span><span class="mh">2</span><span class="p">]),</span>   <span class="c1">//                               .hps_io_emac1_inst_TXD2</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_TXD3</span><span class="p">(</span><span class="no">HPS_ENET_TX_DATA</span><span class="p">[</span><span class="mh">3</span><span class="p">]),</span>   <span class="c1">//                               .hps_io_emac1_inst_TXD3</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_RXD0</span><span class="p">(</span><span class="no">HPS_ENET_RX_DATA</span><span class="p">[</span><span class="mh">0</span><span class="p">]),</span>   <span class="c1">//                               .hps_io_emac1_inst_RXD0</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_MDIO</span><span class="p">(</span><span class="no">HPS_ENET_MDIO</span><span class="p">),</span>         <span class="c1">//                               .hps_io_emac1_inst_MDIO</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_MDC</span><span class="p">(</span><span class="no">HPS_ENET_MDC</span><span class="p">),</span>           <span class="c1">//                               .hps_io_emac1_inst_MDC</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_RX_CTL</span><span class="p">(</span><span class="no">HPS_ENET_RX_DV</span><span class="p">),</span>      <span class="c1">//                               .hps_io_emac1_inst_RX_CTL</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_TX_CTL</span><span class="p">(</span><span class="no">HPS_ENET_TX_EN</span><span class="p">),</span>      <span class="c1">//                               .hps_io_emac1_inst_TX_CTL</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_RX_CLK</span><span class="p">(</span><span class="no">HPS_ENET_RX_CLK</span><span class="p">),</span>     <span class="c1">//                               .hps_io_emac1_inst_RX_CLK</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_RXD1</span><span class="p">(</span><span class="no">HPS_ENET_RX_DATA</span><span class="p">[</span><span class="mh">1</span><span class="p">]),</span>   <span class="c1">//                               .hps_io_emac1_inst_RXD1</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_RXD2</span><span class="p">(</span><span class="no">HPS_ENET_RX_DATA</span><span class="p">[</span><span class="mh">2</span><span class="p">]),</span>   <span class="c1">//                               .hps_io_emac1_inst_RXD2</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_RXD3</span><span class="p">(</span><span class="no">HPS_ENET_RX_DATA</span><span class="p">[</span><span class="mh">3</span><span class="p">]),</span>   <span class="c1">//                               .hps_io_emac1_inst_RXD3</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_TX_CLK</span><span class="p">(</span><span class="n">HPS_ENET_GTX_CLK</span><span class="p">),</span>    <span class="c1">//                   hps_0_hps_io.hps_io_emac1_inst_TX_CLK</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_TXD0</span><span class="p">(</span><span class="n">HPS_ENET_TX_DATA</span><span class="p">[</span><span class="mh">0</span><span class="p">]),</span>   <span class="c1">//                               .hps_io_emac1_inst_TXD0</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_TXD1</span><span class="p">(</span><span class="n">HPS_ENET_TX_DATA</span><span class="p">[</span><span class="mh">1</span><span class="p">]),</span>   <span class="c1">//                               .hps_io_emac1_inst_TXD1</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_TXD2</span><span class="p">(</span><span class="n">HPS_ENET_TX_DATA</span><span class="p">[</span><span class="mh">2</span><span class="p">]),</span>   <span class="c1">//                               .hps_io_emac1_inst_TXD2</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_TXD3</span><span class="p">(</span><span class="n">HPS_ENET_TX_DATA</span><span class="p">[</span><span class="mh">3</span><span class="p">]),</span>   <span class="c1">//                               .hps_io_emac1_inst_TXD3</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_RXD0</span><span class="p">(</span><span class="n">HPS_ENET_RX_DATA</span><span class="p">[</span><span class="mh">0</span><span class="p">]),</span>   <span class="c1">//                               .hps_io_emac1_inst_RXD0</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_MDIO</span><span class="p">(</span><span class="n">HPS_ENET_MDIO</span><span class="p">),</span>         <span class="c1">//                               .hps_io_emac1_inst_MDIO</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_MDC</span><span class="p">(</span><span class="n">HPS_ENET_MDC</span><span class="p">),</span>           <span class="c1">//                               .hps_io_emac1_inst_MDC</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_RX_CTL</span><span class="p">(</span><span class="n">HPS_ENET_RX_DV</span><span class="p">),</span>      <span class="c1">//                               .hps_io_emac1_inst_RX_CTL</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_TX_CTL</span><span class="p">(</span><span class="n">HPS_ENET_TX_EN</span><span class="p">),</span>      <span class="c1">//                               .hps_io_emac1_inst_TX_CTL</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_RX_CLK</span><span class="p">(</span><span class="n">HPS_ENET_RX_CLK</span><span class="p">),</span>     <span class="c1">//                               .hps_io_emac1_inst_RX_CLK</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_RXD1</span><span class="p">(</span><span class="n">HPS_ENET_RX_DATA</span><span class="p">[</span><span class="mh">1</span><span class="p">]),</span>   <span class="c1">//                               .hps_io_emac1_inst_RXD1</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_RXD2</span><span class="p">(</span><span class="n">HPS_ENET_RX_DATA</span><span class="p">[</span><span class="mh">2</span><span class="p">]),</span>   <span class="c1">//                               .hps_io_emac1_inst_RXD2</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_emac1_inst_RXD3</span><span class="p">(</span><span class="n">HPS_ENET_RX_DATA</span><span class="p">[</span><span class="mh">3</span><span class="p">]),</span>   <span class="c1">//                               .hps_io_emac1_inst_RXD3</span>
                <span class="c1">//HPS SD card</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_sdio_inst_CMD</span><span class="p">(</span><span class="no">HPS_SD_CMD</span><span class="p">),</span>              <span class="c1">//                               .hps_io_sdio_inst_CMD</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_sdio_inst_D0</span><span class="p">(</span><span class="no">HPS_SD_DATA</span><span class="p">[</span><span class="mh">0</span><span class="p">]),</span>           <span class="c1">//                               .hps_io_sdio_inst_D0</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_sdio_inst_D1</span><span class="p">(</span><span class="no">HPS_SD_DATA</span><span class="p">[</span><span class="mh">1</span><span class="p">]),</span>           <span class="c1">//                               .hps_io_sdio_inst_D1</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_sdio_inst_CLK</span><span class="p">(</span><span class="no">HPS_SD_CLK</span><span class="p">),</span>              <span class="c1">//                               .hps_io_sdio_inst_CLK</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_sdio_inst_D2</span><span class="p">(</span><span class="no">HPS_SD_DATA</span><span class="p">[</span><span class="mh">2</span><span class="p">]),</span>           <span class="c1">//                               .hps_io_sdio_inst_D2</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_sdio_inst_D3</span><span class="p">(</span><span class="no">HPS_SD_DATA</span><span class="p">[</span><span class="mh">3</span><span class="p">]),</span>           <span class="c1">//                               .hps_io_sdio_inst_D3</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_sdio_inst_CMD</span><span class="p">(</span><span class="n">HPS_SD_CMD</span><span class="p">),</span>              <span class="c1">//                               .hps_io_sdio_inst_CMD</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_sdio_inst_D0</span><span class="p">(</span><span class="n">HPS_SD_DATA</span><span class="p">[</span><span class="mh">0</span><span class="p">]),</span>           <span class="c1">//                               .hps_io_sdio_inst_D0</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_sdio_inst_D1</span><span class="p">(</span><span class="n">HPS_SD_DATA</span><span class="p">[</span><span class="mh">1</span><span class="p">]),</span>           <span class="c1">//                               .hps_io_sdio_inst_D1</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_sdio_inst_CLK</span><span class="p">(</span><span class="n">HPS_SD_CLK</span><span class="p">),</span>              <span class="c1">//                               .hps_io_sdio_inst_CLK</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_sdio_inst_D2</span><span class="p">(</span><span class="n">HPS_SD_DATA</span><span class="p">[</span><span class="mh">2</span><span class="p">]),</span>           <span class="c1">//                               .hps_io_sdio_inst_D2</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_sdio_inst_D3</span><span class="p">(</span><span class="n">HPS_SD_DATA</span><span class="p">[</span><span class="mh">3</span><span class="p">]),</span>           <span class="c1">//                               .hps_io_sdio_inst_D3</span>
                <span class="c1">//HPS USB</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_D0</span><span class="p">(</span><span class="no">HPS_USB_DATA</span><span class="p">[</span><span class="mh">0</span><span class="p">]),</span>          <span class="c1">//                               .hps_io_usb1_inst_D0</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_D1</span><span class="p">(</span><span class="no">HPS_USB_DATA</span><span class="p">[</span><span class="mh">1</span><span class="p">]),</span>          <span class="c1">//                               .hps_io_usb1_inst_D1</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_D2</span><span class="p">(</span><span class="no">HPS_USB_DATA</span><span class="p">[</span><span class="mh">2</span><span class="p">]),</span>          <span class="c1">//                               .hps_io_usb1_inst_D2</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_D3</span><span class="p">(</span><span class="no">HPS_USB_DATA</span><span class="p">[</span><span class="mh">3</span><span class="p">]),</span>          <span class="c1">//                               .hps_io_usb1_inst_D3</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_D4</span><span class="p">(</span><span class="no">HPS_USB_DATA</span><span class="p">[</span><span class="mh">4</span><span class="p">]),</span>          <span class="c1">//                               .hps_io_usb1_inst_D4</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_D5</span><span class="p">(</span><span class="no">HPS_USB_DATA</span><span class="p">[</span><span class="mh">5</span><span class="p">]),</span>          <span class="c1">//                               .hps_io_usb1_inst_D5</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_D6</span><span class="p">(</span><span class="no">HPS_USB_DATA</span><span class="p">[</span><span class="mh">6</span><span class="p">]),</span>          <span class="c1">//                               .hps_io_usb1_inst_D6</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_D7</span><span class="p">(</span><span class="no">HPS_USB_DATA</span><span class="p">[</span><span class="mh">7</span><span class="p">]),</span>          <span class="c1">//                               .hps_io_usb1_inst_D7</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_CLK</span><span class="p">(</span><span class="no">HPS_USB_CLKOUT</span><span class="p">),</span>          <span class="c1">//                               .hps_io_usb1_inst_CLK</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_STP</span><span class="p">(</span><span class="no">HPS_USB_STP</span><span class="p">),</span>             <span class="c1">//                               .hps_io_usb1_inst_STP</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_DIR</span><span class="p">(</span><span class="no">HPS_USB_DIR</span><span class="p">),</span>             <span class="c1">//                               .hps_io_usb1_inst_DIR</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_NXT</span><span class="p">(</span><span class="no">HPS_USB_NXT</span><span class="p">),</span>             <span class="c1">//                               .hps_io_usb1_inst_NXT</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_D0</span><span class="p">(</span><span class="n">HPS_USB_DATA</span><span class="p">[</span><span class="mh">0</span><span class="p">]),</span>          <span class="c1">//                               .hps_io_usb1_inst_D0</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_D1</span><span class="p">(</span><span class="n">HPS_USB_DATA</span><span class="p">[</span><span class="mh">1</span><span class="p">]),</span>          <span class="c1">//                               .hps_io_usb1_inst_D1</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_D2</span><span class="p">(</span><span class="n">HPS_USB_DATA</span><span class="p">[</span><span class="mh">2</span><span class="p">]),</span>          <span class="c1">//                               .hps_io_usb1_inst_D2</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_D3</span><span class="p">(</span><span class="n">HPS_USB_DATA</span><span class="p">[</span><span class="mh">3</span><span class="p">]),</span>          <span class="c1">//                               .hps_io_usb1_inst_D3</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_D4</span><span class="p">(</span><span class="n">HPS_USB_DATA</span><span class="p">[</span><span class="mh">4</span><span class="p">]),</span>          <span class="c1">//                               .hps_io_usb1_inst_D4</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_D5</span><span class="p">(</span><span class="n">HPS_USB_DATA</span><span class="p">[</span><span class="mh">5</span><span class="p">]),</span>          <span class="c1">//                               .hps_io_usb1_inst_D5</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_D6</span><span class="p">(</span><span class="n">HPS_USB_DATA</span><span class="p">[</span><span class="mh">6</span><span class="p">]),</span>          <span class="c1">//                               .hps_io_usb1_inst_D6</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_D7</span><span class="p">(</span><span class="n">HPS_USB_DATA</span><span class="p">[</span><span class="mh">7</span><span class="p">]),</span>          <span class="c1">//                               .hps_io_usb1_inst_D7</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_CLK</span><span class="p">(</span><span class="n">HPS_USB_CLKOUT</span><span class="p">),</span>          <span class="c1">//                               .hps_io_usb1_inst_CLK</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_STP</span><span class="p">(</span><span class="n">HPS_USB_STP</span><span class="p">),</span>             <span class="c1">//                               .hps_io_usb1_inst_STP</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_DIR</span><span class="p">(</span><span class="n">HPS_USB_DIR</span><span class="p">),</span>             <span class="c1">//                               .hps_io_usb1_inst_DIR</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_usb1_inst_NXT</span><span class="p">(</span><span class="n">HPS_USB_NXT</span><span class="p">),</span>             <span class="c1">//                               .hps_io_usb1_inst_NXT</span>
                <span class="c1">//HPS SPI</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_spim1_inst_CLK</span><span class="p">(</span><span class="no">HPS_SPIM_CLK</span><span class="p">),</span>           <span class="c1">//                               .hps_io_spim1_inst_CLK</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_spim1_inst_MOSI</span><span class="p">(</span><span class="no">HPS_SPIM_MOSI</span><span class="p">),</span>         <span class="c1">//                               .hps_io_spim1_inst_MOSI</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_spim1_inst_MISO</span><span class="p">(</span><span class="no">HPS_SPIM_MISO</span><span class="p">),</span>         <span class="c1">//                               .hps_io_spim1_inst_MISO</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_spim1_inst_SS0</span><span class="p">(</span><span class="no">HPS_SPIM_SS</span><span class="p">),</span>            <span class="c1">//                               .hps_io_spim1_inst_SS0</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_spim1_inst_CLK</span><span class="p">(</span><span class="n">HPS_SPIM_CLK</span><span class="p">),</span>           <span class="c1">//                               .hps_io_spim1_inst_CLK</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_spim1_inst_MOSI</span><span class="p">(</span><span class="n">HPS_SPIM_MOSI</span><span class="p">),</span>         <span class="c1">//                               .hps_io_spim1_inst_MOSI</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_spim1_inst_MISO</span><span class="p">(</span><span class="n">HPS_SPIM_MISO</span><span class="p">),</span>         <span class="c1">//                               .hps_io_spim1_inst_MISO</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_spim1_inst_SS0</span><span class="p">(</span><span class="n">HPS_SPIM_SS</span><span class="p">),</span>            <span class="c1">//                               .hps_io_spim1_inst_SS0</span>
                <span class="c1">//HPS UART</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_uart0_inst_RX</span><span class="p">(</span><span class="no">HPS_UART_RX</span><span class="p">),</span>             <span class="c1">//                               .hps_io_uart0_inst_RX</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_uart0_inst_TX</span><span class="p">(</span><span class="no">HPS_UART_TX</span><span class="p">),</span>             <span class="c1">//                               .hps_io_uart0_inst_TX</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_uart0_inst_RX</span><span class="p">(</span><span class="n">HPS_UART_RX</span><span class="p">),</span>             <span class="c1">//                               .hps_io_uart0_inst_RX</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_uart0_inst_TX</span><span class="p">(</span><span class="n">HPS_UART_TX</span><span class="p">),</span>             <span class="c1">//                               .hps_io_uart0_inst_TX</span>
                <span class="c1">//HPS I2C1</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_i2c0_inst_SDA</span><span class="p">(</span><span class="no">HPS_I2C0_SDAT</span><span class="p">),</span>           <span class="c1">//                               .hps_io_i2c0_inst_SDA</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_i2c0_inst_SCL</span><span class="p">(</span><span class="no">HPS_I2C0_SCLK</span><span class="p">),</span>           <span class="c1">//                               .hps_io_i2c0_inst_SCL</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_i2c0_inst_SDA</span><span class="p">(</span><span class="n">HPS_I2C0_SDAT</span><span class="p">),</span>           <span class="c1">//                               .hps_io_i2c0_inst_SDA</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_i2c0_inst_SCL</span><span class="p">(</span><span class="n">HPS_I2C0_SCLK</span><span class="p">),</span>           <span class="c1">//                               .hps_io_i2c0_inst_SCL</span>
                <span class="c1">//HPS I2C2</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_i2c1_inst_SDA</span><span class="p">(</span><span class="no">HPS_I2C1_SDAT</span><span class="p">),</span>           <span class="c1">//                               .hps_io_i2c1_inst_SDA</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_i2c1_inst_SCL</span><span class="p">(</span><span class="no">HPS_I2C1_SCLK</span><span class="p">),</span>           <span class="c1">//                               .hps_io_i2c1_inst_SCL</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_i2c1_inst_SDA</span><span class="p">(</span><span class="n">HPS_I2C1_SDAT</span><span class="p">),</span>           <span class="c1">//                               .hps_io_i2c1_inst_SDA</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_i2c1_inst_SCL</span><span class="p">(</span><span class="n">HPS_I2C1_SCLK</span><span class="p">),</span>           <span class="c1">//                               .hps_io_i2c1_inst_SCL</span>
                <span class="c1">//GPIO</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_gpio_inst_GPIO09</span><span class="p">(</span><span class="no">HPS_CONV_USB_N</span><span class="p">),</span>       <span class="c1">//                               .hps_io_gpio_inst_GPIO09</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_gpio_inst_GPIO35</span><span class="p">(</span><span class="no">HPS_ENET_INT_N</span><span class="p">),</span>       <span class="c1">//                               .hps_io_gpio_inst_GPIO35</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_gpio_inst_GPIO40</span><span class="p">(</span><span class="no">HPS_LTC_GPIO</span><span class="p">),</span>         <span class="c1">//                               .hps_io_gpio_inst_GPIO40</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_gpio_inst_GPIO53</span><span class="p">(</span><span class="no">HPS_LED</span><span class="p">),</span>              <span class="c1">//                               .hps_io_gpio_inst_GPIO53</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_gpio_inst_GPIO54</span><span class="p">(</span><span class="no">HPS_KEY</span><span class="p">),</span>              <span class="c1">//                               .hps_io_gpio_inst_GPIO54</span>
-               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_gpio_inst_GPIO61</span><span class="p">(</span><span class="no">HPS_GSENSOR_INT</span><span class="p">),</span>      <span class="c1">//                               .hps_io_gpio_inst_GPIO61</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_gpio_inst_GPIO09</span><span class="p">(</span><span class="n">HPS_CONV_USB_N</span><span class="p">),</span>       <span class="c1">//                               .hps_io_gpio_inst_GPIO09</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_gpio_inst_GPIO35</span><span class="p">(</span><span class="n">HPS_ENET_INT_N</span><span class="p">),</span>       <span class="c1">//                               .hps_io_gpio_inst_GPIO35</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_gpio_inst_GPIO40</span><span class="p">(</span><span class="n">HPS_LTC_GPIO</span><span class="p">),</span>         <span class="c1">//                               .hps_io_gpio_inst_GPIO40</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_gpio_inst_GPIO53</span><span class="p">(</span><span class="n">HPS_LED</span><span class="p">),</span>              <span class="c1">//                               .hps_io_gpio_inst_GPIO53</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_gpio_inst_GPIO54</span><span class="p">(</span><span class="n">HPS_KEY</span><span class="p">),</span>              <span class="c1">//                               .hps_io_gpio_inst_GPIO54</span>
+               <span class="p">.</span><span class="n">hps_0_hps_io_hps_io_gpio_inst_GPIO61</span><span class="p">(</span><span class="n">HPS_GSENSOR_INT</span><span class="p">),</span>      <span class="c1">//                               .hps_io_gpio_inst_GPIO61</span>
                <span class="c1">//FPGA Partion</span>
                <span class="p">.</span><span class="n">led_pio_external_connection_export</span><span class="p">(</span><span class="n">fpga_led_internal</span><span class="p">),</span>      <span class="c1">//    led_pio_external_connection.export</span>
-               <span class="p">.</span><span class="n">dipsw_pio_external_connection_export</span><span class="p">(</span><span class="no">SW</span><span class="p">),</span>                   <span class="c1">//  dipsw_pio_external_connection.export</span>
+               <span class="p">.</span><span class="n">dipsw_pio_external_connection_export</span><span class="p">(</span><span class="n">SW</span><span class="p">),</span>                   <span class="c1">//  dipsw_pio_external_connection.export</span>
                <span class="p">.</span><span class="n">button_pio_external_connection_export</span><span class="p">(</span><span class="n">fpga_debounced_buttons</span><span class="p">),</span>
                                                                             <span class="c1">// button_pio_external_connection.export</span>
                <span class="p">.</span><span class="n">hps_0_h2f_reset_reset_n</span><span class="p">(</span><span class="n">hps_fpga_reset_n</span><span class="p">),</span>                  <span class="c1">//                hps_0_h2f_reset.reset_n</span>
@@ -658,13 +650,13 @@
 <span class="n">debounce</span> <span class="n">debounce_inst</span><span class="p">(</span>
              <span class="p">.</span><span class="n">clk</span><span class="p">(</span><span class="n">fpga_clk_50</span><span class="p">),</span>
              <span class="p">.</span><span class="n">reset_n</span><span class="p">(</span><span class="n">hps_fpga_reset_n</span><span class="p">),</span>
-             <span class="p">.</span><span class="n">data_in</span><span class="p">(</span><span class="no">KEY</span><span class="p">),</span>
+             <span class="p">.</span><span class="n">data_in</span><span class="p">(</span><span class="n">KEY</span><span class="p">),</span>
              <span class="p">.</span><span class="n">data_out</span><span class="p">(</span><span class="n">fpga_debounced_buttons</span><span class="p">)</span>
          <span class="p">);</span>
-<span class="k">defparam</span> <span class="n">debounce_inst</span><span class="p">.</span><span class="no">WIDTH</span> <span class="o">=</span> <span class="mh">2</span><span class="p">;</span>
-<span class="k">defparam</span> <span class="n">debounce_inst</span><span class="p">.</span><span class="no">POLARITY</span> <span class="o">=</span> <span class="s">&quot;LOW&quot;</span><span class="p">;</span>
-<span class="k">defparam</span> <span class="n">debounce_inst</span><span class="p">.</span><span class="no">TIMEOUT</span> <span class="o">=</span> <span class="mh">50000</span><span class="p">;</span>               <span class="c1">// at 50Mhz this is a debounce time of 1ms</span>
-<span class="k">defparam</span> <span class="n">debounce_inst</span><span class="p">.</span><span class="no">TIMEOUT_WIDTH</span> <span class="o">=</span> <span class="mh">16</span><span class="p">;</span>            <span class="c1">// ceil(log2(TIMEOUT))</span>
+<span class="k">defparam</span> <span class="n">debounce_inst</span><span class="p">.</span><span class="n">WIDTH</span> <span class="o">=</span> <span class="mh">2</span><span class="p">;</span>
+<span class="k">defparam</span> <span class="n">debounce_inst</span><span class="p">.</span><span class="n">POLARITY</span> <span class="o">=</span> <span class="s">&quot;LOW&quot;</span><span class="p">;</span>
+<span class="k">defparam</span> <span class="n">debounce_inst</span><span class="p">.</span><span class="n">TIMEOUT</span> <span class="o">=</span> <span class="mh">50000</span><span class="p">;</span>               <span class="c1">// at 50Mhz this is a debounce time of 1ms</span>
+<span class="k">defparam</span> <span class="n">debounce_inst</span><span class="p">.</span><span class="n">TIMEOUT_WIDTH</span> <span class="o">=</span> <span class="mh">16</span><span class="p">;</span>            <span class="c1">// ceil(log2(TIMEOUT))</span>
 
 <span class="c1">// Source/Probe megawizard instance</span>
 <span class="n">hps_reset</span> <span class="n">hps_reset_inst</span><span class="p">(</span>
@@ -678,9 +670,9 @@
                          <span class="p">.</span><span class="n">signal_in</span><span class="p">(</span><span class="n">hps_reset_req</span><span class="p">[</span><span class="mh">0</span><span class="p">]),</span>
                          <span class="p">.</span><span class="n">pulse_out</span><span class="p">(</span><span class="n">hps_cold_reset</span><span class="p">)</span>
                      <span class="p">);</span>
-<span class="k">defparam</span> <span class="n">pulse_cold_reset</span><span class="p">.</span><span class="no">PULSE_EXT</span> <span class="o">=</span> <span class="mh">6</span><span class="p">;</span>
-<span class="k">defparam</span> <span class="n">pulse_cold_reset</span><span class="p">.</span><span class="no">EDGE_TYPE</span> <span class="o">=</span> <span class="mh">1</span><span class="p">;</span>
-<span class="k">defparam</span> <span class="n">pulse_cold_reset</span><span class="p">.</span><span class="no">IGNORE_RST_WHILE_BUSY</span> <span class="o">=</span> <span class="mh">1</span><span class="p">;</span>
+<span class="k">defparam</span> <span class="n">pulse_cold_reset</span><span class="p">.</span><span class="n">PULSE_EXT</span> <span class="o">=</span> <span class="mh">6</span><span class="p">;</span>
+<span class="k">defparam</span> <span class="n">pulse_cold_reset</span><span class="p">.</span><span class="n">EDGE_TYPE</span> <span class="o">=</span> <span class="mh">1</span><span class="p">;</span>
+<span class="k">defparam</span> <span class="n">pulse_cold_reset</span><span class="p">.</span><span class="n">IGNORE_RST_WHILE_BUSY</span> <span class="o">=</span> <span class="mh">1</span><span class="p">;</span>
 
 <span class="n">altera_edge_detector</span> <span class="n">pulse_warm_reset</span><span class="p">(</span>
                          <span class="p">.</span><span class="n">clk</span><span class="p">(</span><span class="n">fpga_clk_50</span><span class="p">),</span>
@@ -688,9 +680,9 @@
                          <span class="p">.</span><span class="n">signal_in</span><span class="p">(</span><span class="n">hps_reset_req</span><span class="p">[</span><span class="mh">1</span><span class="p">]),</span>
                          <span class="p">.</span><span class="n">pulse_out</span><span class="p">(</span><span class="n">hps_warm_reset</span><span class="p">)</span>
                      <span class="p">);</span>
-<span class="k">defparam</span> <span class="n">pulse_warm_reset</span><span class="p">.</span><span class="no">PULSE_EXT</span> <span class="o">=</span> <span class="mh">2</span><span class="p">;</span>
-<span class="k">defparam</span> <span class="n">pulse_warm_reset</span><span class="p">.</span><span class="no">EDGE_TYPE</span> <span class="o">=</span> <span class="mh">1</span><span class="p">;</span>
-<span class="k">defparam</span> <span class="n">pulse_warm_reset</span><span class="p">.</span><span class="no">IGNORE_RST_WHILE_BUSY</span> <span class="o">=</span> <span class="mh">1</span><span class="p">;</span>
+<span class="k">defparam</span> <span class="n">pulse_warm_reset</span><span class="p">.</span><span class="n">PULSE_EXT</span> <span class="o">=</span> <span class="mh">2</span><span class="p">;</span>
+<span class="k">defparam</span> <span class="n">pulse_warm_reset</span><span class="p">.</span><span class="n">EDGE_TYPE</span> <span class="o">=</span> <span class="mh">1</span><span class="p">;</span>
+<span class="k">defparam</span> <span class="n">pulse_warm_reset</span><span class="p">.</span><span class="n">IGNORE_RST_WHILE_BUSY</span> <span class="o">=</span> <span class="mh">1</span><span class="p">;</span>
 
 <span class="n">altera_edge_detector</span> <span class="n">pulse_debug_reset</span><span class="p">(</span>
                          <span class="p">.</span><span class="n">clk</span><span class="p">(</span><span class="n">fpga_clk_50</span><span class="p">),</span>
@@ -698,9 +690,9 @@
                          <span class="p">.</span><span class="n">signal_in</span><span class="p">(</span><span class="n">hps_reset_req</span><span class="p">[</span><span class="mh">2</span><span class="p">]),</span>
                          <span class="p">.</span><span class="n">pulse_out</span><span class="p">(</span><span class="n">hps_debug_reset</span><span class="p">)</span>
                      <span class="p">);</span>
-<span class="k">defparam</span> <span class="n">pulse_debug_reset</span><span class="p">.</span><span class="no">PULSE_EXT</span> <span class="o">=</span> <span class="mh">32</span><span class="p">;</span>
-<span class="k">defparam</span> <span class="n">pulse_debug_reset</span><span class="p">.</span><span class="no">EDGE_TYPE</span> <span class="o">=</span> <span class="mh">1</span><span class="p">;</span>
-<span class="k">defparam</span> <span class="n">pulse_debug_reset</span><span class="p">.</span><span class="no">IGNORE_RST_WHILE_BUSY</span> <span class="o">=</span> <span class="mh">1</span><span class="p">;</span>
+<span class="k">defparam</span> <span class="n">pulse_debug_reset</span><span class="p">.</span><span class="n">PULSE_EXT</span> <span class="o">=</span> <span class="mh">32</span><span class="p">;</span>
+<span class="k">defparam</span> <span class="n">pulse_debug_reset</span><span class="p">.</span><span class="n">EDGE_TYPE</span> <span class="o">=</span> <span class="mh">1</span><span class="p">;</span>
+<span class="k">defparam</span> <span class="n">pulse_debug_reset</span><span class="p">.</span><span class="n">IGNORE_RST_WHILE_BUSY</span> <span class="o">=</span> <span class="mh">1</span><span class="p">;</span>
 
 <span class="kt">reg</span> <span class="p">[</span><span class="mh">25</span><span class="o">:</span> <span class="mh">0</span><span class="p">]</span> <span class="n">counter</span><span class="p">;</span>
 <span class="kt">reg</span> <span class="n">led_level</span><span class="p">;</span>
@@ -765,10 +757,10 @@
                 <span class="kt">wire</span>        <span class="n">wire_FIFOreadEmpty</span><span class="p">;</span>
                 <span class="kt">wire</span> <span class="p">[</span><span class="mh">7</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span>  <span class="n">wire_FIFOnumberOfUsedWords</span><span class="p">;</span>
 
-                <span class="k">assign</span> <span class="no">LED</span> <span class="o">=</span> <span class="n">wire_FIFOnumberOfUsedWords</span><span class="p">;</span>
+                <span class="k">assign</span> <span class="n">LED</span> <span class="o">=</span> <span class="n">wire_FIFOnumberOfUsedWords</span><span class="p">;</span>
 
         <span class="c1">// Custom Sub-Modules:</span>
-                <span class="no">FIFO</span> <span class="n">fifo</span><span class="p">(</span>
+                <span class="n">FIFO</span> <span class="n">fifo</span><span class="p">(</span>
                         <span class="p">.</span><span class="n">clock</span><span class="p">(</span><span class="n">fpga_clk_50</span><span class="p">),</span>
                         <span class="c1">// Write side by FPGA</span>
                         <span class="p">.</span><span class="n">wrreq</span><span class="p">(</span><span class="n">wire_FIFOwriteRequest</span><span class="p">),</span>

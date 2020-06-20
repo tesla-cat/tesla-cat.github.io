@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>PyTorch Tutorial RNN 2 &mdash; My-Study-Notes  documentation</title>
+  <title>PyTorch Tutorial RNN 2 &mdash; My Study Notes  documentation</title>
   
 
   
@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -51,7 +51,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> My-Study-Notes
+            <a href="../index.html" class="icon icon-home"> My Study Notes
           
 
           
@@ -81,13 +81,12 @@
               
             
             
-              <p class="caption"><span class="caption-text">Math</span></p>
+              <p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Math/index.html">Math</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Neurotechnology</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Neuromorphic-Vision/index.html">Neuromorphic Vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Computation/index.html">Quantum Computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Mechanics-Feynman-Path-Integral/index.html">Quantum Mechanics: Feynman Path Integral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Optics/index.html">Quantum Optics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Density-Functional-Theory/index.html">Density Functional Theory</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Electronics and Coding</span></p>
 <ul>
@@ -112,13 +111,6 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Biomolecular-Physics/index.html">Biomolecular Physics</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Quantum-Mechanics-Feynman-Path-Integral/index.html">Quantum Mechanics: Feynman Path Integral</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Quantum-Computation/index.html">Quantum Computation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Quantum-Optics/index.html">Quantum Optics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Density-Functional-Theory/index.html">Density Functional Theory</a></li>
-</ul>
 <p class="caption"><span class="caption-text">Statistical Mechanics</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Thermodynamics-And-Statistical-Mechanics/index.html">Thermodynamics And Statistical Mechanics</a></li>
@@ -127,9 +119,9 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Relativity/index.html">Relativity</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Papers</span></p>
+<p class="caption"><span class="caption-text">Neurotechnology</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Papers-Quantum-Computers/index.html">Papers: Quantum Computers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Neuromorphic-Vision/index.html">Neuromorphic Vision</a></li>
 </ul>
 
             
@@ -144,7 +136,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">My-Study-Notes</a>
+          <a href="../index.html">My Study Notes</a>
         
       </nav>
 
@@ -205,7 +197,7 @@
 </dl>
 <p><a class="reference external" href="https://download.pytorch.org/tutorial/data.zip">download data</a></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="nb">open</span><span class="p">;</span><span class="kn">import</span> <span class="nn">re</span><span class="p">;</span><span class="kn">import</span> <span class="nn">unicodedata</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span><span class="p">;</span><span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span><span class="p">;</span><span class="kn">import</span> <span class="nn">random</span>
 
 <span class="k">class</span> <span class="nc">Language</span><span class="p">:</span>
   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -222,17 +214,17 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">word2count</span><span class="p">[</span><span class="n">word</span><span class="p">]</span><span class="o">+=</span><span class="mi">1</span>
 
 <span class="k">class</span> <span class="nc">GetTranslation</span><span class="p">:</span>
-  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="nb">file</span><span class="p">,</span><span class="n">maxLen</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">file</span><span class="p">,</span><span class="n">maxLen</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">maxLen</span><span class="o">=</span><span class="n">maxLen</span>
-    <span class="n">lines</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">lines</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="n">pairs</span><span class="o">=</span><span class="p">[[</span><span class="bp">self</span><span class="o">.</span><span class="n">normalizeString</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)]</span>
            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">]</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">lang1</span><span class="o">=</span><span class="n">Language</span><span class="p">();</span> <span class="bp">self</span><span class="o">.</span><span class="n">lang2</span><span class="o">=</span><span class="n">Language</span><span class="p">()</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">pairs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filterPairs</span><span class="p">(</span><span class="n">pairs</span><span class="p">);</span><span class="k">print</span><span class="p">(</span><span class="s2">&quot;len(pairs)=&quot;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">pairs</span><span class="p">))</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">pairs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filterPairs</span><span class="p">(</span><span class="n">pairs</span><span class="p">);</span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;len(pairs)=&quot;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">pairs</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pairs</span><span class="p">:</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">lang1</span><span class="o">.</span><span class="n">addSentence</span><span class="p">(</span><span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">lang2</span><span class="o">.</span><span class="n">addSentence</span><span class="p">(</span><span class="n">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;lang1&quot;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">lang1</span><span class="o">.</span><span class="n">nWords</span><span class="p">);</span><span class="k">print</span><span class="p">(</span><span class="s2">&quot;lang2&quot;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">lang2</span><span class="o">.</span><span class="n">nWords</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;lang1&quot;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">lang1</span><span class="o">.</span><span class="n">nWords</span><span class="p">);</span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;lang2&quot;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">lang2</span><span class="o">.</span><span class="n">nWords</span><span class="p">)</span>
 
   <span class="k">def</span> <span class="nf">normalizeString</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">s</span><span class="p">):</span>
     <span class="n">s</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">unicodeToAscii</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
@@ -275,9 +267,9 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">([</span><span class="mi">129</span><span class="p">,</span> <span class="mi">124</span><span class="p">,</span> <span class="mi">713</span><span class="p">,</span> <span class="mi">606</span><span class="p">,</span> <span class="mi">695</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">210</span><span class="p">,</span> <span class="mi">925</span><span class="p">,</span> <span class="mi">1328</span><span class="p">,</span> <span class="mi">115</span><span class="p">,</span> <span class="mi">528</span><span class="p">,</span> <span class="mi">2744</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span><span class="p">;</span> <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="kn">as</span> <span class="nn">nn</span><span class="p">;</span> <span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">optim</span>
-<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="kn">as</span> <span class="nn">F</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span><span class="p">;</span> <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span><span class="p">;</span> <span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">optim</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="k">class</span> <span class="nc">EncoderRNN</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">inputSize</span><span class="p">,</span><span class="n">hiddenSize</span><span class="p">):</span>
@@ -363,7 +355,7 @@
       <span class="n">lossTotal</span><span class="o">+=</span><span class="n">loss</span>
       <span class="k">if</span> <span class="nb">iter</span><span class="o">%</span><span class="mi">100</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lossTotal</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;lossTotal:&quot;</span><span class="p">,</span><span class="n">lossTotal</span><span class="p">);</span><span class="n">lossTotal</span><span class="o">=</span><span class="mi">0</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;lossTotal:&quot;</span><span class="p">,</span><span class="n">lossTotal</span><span class="p">);</span><span class="n">lossTotal</span><span class="o">=</span><span class="mi">0</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">losses</span><span class="p">);</span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
   <span class="k">def</span> <span class="nf">trainOne</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">inputTensor</span><span class="p">,</span><span class="n">targetTensor</span><span class="p">):</span>
     <span class="n">encoderHidden</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">encoder</span><span class="o">.</span><span class="n">initHidden</span><span class="p">()</span>
@@ -377,7 +369,7 @@
       <span class="n">encoderOutputs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">encoderOutput</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">decoderInput</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mi">0</span><span class="p">]],</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> <span class="c1"># &quot;SOS = 0&quot;</span>
     <span class="n">decoderHidden</span><span class="o">=</span><span class="n">encoderHidden</span>
-    <span class="n">useTeacherForcing</span><span class="o">=</span><span class="bp">True</span> <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span><span class="o">&lt;</span><span class="bp">self</span><span class="o">.</span><span class="n">teacherForcingProb</span> <span class="k">else</span> <span class="bp">False</span>
+    <span class="n">useTeacherForcing</span><span class="o">=</span><span class="kc">True</span> <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span><span class="o">&lt;</span><span class="bp">self</span><span class="o">.</span><span class="n">teacherForcingProb</span> <span class="k">else</span> <span class="kc">False</span>
     <span class="k">if</span> <span class="n">useTeacherForcing</span><span class="p">:</span> <span class="c1"># target as next input</span>
       <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">targetLen</span><span class="p">):</span>
         <span class="n">decoderOutput</span><span class="p">,</span><span class="n">decoderHidden</span><span class="p">,</span><span class="n">decoderAttention</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">decoder</span><span class="p">(</span>

@@ -1,0 +1,48 @@
+
+Stock Filter
+=============================================================
+
+.. code-block:: python
+    
+	import matplotlib.pyplot as plt
+	import pandas as pd
+	import numpy as np
+	import tushare,talib
+	from datetime import datetime, timedelta
+
+	#############  参数设置  #################
+	pastNdays = 100     # 根据过去多少天判断
+	volRatio = 6        # 成交量增长倍数
+	MACDcrit = 0.1      # MACD大于
+
+	#############  程序  #####################
+	def analyse(code):
+	    df = tushare.get_hist_data(code).sort_values(by='date')
+	    df.reset_index(inplace=True)
+	    startDate = datetime.today() - timedelta(days=pastNdays)
+	    df = df[ df['date'] > str(startDate) ]
+	    df.index = pd.to_datetime(df.date)
+	    
+	    vol = df.volume.values
+	    volResult = True if vol[-1]>np.mean(vol[:-1])*volRatio else False
+	    #print(vol[-1])
+	    if not volResult: return False
+
+	    close = df.close.values
+	    DIF,DEA,MACD = df['DIF'],df['DEA'],df['MACD'] = talib.MACD(close)
+	    macdResult = True if DIF[-1]>MACDcrit and DEA[-1]>MACDcrit else False
+	    #print(DIF[-1],DEA[-1],MACD[-1]*2)
+
+	    #df[['volume']].plot(title=code); plt.show()
+	    #df[['DIF','DEA','MACD']].plot(title=code); plt.show()
+	    return macdResult
+
+	basics = tushare.get_stock_basics()
+	cnt = 1; n=0
+	for i in basics.index:
+	    try:
+	        if analyse(i): cnt+=1; print(i,basics.name[i])
+	    except: pass
+	    n+=1
+	    if n%100==0: print(n,'/',basics.index.size)
+	print(cnt)

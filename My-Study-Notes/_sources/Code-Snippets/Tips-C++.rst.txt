@@ -1,0 +1,113 @@
+
+
+Tips C++
+=========================
+
+
+Using Classes and Objects Method 1
+------------------------------------------
+
+.. code-block:: c++
+
+  #include <iostream>
+  using namespace std;
+
+  class Class2{
+  public:
+      Class2(int arg1, int arg2)
+      :x{arg1+1},y{arg2}{
+          cout << "This is from Class2 constructor\n";
+      }
+
+      void meth(){
+          cout << "Calling **meth** from Class2\n";
+          cout << "x+1=" << x << ", y=" << y;
+      }
+  private:
+      int x,y;
+  };
+
+  class Class1{
+  private:
+      // how to use **Class2** as a member of **Class1** ?
+      Class2 class2AsClass1Member;
+  public:
+      Class1(int arg1, int arg2)
+      :class2AsClass1Member{Class2(arg1,arg2)}{
+
+      }
+
+      void method1(){
+          // how to use **meth** of **Class2** in **method1** ?
+          class2AsClass1Member.meth();
+      }
+
+      void method2(){
+          // how to call **method1** inside **method2** ?
+          method1();
+      }
+  };
+
+  int main(){
+      Class1 c1(1,2);
+      c1.method2();
+      return 0;
+  }  
+
+Using Classes and Objects Method 2
+------------------------------------------
+
+.. code-block:: c++
+  
+  #include <iostream>
+
+  //////// Begin Class1 //////////////
+  class Class1{
+  public:
+      Class1(int m);
+      int add(int n);
+
+  private:
+      int mValue;
+  };
+
+  Class1::Class1(int m) {
+      mValue = m;
+  }
+
+  int Class1::add(int n) {
+      return mValue + n;
+  }
+  //////// End Class1 //////////////
+
+  //////// Begin Class2 //////////////
+  class Class2{
+  public:
+      Class2(int n);
+      int plus1(int a);
+      int plus2();
+
+  private:
+      Class1 *c1;
+  };
+
+  Class2::Class2(int n) {
+      c1 = new Class1(n);
+  }
+
+  int Class2::plus1(int a) {
+      return a+1;
+  }
+
+  int Class2::plus2() {
+      // First **+1** using **Class1.add()**
+      // Then **+1** using **Class2.plus1()**
+      return plus1(c1->add(1));
+  }
+  //////// End Class2 //////////////
+
+  int main(){
+      Class2 c2(3);
+      std::cout << c2.plus2();
+      return 0;
+  }
