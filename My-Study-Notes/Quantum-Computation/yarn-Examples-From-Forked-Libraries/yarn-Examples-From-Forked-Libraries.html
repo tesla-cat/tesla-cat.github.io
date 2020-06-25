@@ -1,0 +1,522 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>yarn: Examples From Forked Libraries &mdash; My Study Notes  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Quantum Optimal Control using Machine learning" href="../Quantum-Optimal-Control-using-Machine-learning.html" />
+    <link rel="prev" title="Implementing a universal gate set on a logical qubit encoded in an oscillator" href="../Implementing-a-universal-gate-set-on-a-logical-qubit-encoded-in-an-oscillator/Implementing-a-universal-gate-set-on-a-logical-qubit-encoded-in-an-oscillator.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> My Study Notes
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Quantum Computation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../notes_on_Transmon_quantum_computer.html">notes on Transmon quantum computer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../QuTiP-Notes-1/QuTiP-Notes-1.html">QuTiP Notes 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Implementing-a-universal-gate-set-on-a-logical-qubit-encoded-in-an-oscillator/Implementing-a-universal-gate-set-on-a-logical-qubit-encoded-in-an-oscillator.html">Implementing a universal gate set on a logical qubit encoded in an oscillator</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">yarn: Examples From Forked Libraries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">What is yarn?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#todo">Todo</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#import">Import</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#states">states</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#plots">plots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hamiltonian-and-controls">hamiltonian and controls</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#use-different-packages">use different packages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state-transfer-fock">state transfer: Fock</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state-transfer-coherent">state transfer: Coherent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state-transfer-cat">state transfer: Cat</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#the-schuster-lab-codes">The Schuster Lab codes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#schusterlabqoc1-2017">SchusterLabQoc1 (2017)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#schusterlabqoc2-2019">SchusterLabQoc2 (2019)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Quantum-Optimal-Control-using-Machine-learning.html">Quantum Optimal Control using Machine learning</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Quantum-Mechanics-Feynman-Path-Integral/index.html">Quantum Mechanics: Feynman Path Integral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Quantum-Optics/index.html">Quantum Optics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Density-Functional-Theory/index.html">Density Functional Theory</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Electronics and Coding</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Experimental-Physics-SoC-FPGA-Design/index.html">Experimental Physics: SoC FPGA Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Code-Snippets/index.html">Code Snippets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Signal-Processing/index.html">Signal Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Django/index.html">Django</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Machine Learning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Machine-Learning/index.html">Machine Learning</a></li>
+</ul>
+<p class="caption"><span class="caption-text">BioPhysics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Biomolecular-Physics/index.html">Biomolecular Physics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Statistical Mechanics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Thermodynamics-And-Statistical-Mechanics/index.html">Thermodynamics And Statistical Mechanics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Relativity</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Relativity/index.html">Relativity</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Neurotechnology</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Neuromorphic-Vision/index.html">Neuromorphic Vision</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">My Study Notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Quantum Computation</a> &raquo;</li>
+        
+      <li>yarn: Examples From Forked Libraries</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/Quantum-Computation/yarn-Examples-From-Forked-Libraries/yarn-Examples-From-Forked-Libraries.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="yarn-examples-from-forked-libraries">
+<h1>yarn: Examples From Forked Libraries<a class="headerlink" href="#yarn-examples-from-forked-libraries" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><a class="reference external" href="https://github.com/tesla-cat/yarn#yarn-is-a-package-for-quantum-computing">What is yarn?</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt><a class="reference external" href="https://github.com/tesla-cat/yarn/blob/master/Examples-From-Forked-Libraries.ipynb">This notebook</a></dt><dd><p>(please <a class="reference external" href="https://nbviewer.jupyter.org/">view it with nbviewer</a> )
+compares 4 <strong>forked</strong> quantum optimal control libraries</p>
+</dd>
+</dl>
+</li>
+<li><p>The system is cQED: transmon qubit and cavity oscillator under
+Jaynes-Cummings interaction</p>
+<ul>
+<li><p>in the dispersive regime</p></li>
+<li><p>with second order anharmonicity (Kerr for the cavity)</p></li>
+</ul>
+</li>
+<li><p>The goal is state transfer</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">fock,</span> <span class="pre">coherent,</span> <span class="pre">cat</span></code></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="todo">
+<h2>Todo<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Important</strong>: figure out
+<a class="reference external" href="https://github.com/tesla-cat/yarn/blob/master/examplesFromForkedLibraries/PhilReinholdPygrape/operations.py">yarn/examplesFromForkedLibraries/PhilReinholdPygrape/operations.py</a>,
+this seems to be a wrapper already</p></li>
+<li><p>Figure out how <code class="docutils literal notranslate"><span class="pre">PhilReinholdPygrape</span></code> produced the <a class="reference external" href="https://arxiv.org/pdf/1608.02430.pdf">result from the
+paper</a> , as it couldn’t even
+successfully generate <code class="docutils literal notranslate"><span class="pre">cat</span></code> state as shown below</p></li>
+</ul>
+<div class="section" id="import">
+<h3>Import<a class="headerlink" href="#import" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">qutip</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">yarn.qutipHelpers</span> <span class="kn">import</span> <span class="p">(</span><span class="n">plotWigners</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">yarn.PhilReinholdPygrape</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">StateTransferSetup</span><span class="p">,</span> <span class="n">run_grape</span><span class="p">,</span> <span class="n">make_hmt</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">qutip.control.pulseoptim</span> <span class="k">as</span> <span class="nn">cpo</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="states">
+<h3>states<a class="headerlink" href="#states" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pi2</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+<span class="k">def</span> <span class="nf">cqFock</span><span class="p">(</span><span class="n">dC</span><span class="p">,</span><span class="n">nC</span><span class="p">,</span><span class="n">nQ</span><span class="p">):</span> <span class="k">return</span> <span class="n">tensor</span><span class="p">(</span><span class="n">fock</span><span class="p">(</span><span class="n">dC</span><span class="p">,</span><span class="n">nC</span><span class="p">),</span> <span class="n">fock</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">nQ</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">cqCoherent</span><span class="p">(</span><span class="n">dC</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">nQ</span><span class="p">):</span> <span class="k">return</span> <span class="n">tensor</span><span class="p">(</span><span class="n">coherent</span><span class="p">(</span><span class="n">dC</span><span class="p">,</span><span class="n">alpha</span><span class="p">),</span> <span class="n">fock</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">nQ</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">cat</span><span class="p">(</span><span class="n">dC</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span> <span class="k">return</span> <span class="p">(</span><span class="n">coherent</span><span class="p">(</span><span class="n">dC</span><span class="p">,</span><span class="n">alpha</span><span class="p">)</span><span class="o">+</span><span class="n">coherent</span><span class="p">(</span><span class="n">dC</span><span class="p">,</span><span class="o">-</span><span class="n">alpha</span><span class="p">))</span><span class="o">.</span><span class="n">unit</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">cqCat</span><span class="p">(</span><span class="n">dC</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">nQ</span><span class="p">):</span> <span class="k">return</span> <span class="n">tensor</span><span class="p">(</span><span class="n">cat</span><span class="p">(</span><span class="n">dC</span><span class="p">,</span><span class="n">alpha</span><span class="p">),</span> <span class="n">fock</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">nQ</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="plots">
+<h3>plots<a class="headerlink" href="#plots" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plotPhilReinholdPygrape</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">ctrlNames</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">ctrlNames</span> <span class="o">=</span> <span class="n">ctrlNames</span> <span class="ow">or</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">controls</span><span class="p">))]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">ctrl</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">controls</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">ts</span><span class="p">,</span> <span class="n">ctrl</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">ctrlNames</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">plotQuTip</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">ctrlNames</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Final fidelity error </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">fid_err</span><span class="p">))</span>
+    <span class="n">optimised</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">final_amps</span>
+    <span class="n">ctrlNames</span> <span class="o">=</span> <span class="n">ctrlNames</span> <span class="ow">or</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">optimised</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
+    <span class="k">def</span> <span class="nf">hstack</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">j</span><span class="p">):</span> <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">x</span><span class="p">[:,</span> <span class="n">j</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">]))</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">optimised</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">hstack</span><span class="p">(</span><span class="n">optimised</span><span class="p">,</span><span class="n">j</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">ctrlNames</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="hamiltonian-and-controls">
+<h3>hamiltonian and controls<a class="headerlink" href="#hamiltonian-and-controls" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">H0, Hcs = make_hmt(</span>
+<span class="sd">    nc=dimCavity, nq=2,</span>
+<span class="sd">    chi=-2.95e-3, chi_prime=1e-6,</span>
+<span class="sd">    kerr=-5.4e-6, anharm=-215e-3,</span>
+<span class="sd">    q_drive=1e-3, c_drive=1e-3,</span>
+<span class="sd">    qobj=True, delta_q=0, delta_c=0, drive_prime=0</span>
+<span class="sd">)</span>
+<span class="sd">initCtrls = 1e-3 * np.ones((len(Hcs), 400))</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="k">def</span> <span class="nf">jaynesCummings</span><span class="p">(</span>
+    <span class="n">dimCavity</span><span class="p">,</span> <span class="n">driveGHz</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">pulseLen</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">chiGHz</span><span class="o">=</span><span class="mf">2e-3</span><span class="p">,</span> <span class="n">anharmCavityGHz</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span> <span class="n">anharmQubitGHz</span><span class="o">=.</span><span class="mi">4</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="n">aC</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">destroy</span><span class="p">(</span><span class="n">dimCavity</span><span class="p">),</span> <span class="n">qeye</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">aQ</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">qeye</span><span class="p">(</span><span class="n">dimCavity</span><span class="p">),</span> <span class="n">destroy</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">H0</span> <span class="o">=</span>  <span class="p">((</span><span class="n">anharmQubitGHz</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>  <span class="o">*</span> <span class="n">aQ</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span><span class="o">*</span><span class="n">aQ</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span> <span class="o">*</span> <span class="n">aQ</span><span class="o">*</span><span class="n">aQ</span>
+          <span class="o">+</span><span class="p">(</span><span class="n">anharmCavityGHz</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">aC</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span><span class="o">*</span><span class="n">aC</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span> <span class="o">*</span> <span class="n">aC</span><span class="o">*</span><span class="n">aC</span>
+          <span class="o">+</span> <span class="n">chiGHz</span> <span class="o">*</span> <span class="n">aC</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span> <span class="o">*</span> <span class="n">aC</span> <span class="o">*</span> <span class="n">aQ</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span> <span class="o">*</span> <span class="n">aQ</span> <span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+    <span class="n">drive</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">driveGHz</span>
+    <span class="n">Hcs</span> <span class="o">=</span> <span class="p">[</span><span class="n">drive</span><span class="o">*</span><span class="p">(</span><span class="n">aQ</span> <span class="o">+</span> <span class="n">aQ</span><span class="o">.</span><span class="n">dag</span><span class="p">()),</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">drive</span><span class="o">*</span><span class="p">(</span><span class="n">aQ</span> <span class="o">-</span> <span class="n">aQ</span><span class="o">.</span><span class="n">dag</span><span class="p">()),</span>
+           <span class="n">drive</span><span class="o">*</span><span class="p">(</span><span class="n">aC</span> <span class="o">+</span> <span class="n">aC</span><span class="o">.</span><span class="n">dag</span><span class="p">()),</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">drive</span><span class="o">*</span><span class="p">(</span><span class="n">aC</span> <span class="o">-</span> <span class="n">aC</span><span class="o">.</span><span class="n">dag</span><span class="p">())]</span>
+    <span class="n">pulseLen</span> <span class="o">=</span> <span class="n">pulseLen</span> <span class="ow">or</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">chiGHz</span><span class="p">))</span> <span class="o">+</span> <span class="mi">25</span>
+    <span class="n">initCtrls</span> <span class="o">=</span> <span class="mf">1e-3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">Hcs</span><span class="p">),</span> <span class="n">pulseLen</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">H0</span><span class="p">,</span> <span class="n">Hcs</span><span class="p">,</span> <span class="n">initCtrls</span>
+
+<span class="n">dimCavity</span><span class="o">=</span><span class="mi">20</span>
+<span class="n">H0</span><span class="p">,</span> <span class="n">Hcs</span><span class="p">,</span> <span class="n">initCtrls</span> <span class="o">=</span> <span class="n">jaynesCummings</span><span class="p">(</span><span class="n">dimCavity</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="use-different-packages">
+<h3>use different packages<a class="headerlink" href="#use-different-packages" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">usePhilReinholdPygrape</span><span class="p">(</span><span class="n">initStates</span><span class="p">,</span><span class="n">finalStates</span><span class="p">):</span>
+    <span class="n">setup</span> <span class="o">=</span> <span class="n">StateTransferSetup</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span> <span class="n">Hcs</span><span class="p">,</span> <span class="n">initStates</span><span class="p">,</span> <span class="n">finalStates</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">run_grape</span><span class="p">(</span><span class="n">initCtrls</span><span class="p">,</span> <span class="n">setup</span><span class="p">)</span>
+    <span class="n">plotPhilReinholdPygrape</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">useQuTip</span><span class="p">(</span><span class="n">initStates</span><span class="p">,</span><span class="n">finalStates</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">cpo</span><span class="o">.</span><span class="n">optimize_pulse_unitary</span><span class="p">(</span>
+        <span class="n">H0</span><span class="p">,</span> <span class="n">Hcs</span><span class="p">,</span> <span class="n">initStates</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">finalStates</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="n">initCtrls</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">initCtrls</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+        <span class="n">init_pulse_type</span><span class="o">=</span><span class="s1">&#39;LIN&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">plotQuTip</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="state-transfer-fock">
+<h3>state transfer: Fock<a class="headerlink" href="#state-transfer-fock" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">initStates</span>  <span class="o">=</span> <span class="p">[</span><span class="n">cqFock</span><span class="p">(</span><span class="n">dimCavity</span><span class="p">,</span><span class="n">nC</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">nQ</span><span class="o">=</span><span class="mi">0</span><span class="p">)]</span>
+<span class="n">finalStates</span> <span class="o">=</span> <span class="p">[</span><span class="n">cqFock</span><span class="p">(</span><span class="n">dimCavity</span><span class="p">,</span><span class="n">nC</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">nQ</span><span class="o">=</span><span class="mi">0</span><span class="p">)]</span>
+<span class="n">plotWigners</span><span class="p">(</span><span class="n">initStates</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="n">plotWigners</span><span class="p">(</span><span class="n">finalStates</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_13_01.png" src="../../_images/output_13_01.png" />
+<img alt="../../_images/output_13_1.png" src="../../_images/output_13_1.png" />
+<div class="section" id="using-philreinholdpygrape">
+<h4>using PhilReinholdPygrape<a class="headerlink" href="#using-philreinholdpygrape" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">usePhilReinholdPygrape</span><span class="p">(</span><span class="n">initStates</span><span class="p">,</span><span class="n">finalStates</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.002256827</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.002256827</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.09989834</span> <span class="mi">3</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.436578</span> <span class="mi">4</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.4906464</span> <span class="mi">5</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.5986397</span> <span class="mi">6</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.6037795</span> <span class="mi">7</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.606528</span> <span class="mi">8</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.6065401</span> <span class="mi">9</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.606542</span> <span class="mi">10</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.6065625</span> <span class="mi">11</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.6066012</span> <span class="mi">12</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.6067181</span> <span class="mi">13</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.6070064</span> <span class="mi">14</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.6076665</span> <span class="mi">15</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.6085213</span> <span class="mi">16</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.6103022</span> <span class="mi">17</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.3060577</span> <span class="mi">18</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.6111034</span> <span class="mi">19</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.6121483</span> <span class="mi">20</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.6117123</span> <span class="mi">21</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.6172954</span> <span class="mi">22</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.6191698</span> <span class="mi">23</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.5973693</span> <span class="mi">24</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.4556182</span> <span class="mi">25</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.6193838</span> <span class="mi">26</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.6326029</span> <span class="mi">27</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.6300504</span> <span class="mi">28</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.6360261</span> <span class="mi">29</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.6376308</span> <span class="mi">30</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.6423578</span> <span class="mi">31</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.6440193</span> <span class="mi">32</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.64526</span> <span class="mi">33</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.6466951</span> <span class="mi">34</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.653232</span> <span class="mi">35</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.6531251</span> <span class="mi">36</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.6626725</span> <span class="mi">37</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.4880639</span> <span class="mi">38</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.66756</span> <span class="mi">39</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.6064164</span> <span class="mi">40</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.6785587</span> <span class="mi">41</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.6993441</span> <span class="mi">42</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.7333667</span> <span class="mi">43</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.7534989</span> <span class="mi">44</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.7679612</span> <span class="mi">45</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.7842104</span> <span class="mi">46</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.7917553</span> <span class="mi">47</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.7934162</span> <span class="mi">48</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.7939697</span> <span class="mi">49</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.7944327</span> <span class="mi">50</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.7951356</span> <span class="mi">51</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.7960269</span> <span class="mi">52</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.7973393</span> <span class="mi">53</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.7991426</span> <span class="mi">54</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.7976141</span> <span class="mi">55</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.7999499</span> <span class="mi">56</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.8007199</span> <span class="mi">57</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.801265</span> <span class="mi">58</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.802414</span> <span class="mi">59</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.8042573</span> <span class="mi">60</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.8069088</span> <span class="mi">61</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.8099786</span> <span class="mi">62</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.8123041</span> <span class="mi">63</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.8141022</span> <span class="mi">64</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.8164042</span> <span class="mi">65</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.8205328</span> <span class="mi">66</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.8237262</span> <span class="mi">67</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.8279741</span> <span class="mi">68</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.7387289</span> <span class="mi">69</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.8327773</span> <span class="mi">70</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.823596</span> <span class="mi">71</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.8378003</span> <span class="mi">72</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.8437231</span> <span class="mi">73</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.8473234</span> <span class="mi">74</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.8521482</span> <span class="mi">75</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.8611444</span> <span class="mi">76</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.8698338</span> <span class="mi">77</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.886977</span> <span class="mi">78</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.661226</span> <span class="mi">79</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.892643</span> <span class="mi">80</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9082311</span> <span class="mi">81</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9089344</span> <span class="mi">82</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9177364</span> <span class="mi">83</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9275957</span> <span class="mi">84</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.932007</span> <span class="mi">85</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9350674</span> <span class="mi">86</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9392846</span> <span class="mi">87</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9417773</span> <span class="mi">88</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9416577</span> <span class="mi">89</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9431356</span> <span class="mi">90</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.944973</span> <span class="mi">91</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9462289</span> <span class="mi">92</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9471246</span> <span class="mi">93</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.950403</span> <span class="mi">94</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9551962</span> <span class="mi">95</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9592779</span> <span class="mi">96</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.964364</span> <span class="mi">97</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9697083</span> <span class="mi">98</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9709195</span> <span class="mi">99</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9719175</span> <span class="mi">100</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.973498</span> <span class="mi">101</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.976216</span> <span class="mi">102</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9728387</span> <span class="mi">103</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.977508</span> <span class="mi">104</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9796117</span> <span class="mi">105</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.981689</span> <span class="mi">106</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9827685</span> <span class="mi">107</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9844316</span> <span class="mi">108</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9849623</span> <span class="mi">109</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9880994</span> <span class="mi">110</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9889437</span> <span class="mi">111</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9900033</span> <span class="mi">112</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9922484</span> <span class="mi">113</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9928912</span> <span class="mi">114</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9939053</span> <span class="mi">115</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9943651</span> <span class="mi">116</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9947759</span> <span class="mi">117</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.995226</span> <span class="mi">118</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9955086</span> <span class="mi">119</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.995846</span> <span class="mi">120</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9963599</span> <span class="mi">121</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9963696</span> <span class="mi">122</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9965119</span> <span class="mi">123</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9967324</span> <span class="mi">124</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9969066</span> <span class="mi">125</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9970776</span> <span class="mi">126</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9973091</span> <span class="mi">127</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9976761</span> <span class="mi">128</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9958393</span> <span class="mi">129</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9977798</span> <span class="mi">130</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9979534</span> <span class="mi">131</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9980399</span> <span class="mi">132</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9980604</span> <span class="mi">133</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9981007</span> <span class="mi">134</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.997954</span> <span class="mi">135</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9981093</span> <span class="mi">136</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9981331</span> <span class="mi">137</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9981716</span> <span class="mi">138</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.998226</span> <span class="mi">139</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9982892</span> <span class="mi">140</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9983443</span> <span class="mi">141</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9983946</span> <span class="mi">142</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9984205</span> <span class="mi">143</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9984408</span> <span class="mi">144</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.998485</span> <span class="mi">145</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9985439</span> <span class="mi">146</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9985929</span> <span class="mi">147</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9986276</span> <span class="mi">148</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.998649</span> <span class="mi">149</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9986821</span> <span class="mi">150</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9987085</span> <span class="mi">151</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9987675</span> <span class="mi">152</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9987969</span> <span class="mi">153</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9988317</span> <span class="mi">154</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9988431</span> <span class="mi">155</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9988644</span> <span class="mi">156</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9988962</span> <span class="mi">157</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9987931</span> <span class="mi">158</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9989146</span> <span class="mi">159</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9989433</span> <span class="mi">160</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9989621</span> <span class="mi">161</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9989781</span> <span class="mi">162</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9989998</span> <span class="mi">163</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9990114</span> <span class="mi">164</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9990289</span> <span class="mi">165</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9990576</span> <span class="mi">166</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9990055</span> <span class="mi">167</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9990745</span> <span class="mi">168</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9991133</span> <span class="mi">169</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9991282</span> <span class="mi">170</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9991469</span> <span class="mi">171</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9991692</span> <span class="mi">172</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9991906</span> <span class="mi">173</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9992085</span> <span class="mi">174</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9992152</span> <span class="mi">175</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9992238</span> <span class="mi">176</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9992267</span> <span class="mi">177</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9992398</span> <span class="mi">178</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9992568</span> <span class="mi">179</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9992173</span> <span class="mi">180</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9992627</span> <span class="mi">181</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9992765</span> <span class="mi">182</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9992854</span> <span class="mi">183</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9992958</span> <span class="mi">184</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9993088</span> <span class="mi">185</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9993224</span> <span class="mi">186</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9993359</span> <span class="mi">187</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9993406</span> <span class="mi">188</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9993574</span> <span class="mi">189</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9993661</span> <span class="mi">190</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.99938</span> <span class="mi">191</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.999395</span> <span class="mi">192</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9993936</span> <span class="mi">193</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9994039</span> <span class="mi">194</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9994196</span> <span class="mi">195</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9994285</span> <span class="mi">196</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9994418</span> <span class="mi">197</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9994581</span> <span class="mi">198</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9994716</span> <span class="mi">199</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9994823</span> <span class="mi">200</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9994917</span> <span class="mi">201</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9995102</span> <span class="mi">202</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9995128</span> <span class="mi">203</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9995311</span> <span class="mi">204</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9995373</span> <span class="mi">205</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9995455</span> <span class="mi">206</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9995671</span> <span class="mi">207</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9993795</span> <span class="mi">208</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9995715</span> <span class="mi">209</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9995846</span> <span class="mi">210</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9995908</span> <span class="mi">211</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9996035</span> <span class="mi">212</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9996115</span> <span class="mi">213</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.999616</span> <span class="mi">214</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9996246</span> <span class="mi">215</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.999628</span> <span class="mi">216</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9996349</span> <span class="mi">217</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9996477</span> <span class="mi">218</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9996609</span> <span class="mi">219</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9996777</span> <span class="mi">220</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.999606</span> <span class="mi">221</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9996808</span> <span class="mi">222</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9996865</span> <span class="mi">223</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9996892</span> <span class="mi">224</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9996946</span> <span class="mi">225</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9997038</span> <span class="mi">226</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9997188</span> <span class="mi">227</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9997255</span> <span class="mi">228</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9997394</span> <span class="mi">229</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9997429</span> <span class="mi">230</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9997482</span> <span class="mi">231</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.999754</span> <span class="mi">232</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9997569</span> <span class="mi">233</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9997633</span> <span class="mi">234</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9997647</span> <span class="mi">235</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9997663</span> <span class="mi">236</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9997682</span> <span class="mi">237</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9997722</span> <span class="mi">238</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9997757</span> <span class="mi">239</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9997786</span> <span class="mi">240</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9997795</span> <span class="mi">241</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9997823</span> <span class="mi">242</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9997827</span> <span class="mi">243</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9997847</span> <span class="mi">244</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9997847</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_15_1.png" src="../../_images/output_15_1.png" />
+</div>
+<div class="section" id="using-qutip">
+<h4>using QuTip<a class="headerlink" href="#using-qutip" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">useQuTip</span><span class="p">(</span><span class="n">initStates</span><span class="p">,</span><span class="n">finalStates</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Final</span> <span class="n">fidelity</span> <span class="n">error</span> <span class="mf">2.704960255339728e-06</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_17_1.png" src="../../_images/output_17_1.png" />
+</div>
+</div>
+<div class="section" id="state-transfer-coherent">
+<h3>state transfer: Coherent<a class="headerlink" href="#state-transfer-coherent" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">initStates</span>  <span class="o">=</span> <span class="p">[</span><span class="n">cqCoherent</span><span class="p">(</span><span class="n">dimCavity</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">nQ</span><span class="o">=</span><span class="mi">0</span><span class="p">)]</span>
+<span class="n">finalStates</span> <span class="o">=</span> <span class="p">[</span><span class="n">cqCoherent</span><span class="p">(</span><span class="n">dimCavity</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">nQ</span><span class="o">=</span><span class="mi">0</span><span class="p">)]</span>
+<span class="n">plotWigners</span><span class="p">(</span><span class="n">initStates</span><span class="p">,</span><span class="mi">8</span><span class="p">);</span> <span class="n">plotWigners</span><span class="p">(</span><span class="n">finalStates</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_19_01.png" src="../../_images/output_19_01.png" />
+<img alt="../../_images/output_19_11.png" src="../../_images/output_19_11.png" />
+<div class="section" id="id2">
+<h4>using PhilReinholdPygrape<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">usePhilReinholdPygrape</span><span class="p">(</span><span class="n">initStates</span><span class="p">,</span><span class="n">finalStates</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">245</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.01105588</span> <span class="mi">246</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.01105588</span> <span class="mi">247</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.014772</span> <span class="mi">248</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.04275196</span> <span class="mi">249</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.6402015</span> <span class="mi">250</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.000349134</span> <span class="mi">251</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.814156</span> <span class="mi">252</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9870204</span> <span class="mi">253</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9910069</span> <span class="mi">254</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.6510891</span> <span class="mi">255</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9937727</span> <span class="mi">256</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.01135684</span> <span class="mi">257</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9983244</span> <span class="mi">258</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.999253</span> <span class="mi">259</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9992538</span> <span class="mi">260</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9992566</span> <span class="mi">261</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9992761</span> <span class="mi">262</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9993079</span> <span class="mi">263</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.9993393</span> <span class="mi">264</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.999353</span> <span class="mi">265</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.999358</span> <span class="mi">266</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.999358</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_21_12.png" src="../../_images/output_21_12.png" />
+</div>
+<div class="section" id="id3">
+<h4>using QuTip<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">useQuTip</span><span class="p">(</span><span class="n">initStates</span><span class="p">,</span><span class="n">finalStates</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Final</span> <span class="n">fidelity</span> <span class="n">error</span> <span class="mf">2.59987875717016e-06</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_23_1.png" src="../../_images/output_23_1.png" />
+</div>
+</div>
+<div class="section" id="state-transfer-cat">
+<h3>state transfer: Cat<a class="headerlink" href="#state-transfer-cat" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">initStates</span>  <span class="o">=</span> <span class="p">[</span><span class="n">cqCat</span><span class="p">(</span><span class="n">dimCavity</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">nQ</span><span class="o">=</span><span class="mi">0</span><span class="p">)]</span>
+<span class="n">finalStates</span> <span class="o">=</span> <span class="p">[</span><span class="n">cqCat</span><span class="p">(</span><span class="n">dimCavity</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">nQ</span><span class="o">=</span><span class="mi">0</span><span class="p">)]</span>
+<span class="n">plotWigners</span><span class="p">(</span><span class="n">initStates</span><span class="p">,</span><span class="mi">8</span><span class="p">);</span> <span class="n">plotWigners</span><span class="p">(</span><span class="n">finalStates</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_25_0.png" src="../../_images/output_25_0.png" />
+<img alt="../../_images/output_25_1.png" src="../../_images/output_25_1.png" />
+<div class="section" id="id4">
+<h4>using PhilReinholdPygrape<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">usePhilReinholdPygrape</span><span class="p">(</span><span class="n">initStates</span><span class="p">,</span><span class="n">finalStates</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">267</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.0157568</span> <span class="mi">268</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.0157568</span> <span class="mi">269</span> <span class="o">-</span> <span class="n">Fids</span><span class="p">:</span> <span class="mf">0.0157568</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_27_12.png" src="../../_images/output_27_12.png" />
+</div>
+<div class="section" id="id5">
+<h4>using QuTip<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">useQuTip</span><span class="p">(</span><span class="n">initStates</span><span class="p">,</span><span class="n">finalStates</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Final</span> <span class="n">fidelity</span> <span class="n">error</span> <span class="mf">0.0001668155711808117</span>
+</pre></div>
+</div>
+<img alt="../../_images/output_29_1.png" src="../../_images/output_29_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="the-schuster-lab-codes">
+<h2>The Schuster Lab codes<a class="headerlink" href="#the-schuster-lab-codes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="schusterlabqoc1-2017">
+<h3>SchusterLabQoc1 (2017)<a class="headerlink" href="#schusterlabqoc1-2017" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">original</span> <span class="pre">package</span></code> is
+<a class="reference external" href="https://github.com/SchusterLab/quantum-optimal-control">SchusterLab/quantum-optimal-control</a></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">original</span> <span class="pre">example</span></code> is
+<a class="reference external" href="https://github.com/SchusterLab/GRAPE-Tensorflow-Examples/blob/master/paper_examples/Transmon_Cavity_Cat_State_Transfer.ipynb">SchusterLab/GRAPE-Tensorflow-Examples/paper_examples/Transmon_Cavity_Cat_State_Transfer.ipynb</a></p>
+<p><strong>Note:</strong> The original example doesn’t work with <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">3</span></code> and
+<code class="docutils literal notranslate"><span class="pre">TensorFlow</span> <span class="pre">2</span></code>, you can find the following code upgraded by me</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">upgraded</span> <span class="pre">package</span></code>: <a class="reference external" href="https://github.com/tesla-cat/yarn/tree/master/examplesFromForkedLibraries/SchusterLabQoc1/quantum_optimal_control">tesla-cat/yarn/examplesFromForkedLibraries/SchusterLabQoc1/quantum_optimal_control</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">upgraded</span> <span class="pre">example</span></code>: <a class="reference external" href="https://github.com/tesla-cat/yarn/blob/master/examplesFromForkedLibraries/SchusterLabQoc1/Transmon_Cavity_Cat_State_Transfer.ipynb">tesla-cat/yarn/examplesFromForkedLibraries/SchusterLabQoc1/Transmon_Cavity_Cat_State_Transfer.ipynb</a></p></li>
+</ul>
+<p><strong>Note:</strong> The <code class="docutils literal notranslate"><span class="pre">original</span> <span class="pre">example</span></code> notebook doesn’t have <code class="docutils literal notranslate"><span class="pre">output</span></code>,
+however, most of the other original examples (simpler than this one) in
+the same directory have outputs, therefore I guess the people from
+SchusterLab also had problems with this example. The following is the
+snapshot of the output of my <code class="docutils literal notranslate"><span class="pre">upgraded</span> <span class="pre">example</span></code>, which you can find
+from the link above and run it yourself. If you think it is my upgrade
+that caused the following bad result, you are welcome to modify the
+<code class="docutils literal notranslate"><span class="pre">original</span> <span class="pre">package</span></code> yourself and email me if you get better results.</p>
+<img alt="../../_images/SchusterLabQoc1.png" src="../../_images/SchusterLabQoc1.png" />
+</div>
+<div class="section" id="schusterlabqoc2-2019">
+<h3>SchusterLabQoc2 (2019)<a class="headerlink" href="#schusterlabqoc2-2019" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">original</span> <span class="pre">package</span></code> is
+<a class="reference external" href="https://github.com/SchusterLab/qoc">SchusterLab/qoc</a></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">original</span> <span class="pre">example</span></code> is
+<a class="reference external" href="https://github.com/SchusterLab/qoc/blob/master/examples/tutorial.py">SchusterLab/qoc/examples/tutorial.py</a></p>
+<p><strong>Note:</strong> The original example works and I didn’t modify anything</p>
+<p><strong>Note:</strong> The original example works with
+<code class="docutils literal notranslate"><span class="pre">line</span> <span class="pre">56</span> <span class="pre">|</span> <span class="pre">CAVITY_STATE_COUNT</span> <span class="pre">=</span> <span class="pre">2</span></code>, but when I change it to
+<code class="docutils literal notranslate"><span class="pre">CAVITY_STATE_COUNT</span> <span class="pre">=</span> <span class="pre">3</span></code>, the following bad result is produced</p>
+<img alt="../../_images/SchusterLabQoc2.png" src="../../_images/SchusterLabQoc2.png" />
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Quantum-Optimal-Control-using-Machine-learning.html" class="btn btn-neutral float-right" title="Quantum Optimal Control using Machine learning" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../Implementing-a-universal-gate-set-on-a-logical-qubit-encoded-in-an-oscillator/Implementing-a-universal-gate-set-on-a-logical-qubit-encoded-in-an-oscillator.html" class="btn btn-neutral float-left" title="Implementing a universal gate set on a logical qubit encoded in an oscillator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Tesla Cat
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
