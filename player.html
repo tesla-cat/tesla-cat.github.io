@@ -1,0 +1,82 @@
+<head>
+  <link href="https://vjs.zencdn.net/7.8.3/video-js.css" rel="stylesheet" />
+
+  <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+  <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+</head>
+
+<style>
+    body{
+        text-align: center;
+    }
+    .input{
+        margin: 10;
+        width: 90vw;
+        font-size: 20;
+        border-radius: 30px;
+        border-width: 3px;
+        outline-width: 0;
+        border-color: aqua;
+        text-align: center;
+    }
+    button{
+        margin: 10;
+        border-radius: 30px;
+        border-width: 0px;
+        background-color: grey;
+        align-items: center;
+        justify-content: center;
+        padding: 6px;
+        min-width: 60px;
+        font-size: 20;
+        font-weight: bold;
+        color: white;
+        outline-width: 0px;
+    }
+
+</style>
+
+<body>
+    <p class="myvid">
+      <video
+        id="my-video"
+        class="video-js"
+        controls
+        preload="auto"
+        width="640"
+        height="264"
+        poster="MY_VIDEO_POSTER.jpg"
+        data-setup="{}"
+      >
+        <source src="my-source.mp4" type="video/mp4">
+      </video>
+    </p>
+  
+  <script src="https://vjs.zencdn.net/7.8.3/video.js"></script>
+  <p>
+    <button id='btn'>播放</button>
+  </p>
+  <input type="text" id='url' class="input" placeholder="视频链接(m3u8)">
+  <p>
+    正在播放:
+  </p>
+  <p id='src'></p>
+  <p>
+      说明: 只需在浏览器地址栏修改 player.html?src=你要播放的视频地址
+  </p>
+</body>
+
+<script>
+    var myPlayer = videojs('my-video')
+
+    let params = new URLSearchParams(document.location.search.substring(1));
+    let src = params.get("src")
+    myPlayer.src({ type: "application/x-mpegURL", src })
+    document.getElementById('src').innerText=src
+    
+    document.getElementById('btn').onclick = function(){
+        var src = document.getElementById('url').value
+        myPlayer.src({ type: "application/x-mpegURL", src })
+        document.getElementById('src').innerText=src
+    }
+</script>
