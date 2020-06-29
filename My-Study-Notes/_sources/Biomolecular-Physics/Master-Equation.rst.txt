@@ -4,13 +4,7 @@ Master Equation
 
 :Date: 29 July 2019
 
-Dependency
--------------
 
-:doc:`Linear Algebra`
-
-What is the problem ?
--------------------------
 
 Derivation
 -------------

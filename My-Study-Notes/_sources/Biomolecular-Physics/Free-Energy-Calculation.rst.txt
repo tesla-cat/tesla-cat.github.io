@@ -4,13 +4,7 @@ Free Energy Calculation
 
 :Date: 29 July 2019
 
-Dependency
--------------
 
-:doc:`Canonical Ensemble And Boltzmann Factor`
-
-What is the problem ?
--------------------------
 
 
 
@@ -26,7 +20,7 @@ Derivation
 
 Problem of using Zwanzig equation: Exponential (:math:`e^{-\beta \Delta E}`) is too sensitive, :math:`\Delta E` must be small for it to work 
 
-**Step 2** Solution to this problem: :doc:`Perturbation Theory`
+**Step 2** Solution to this problem: Perturbation Theory
 
 **idea**: Take many steps instead of one, at each step :math:`\Delta E` is small
 

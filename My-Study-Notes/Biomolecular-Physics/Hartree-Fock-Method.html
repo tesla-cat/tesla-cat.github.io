@@ -81,7 +81,11 @@
               
             
             
-              <p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
+              <p class="caption"><span class="caption-text">Documentations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../yarn/index.html">yarn</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Quantum-Computation/index.html">Quantum Computation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Quantum-Mechanics-Feynman-Path-Integral/index.html">Quantum Mechanics: Feynman Path Integral</a></li>
@@ -104,7 +108,6 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Biomolecular Physics</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Master-Equation.html">Master Equation</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Hartree Fock Method</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#dependency">Dependency</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#what-is-the-problem">What is the problem ?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#derivation">Derivation</a></li>
 </ul>
@@ -200,22 +203,13 @@
 <dd class="field-odd"><p>27 July 2019</p>
 </dd>
 </dl>
-<div class="section" id="dependency">
-<h2>Dependency<a class="headerlink" href="#dependency" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p><a class="reference internal" href="#schrodinger-equation">Schrodinger Equation</a></p></li>
-<li><p><a class="reference internal" href="#slater-determinant">Slater Determinant</a></p></li>
-<li><p><a class="reference internal" href="#born-oppenheimer-approximation">Born Oppenheimer Approximation</a></p></li>
-<li><p><a class="reference internal" href="#lagrange-multiplier">Lagrange Multiplier</a></p></li>
-</ul>
-</div>
 <div class="section" id="what-is-the-problem">
-<span id="lagrange-multiplier"></span><span id="born-oppenheimer-approximation"></span><span id="slater-determinant"></span><span id="schrodinger-equation"></span><h2>What is the problem ?<a class="headerlink" href="#what-is-the-problem" title="Permalink to this headline">¶</a></h2>
+<h2>What is the problem ?<a class="headerlink" href="#what-is-the-problem" title="Permalink to this headline">¶</a></h2>
 <p>Calculate the approximate wavefunction and energy for atoms</p>
 </div>
 <div class="section" id="derivation">
 <h2>Derivation<a class="headerlink" href="#derivation" title="Permalink to this headline">¶</a></h2>
-<p><strong>Step 1</strong> Approximate the wavefunction using <a class="reference internal" href="#slater-determinant">Slater Determinant</a></p>
+<p><strong>Step 1</strong> Approximate the wavefunction using <a href="#id1"><span class="problematic" id="id2">`Slater Determinant`_</span></a></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\Psi = {1\over \sqrt{N!} }
         \begin{vmatrix}
@@ -224,7 +218,7 @@
                 ...\\
                 \chi_1(x_N) &amp; \chi_2(x_N) &amp; ... &amp; \chi_N(x_N)
         \end{vmatrix}\end{split}\]</div>
-<p><strong>Step 2</strong> The system Hamiltonian after <a class="reference internal" href="#born-oppenheimer-approximation">Born Oppenheimer Approximation</a></p>
+<p><strong>Step 2</strong> The system Hamiltonian after <a href="#id3"><span class="problematic" id="id4">`Born Oppenheimer Approximation`_</span></a></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align*}
 &amp; H = \sum\limits_i h(i) + \sum\limits_{i&lt;j} v(i,j) + V_{NN} \\
@@ -242,7 +236,7 @@
 &amp; \langle i|h|j \rangle = \int dx_1 \; \chi_i^* h \chi_j\\
 &amp; [ij|kl] = \int dx_1 dx_2 \; \chi_i^* \chi_j {1\over r_{ij}} \chi_k^* \chi_l
 \end{align*}\end{split}\]</div>
-<p><strong>Step 4</strong> Use <a class="reference internal" href="#lagrange-multiplier">Lagrange Multiplier</a> to minimize the energy wrt changes in the orbitals <span class="math notranslate nohighlight">\(\chi_i \to \chi_i+\delta \chi_i\)</span></p>
+<p><strong>Step 4</strong> Use <a href="#id5"><span class="problematic" id="id6">`Lagrange Multiplier`_</span></a> to minimize the energy wrt changes in the orbitals <span class="math notranslate nohighlight">\(\chi_i \to \chi_i+\delta \chi_i\)</span></p>
 <p>under constraint <span class="math notranslate nohighlight">\(\langle i|j \rangle = \delta_{ij}\)</span></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align*}

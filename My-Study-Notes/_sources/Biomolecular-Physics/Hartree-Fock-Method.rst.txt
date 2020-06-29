@@ -4,18 +4,7 @@ Hartree Fock Method
 
 :Date: 27 July 2019
 
-Dependency
--------------
 
-- `Schrodinger Equation`_
-- `Slater Determinant`_
-- `Born Oppenheimer Approximation`_
-- `Lagrange Multiplier`_
-
-.. _Schrodinger Equation: 
-.. _Slater Determinant:
-.. _Born Oppenheimer Approximation:
-.. _Lagrange Multiplier:
 
 What is the problem ?
 ------------------------

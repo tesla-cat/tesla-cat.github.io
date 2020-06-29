@@ -4,16 +4,7 @@ OLD Density Functional Theory
 
 :Date: 28 July 2019
 
-Dependency
--------------
 
-- `Schrodinger Equation`_
-- `Born Oppenheimer Approximation`_
-- Functional_
-
-.. _Schrodinger Equation: 
-.. _Born Oppenheimer Approximation:
-.. _Functional:
 
 What is the problem ?
 ------------------------

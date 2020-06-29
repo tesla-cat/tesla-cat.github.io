@@ -3,9 +3,12 @@ Code Snippets
 ===================================================
 
 .. toctree::
+	Tips-C++
+	Tips-Linux
 	Google-Scholar-Filter
 	nCoV-Predictor
-	YouTube-Download
+	Stock-Filter
+
 	
 
 

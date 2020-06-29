@@ -4,16 +4,12 @@ Hohenberg Kohn Variational Principle
 
 :Date: 13 Sep 2019
 
-Dependency
--------------
 
-What is the problem ?
--------------------------
 
 Derivation
 -------------
 
-**Step 1** Recall the textbook :doc:`Variational Principle` to find **Ground State** energy :math:`E`
+**Step 1** Recall the textbook Variational Principle to find **Ground State** energy :math:`E`
 
 .. math::
 	\begin{align*}

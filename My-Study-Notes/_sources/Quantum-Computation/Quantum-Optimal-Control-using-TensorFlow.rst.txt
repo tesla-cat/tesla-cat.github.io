@@ -1,17 +1,16 @@
 
-Quantum Optimal Control using Machine learning
+Quantum Optimal Control using TensorFlow
 ==============================================
 
--  **Disclaimer**: This is my (Ding Ruiqi) original idea which later
-   found to be already thought of in these papers:
 
-   -  ``David Schuster`` lab (2017): Speedup for quantum optimal control
-      from automatic differentiation based on graphics processing units
-   -  ``David Schuster`` lab (2019): Gradient-based optimal control of
-      open quantum systems using quantum trajectories and automatic
-      differentiation
 
--  **Benefits of Machine learning**
+-  ``David Schuster`` lab (2017): Speedup for quantum optimal control
+    from automatic differentiation based on graphics processing units
+-  ``David Schuster`` lab (2019): Gradient-based optimal control of
+    open quantum systems using quantum trajectories and automatic
+    differentiation
+
+-  **Benefits of TensorFlow**
 
    -  Arbitrary cost function, which would be hard to implement in GRAPE
    -  Best code: Using TenserFlow developed by Google
@@ -26,8 +25,8 @@ Quantum Optimal Control using Machine learning
        init_pulse_type='LIN',
    )
 
-My own code (without looking at others)
----------------------------------------
+My code 
+-------------
 
 .. code:: ipython3
 

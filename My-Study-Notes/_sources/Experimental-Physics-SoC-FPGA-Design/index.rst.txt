@@ -4,7 +4,6 @@ Experimental Physics: SoC FPGA Design
 
 .. toctree::
 	Design-Plan
-	Linux-Tips
 	Processor-FPGA-Communication-FPGA-Part
 	Processor-FPGA-Communication-Processor-Part
 	FAILED-Processor-FPGA-Communication-Using-FIFO-FPGA-Part

@@ -4,14 +4,7 @@ Kohn Sham Equations
 
 :Date: 13 Sep 2019
 
-Credit
----------
 
-Dependency
--------------
-
-What is the problem ?
--------------------------
 
 Derivation
 -------------
@@ -41,7 +34,7 @@ Derivation
 		+\underbrace{ {\delta \over \delta n}E_{XC}[n] }_{\equiv v_{XC}} 
  	\end{align*}
 
-- Foot Note 1: see :doc:`DFT In Momentum Space` for details
+- Foot Note 1: see DFT In Momentum Space for details
 
 **Step 3** Self-Consistent Loop
 

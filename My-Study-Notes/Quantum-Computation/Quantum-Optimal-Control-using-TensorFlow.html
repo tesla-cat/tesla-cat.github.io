@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Quantum Optimal Control using Machine learning &mdash; My Study Notes  documentation</title>
+  <title>Quantum Optimal Control using TensorFlow &mdash; My Study Notes  documentation</title>
   
 
   
@@ -35,7 +35,9 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Quantum Mechanics: Feynman Path Integral" href="../Quantum-Mechanics-Feynman-Path-Integral/index.html" />
+    <link rel="prev" title="yarn: Examples From Forked Libraries" href="yarn-Examples-From-Forked-Libraries/yarn-Examples-From-Forked-Libraries.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -79,9 +81,23 @@
               
             
             
-              <p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
+              <p class="caption"><span class="caption-text">Documentations</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Quantum Computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../yarn/index.html">yarn</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Quantum Computation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="notes_on_Transmon_quantum_computer.html">notes on Transmon quantum computer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QuTiP-Notes-1/QuTiP-Notes-1.html">QuTiP Notes 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Implementing-a-universal-gate-set-on-a-logical-qubit-encoded-in-an-oscillator/Implementing-a-universal-gate-set-on-a-logical-qubit-encoded-in-an-oscillator.html">Implementing a universal gate set on a logical qubit encoded in an oscillator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="yarn-Examples-From-Forked-Libraries/yarn-Examples-From-Forked-Libraries.html">yarn: Examples From Forked Libraries</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Quantum Optimal Control using TensorFlow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#my-code">My code</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../Quantum-Mechanics-Feynman-Path-Integral/index.html">Quantum Mechanics: Feynman Path Integral</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Quantum-Optics/index.html">Quantum Optics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Density-Functional-Theory/index.html">Density Functional Theory</a></li>
@@ -157,13 +173,15 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Quantum Optimal Control using Machine learning</li>
+          <li><a href="index.html">Quantum Computation</a> &raquo;</li>
+        
+      <li>Quantum Optimal Control using TensorFlow</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/Quantum-Computation/Quantum-Optimal-Control-using-Machine-learning.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/Quantum-Computation/Quantum-Optimal-Control-using-TensorFlow.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -176,20 +194,21 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="quantum-optimal-control-using-machine-learning">
-<h1>Quantum Optimal Control using Machine learning<a class="headerlink" href="#quantum-optimal-control-using-machine-learning" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="quantum-optimal-control-using-tensorflow">
+<h1>Quantum Optimal Control using TensorFlow<a class="headerlink" href="#quantum-optimal-control-using-tensorflow" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
-<li><p><strong>Disclaimer</strong>: This is my (Ding Ruiqi) original idea which later
-found to be already thought of in these papers:</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">David</span> <span class="pre">Schuster</span></code> lab (2017): Speedup for quantum optimal control
-from automatic differentiation based on graphics processing units</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">David</span> <span class="pre">Schuster</span></code> lab (2019): Gradient-based optimal control of
-open quantum systems using quantum trajectories and automatic
-differentiation</p></li>
-</ul>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">David</span> <span class="pre">Schuster</span></code> lab (2017): Speedup for quantum optimal control</dt><dd><p>from automatic differentiation based on graphics processing units</p>
+</dd>
+</dl>
 </li>
-<li><p><strong>Benefits of Machine learning</strong></p>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">David</span> <span class="pre">Schuster</span></code> lab (2019): Gradient-based optimal control of</dt><dd><p>open quantum systems using quantum trajectories and automatic
+differentiation</p>
+</dd>
+</dl>
+</li>
+<li><p><strong>Benefits of TensorFlow</strong></p>
 <ul>
 <li><p>Arbitrary cost function, which would be hard to implement in GRAPE</p></li>
 <li><p>Best code: Using TenserFlow developed by Google</p></li>
@@ -204,8 +223,8 @@ differentiation</p></li>
 <span class="p">)</span>
 </pre></div>
 </div>
-<div class="section" id="my-own-code-without-looking-at-others">
-<h2>My own code (without looking at others)<a class="headerlink" href="#my-own-code-without-looking-at-others" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="my-code">
+<h2>My code<a class="headerlink" href="#my-code" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 
 <span class="k">def</span> <span class="nf">qtp2tf</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">full</span><span class="p">())</span>
@@ -369,6 +388,15 @@ differentiation</p></li>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Quantum-Mechanics-Feynman-Path-Integral/index.html" class="btn btn-neutral float-right" title="Quantum Mechanics: Feynman Path Integral" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="yarn-Examples-From-Forked-Libraries/yarn-Examples-From-Forked-Libraries.html" class="btn btn-neutral float-left" title="yarn: Examples From Forked Libraries" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
