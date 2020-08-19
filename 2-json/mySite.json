@@ -21,22 +21,6 @@
                             "u": "https://github.com/tesla-cat/tesla-cat.github.io/blob/master/1-images/certificates/1%20-%20High%20School%20Certificate.pdf"
                         }
                     ]
-                },
-                {
-                    "title": "education",
-                    "height": 140,
-                    "imgs": [
-                        {
-                            "t": "🏆scholarship",
-                            "i": "https://raw.githubusercontent.com/tesla-cat/tesla-cat.github.io/master/1-images/education/1%20-%20High%20School.PNG",
-                            "u": "https://baike.baidu.com/item/%E8%A5%BF%E5%AE%89%E9%AB%98%E6%96%B0%E7%AC%AC%E4%B8%80%E4%B8%AD%E5%AD%A6"
-                        },
-                        {
-                            "t": "📘high school diploma",
-                            "i": "https://raw.githubusercontent.com/tesla-cat/tesla-cat.github.io/master/1-images/certificates/1%20-%20High%20School%20Certificate.PNG",
-                            "u": "https://github.com/tesla-cat/tesla-cat.github.io/blob/master/1-images/certificates/1%20-%20High%20School%20Certificate.pdf"
-                        }
-                    ]
                 }
             ]
         },
@@ -60,7 +44,7 @@
     "tools": [
         {
             "name": "edit this page",
-            "uri": "https://github.com/tesla-cat"
+            "uri": "https://github.com/tesla-cat/tesla-cat.github.io/blob/master/2-json/mySite.json"
         }
     ],
     "vids": [
