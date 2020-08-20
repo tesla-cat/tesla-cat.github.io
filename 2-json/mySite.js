@@ -25,7 +25,7 @@ const sections = [
 ]
 
 const tools = [
-    {name:'edit this page', uri:'https://github.com/tesla-cat'},
+    {name:'edit this page', uri:'https://github.com/tesla-cat/tesla-cat.github.io/blob/master/2-json/mySite.json'},
 ]
 
 const videos = [
