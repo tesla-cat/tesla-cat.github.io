@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/mySite/static/css/main.8c305372.chunk.css",
-    "main.js": "/mySite/static/js/main.24b6d8db.chunk.js",
+    "main.js": "/mySite/static/js/main.4669da6c.chunk.js",
     "runtime-main.js": "/mySite/static/js/runtime-main.0766c91f.js",
-    "static/js/2.2e1b3495.chunk.js": "/mySite/static/js/2.2e1b3495.chunk.js",
+    "static/js/2.840e132e.chunk.js": "/mySite/static/js/2.840e132e.chunk.js",
     "index.html": "/mySite/index.html",
-    "precache-manifest.9039c306815d10ce2b68fabc3b2256b5.js": "/mySite/precache-manifest.9039c306815d10ce2b68fabc3b2256b5.js",
+    "precache-manifest.95cf0c4ba4edfa36015047a2ab399505.js": "/mySite/precache-manifest.95cf0c4ba4edfa36015047a2ab399505.js",
     "service-worker.js": "/mySite/service-worker.js",
-    "static/js/2.2e1b3495.chunk.js.LICENSE.txt": "/mySite/static/js/2.2e1b3495.chunk.js.LICENSE.txt",
+    "static/js/2.840e132e.chunk.js.LICENSE.txt": "/mySite/static/js/2.840e132e.chunk.js.LICENSE.txt",
     "static/media/index.css": "/mySite/static/media/ZCOOLXiaoWei.2936cd03.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.0766c91f.js",
-    "static/js/2.2e1b3495.chunk.js",
+    "static/js/2.840e132e.chunk.js",
     "static/css/main.8c305372.chunk.css",
-    "static/js/main.24b6d8db.chunk.js"
+    "static/js/main.4669da6c.chunk.js"
   ]
 }
