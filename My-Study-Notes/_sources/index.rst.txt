@@ -4,17 +4,14 @@ Content
 ==========================
 
 .. toctree::
+	:caption: BioPhysics
+
+	Biomolecular-Physics/index
+
+.. toctree::
 	:caption: Documentations
 
 	yarn/index
-
-.. toctree::
-	:caption: Quantum Mechanics
-
-	Quantum-Computation/index
-	Quantum-Mechanics-Feynman-Path-Integral/index
-	Quantum-Optics/index
-	Density-Functional-Theory/index
 
 .. toctree::
 	:caption: Electronics and Coding
@@ -30,14 +27,17 @@ Content
 	Machine-Learning/index
 
 .. toctree::
-	:caption: BioPhysics
+	:caption: Neurotechnology
 
-	Biomolecular-Physics/index
+	Neuromorphic-Vision/index
 
 .. toctree::
-	:caption: Statistical Mechanics
+	:caption: Quantum Mechanics
 
-	Thermodynamics-And-Statistical-Mechanics/index
+	Quantum-Computation/index
+	Quantum-Mechanics-Feynman-Path-Integral/index
+	Quantum-Optics/index
+	Density-Functional-Theory/index
 
 .. toctree:: 
 	:caption: Relativity
@@ -45,7 +45,9 @@ Content
 	Relativity/index
 
 .. toctree::
-	:caption: Neurotechnology
+	:caption: Statistical Mechanics
 
-	Neuromorphic-Vision/index
+	Thermodynamics-And-Statistical-Mechanics/index
+
+
 

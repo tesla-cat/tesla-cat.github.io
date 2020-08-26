@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Reinforcement-Learning &mdash; My Study Notes  documentation</title>
+  <title>PyTorch Tutorial DQN &mdash; My Study Notes  documentation</title>
   
 
   
@@ -81,16 +81,13 @@
               
             
             
-              <p class="caption"><span class="caption-text">Documentations</span></p>
+              <p class="caption"><span class="caption-text">BioPhysics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Biomolecular-Physics/index.html">Biomolecular Physics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Documentations</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../yarn/index.html">yarn</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Quantum-Computation/index.html">Quantum Computation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Quantum-Mechanics-Feynman-Path-Integral/index.html">Quantum Mechanics: Feynman Path Integral</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Quantum-Optics/index.html">Quantum Optics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Density-Functional-Theory/index.html">Density Functional Theory</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Electronics and Coding</span></p>
 <ul>
@@ -103,7 +100,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Machine Learning</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="PyTorch-Get-Started.html">PyTorch Get Started</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Reinforcement-Learning</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">PyTorch Tutorial DQN</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-theory">The Theory</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#the-algorithm">The Algorithm</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#the-pytorch-code">The PyTorch code</a><ul>
@@ -124,24 +121,28 @@
 <li class="toctree-l2"><a class="reference internal" href="PyTorch-Tutorial-RNN-2.html">PyTorch Tutorial RNN 2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Awesome-Stock-Ai.html">Awesome Stock Ai</a></li>
 <li class="toctree-l2"><a class="reference internal" href="PyTorch-Tutorial-Transformer.html">PyTorch Tutorial Transformer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Reinforcement-Learning-Theory.html">Reinforcement Learning Theory</a></li>
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">BioPhysics</span></p>
+<p class="caption"><span class="caption-text">Neurotechnology</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Biomolecular-Physics/index.html">Biomolecular Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Neuromorphic-Vision/index.html">Neuromorphic Vision</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Statistical Mechanics</span></p>
+<p class="caption"><span class="caption-text">Quantum Mechanics</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Thermodynamics-And-Statistical-Mechanics/index.html">Thermodynamics And Statistical Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Computation/index.html">Quantum Computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Mechanics-Feynman-Path-Integral/index.html">Quantum Mechanics: Feynman Path Integral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum-Optics/index.html">Quantum Optics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Density-Functional-Theory/index.html">Density Functional Theory</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Relativity</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Relativity/index.html">Relativity</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Neurotechnology</span></p>
+<p class="caption"><span class="caption-text">Statistical Mechanics</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Neuromorphic-Vision/index.html">Neuromorphic Vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Thermodynamics-And-Statistical-Mechanics/index.html">Thermodynamics And Statistical Mechanics</a></li>
 </ul>
 
             
@@ -189,7 +190,7 @@
         
           <li><a href="index.html">Machine Learning</a> &raquo;</li>
         
-      <li>Reinforcement-Learning</li>
+      <li>PyTorch Tutorial DQN</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -208,8 +209,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="reinforcement-learning">
-<h1>Reinforcement-Learning<a class="headerlink" href="#reinforcement-learning" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="pytorch-tutorial-dqn">
+<h1>PyTorch Tutorial DQN<a class="headerlink" href="#pytorch-tutorial-dqn" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="the-theory">
 <h2>The Theory<a class="headerlink" href="#the-theory" title="Permalink to this headline">¶</a></h2>
 <p>The machine (agent) makes an action <span class="math notranslate nohighlight">\(a_t\)</span> at time <span class="math notranslate nohighlight">\(t\)</span> to the

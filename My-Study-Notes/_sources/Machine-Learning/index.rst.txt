@@ -9,7 +9,7 @@ Machine Learning
 	PyTorch-Tutorial-RNN-2
 	Awesome-Stock-Ai
 	PyTorch-Tutorial-Transformer
-
+	Reinforcement-Learning-Theory
 
 	
 	
