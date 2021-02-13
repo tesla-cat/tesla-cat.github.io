@@ -2,8 +2,6 @@
 author = "Ruiqi Ding"
 +++
 
-## [My Study Notes](https://tesla-cat.github.io/My-Study-Notes/)
-
 ## Documents
 
 - [CV](documents/CV_Ruiqi_Ding.pdf)
