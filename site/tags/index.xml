@@ -2,93 +2,93 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Ruiqi Ding</title>
-    <link>https://tesla-cat.github.io/tags/</link>
+    <link>https://tesla-cat.github.io/site/tags/</link>
     <description>Recent content in Tags on Ruiqi Ding</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 11 Mar 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://tesla-cat.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://tesla-cat.github.io/site/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>css</title>
-      <link>https://tesla-cat.github.io/tags/css/</link>
+      <link>https://tesla-cat.github.io/site/tags/css/</link>
       <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://tesla-cat.github.io/tags/css/</guid>
+      <guid>https://tesla-cat.github.io/site/tags/css/</guid>
       <description></description>
     </item>
     
     <item>
       <title>html</title>
-      <link>https://tesla-cat.github.io/tags/html/</link>
+      <link>https://tesla-cat.github.io/site/tags/html/</link>
       <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://tesla-cat.github.io/tags/html/</guid>
+      <guid>https://tesla-cat.github.io/site/tags/html/</guid>
       <description></description>
     </item>
     
     <item>
       <title>markdown</title>
-      <link>https://tesla-cat.github.io/tags/markdown/</link>
+      <link>https://tesla-cat.github.io/site/tags/markdown/</link>
       <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://tesla-cat.github.io/tags/markdown/</guid>
+      <guid>https://tesla-cat.github.io/site/tags/markdown/</guid>
       <description></description>
     </item>
     
     <item>
       <title>privacy</title>
-      <link>https://tesla-cat.github.io/tags/privacy/</link>
+      <link>https://tesla-cat.github.io/site/tags/privacy/</link>
       <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://tesla-cat.github.io/tags/privacy/</guid>
+      <guid>https://tesla-cat.github.io/site/tags/privacy/</guid>
       <description></description>
     </item>
     
     <item>
       <title>shortcodes</title>
-      <link>https://tesla-cat.github.io/tags/shortcodes/</link>
+      <link>https://tesla-cat.github.io/site/tags/shortcodes/</link>
       <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://tesla-cat.github.io/tags/shortcodes/</guid>
+      <guid>https://tesla-cat.github.io/site/tags/shortcodes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>text</title>
-      <link>https://tesla-cat.github.io/tags/text/</link>
+      <link>https://tesla-cat.github.io/site/tags/text/</link>
       <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://tesla-cat.github.io/tags/text/</guid>
+      <guid>https://tesla-cat.github.io/site/tags/text/</guid>
       <description></description>
     </item>
     
     <item>
       <title>emoji</title>
-      <link>https://tesla-cat.github.io/tags/emoji/</link>
+      <link>https://tesla-cat.github.io/site/tags/emoji/</link>
       <pubDate>Tue, 05 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://tesla-cat.github.io/tags/emoji/</guid>
+      <guid>https://tesla-cat.github.io/site/tags/emoji/</guid>
       <description></description>
     </item>
     
     <item>
       <title>thumbnail</title>
-      <link>https://tesla-cat.github.io/tags/thumbnail/</link>
+      <link>https://tesla-cat.github.io/site/tags/thumbnail/</link>
       <pubDate>Mon, 04 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://tesla-cat.github.io/tags/thumbnail/</guid>
+      <guid>https://tesla-cat.github.io/site/tags/thumbnail/</guid>
       <description></description>
     </item>
     
     <item>
       <title>index</title>
-      <link>https://tesla-cat.github.io/tags/index/</link>
+      <link>https://tesla-cat.github.io/site/tags/index/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tesla-cat.github.io/tags/index/</guid>
+      <guid>https://tesla-cat.github.io/site/tags/index/</guid>
       <description></description>
     </item>
     

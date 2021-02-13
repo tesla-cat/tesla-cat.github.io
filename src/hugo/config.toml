@@ -1,5 +1,5 @@
 publishDir = "../../site"
-baseURL = "https://tesla-cat.github.io"
+baseURL = "https://tesla-cat.github.io/site"
 languageCode = "en"
 DefaultContentLanguage = "en"
 title = "Ruiqi Ding"
