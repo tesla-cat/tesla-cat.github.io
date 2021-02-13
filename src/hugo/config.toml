@@ -1,3 +1,4 @@
+publishDir = "../../site"
 baseURL = "https://tesla-cat.github.io"
 languageCode = "en"
 DefaultContentLanguage = "en"
