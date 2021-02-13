@@ -1,9 +1,0 @@
-
-PhilReinholdPygrape
-============================
-
-
-.. automodule:: yarn.PhilReinholdPygrape
-    :members: run_grape
-
-

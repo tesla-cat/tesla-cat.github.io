@@ -1,9 +1,0 @@
-
-Signal Processing
-===================================================
-
-.. toctree::
-	Finite-Impulse-Response-Filtering
-	
-
-

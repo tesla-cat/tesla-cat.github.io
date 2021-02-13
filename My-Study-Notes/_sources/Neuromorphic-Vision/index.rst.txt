@@ -1,9 +1,0 @@
-
-Neuromorphic Vision
-===================================================
-
-.. toctree::
-	Tomasi-Kanade-Factorization
-	
-
-
