@@ -1,9 +1,8 @@
 export default {
   pages: [
-    'pages/MV-home/index',
-    'pages/MV-view/index',
-    'pages/SI-home/index',
-    'pages/SI-add/index',
+    'FP/home/index',
+    //'MV/home/index',
+    //'MV/view/index',
   ],
   window: {
     backgroundTextStyle: 'light',

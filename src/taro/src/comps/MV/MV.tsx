@@ -12,7 +12,7 @@ import {observer} from 'mobx-react'
 
 import { hist1Type, res1Type, vid1Type } from './types'
 
-export { Search, Hists, ViewOne }
+export { Search, Hists, ViewOne, isPC }
 
 type CenterType = {
   hists: {[key: number]: hist1Type }
@@ -45,7 +45,8 @@ class Center{
 }
 const center = new Center()
 
-const {windowWidth} = Taro.getSystemInfoSync()
+const {windowWidth, windowHeight} = Taro.getSystemInfoSync()
+const isPC = windowWidth > windowHeight
 
 function Search(){
   const [res1, setRes1] = useState<res1Type>(null)
@@ -111,7 +112,7 @@ function Vid({vid}: { vid: vid1Type }){
   return(
     <View className='col card1'>
       <View className='row h30v'>
-        <Image className='img1' mode='aspectFit' src={vid.vod_pic}/>
+        <Image className='img1 f1' mode='aspectFit' src={vid.vod_pic}/>
         <View className='col f2 scr'>
           <Text className='t1'>{vid.vod_name}</Text>
           {info}
