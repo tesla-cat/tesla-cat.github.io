@@ -1,15 +1,15 @@
 
-import React, { memo, useEffect, useState } from 'react'
+import React, { memo, ReactNode, useEffect, useState } from 'react'
 import { 
   Text, View, StyleSheet, Image, FlatList, ScrollView,
-  Modal, TextInput, Dimensions,
+  Modal, TextInput, Dimensions, StyleProp, ViewStyle,
 } from 'react-native'
 import { 
   TouchableRipple, Badge, Button, IconButton, FAB
 } from 'react-native-paper'
 import { Ionicons } from '@expo/vector-icons'
 
-import { NavigationContainer, useNavigation } from '@react-navigation/native'
+import { NavigationContainer, useNavigation, useRoute } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import * as Linking from 'expo-linking'
@@ -32,7 +32,7 @@ const auth = app.auth({persistence:'local'})
 const Tab = createBottomTabNavigator()
 const Stack = createStackNavigator()
 
-const prefixes = [Linking.createURL('/')]
+const prefixes = [Linking.createURL('https://tesla-cat.github.io/SI/')]
 export default function App(){
   const app = (
     <NavigationContainer linking={{prefixes}}>
@@ -40,6 +40,7 @@ export default function App(){
         <Stack.Screen name='tabs' component={Tabs}/>
         <Stack.Screen name='add' component={Add}/>
         <Stack.Screen name='idea' component={Idea}/>
+        <Stack.Screen name='user' component={User}/>
       </Stack.Navigator>
     </NavigationContainer>
   )
@@ -67,35 +68,71 @@ function Tabs(){
   )
 }
 
-function Idea(){
+function User(){
   return(
     <View style={css.screen}>
-      <Text>idea</Text>
+      <Text>user</Text>
     </View>
   )
 }
 
+function Idea(){
+  const nav = useNavigation()
+  const head = <>
+    <View style={css.row2}>
+      <IconButton icon='arrow-left' onPress={()=>{
+        nav.navigate('tabs',{screen:'home'})
+      }}/>
+      {flex()}
+      <Btn color={'skyblue'} size={20} on={()=>{
+        nav.navigate('add', {
+          replyToID: data0._id, title: `Re: ${data0.title}`
+        })
+      }}>advise / reply</Btn>
+    </View>
+    <Data0Card {...data0}/>
+  </>
+  return(
+    <View style={css.screen}>
+      <Data0List style={css.replyList} head={head}/>
+    </View>
+  )
+}
+
+type AddType = { 
+  replyToID: string, title: string
+} | undefined
 function Add(){
   const nav = useNavigation()
+  const route: any = useRoute()
+  const p: AddType = route.params
   const [imgs, setImgs] = useState<pickWebType[]>([])
-  const ph1 = 'Title: summarize your startup idea'
-  const ph2 = 'Detail: elaborate this idea'
+  const txts1 = [
+    'share', 'Title: summarize your startup idea', 'Detail: elaborate this idea'
+  ]
+  const txts2 = [
+    'reply', p?.title||'' , 'Reply: make an advice or offer a cooperation'
+  ]
+  const txts = p?.title ? txts2 : txts1 
   return(
     <View style={css.screen}>
       <View style={css.row2}>
         <IconButton icon='close' onPress={()=>{
-          nav.navigate('tabs',{screen:'home'})
+          if(nav.canGoBack()) nav.goBack()
+          else nav.navigate('tabs',{screen:'home'})
         }}/>
         {flex()}
-        <Btn color={'skyblue'} size={20}>share</Btn>
+        <Btn color={'skyblue'} size={20}>{txts[0]}</Btn>
       </View>
       <View style={css.row}>
         <View>
           <Icon uri={data0.avatar} size={40}/>
         </View>
         <View style={css.f1}>
-          <TextInput style={css.in1} placeholder={ph1} autoFocus/>
-          <TextInput style={css.in2} placeholder={ph2} multiline numberOfLines={6}/>
+          <TextInput style={css.in1} placeholder={txts[1]} autoFocus
+            value={p?.title}
+          />
+          <TextInput style={css.in2} placeholder={txts[2]} multiline numberOfLines={6}/>
           <Imgs imgs={imgs.map(i=>i.uri)} height={200}/>
         </View>
       </View>
@@ -112,7 +149,7 @@ function Home(){
   const nav = useNavigation()
   return(
     <View style={css.screen}>
-      <Data0List/>
+      <Data0List head={<Head/>}/>
       <FAB style={css.abs2} icon='feather' onPress={()=>{
         nav.navigate('add')
       }}/>
@@ -153,13 +190,15 @@ const data0 = {
   _id: '0',
   _openid: 'rick',
 }
-const data0Arr = Array(100).fill(data0)
+const data0Arr = Array(10).fill(data0)
 const Data0Card = memo((p: typeof data0)=>{
   const nav = useNavigation()
   return(
     <View style={[css.card0, css.row]}>
       <View>
-        <Icon uri={p.avatar} size={40}/>
+        <Icon uri={p.avatar} size={40} on={()=>{
+          nav.navigate('user',{_openid: p._openid})
+        }}/>
       </View>
       <View style={css.f1}>
         <Text style={css.t1}>{p.username} · {timeDiff(p.time)}</Text>
@@ -182,15 +221,19 @@ const Data0Card = memo((p: typeof data0)=>{
   )
 })
 
-function Data0List(){
+type DataListType = {
+  style?: StyleProp<ViewStyle>,
+  head?: ReactNode
+}
+function Data0List(p: DataListType){
   const [show, setShow] = useState(true)
   const [last, setLast] = useState(0)
   return <>
     <View style={{display:show?'flex':'none'}}>
-      <Head/>
+      {p.head}
     </View>
     <FlatList 
-      data={data0Arr} 
+      data={data0Arr} style={p.style} 
       renderItem={({item})=>(<Data0Card {...item}/>)} 
       keyExtractor={(item, idx)=>idx+''}
       onScroll={e=>{
@@ -205,7 +248,7 @@ function Data0List(){
 }
 
 type IconType = {
-  name?: string, size: number, on?: ()=>{}
+  name?: string, size: number, on?: ()=>void
   uri?: string
 }
 function Icon(p: IconType){
@@ -220,7 +263,7 @@ function Icon(p: IconType){
 }
 
 type BtnType = {
-  children: string, size?: number, on?:()=>{}
+  children: string, size?: number, on?:()=>void
   color: string,
 }
 function Btn(p: BtnType){
@@ -302,6 +345,9 @@ const css = StyleSheet.create({
   card0:{
     borderBottomWidth:1, borderColor:'lightgray',
     padding: 3,
+  },
+  replyList:{
+    borderLeftWidth: 6, borderColor:'gray',
   },
   iconBody:{
     borderRadius: 1e3, padding: 3, margin: 3,
