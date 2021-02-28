@@ -27,7 +27,8 @@ class Center{
     Object.assign(this.data, obj)
   }
   setHist(hist: hist1Type){
-    this.data.hists[ hist.vidID ] = hist
+    if(!this.data.hists[ hist.vidID ]) this.data.hists[ hist.vidID ] = {}
+    Object.assign(this.data.hists[ hist.vidID ], hist) 
     this.save()
   }
   delHist(hist: hist1Type){
@@ -98,6 +99,8 @@ function Vid({vid}: { vid: vid1Type }){
   const hist = center.data.hists[vid.vod_id]
   const [ij, setIj] = useState(hist?.ij)
   const urls = parse(vid)
+  const latest = urls[0].eps.length
+  if(hist) center.setHist({...hist, latest })
   var player, prog, info
   if(ij){
     const src = ij[0], eps = ij[1]
@@ -107,7 +110,7 @@ function Vid({vid}: { vid: vid1Type }){
     player = <Player url={url[1]} onProg={onProg} prog={prog}/>
   }
   function onProg(pro: number){
-    if(pro>6) center.setHist(makeHist(vid, ij, pro))
+    if(pro>6) center.setHist(makeHist(vid, ij, pro, latest))
   }
   return(
     <View className='col card1'>
@@ -175,10 +178,11 @@ function parse(vid: vid1Type){
   return urls.filter(v=>v)
 }
 
-function makeHist(vid: vid1Type, ij: number[], prog: number){
+function makeHist(vid: vid1Type, ij: number[], prog: number, latest?:number){
   const hist: hist1Type = {
     vidID: vid.vod_id, ij, prog, 
-    info: `${vid.vod_name} 源${ij[0]+1} 第${ij[1]+1}集 ${fmtSec(prog)}`
+    info: `${vid.vod_name} 源${ij[0]+1} 第${ij[1]+1}集 ${fmtSec(prog)}`,
+    latest
   }
   return hist
 }
@@ -195,12 +199,13 @@ const Hists = observer(()=>{
     <View className='col'>
       {Object.keys(hists).map((id)=>{
         const hist: hist1Type = hists[id]
-        const {ij, prog} = hist
+        const {ij, prog, latest} = hist
         return(
-          <View key={id} className='row'>
+          <View key={id} className='row aictr'>
             <AtButton onClick={()=>{
               center.delHist(hist)
             }}>删除</AtButton>
+            <Text className={ij[1]+1==latest?'t3':'t2'}>{ij[1]+1} / {latest}</Text>
             <AtButton onClick={()=>{
               Taro.redirectTo({
                 url: `/pages/MV-view/index?vidID=${id}&src=${ij[0]}&eps=${ij[1]}&prog=${prog}`, 

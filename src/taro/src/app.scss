@@ -1,8 +1,12 @@
 
+@import "~taro-ui/dist/style/components/icon.scss";
+
 @import "~taro-ui/dist/style/components/input.scss";
 @import "~taro-ui/dist/style/components/textarea.scss";
+@import "~taro-ui/dist/style/components/search-bar.scss";
 
 @import "~taro-ui/dist/style/components/button.scss";
+@import "~taro-ui/dist/style/components/fab.scss";
 @import "~taro-ui/dist/style/components/switch.scss";
 
 @import "~taro-ui/dist/style/components/avatar.scss";
@@ -64,6 +68,7 @@ html{
   padding: 20px 40px;
   border-radius: 50px;
   width: 90%;
+  margin: 0px !important;
 }
 
 .in2{
@@ -88,3 +93,9 @@ html{
 
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-thumb { background: gray; }
+
+.abs-rb{
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}

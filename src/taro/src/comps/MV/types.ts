@@ -100,4 +100,5 @@ type hist1Type = {
   ij: number[],
   prog : number,
   info : string,
+  latest?: number,
 }

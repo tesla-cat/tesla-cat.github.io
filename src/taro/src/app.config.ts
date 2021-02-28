@@ -1,9 +1,20 @@
+
+const MV = [
+  'MV/home/index',
+  'MV/view/index',
+]
+
+const FP = [
+  'FP/home/index',
+]
+
+const SI = [
+  'SI/home/index',
+  'SI/add/index',
+]
+
 export default {
-  pages: [
-    'FP/home/index',
-    //'MV/home/index',
-    //'MV/view/index',
-  ],
+  pages: MV,
   window: {
     backgroundTextStyle: 'light',
     navigationBarBackgroundColor: '#fff',
