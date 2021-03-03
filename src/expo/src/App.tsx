@@ -22,7 +22,10 @@ import * as Linking from 'expo-linking'
 import cloudbase from '@cloudbase/js-sdk'
 
 import {pickWeb, pickWebType} from './pickWeb'
+import {getData, getDataById} from './movies'
 import './app.css'
+
+export {data0Type}
 
 var win = Dimensions.get('window')
 const isPC = win.width > 0.75*win.height
@@ -131,9 +134,11 @@ function User(){
     </View>
   )
   const swiper = (
-    <Swiper names={['ideas', 'replies']}>{[
+    <Swiper names={['Ideas', 'Replies', 'Media', 'Likes']}>{[
       <Data0List onShow={setShow}/>,
-      <Data0List onShow={setShow}/>
+      <Data0List onShow={setShow}/>,
+      <Data0List onShow={setShow}/>,
+      <Data0List onShow={setShow}/>,
     ]}</Swiper>
   )
   return(
@@ -149,28 +154,39 @@ type SwiperType = {
   names: string[]
 }
 function Swiper(p: SwiperType){
-  const [active, setActive] = useState(0) 
+  const [percent, setPercent] = useState(0) 
   const scroll = useRef<ScrollView>(null)
+  const N = p.names.length
+  const active = Math.round( percent*N )
+  //const txtLen = p.names.map(t=>t.length).reduce((a,b)=>a+b,0)
+  //const percent2 = p.names[active].length/txtLen
+  const bar = (
+    <View style={{
+      position:'absolute', left: percent*win.width, bottom: 0,
+      width: win.width/N, height:3, backgroundColor:'blue'
+    }}/>
+  )
   return(
     <View style={css.f1}>
       <View style={[css.row2, css.card0, {
-        justifyContent:'space-evenly',
+        justifyContent:'space-around',
       }]}>
         {p.names.map((name, idx)=>(
-          <Btn key={idx} 
-            color={active===idx?'skyblue' : 'gray'}
+          <Btn key={idx} style={css.f1}
+            color={active===idx?'blue' : 'gray'}
             on={()=>{
               scroll.current?.scrollTo({x: idx*win.width})
             }}
           >{name}</Btn>
         ))}
+        {bar}
       </View>
       <ScrollView pagingEnabled horizontal ref={scroll}
         onScroll={({nativeEvent})=>{
           const x = nativeEvent.contentOffset.x
           const L = nativeEvent.contentSize.width
-          setActive(Math.round( x/L*p.names.length ))
-        }}  
+          setPercent(x/L)
+        }} scrollEventThrottle={6}
       >
         {p.names.map((name, idx)=>(
           <View key={idx} style={{width: win.width, height:'100%'}}>
@@ -198,11 +214,15 @@ function Tag(p: TagType){
   )
 }
 
+type IdeaType = { _id: string }
 function Idea(){
   const nav = useNavigation()
+  const route: any = useRoute()
+  const p: IdeaType = route.params
+  const d1 = getDataById(p._id)
   function onReply(){
     nav.navigate('add', {
-      replyToID: data0._id, title: `Re: ${data0.title}`
+      replyToID: d1._id, title: `Re: ${d1.title}`
     })
   }
   const head = <>
@@ -211,7 +231,7 @@ function Idea(){
       {flex()}
       <Btn on={onReply}>advise / reply</Btn>
     </View>
-    <Data0Card {...data0}/>
+    <Data0Card {...d1}/>
   </>
   return(
     <View style={css.screen}>
@@ -244,7 +264,7 @@ function Add(){
         <Btn>{txts[0]}</Btn>
       </View>
       <View style={css.row}>
-        <Icon uri={data0.avatar} size={40}/>
+        <Icon uri={data1.avatar} size={40}/>
         <View style={css.f1}>
           <TextInput style={css.in1} placeholder={txts[1]} 
             autoFocus value={p?.title}
@@ -275,7 +295,9 @@ function Home(){
       </View>
       {flex()}
       <IconButton icon='magnify' onPress={on0}/>
-      <Icon uri={data0.avatar} size={30}/>
+      <Icon uri={data1.avatar} size={30} on={()=>{
+        nav.navigate('user')
+      }}/>
     </View>
   )
   return(
@@ -310,7 +332,7 @@ const data0 = {
   numHate: 10,
   numJoin: 10,
 }
-const data0Arr = Array(10).fill(data0)
+type data0Type = typeof data0
 
 const Data0Card = memo((p: typeof data0)=>{
   const nav = useNavigation()
@@ -319,26 +341,26 @@ const Data0Card = memo((p: typeof data0)=>{
       nav.navigate('idea',{_id: p._id})
     }}>
       <View style={[css.card0, css.row]}>
-        <View>
+        <View style={css.aictr}>
           <Icon uri={p.avatar} size={40} on={()=>{
             nav.navigate('user',{_openid: p._openid})
           }}/>
+          <IconButton icon='arrow-up-bold' onPress={on0}/>
+          <Text style={css.t4}>{p.numLike-p.numHate}</Text>
+          <IconButton icon='arrow-down-bold' onPress={on0}/>
         </View>
         <View style={css.f1}>
           <Text style={css.t1}>
             {p.username} · {timeDiff(p.time)}
           </Text>
           <Text style={css.t2}>{p.title}</Text>
-          <Text style={css.t3}>{p.body}</Text>
-          <Imgs imgs={p.imgs} style={{height:200}} 
-            mode='contain'/>
+          <Text style={[css.t3, css.tbody]}>{p.body}</Text>
+          {box()}
+          <Imgs imgs={p.imgs} style={{height:200, 
+            borderRadius: 20}}/>
           <View style={css.row2}>
             <Button icon='comment-outline' onPress={on0}>
               {p.numComment}</Button>
-            <Button icon='thumb-down-outline' onPress={on0}>
-              {p.numHate}</Button>
-            <Button icon='heart-outline' onPress={on0}>
-              {p.numLike}</Button>
             <Button icon='hand' onPress={on0}>
               {p.numJoin}</Button>
           </View>
@@ -357,6 +379,7 @@ type DataListType = {
 function Data0List(p: DataListType){
   const [show, setShow] = useState(true)
   const [lastY, setLastY] = useState(0)
+  const [data, setData] = useState(getData())
   function set(sh: boolean){
     if(p.head) setShow(sh)
     if(p.onShow) p.onShow(sh)
@@ -366,7 +389,7 @@ function Data0List(p: DataListType){
       {p.head}
     </View>
     <FlatList 
-      data={data0Arr} style={p.style} 
+      data={data} style={p.style} 
       renderItem={({item})=>(<Data0Card {...item}/>)} 
       keyExtractor={(item, idx)=>idx+''}
       onScroll={e=>{
@@ -411,6 +434,7 @@ function Icon(p: IconType){
 
 type BtnType = {
   children: ReactNode, on?:()=>void, color?: string,
+  style?: StyleProp<ViewStyle>,
 }
 function Btn1(p: BtnType){
   return(
@@ -426,7 +450,8 @@ function Btn1(p: BtnType){
 
 function Btn(p: BtnType){
   return(
-    <TouchableRipple style={css.btnBody} onPress={p.on || on0} >
+    <TouchableRipple style={[css.btnBody,p.style]} 
+      onPress={p.on || on0} >
       <Text style={[css.t4, { 
         color: p.color || 'blue'
       }]}>{p.children}</Text>
@@ -530,10 +555,13 @@ const css = StyleSheet.create({
   btnBody:{
     borderRadius: 30, 
     paddingHorizontal: 10, paddingVertical: 3, 
-    margin: 3,
+    margin: 3, alignItems:'center',
   },
   gray:{
     backgroundColor:'lightgray', color:'white'
+  },
+  tbody:{
+    maxHeight: 100, overflow:'scroll',
   },
   t1:{
     color:'gray',
