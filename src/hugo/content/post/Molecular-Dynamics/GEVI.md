@@ -21,6 +21,8 @@ $$
 
 - One can observe the protein being stretched along some direction (I will add an arrow in the animation in the future), proving the test successful. Note that the animation is interactive.
 
+**the animation may take some time to load**
+
 {{< ngl >}}
 <script>
 var pdbFile = '/site/md/ASAP3.pdb'
