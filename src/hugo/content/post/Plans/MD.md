@@ -19,7 +19,7 @@ window.onload = ()=>{
   window.addEventListener("resize",e=>{stage.handleResize()},false)
 
   pdbFile = '/site/md/ASAP3.pdb'
-  dcdFile = '/site/md/ASAP3.dcd.gz'
+  dcdFile = '/site/md/ASAP3.xtc'
 
   stage.loadFile(pdbFile).then(function (o) {
     var atomPair = [
