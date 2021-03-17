@@ -6,10 +6,28 @@
     <description>Recent content on Ruiqi Ding</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 11 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 19 Feb 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tesla-cat.github.io/site/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>MD</title>
+      <link>https://tesla-cat.github.io/site/post/plans/md/</link>
+      <pubDate>Fri, 19 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://tesla-cat.github.io/site/post/plans/md/</guid>
+      <description>window.onload = ()={ var stage = new NGL.</description>
+    </item>
+    
+    <item>
+      <title>PhD</title>
+      <link>https://tesla-cat.github.io/site/post/plans/phd/</link>
+      <pubDate>Fri, 19 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://tesla-cat.github.io/site/post/plans/phd/</guid>
+      <description>Application materials  transcripts Personal statement: maximum 400-500 words, concise  Your background: what&amp;rsquo;s brought you to choose a PhD, NOT your life story Why PhD: motivation Academic experience: comment on your CV, explain the significance of those qualifications for your PhD application Extra-curricular experience: experience that has also demonstrated (or developed) relevant skills for your PhD, such as organisation, independent project management, self-motivation, etc.</description>
+    </item>
     
     <item>
       <title></title>
@@ -40,55 +58,55 @@
     
     <item>
       <title>Markdown Syntax Guide</title>
-      <link>https://tesla-cat.github.io/site/post/markdown-syntax/</link>
+      <link>https://tesla-cat.github.io/site/post/hugo-examples/markdown-syntax/</link>
       <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://tesla-cat.github.io/site/post/markdown-syntax/</guid>
+      <guid>https://tesla-cat.github.io/site/post/hugo-examples/markdown-syntax/</guid>
       <description>&lt;p&gt;This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Rich Content</title>
-      <link>https://tesla-cat.github.io/site/post/rich-content/</link>
+      <link>https://tesla-cat.github.io/site/post/hugo-examples/rich-content/</link>
       <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://tesla-cat.github.io/site/post/rich-content/</guid>
+      <guid>https://tesla-cat.github.io/site/post/hugo-examples/rich-content/</guid>
       <description>&lt;p&gt;Hugo ships with several &lt;a href=&#34;https://gohugo.io/content-management/shortcodes/#use-hugos-built-in-shortcodes&#34;&gt;Built-in Shortcodes&lt;/a&gt; for rich content, along with a &lt;a href=&#34;https://gohugo.io/about/hugo-and-gdpr/&#34;&gt;Privacy Config&lt;/a&gt; and a set of Simple Shortcodes that enable static and no-JS versions of various social media embeds.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Placeholder Text</title>
-      <link>https://tesla-cat.github.io/site/post/placeholder-text/</link>
+      <link>https://tesla-cat.github.io/site/post/hugo-examples/placeholder-text/</link>
       <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://tesla-cat.github.io/site/post/placeholder-text/</guid>
+      <guid>https://tesla-cat.github.io/site/post/hugo-examples/placeholder-text/</guid>
       <description>&lt;p&gt;Lorem est tota propiore conpellat pectoribus de pectora summo.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Math Typesetting</title>
-      <link>https://tesla-cat.github.io/site/post/math-typesetting/</link>
+      <link>https://tesla-cat.github.io/site/post/hugo-examples/math-typesetting/</link>
       <pubDate>Fri, 08 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://tesla-cat.github.io/site/post/math-typesetting/</guid>
+      <guid>https://tesla-cat.github.io/site/post/hugo-examples/math-typesetting/</guid>
       <description>&lt;p&gt;Mathematical notation in a Hugo project can be enabled by using third party JavaScript libraries.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Emoji Support</title>
-      <link>https://tesla-cat.github.io/site/post/emoji-support/</link>
+      <link>https://tesla-cat.github.io/site/post/hugo-examples/emoji-support/</link>
       <pubDate>Tue, 05 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://tesla-cat.github.io/site/post/emoji-support/</guid>
+      <guid>https://tesla-cat.github.io/site/post/hugo-examples/emoji-support/</guid>
       <description>&lt;p&gt;Emoji can be enabled in a Hugo project in a number of ways.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Guide to Thumbnails in Hugo</title>
-      <link>https://tesla-cat.github.io/site/post/image-test/</link>
+      <link>https://tesla-cat.github.io/site/post/hugo-examples/image-test/</link>
       <pubDate>Mon, 04 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://tesla-cat.github.io/site/post/image-test/</guid>
+      <guid>https://tesla-cat.github.io/site/post/hugo-examples/image-test/</guid>
       <description>Thumbnails can be enabled easily by setting the thumbnail parameter in the frontmatter to an image such as &amp;quot;images/landscape.</description>
     </item>
     

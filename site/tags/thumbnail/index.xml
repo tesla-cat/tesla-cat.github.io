@@ -13,10 +13,10 @@
     
     <item>
       <title>Guide to Thumbnails in Hugo</title>
-      <link>https://tesla-cat.github.io/site/post/image-test/</link>
+      <link>https://tesla-cat.github.io/site/post/hugo-examples/image-test/</link>
       <pubDate>Mon, 04 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://tesla-cat.github.io/site/post/image-test/</guid>
+      <guid>https://tesla-cat.github.io/site/post/hugo-examples/image-test/</guid>
       <description>Thumbnails can be enabled easily by setting the thumbnail parameter in the frontmatter to an image such as &amp;quot;images/landscape.</description>
     </item>
     
