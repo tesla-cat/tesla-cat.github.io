@@ -19,7 +19,7 @@ window.onload = ()=>{
   window.addEventListener("resize",e=>{stage.handleResize()},false)
 
   pdbFile = '/site/md/ASAP3.pdb'
-  dcdFile = '/site/md/ASAP3.dcd'
+  dcdFile = '/site/md/ASAP3.dcd.gz'
 
   stage.loadFile(pdbFile).then(function (o) {
     var atomPair = [
@@ -28,7 +28,7 @@ window.onload = ()=>{
     o.addRepresentation('cartoon', { sele: 'protein' })
     o.addRepresentation('distance', { atomPair })
     o.autoView()
-    
+
     NGL.autoLoad(dcdFile).then(function (frames) {
       o.addTrajectory(frames)
       o.trajList[0].trajectory.player.play()
