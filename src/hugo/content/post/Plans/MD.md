@@ -21,12 +21,17 @@ window.onload = ()=>{
   pdbFile = '/site/md/ASAP3.pdb'
   dcdFile = '/site/md/ASAP3.dcd'
 
-  stage.loadFile(pdbFile).then(structure=>{
-    structure.addRepresentation("cartoon")
-    NGL.autoLoad(dcdFile).then((frames)=>{
-      structure.addTrajectory(frames)
-      console.log(structure)
-      structure.trajList[0].trajectory.player.play()
+  stage.loadFile(pdbFile).then(function (o) {
+    var atomPair = [
+      [ "15.CA", "365.CA" ]
+    ]
+    o.addRepresentation('cartoon', { sele: 'protein' })
+    o.addRepresentation('distance', { atomPair })
+    o.autoView()
+    
+    NGL.autoLoad(dcdFile).then(function (frames) {
+      o.addTrajectory(frames)
+      o.trajList[0].trajectory.player.play()
     })
   })
 }

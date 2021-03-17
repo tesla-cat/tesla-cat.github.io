@@ -15,6 +15,7 @@ window.onload = ()=>{
 
   stage.loadFile(pdbFile).then(structure=>{
     structure.addRepresentation("cartoon")
+    structure.autoView()
     NGL.autoLoad(dcdFile).then((frames)=>{
       structure.addTrajectory(frames)
       console.log(structure)
