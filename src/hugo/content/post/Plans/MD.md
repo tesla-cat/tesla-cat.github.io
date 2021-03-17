@@ -11,7 +11,7 @@ aliases = []
 
 {{< rawhtml >}}
 <div id="viewport" style="width:100%; height:80vh;"></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ngl/2.0.0-dev.38/ngl.js" integrity="sha512-dtJBBIiDMMOIqN5LMhR9ePTUhalThGLyHvOz+n069obXkNgOLUHGP628fb7kv4YYh2znk/5gU/s+Jvr6djLTPw==" crossorigin="anonymous"></script>
+<script src="/site/md/ngl.js"></script>
 <script>
 
 window.onload = ()=>{
