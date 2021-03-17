@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme=""><head>
-    <title> Ruiqi Ding | Posts </title>
+    <title> Ruiqi Ding | GEVI </title>
 
     
     <meta charset="utf-8"><meta name="generator" content="Hugo 0.74.3" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -29,10 +29,9 @@
     <link rel="icon" type="image/png" sizes="32x32" href="https://tesla-cat.github.io/site/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://tesla-cat.github.io/site/favicons/favicon-16x16.png">
 
-    <link rel="canonical" href="https://tesla-cat.github.io/site/post/">
+    <link rel="canonical" href="https://tesla-cat.github.io/site/post/molecular-dynamics/gevi/">
 
     
-    <link rel="alternate" type="application/rss+xml" href="https://tesla-cat.github.io/site/post/index.xml" title="Ruiqi Ding" />
     
     
     
@@ -51,8 +50,8 @@
                 crossorigin="anonymous"></script>
     
     <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content="Call me Rick"/>
+<meta name="twitter:title" content="GEVI"/>
+<meta name="twitter:description" content="GEVI"/>
 
 </head>
 <body><div class="sidebar animated fadeInDown ">
@@ -119,7 +118,7 @@
                    title="">Home</a></li>
         
             
-            <li><a class="current"
+            <li><a 
                    href="/site/post/"
                         
                    title="">Posts</a></li>
@@ -149,44 +148,99 @@
 
     <div class="autopagerize_page_element">
         <div class="content">
-    <div class="archive  animated fadeInDown ">
-        <ul class="list-with-title">
+    <div class="post  animated fadeInDown ">
+        <div class="post-content">
             
-                <div class="listing-title">2021</div>
+            <div class="post-title">
+                <h3>GEVI</h3>
                 
-                    <ul class="listing">
-                        <div class="listing-item">
-                            <div class="listing-post"><a href="https://tesla-cat.github.io/site/post/molecular-dynamics/" title="Molecular Dynamics">Molecular Dynamics</a>
-                                <div class="post-time"><span class="date"> Mar 17 
-                                                                            </span></div>
-                            </div>
-                        </div>
-                    </ul>
+                    <div class="info">
+                        <em class="fas fa-calendar-day"></em>
+                        <span class="date"> Wed, Mar 17, 2021 
+                                           </span>
+                        <em class="fas fa-stopwatch"></em>
+                        <span class="reading-time">2-minute read</span>
+                    </div>
                 
-                    <ul class="listing">
-                        <div class="listing-item">
-                            <div class="listing-post"><a href="https://tesla-cat.github.io/site/post/plans/" title="Plans">Plans</a>
-                                <div class="post-time"><span class="date"> Feb 19 
-                                                                            </span></div>
-                            </div>
-                        </div>
-                    </ul>
+            </div>
+
+            <h3 id="step-1-testing-voltage-dependent-simulation-code">Step 1: testing voltage-dependent simulation code</h3>
+<ul>
+<li>
+<p>The following is a simple test to simulate ASAP3 under an time-dependent external electric field.</p>
+</li>
+<li>
+<p>The total simulation is 40 ps, the electric field is (the value 100 is randomly assigned with unknown unit just to test out the code)</p>
+</li>
+</ul>
+<p>$$
+E_x = \begin{cases}
+0 &amp; t \in (0, 20) \text{ ps} \newline
+100 &amp; t \in (20, 40) \text{ ps}
+\end{cases}
+$$</p>
+<ul>
+<li>One can observe the protein being stretched along some direction (I will add an arrow in the animation in the future), proving the test successful. Note that the animation is interactive.</li>
+</ul>
+
+
+<div id="ngl" style="width:100%; height:500px;"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ngl/2.0.0-dev.38/ngl.js" integrity="sha512-dtJBBIiDMMOIqN5LMhR9ePTUhalThGLyHvOz+n069obXkNgOLUHGP628fb7kv4YYh2znk/5gU/s+Jvr6djLTPw==" crossorigin="anonymous"></script>
+
+<script>
+var pdbFile = '/site/md/ASAP3.pdb'
+var xtcFile = '/site/md/ASAP3.xtc'
+var atomPair = [
+  [ "15.CA", "365.CA" ]
+]
+</script>
+
+
+<script>
+window.onload = ()=>{
+  var stage = new NGL.Stage("ngl")
+  window.addEventListener("resize",e=>{stage.handleResize()},false)
+  stage.loadFile(pdbFile).then((o)=>{    
+    o.addRepresentation('cartoon', { sele: 'protein' })
+    o.addRepresentation('distance', { atomPair })
+    o.autoView()
+    NGL.autoLoad(xtcFile).then((frames)=>{
+      o.addTrajectory(frames)
+      o.trajList[0].trajectory.player.play()
+    })
+  })
+}
+</script>
+<ul>
+<li>The following shows how the electric field affects the potential energy and kinetic energy of the system:</li>
+</ul>
+<p><img src="/site/images/ASAP3-1.PNG" alt=""></p>
+<ul>
+<li>
+<p>The next steps are:</p>
+<ul>
+<li>Change \(E_x\) to realistic values and unit</li>
+<li>Add lipid membrane, currently there is only protein and water.</li>
+</ul>
+</li>
+<li>
+<p>Limitations:</p>
+<ul>
+<li>The chromophore cannot be simulated at the moment since it is a nonstandard residue not defined in the force field. I consulted a postdoc from Prof. Vijay Pande&rsquo;s (Stanford) group on Github, here is our conversation. I will ask Carl for help later (He seems busy so I don&rsquo;t want to bother him too often).</li>
+</ul>
+</li>
+</ul>
+</div>
+        <div class="post-footer">
+            <div class="info">
                 
-            
-                <div class="listing-title">2019</div>
                 
-                    <ul class="listing">
-                        <div class="listing-item">
-                            <div class="listing-post"><a href="https://tesla-cat.github.io/site/post/hugo-examples/" title="Hugo Examples">Hugo Examples</a>
-                                <div class="post-time"><span class="date"> Mar 11 
-                                                                            </span></div>
-                            </div>
-                        </div>
-                    </ul>
-                
-            
-        </ul>
+            </div>
+        </div>
+
+        
     </div>
+
 
         </div>
     </div>
@@ -209,6 +263,13 @@
         src="https://tesla-cat.github.io/site/js/medium-zoom.min.92f21c856129f84aeb719459b3e6ac621a3032fd7b180a18c04e1d12083f8aba.js"
         integrity="sha256-kvIchWEp&#43;ErrcZRZs&#43;asYhowMv17GAoYwE4dEgg/iro="
         crossorigin="anonymous"></script>
-</body>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw" crossorigin="anonymous">
+
+        
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js" integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH" crossorigin="anonymous"></script>
+
+        
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js" integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v" crossorigin="anonymous"
+            onload="renderMathInElement(document.body);"></script></body>
 
 </html>

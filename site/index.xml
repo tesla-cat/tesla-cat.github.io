@@ -6,18 +6,18 @@
     <description>Recent content on Ruiqi Ding</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 19 Feb 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 17 Mar 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tesla-cat.github.io/site/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>MD</title>
-      <link>https://tesla-cat.github.io/site/post/plans/md/</link>
-      <pubDate>Fri, 19 Feb 2021 00:00:00 +0000</pubDate>
+      <title>GEVI</title>
+      <link>https://tesla-cat.github.io/site/post/molecular-dynamics/gevi/</link>
+      <pubDate>Wed, 17 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://tesla-cat.github.io/site/post/plans/md/</guid>
-      <description>window.onload = ()={ var stage = new NGL.</description>
+      <guid>https://tesla-cat.github.io/site/post/molecular-dynamics/gevi/</guid>
+      <description>Step 1: testing voltage-dependent simulation code   The following is a simple test to simulate ASAP3 under an time-dependent external electric field.</description>
     </item>
     
     <item>
