@@ -40,4 +40,4 @@ var atomPair = [
   - Add lipid membrane, currently there is only protein and water.
 
 - Limitations:
-  - The chromophore cannot be simulated at the moment since it is a nonstandard residue not defined in the force field. I consulted a postdoc from Prof. Vijay Pande's (Stanford) group on Github, here is our conversation. I will ask Carl for help later (He seems busy so I don't want to bother him too often).
+  - The chromophore cannot be simulated at the moment since it is a nonstandard residue not defined in the force field. I consulted a postdoc from Prof. Vijay Pande's (Stanford) group on Github, [here is our conversation](https://github.com/openmm/openmm/issues/3062#issuecomment-799161915). I will ask Carl for help later (He seems busy so I don't want to bother him too often).
