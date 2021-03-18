@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Molecular Dynamics on Ruiqi Ding</title>
+    <link>https://tesla-cat.github.io/site/post/molecular-dynamics/</link>
+    <description>Recent content in Molecular Dynamics on Ruiqi Ding</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 17 Mar 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tesla-cat.github.io/site/post/molecular-dynamics/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GEVI</title>
+      <link>https://tesla-cat.github.io/site/post/molecular-dynamics/gevi/</link>
+      <pubDate>Wed, 17 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://tesla-cat.github.io/site/post/molecular-dynamics/gevi/</guid>
+      <description>Step 1: testing voltage-dependent simulation code   The following is a simple test to simulate ASAP3 under an time-dependent external electric field.</description>
+    </item>
+    
+  </channel>
+</rss>
