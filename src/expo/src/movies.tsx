@@ -1,6 +1,6 @@
 
 import {data0Type} from './App'
-export {data0Arr, getData, getDataById}
+export {getData, getDataById}
 
 const mv0 = {
   "id":"287947",

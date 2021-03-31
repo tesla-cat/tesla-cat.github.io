@@ -8,7 +8,8 @@ import {
   ImageStyle,
 } from 'react-native'
 import { 
-  TouchableRipple, Badge, Button, IconButton, FAB
+  TouchableRipple, Badge, Button, IconButton, FAB, 
+  Portal, Menu, Dialog, Provider, Paragraph,
 } from 'react-native-paper'
 import { Ionicons } from '@expo/vector-icons'
 
@@ -44,7 +45,14 @@ const Tab = createBottomTabNavigator()
 const Stack = createStackNavigator()
 
 const prefixes = [Linking.createURL('/SI/')]
-export default function App(){
+export default function Main(){
+  return(
+    <Provider>
+      <App/>
+    </Provider>
+  )
+}
+function App(){
   const app = (
     <NavigationContainer linking={{prefixes}}>
       <Stack.Navigator headerMode='none'>
@@ -290,7 +298,7 @@ function Home(){
     <View style={[css.card0, css.row2]}>
       <Icon name='idea' size={30}/>
       <View>
-        <Text style={css.t2}>Startup Ideas</Text>
+        <Picker/>
         <Text style={css.t1}>share idea, get advice, find team</Text>
       </View>
       {flex()}
@@ -306,6 +314,29 @@ function Home(){
       <FAB style={css.abs2} icon='feather' onPress={()=>{
         nav.navigate('add')
       }}/>
+    </View>
+  )
+}
+
+function Picker(){
+  const [show, setShow] = useState(false)
+  function hide(){ setShow(false) }
+  const btn = (
+    <TouchableRipple onPress={()=>setShow(!show)}>
+      <View style={css.row2}>
+        <Ionicons name='chevron-down' size={20}/>
+        {box()}
+        <Text style={css.t2}>Startup Ideas</Text>
+      </View>
+    </TouchableRipple>
+  )
+  return(
+    <View>
+      <Menu visible={show} onDismiss={hide} anchor={btn}>
+        <Menu.Item title="Startup ideas" onPress={on0}/>
+        <Menu.Item title="Science ideas" onPress={on0}/>
+        <Menu.Item title="Engineering ideas" onPress={on0}/>
+      </Menu>
     </View>
   )
 }
