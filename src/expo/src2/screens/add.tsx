@@ -5,10 +5,10 @@ import {
   IconButton as IconB, 
 } from 'react-native-paper'
 // local import
-import { movies, movieType } from '../data/movies/movies'
+import { movies } from '../data/movies/movies'
 import { Img, Input, Flex } from '../components/basic'
 import { icon, icons } from '../components/icons'
-import { cssView, cssImg, cssText } from './home'
+import { cssView, cssImg, cssText, ideaType } from './home'
 
 export default function AddPage(){
   return(
@@ -29,16 +29,16 @@ function Head(){
   )
 }
 
-function Add(p: movieType){
+function Add(p: ideaType){
   return(
     <View style={cssView.row}>
       <View style={cssView.center}>
-        <Img style={cssImg.avatar} uri={p.poster}/>
+        <Img style={cssImg.avatar} uri={p.avatar}/>
       </View>
       <View style={cssView.main}>
         <Input style={cssText.title} placeholder={p.title} autoFocus/>
-        <Input style={cssText.body} placeholder={p.overview} n={6}/>
-        <Input style={cssText.tags} placeholder={p.genres.join(', ')}/>
+        <Input style={cssText.body} placeholder={p.body} n={6}/>
+        <Input style={cssText.tags} placeholder={p.tags.join(', ')}/>
         <Img style={cssImg.image} uri={icon('image')} resizeMode='contain'/>
       </View>
     </View>

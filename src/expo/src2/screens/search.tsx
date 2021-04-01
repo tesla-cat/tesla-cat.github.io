@@ -5,7 +5,7 @@ import {
   IconButton as IconB, 
 } from 'react-native-paper'
 // local import
-import { movies, movieType } from '../data/movies/movies'
+import { movies } from '../data/movies/movies'
 import { Img, Input, Flex } from '../components/basic'
 import { icon, icons } from '../components/icons'
 import { cssView, cssImg, cssText } from './home'
@@ -28,5 +28,3 @@ function Head(){
     </View>
   )
 }
-
-
