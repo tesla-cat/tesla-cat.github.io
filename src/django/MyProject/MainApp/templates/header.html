@@ -1,0 +1,87 @@
+<head>
+  <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">       
+  <style>
+    div{ padding: 3px; }
+    a{ text-decoration: none; }
+    body{ margin: 0px; }
+    .row{ display: flex; flex-direction: row; flex-wrap: wrap; }
+    .col{ display: flex; flex-direction: column; }
+    .center{ align-items: center; }
+    .end{ align-items: flex-end; }
+    .f1{ flex: 1; }
+    .card{ 
+      height: 300px; width: 300px; 
+      margin: 5px;
+      display: flex; flex-direction: column;
+    }
+    .title{ font-weight: bold } 
+    .info{ color: gray }
+    .body{ overflow-y: scroll; }
+    ::-webkit-scrollbar{ width: 3px; height: 6px; }
+    ::-webkit-scrollbar-thumb{ background: skyblue; }
+  </style>
+</head>
+<body>  
+  <header class="mdc-top-app-bar">
+    <div class="mdc-top-app-bar__row">
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+        <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button" aria-label="Open navigation menu">menu</button>
+        <span class="mdc-top-app-bar__title">Page title</span>
+      </section>
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+        <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Favorite">favorite</button>
+        <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Search">search</button>
+        <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Options">more_vert</button>
+        {% if user.is_authenticated %}
+          <a href="/account">
+            <button class="mdc-button mdc-button--raised">
+              <span class="mdc-button__label">{{user.username|title}}</span>
+            </button>
+          </a>
+          <a href="/signOut">
+            <button class="mdc-button mdc-button--raised">
+              <span class="mdc-button__label">Sign Out</span>
+            </button>
+          </a>
+        {% else %}
+          <a href="/signIn">
+            <button class="mdc-button mdc-button--raised">
+              <span class="mdc-button__label">Sign In</span>
+            </button>
+          </a>
+        {% endif %}
+      </section>
+    </div>
+  </header>
+  <main class="mdc-top-app-bar--fixed-adjust row">
+    {% if messages %}
+      {% for message in messages %}
+        <script>M.toast({html: "{{message}}", displayLength:2000});</script>
+      {% endfor %}
+    {% endif %}
+    
+    {% block content %}
+    {% endblock %}
+
+    <div class="mdc-menu mdc-menu-surface">
+      <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
+        <li class="mdc-list-item" role="menuitem">
+          <span class="mdc-list-item__ripple"></span>
+          <span class="mdc-list-item__text">A Menu Item</span>
+        </li>
+        <li class="mdc-list-item" role="menuitem">
+          <span class="mdc-list-item__ripple"></span>
+          <span class="mdc-list-item__text">Another Menu Item</span>
+        </li>
+      </ul>
+    </div>
+  </main>
+</body>
+<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+<script>
+  const selector = '.mdc-button, .mdc-card__primary-action'; // .mdc-icon-button, 
+  const ripples = [].map.call(document.querySelectorAll(selector), function(el) {
+    return new mdc.ripple.MDCRipple(el);
+  });
+</script>

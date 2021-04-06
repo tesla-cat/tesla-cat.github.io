@@ -1,0 +1,11 @@
+ 
+{% extends 'header.html' %}
+{% block content %}
+  {% for post in posts %}
+    <div class="mdc-card mdc-card__primary-action card">
+      <div class="title">{{ post.title }}</div>
+      <div class="info"> {{ post.date  }}</div>
+      <div class="body"> {{ post.body  }}</div>
+    </div>
+  {% endfor %}
+{% endblock %}
