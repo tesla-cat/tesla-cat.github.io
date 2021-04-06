@@ -5,11 +5,7 @@
     <link>https://tesla-cat.github.io/site/tags/index/</link>
     <description>Recent content in index on Ruiqi Ding</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    
-	<atom:link href="https://tesla-cat.github.io/site/tags/index/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>en</language><atom:link href="https://tesla-cat.github.io/site/tags/index/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Molecular Dynamics</title>
       <link>https://tesla-cat.github.io/site/post/molecular-dynamics/</link>
@@ -22,7 +18,7 @@
     <item>
       <title>Plans</title>
       <link>https://tesla-cat.github.io/site/post/plans/</link>
-      <pubDate>Fri, 19 Feb 2021 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 17 Mar 2021 00:00:00 +0000</pubDate>
       
       <guid>https://tesla-cat.github.io/site/post/plans/</guid>
       <description></description>

@@ -6,11 +6,7 @@
     <description>Recent content on Ruiqi Ding</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 17 Mar 2021 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://tesla-cat.github.io/site/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 17 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://tesla-cat.github.io/site/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>GEVI</title>
       <link>https://tesla-cat.github.io/site/post/molecular-dynamics/gevi/</link>
@@ -18,6 +14,15 @@
       
       <guid>https://tesla-cat.github.io/site/post/molecular-dynamics/gevi/</guid>
       <description>Step 1: testing voltage-dependent simulation code   The following is a simple test to simulate ASAP3 under an time-dependent external electric field.</description>
+    </item>
+    
+    <item>
+      <title>Startup</title>
+      <link>https://tesla-cat.github.io/site/post/plans/startup/</link>
+      <pubDate>Wed, 17 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://tesla-cat.github.io/site/post/plans/startup/</guid>
+      <description>Ultrasonic Neurostimulation Stanford   Ultrasonic Neurostimulation: A new Approach to Control and Study the Molecules, Circuits and Actions of the Brain</description>
     </item>
     
     <item>

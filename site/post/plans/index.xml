@@ -6,10 +6,15 @@
     <description>Recent content in Plans on Ruiqi Ding</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 19 Feb 2021 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://tesla-cat.github.io/site/post/plans/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Wed, 17 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://tesla-cat.github.io/site/post/plans/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Startup</title>
+      <link>https://tesla-cat.github.io/site/post/plans/startup/</link>
+      <pubDate>Wed, 17 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://tesla-cat.github.io/site/post/plans/startup/</guid>
+      <description>Ultrasonic Neurostimulation Stanford   Ultrasonic Neurostimulation: A new Approach to Control and Study the Molecules, Circuits and Actions of the Brain</description>
+    </item>
     
     <item>
       <title>PhD</title>
