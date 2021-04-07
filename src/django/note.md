@@ -149,7 +149,7 @@ def homepage(request):
 
 # tutorial 5
 
-# tutorial 6, 7
+# tutorial 6, 7, 8
 
 - add `MyProject\MainApp\templates\signUp.html`
 
@@ -188,4 +188,8 @@ urlpatterns = [
 ]
 ```
 
-# tutorial 8
+# tutorial 9, 10, 11
+
+- skip due to error
+
+# tutorial 12 - end

@@ -1,11 +1,22 @@
- 
-{% extends 'header.html' %}
+
+{% extends 'components/header.html' %}
 {% block content %}
-  {% for post in posts %}
-    <div class="mdc-card mdc-card__primary-action card">
-      <div class="title">{{ post.title }}</div>
-      <div class="info"> {{ post.date  }}</div>
-      <div class="body"> {{ post.body  }}</div>
+  
+  <form method="POST">
+    {% csrf_token %}
+    <h5>Pick a date to generate and upload the POS reports:</h5>
+    <input name="date" type="text" class="datepicker">
+    <div class="row">
+      <div class="f1"></div>
+      <button class="waves-effect waves-light btn" type="submit">go</button>
     </div>
-  {% endfor %}
+  </form>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.datepicker');
+      var instances = M.Datepicker.init(elems, {format: 'yyyy/mm/dd'});
+    });
+  </script>
+  
 {% endblock %}

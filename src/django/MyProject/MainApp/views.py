@@ -4,8 +4,27 @@ from .models import Post
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import logout, authenticate, login
 from django.contrib import messages
+from datetime import datetime
+from .task.uploadPOSReports import uploadPOSReports
 
 def homepage(request):
+    if request.method == 'POST':
+        if not request.POST['date']:
+            messages.error(request, f"Invalid date!")
+        else:
+            if not request.user.is_staff:
+                messages.error(request, f"You must be a staff that has signed in!")
+            else:
+                try:
+                    dateTime = datetime.strptime(request.POST['date'], r'%Y/%m/%d')
+                    def onMessage(m: str):
+                        if m.startswith('success'):
+                            messages.success(request, m)
+                        else:
+                            messages.error(request, m)
+                    uploadPOSReports(dateTime, onMessage)
+                except Exception as e:
+                    messages.error(request, f"{str(e)}")
     return render(
         request=request,
         template_name='home.html',
@@ -47,7 +66,7 @@ def signIn(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                messages.info(request, f"logged in as {username}")
+                messages.info(request, f"Signed in as {username}")
                 return redirect('/')
             else:
                 messages.error(request, "error")
