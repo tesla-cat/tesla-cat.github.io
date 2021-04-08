@@ -1,19 +1,33 @@
 
 """
-1. log in to server [66.42.50.128] with username [root] and password [7Hd%XcU32xz3=)j-]
-2. to execute the program daily at 23:50
-    run [crontab -e]
-    add [50 23 * * * /usr/bin/python3 /home/rick/MyProject/MainApp/task/uploadPOSReports.py]
+66.42.50.128    root    7Hd%XcU32xz3=)j-
 http://66.42.50.128:8000 admin Maimai1tinhyeu
 http://66.42.50.128:8000/admin
-pip3 install django pandas gspread pysftp
-python manage.py runserver 0.0.0.0:8000
 """
 
 """
-pip install dotenv
-pyenv local 3.7.4
-python ./salemanagement/manage.py runserver 0.0.0.0:8006
+- To run the server
+once
+    sudo pip3 install virtualenv
+    virtualenv newVirtualEnvironment
+    source newVirtualEnvironment/bin/activate 
+    pip install django django-tinymce pandas gspread pysftp
+    deactivate
+
+screen -ls
+screen -X -S ??? quit
+screen -S django
+source newVirtualEnvironment/bin/activate 
+python manage.py runserver 0.0.0.0:8000
+Now press Ctrl+A and then press d to exit from this screen
+"""
+
+"""
+- To run daily task
+import sys
+print(sys.executable)
+crontab -e
+50 23 * * * /usr/bin/python3 /home/rick/MyProject/MainApp/task/uploadPOSReports.py
 """
 
 # native libraries
@@ -98,11 +112,11 @@ def uploadPOSReports(dateTime: datetime, onMessage):
     cnopts.hostkeys = None
     for code, lines in results.items():
         filename = formatPOS(code, settings['filename formats'][code])
-        folder = os.path.join('PoS reports', code)
+        folder = os.path.join(parentPath, 'PoS reports', code)
         path = os.path.join(folder, filename)
-        #os.makedirs(folder, exist_ok=True)
-        #with open(path, 'w', encoding='utf-8') as f:
-        #    f.write('\n'.join(lines))
+        os.makedirs(folder, exist_ok=True)
+        with open(path, 'w', encoding='utf-8') as f:
+            f.write('\n'.join(lines))
         tried = 0
         while tried < 1:
             host = str(stores["ftp_host"][code])

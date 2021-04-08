@@ -1,17 +1,9 @@
 
 ============================================================
-making report for 04/04/2021 on 08/04/2021
-success	JP	sftp
-fail(1)	WS	ftp 	550 No connections allowed from your IP
-fail(1)	SQ2	ftp 	550 No connections allowed from your IP
-success	HM	sftp
-success	SV	sftp
-success	PL	ftp 
-============================================================
 making report for 07/04/2021 on 08/04/2021
 success	JP	sftp
-fail(1)	WS	ftp 	550 No connections allowed from your IP
-fail(1)	SQ2	ftp 	550 No connections allowed from your IP
+fail(1)	WS	ftp 	530 Login or password incorrect!
+fail(1)	SQ2	ftp 	530 Login or password incorrect!
 success	HM	sftp
 success	SV	sftp
 success	PL	ftp 

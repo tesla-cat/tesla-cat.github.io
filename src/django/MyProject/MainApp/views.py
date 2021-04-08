@@ -29,8 +29,11 @@ def homepage(request):
                     uploadPOSReports(dateTime, onMessage)
                 except Exception as e:
                     messages.error(request, f"{str(e)}")
-    with open(logPath, 'r') as f:
-        log = f.read()
+    try:
+        with open(logPath, 'r') as f:
+            log = f.read()
+    except:
+        log = 'No log yet'
     return render(
         request=request,
         template_name='home.html',
