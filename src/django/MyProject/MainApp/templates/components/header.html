@@ -17,6 +17,12 @@
         flex-direction: row;
         flex-wrap: wrap;
       }
+      .log{
+        height: 400px;
+        overflow: scroll;
+        border: 3px solid blue;
+        padding: 10px;
+      }
       ::-webkit-scrollbar{ width: 3px; height: 6px; }
       ::-webkit-scrollbar-thumb{ background: skyblue; }
     </style>
@@ -25,7 +31,7 @@
     <div class="navbar-fixed">
       <nav>
         <div class="nav-wrapper">
-          <a href="/" class="brand-logo"><img class="image-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Elon_Musk_2015.jpg/150px-Elon_Musk_2015.jpg"></a>
+          <a href="/" class="brand-logo"><img class="image-logo" src="https://static.wixstatic.com/media/e49cf4_d6fc0f6b79294350a345f898dce07ade~mv2_d_2211_1903_s_2.png/v1/fill/w_287,h_243,al_c,q_85,usm_0.66_1.00_0.01/e49cf4_d6fc0f6b79294350a345f898dce07ade~mv2_d_2211_1903_s_2.webp"></a>
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             {% include 'components/navBarLinks.html' %}

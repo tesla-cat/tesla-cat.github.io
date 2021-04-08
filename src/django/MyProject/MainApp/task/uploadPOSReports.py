@@ -1,22 +1,39 @@
 
 """
 1. log in to server [66.42.50.128] with username [root] and password [7Hd%XcU32xz3=)j-]
-2. to execute the program daily at 23:00
+2. to execute the program daily at 23:50
     run [crontab -e]
-    add [0 23 * * * /root/.pyenv/versions/3.7.4/bin/python "/root/Ruiqi Point of Sales Reporter/test.py"]
+    add [50 23 * * * /usr/bin/python3 /home/rick/MyProject/MainApp/task/uploadPOSReports.py]
 http://66.42.50.128:8000 admin Maimai1tinhyeu
 http://66.42.50.128:8000/admin
+pip3 install django pandas gspread pysftp
+python manage.py runserver 0.0.0.0:8000
 """
 
-import ftplib, pathlib
+"""
+pip install dotenv
+pyenv local 3.7.4
+python ./salemanagement/manage.py runserver 0.0.0.0:8006
+"""
+
+# native libraries
+import ftplib, pathlib, json, os, time, warnings 
 from datetime import datetime
-import pandas, json, os
-import gspread, pysftp
-import warnings
+
+# need to install
+import pandas, gspread, pysftp
+
 warnings.filterwarnings("ignore")
 parentPath = pathlib.Path(__file__).parent.absolute()
 
 def uploadPOSReports(dateTime: datetime, onMessage):
+    logTxt = os.path.join(parentPath, 'log.txt')
+    def makeLog(log):
+        with open(logTxt, 'a+') as f:
+            f.write(log)
+    dateString = dateTime.strftime(r'%d/%m/%Y')
+    nowString  = datetime.now().strftime(r'%d/%m/%Y')
+    makeLog('\n' + '='*60 + '\n' + f'making report for {dateString} on {nowString}')
     def loadJSON(path):
         with open(path) as f:
             data = json.load(f)
@@ -27,7 +44,6 @@ def uploadPOSReports(dateTime: datetime, onMessage):
     stores   = pandas.read_csv(storesCSV, index_col=1) 
     settings = loadJSON(settingsJSON)
     # read data from google drive
-    dateString = dateTime.strftime(r'%d/%m/%Y')
     account = gspread.service_account(googleJSON)
     sheet = account.open_by_url(settings['sheet url']).worksheet(settings['sheet tab'])
     data = {}
@@ -66,6 +82,10 @@ def uploadPOSReports(dateTime: datetime, onMessage):
         if 'same as' in posFormat:
             posFormat = settings['report formats'][posFormat.split('same as ')[1]]
         code = storeCode.split(' ')[0]
+        if not code in data:
+            message = '\t'.join(['fail', code, f'Data not found for {code} in Google Sheet'])
+            onMessage(message); makeLog('\n'+ message)
+            continue
         if not code in results:
             results[code] = []
         if '0-22' in storeCode:
@@ -80,9 +100,9 @@ def uploadPOSReports(dateTime: datetime, onMessage):
         filename = formatPOS(code, settings['filename formats'][code])
         folder = os.path.join('PoS reports', code)
         path = os.path.join(folder, filename)
-        os.makedirs(folder, exist_ok=True)
-        with open(path, 'w', encoding='utf-8') as f:
-            f.write('\n'.join(lines))
+        #os.makedirs(folder, exist_ok=True)
+        #with open(path, 'w', encoding='utf-8') as f:
+        #    f.write('\n'.join(lines))
         tried = 0
         while tried < 1:
             host = str(stores["ftp_host"][code])
@@ -92,6 +112,7 @@ def uploadPOSReports(dateTime: datetime, onMessage):
             ftpType = 'ftp' if host in ['ftp.dtstms.com', 'plsq.dyndns.org'] else 'sftp'
             try:
                 if ftpType == 'ftp':
+                    ftpType += ' '
                     ftp = ftplib.FTP(host, username, password)
                     ftp.connect(host, port)
                     ftp.login(username, password)
@@ -101,11 +122,13 @@ def uploadPOSReports(dateTime: datetime, onMessage):
                 else:
                     with pysftp.Connection(host, username, password=password, cnopts=cnopts) as sftp:
                         sftp.put(path)
-                onMessage('\t'.join(['success', ftpType, code]))
+                message = '\t'.join(['success', code, ftpType])
+                onMessage(message); makeLog('\n'+ message)
                 break
             except Exception as e:
                 tried +=1
-                onMessage('\t'.join([f'fail({tried})', ftpType, code, str(e)]))
+                message = '\t'.join([f'fail({tried})', code, ftpType, str(e)])
+                onMessage(message); makeLog('\n'+ message)
 
-if __name__ == '__main__':           
-    uploadPOSReports(datetime(2021, 4, 2))
+if __name__ == '__main__': 
+    uploadPOSReports(datetime.now(), lambda m: print(m))

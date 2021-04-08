@@ -7,6 +7,10 @@ from django.contrib import messages
 from datetime import datetime
 from .task.uploadPOSReports import uploadPOSReports
 
+import pathlib, os
+parentPath = pathlib.Path(__file__).parent.absolute()
+logPath = os.path.join(parentPath, 'task', 'log.txt')
+
 def homepage(request):
     if request.method == 'POST':
         if not request.POST['date']:
@@ -25,10 +29,12 @@ def homepage(request):
                     uploadPOSReports(dateTime, onMessage)
                 except Exception as e:
                     messages.error(request, f"{str(e)}")
+    with open(logPath, 'r') as f:
+        log = f.read()
     return render(
         request=request,
         template_name='home.html',
-        context={"posts": Post.objects.all} 
+        context={"posts": Post.objects.all, "log": log} 
     )
 
 def signUp(request):
