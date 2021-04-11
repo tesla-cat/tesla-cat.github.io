@@ -1,57 +1,56 @@
 // lib import
 import React, { useEffect, useState } from 'react'
 import { 
-  View, Text, FlatList, StyleSheet,
+  View, Text, FlatList, StyleSheet, 
 } from "react-native"
 import {
   IconButton as IconB, Button, FAB, 
 } from 'react-native-paper'
 // local import
-import { movies } from '../data/movies/movies'
 import { search } from '../data/movies/movies2'
-import { Flex, Img } from '../components/basic'
+import { Flex, Img, MyLink } from '../components/basic'
 import { icon, icons } from '../components/icons'
-export { cssView, cssImg, cssText, ideaType }
+export { cssView, cssImg, cssText, ideaType, IdeaList, IdeaCard, HomeHead }
 
 export default function HomePage(){
+  const [ideas, setIdeas] = useState<ideaType[]>([])
+  useEffect(()=>{
+    search('柯南').then(setIdeas)
+  })
   return(
     <View style={cssView.screen}>
-      <Head/>
-      <IdeaList/>
+      <HomeHead/>
+      <IdeaList ideas={ideas}/>
       <FAB style={cssView.fab} icon={icons.pen}/>
     </View>
   )
 }
 
-function Head(){
-  const p: ideaType = movies[0]
+function HomeHead(){
   return(
     <View style={cssView.head}>
-      <Img style={cssImg.logo} uri={icon('kitty-watch')} resizeMode='contain'/>
-      <Text style={cssText.title}>影迷小猫</Text>
+      <MyLink to='home'><Img style={cssImg.logo} uri={icon('kitty-watch')} resizeMode='contain'/></MyLink>
+      <Text style={cssText.title}>KittyTube</Text>
       {Flex()}
-      <IconB icon={icons.magnify}/>
-      <Img style={cssImg.logo} uri={p.avatar}/>
+      <MyLink to='search' icon={icons.magnify}/>
     </View>
   )
 }
 
-function IdeaList(){
-  const [data, setData] = useState<ideaType[]>([])
-  useEffect(()=>{
-    search('柯南').then(setData)
-  })
-  if(!data.length) return null
+type IdeaListType = { ideas: ideaType[] }
+function IdeaList(p: IdeaListType){
+  if(!p.ideas.length) return null
   return(
     <FlatList
-      data={data}
+      data={p.ideas}
       keyExtractor={(item, index)=>index.toString()}
-      renderItem={({item})=>IdeaCard(item)}
+      renderItem={({item})=><IdeaCard {...item}/>}
     />
   )
 }
 
 type ideaType = {
+  id: string,
   avatar: string,
   vote: number,
   title: string,
@@ -62,9 +61,11 @@ type ideaType = {
   numComment: number,
   numRetweet: number,
   numHand: number,
+  //====================
+  uris: string[],
 }
 function IdeaCard(p: ideaType){
-  return(
+  const card = (
     <View style={cssView.row}>
       <View style={cssView.center}>
         <Img style={cssImg.avatar} uri={p.avatar}/>
@@ -78,7 +79,7 @@ function IdeaCard(p: ideaType){
         <Text style={cssText.body}>{p.body}</Text>
         <Text style={cssText.tags}>{p.tags.join(', ')}</Text>
         <Img style={cssImg.image} uri={p.images[0]}/>
-        <View style={cssView.rowC}>
+        <View style={cssView.rowCenter}>
           <Button icon={icons.comment}>{p.numComment}</Button>
           <Button icon={icons.retweet}>{p.numRetweet}</Button>
           <Button icon={icons.hand}>{p.numHand}</Button>
@@ -88,13 +89,15 @@ function IdeaCard(p: ideaType){
       </View>
     </View>
   )
+  return <MyLink to='idea' params={{id: p.id, title: p.title}}>{card}</MyLink>
 }
 
 const cssView = StyleSheet.create({
   screen: { flex: 1, backgroundColor: 'white' },
   main: {flex: 1, padding: 6},
-  row: { flexDirection: 'row' },
-  rowC: { flexDirection: 'row', alignItems:'center' },
+  row: { flexDirection: 'row', },
+  rowCenter: { flexDirection: 'row', alignItems:'center' },
+  rowGrid: { flexDirection: 'row', flexWrap:'wrap', justifyContent:'center' },
   center: { alignItems: 'center' },
   fab: { position:'absolute', right:6, bottom:6, backgroundColor:'white' },
   head: { flexDirection:'row', alignItems:'center', borderBottomWidth: 3 },

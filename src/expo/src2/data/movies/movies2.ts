@@ -7,9 +7,9 @@
  * 百度资源         http://help.apibdzy.com/
  */
 
-import {fetchJSON} from '../cloudBase/cloudBase'
-import {ideaType} from '../../screens/home'
-export { search }
+import { fetchJSON } from '../cloudBase/cloudBase'
+import { ideaType } from '../../screens/home'
+export { search, getMoviesByIds, allIdeas }
 
 const movie0 = {
   "vod_time": "2019-11-15 21:28:39",
@@ -66,12 +66,17 @@ const movieList0 = {
 type movieType = typeof movie0
 type movieListType = typeof movieList0
 
+type allIdeasType = {[id: string]: ideaType}
+const allIdeas: allIdeasType = {}
+
 function moviesToIdeas(p: movieType[]){
   return p.map(movie=>{
+    const uris = movie.vod_play_url.split('#')
     const idea: ideaType = {
+      id: movie.vod_id,
       avatar: movie.vod_pic,
       vote: parseInt(movie.vod_score_all),
-      title: `${movie.vod_director}: ${movie.vod_name}`,
+      title: `[${uris.length}] ${movie.vod_name}`,
       info: `${movie.vod_year} ${movie.vod_area} ${movie.type_name}`,
       body: movie.vod_content,
       tags: [],
@@ -79,7 +84,9 @@ function moviesToIdeas(p: movieType[]){
       numComment: parseInt(movie.vod_score_num),
       numRetweet: parseInt(movie.vod_hits),
       numHand: movie.vod_name.length,
+      uris,
     }
+    allIdeas[idea.id] = idea
     return idea
   })
 }

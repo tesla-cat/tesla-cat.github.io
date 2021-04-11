@@ -11,6 +11,7 @@ const date = new Date().toString()
 function moviesToIdeas(p: movieType[]){
   return p.map(movie=>{
     const idea: ideaType = {
+      id: movie.id,
       avatar: movie.poster,
       vote: movie.title.length,
       title: movie.title,
@@ -21,6 +22,7 @@ function moviesToIdeas(p: movieType[]){
       numComment: movie.overview.length,
       numRetweet: movie.genres.length,
       numHand: movie.id.length,
+      uris: ''
     }
     return idea
   })

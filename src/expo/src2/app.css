@@ -3,3 +3,4 @@
 ::-webkit-scrollbar-thumb{ background: gray; }
 input{ outline: none; }
 textarea{ outline: none; }
+a{ text-decoration: none; }

@@ -12,6 +12,7 @@ import './test'
 import Home from './screens/home'
 import Add from './screens/add'
 import Search from './screens/search'
+import Idea from './screens/idea'
 
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator()
@@ -23,7 +24,9 @@ export default function App(){
         Linking.createURL('/')
       ]}}>
         <Stack.Navigator headerMode='none'>
-          <Stack.Screen name='tabs' component={Tabs}/>
+          <Tab.Screen name='home' component={Home}/>
+          <Stack.Screen name='search' component={Search}/>
+          <Stack.Screen name='idea' component={Idea} options={({route})=>({title: route?.params?.title })}/>
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
@@ -39,7 +42,7 @@ function Tabs(){
     })}>
       <Tab.Screen name='home' component={Home}/>
       <Tab.Screen name='add' component={Add}/>
-      <Tab.Screen name='search' component={Search}/>
+      
     </Tab.Navigator>
   )
 }
