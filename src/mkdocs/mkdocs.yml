@@ -5,3 +5,4 @@ markdown_extensions:
       no_inline_svg: True
       insert_fonts_css: True
       #macro-file: macros.tex
+extra_javascript: [extra.js]
