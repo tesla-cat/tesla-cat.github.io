@@ -7,17 +7,13 @@ http://66.42.50.128:8000/admin
 
 """
 - To run the server
-once
-    sudo pip3 install virtualenv
-    virtualenv newVirtualEnvironment
-    source newVirtualEnvironment/bin/activate 
-    pip install django django-tinymce pandas gspread pysftp
-    deactivate
-
 screen -ls
 screen -X -S ??? quit
 screen -S django
+once: sudo pip3 install virtualenv
+once: virtualenv newVirtualEnvironment
 source newVirtualEnvironment/bin/activate 
+once: pip install django django-tinymce pandas gspread pysftp
 python manage.py runserver 0.0.0.0:8000
 Now press Ctrl+A and then press d to exit from this screen
 """
@@ -30,12 +26,18 @@ crontab -e
 50 23 * * * /usr/bin/python3 /home/rick/MyProject/MainApp/task/uploadPOSReports.py
 """
 
+"""
+source newVirtualEnvironment/bin/activate 
+once: pip install schedule
+nohup python /home/rick/MyProject/MainApp/task/uploadPOSReports.py &
+"""
+
 # native libraries
 import ftplib, pathlib, json, os, time, warnings 
 from datetime import datetime
 
 # need to install
-import pandas, gspread, pysftp
+import pandas, gspread, pysftp, schedule
 
 warnings.filterwarnings("ignore")
 parentPath = pathlib.Path(__file__).parent.absolute()
@@ -145,4 +147,11 @@ def uploadPOSReports(dateTime: datetime, onMessage):
                 onMessage(message); makeLog('\n'+ message)
 
 if __name__ == '__main__': 
-    uploadPOSReports(datetime.now(), lambda m: print(m))
+    def job(t):
+        print("I'm working...", t)
+        uploadPOSReports(datetime.now(), lambda m: print(m))
+        return
+    schedule.every().day.at("23:50").do(job,'It is 23:50')
+    while True:
+        schedule.run_pending()
+        time.sleep(60) # wait one minute
