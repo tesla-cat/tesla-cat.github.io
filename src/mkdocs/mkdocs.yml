@@ -6,3 +6,4 @@ markdown_extensions:
       insert_fonts_css: True
       #macro-file: macros.tex
 extra_javascript: [extra.js]
+site_dir: '../../site'
