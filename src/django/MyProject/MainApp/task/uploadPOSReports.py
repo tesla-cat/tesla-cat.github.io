@@ -23,13 +23,12 @@ Now press Ctrl+A and then press d to exit from this screen
 import sys
 print(sys.executable)
 crontab -e
-50 23 * * * /usr/bin/python3 /home/rick/MyProject/MainApp/task/uploadPOSReports.py
+50 23 * * * /home/rick/MyProject/newVirtualEnvironment/bin/python3 /home/rick/MyProject/MainApp/task/uploadPOSReports.py
+* * * * * /home/rick/MyProject/newVirtualEnvironment/bin/python3 /home/rick/MyProject/MainApp/task/uploadPOSReports.py
 """
 
 """
-source newVirtualEnvironment/bin/activate 
-once: pip install schedule
-nohup python /home/rick/MyProject/MainApp/task/uploadPOSReports.py &
+nohup /usr/bin/python3 /home/rick/MyProject/MainApp/task/uploadPOSReports.py &
 """
 
 # native libraries
@@ -37,26 +36,29 @@ import ftplib, pathlib, json, os, time, warnings
 from datetime import datetime
 
 # need to install
-import pandas, gspread, pysftp, schedule
+import pandas, gspread, pysftp
 
 warnings.filterwarnings("ignore")
 parentPath = pathlib.Path(__file__).parent.absolute()
 
-def uploadPOSReports(dateTime: datetime, onMessage):
-    logTxt = os.path.join(parentPath, 'log.txt')
-    def makeLog(log):
-        with open(logTxt, 'a+') as f:
-            f.write(log)
+logTxt       = os.path.join(parentPath, 'log.txt')
+storesCSV    = os.path.join(parentPath, 'stores.csv')
+settingsJSON = os.path.join(parentPath, 'settings.json')
+googleJSON   = os.path.join(parentPath, 'Google credentials.json')
+
+def makeLog(log):
+    with open(logTxt, 'a+') as f:
+        f.write(log)
+def loadJSON(path):
+    with open(path) as f:
+        data = json.load(f)
+    return data
+
+def uploadPOSReports(dateTime: datetime, onMessage, user = 'auto  '):
     dateString = dateTime.strftime(r'%d/%m/%Y')
     nowString  = datetime.now().strftime(r'%d/%m/%Y')
-    makeLog('\n' + '='*60 + '\n' + f'making report for {dateString} on {nowString}')
-    def loadJSON(path):
-        with open(path) as f:
-            data = json.load(f)
-        return data
-    storesCSV    = os.path.join(parentPath, 'stores.csv')
-    settingsJSON = os.path.join(parentPath, 'settings.json')
-    googleJSON   = os.path.join(parentPath, 'Google credentials.json')
+    messages = [user, f'{dateString}(@{nowString})']
+    
     stores   = pandas.read_csv(storesCSV, index_col=1) 
     settings = loadJSON(settingsJSON)
     # read data from google drive
@@ -66,7 +68,7 @@ def uploadPOSReports(dateTime: datetime, onMessage):
     for row in sheet.get_all_values():
         if row[1] == dateString:
             storeCode = row[3].upper()
-            salesWithTax  = sum([float(x) for x in row[4:13]])
+            salesWithTax = sum([float(x) for x in row[4:13]])
             if storeCode in data:
                 data[storeCode][3] += salesWithTax
             else:
@@ -99,8 +101,7 @@ def uploadPOSReports(dateTime: datetime, onMessage):
             posFormat = settings['report formats'][posFormat.split('same as ')[1]]
         code = storeCode.split(' ')[0]
         if not code in data:
-            message = '\t'.join(['fail', code, f'Data not found for {code} in Google Sheet'])
-            onMessage(message); makeLog('\n'+ message)
+            messages.append(f'Error: {code}(no data)')
             continue
         if not code in results:
             results[code] = []
@@ -112,6 +113,7 @@ def uploadPOSReports(dateTime: datetime, onMessage):
     # write to file and upload ftp
     cnopts = pysftp.CnOpts()
     cnopts.hostkeys = None
+    success, fail = [], []
     for code, lines in results.items():
         filename = formatPOS(code, settings['filename formats'][code])
         folder = os.path.join(parentPath, 'PoS reports', code)
@@ -119,39 +121,29 @@ def uploadPOSReports(dateTime: datetime, onMessage):
         os.makedirs(folder, exist_ok=True)
         with open(path, 'w', encoding='utf-8') as f:
             f.write('\n'.join(lines))
-        tried = 0
-        while tried < 1:
-            host = str(stores["ftp_host"][code])
-            username = str(stores["ftp_username"][code])
-            password = str(stores["ftp_password"][code])
-            port = int(stores["ftp_port"][code])
-            ftpType = 'ftp' if host in ['ftp.dtstms.com', 'plsq.dyndns.org'] else 'sftp'
-            try:
-                if ftpType == 'ftp':
-                    ftpType += ' '
-                    ftp = ftplib.FTP(host, username, password)
-                    ftp.connect(host, port)
-                    ftp.login(username, password)
-                    with open(path, 'rb') as f:
-                        ftp.storbinary(f'STOR {filename}', f)
-                    ftp.quit()
-                else:
-                    with pysftp.Connection(host, username, password=password, cnopts=cnopts) as sftp:
-                        sftp.put(path)
-                message = '\t'.join(['success', code, ftpType])
-                onMessage(message); makeLog('\n'+ message)
-                break
-            except Exception as e:
-                tried +=1
-                message = '\t'.join([f'fail({tried})', code, ftpType, str(e)])
-                onMessage(message); makeLog('\n'+ message)
+        host = str(stores["ftp_host"][code])
+        username = str(stores["ftp_username"][code])
+        password = str(stores["ftp_password"][code])
+        port = int(stores["ftp_port"][code])
+        ftpType = 'ftp' if host in ['ftp.dtstms.com', 'plsq.dyndns.org'] else 'sftp'
+        try:
+            if ftpType == 'ftp':
+                ftp = ftplib.FTP(host, username, password)
+                ftp.connect(host, port)
+                ftp.login(username, password)
+                with open(path, 'rb') as f:
+                    ftp.storbinary(f'STOR {filename}', f)
+                ftp.quit()
+            else:
+                with pysftp.Connection(host, username, password=password, cnopts=cnopts) as sftp:
+                    sftp.put(path)
+            success.append(code)
+        except Exception as e:
+            fail.append(f'{code}({str(e)})')
+    messages.append('Success: %s' % ', '.join(success) )
+    messages.append('Fail: %s'    % ', '.join(fail   ) )
+    for m in messages: onMessage(m)
+    makeLog('\n'+'. '.join(messages))
 
 if __name__ == '__main__': 
-    def job(t):
-        print("I'm working...", t)
-        uploadPOSReports(datetime.now(), lambda m: print(m))
-        return
-    schedule.every().day.at("23:50").do(job,'It is 23:50')
-    while True:
-        schedule.run_pending()
-        time.sleep(60) # wait one minute
+    uploadPOSReports(datetime.now(), lambda m: print(m))

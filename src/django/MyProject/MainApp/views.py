@@ -26,7 +26,7 @@ def homepage(request):
                             messages.success(request, m)
                         else:
                             messages.error(request, m)
-                    uploadPOSReports(dateTime, onMessage)
+                    uploadPOSReports(dateTime, onMessage, user='manual')
                 except Exception as e:
                     messages.error(request, f"{str(e)}")
     try:
