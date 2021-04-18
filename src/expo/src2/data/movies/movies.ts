@@ -22,7 +22,7 @@ function moviesToIdeas(p: movieType[]){
       numComment: movie.overview.length,
       numRetweet: movie.genres.length,
       numHand: movie.id.length,
-      uris: ''
+      uris: ['']
     }
     return idea
   })

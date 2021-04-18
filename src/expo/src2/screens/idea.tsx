@@ -7,7 +7,7 @@ import {
 // local import
 import { Box } from '../components/basic'
 import { cssView, IdeaCard, HomeHead } from './home'
-import { allIdeas, getMoviesByIds } from '../data/movies/movies2'
+import { allIdeas, getIdeasByIds } from '../data/data'
 import { useRoute } from '@react-navigation/core'
 import ReactPlayer from 'react-player'
 
@@ -17,7 +17,7 @@ export default function IdeaPage(){
   const [index, setIndex] = useState(0)
   
   if(!allIdeas[p.id]){
-    getMoviesByIds(p.id).then((ideas)=> setIdea(ideas[0]) )
+    getIdeasByIds(p.id).then((ideas)=> setIdea(ideas[0]) )
     return null
   }
   return(

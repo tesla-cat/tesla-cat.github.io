@@ -8,7 +8,7 @@ import {
 import { Input, MyLink } from '../components/basic'
 import { icons } from '../components/icons'
 import { cssView, cssText, IdeaList, ideaType } from './home'
-import { search } from '../data/movies/movies2'
+import { search } from '../data/data'
 
 export default function SearchPage(){
   const [ideas, setIdeas] = useState<ideaType[]>([])

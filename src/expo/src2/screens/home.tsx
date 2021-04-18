@@ -7,7 +7,7 @@ import {
   IconButton as IconB, Button, FAB, 
 } from 'react-native-paper'
 // local import
-import { search } from '../data/movies/movies2'
+import { search } from '../data/data'
 import { Flex, Img, MyLink } from '../components/basic'
 import { icon, icons } from '../components/icons'
 export { cssView, cssImg, cssText, ideaType, IdeaList, IdeaCard, HomeHead }
@@ -21,7 +21,7 @@ export default function HomePage(){
     <View style={cssView.screen}>
       <HomeHead/>
       <IdeaList ideas={ideas}/>
-      <FAB style={cssView.fab} icon={icons.pen}/>
+      <MyLink to='add' fab={icons.pen}/>
     </View>
   )
 }
@@ -106,7 +106,7 @@ const cssView = StyleSheet.create({
 const cssImg = StyleSheet.create({
   avatar: { height: 50, width: 50, borderRadius: 1e3, margin: 6, },
   logo: { height: 30, width: 30, borderRadius: 1e3, margin: 6, },
-  image: { height: 150, width: '100%', borderRadius: 20, padding: 6, marginVertical: 3 },
+  image: { height: 300, width: '100%', borderRadius: 20, padding: 6, marginVertical: 3 },
 })
 
 const cssText = StyleSheet.create({

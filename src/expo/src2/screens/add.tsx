@@ -5,8 +5,8 @@ import {
   IconButton as IconB, 
 } from 'react-native-paper'
 // local import
-import { movies } from '../data/movies/movies'
-import { Img, Input, Flex } from '../components/basic'
+import { allIdeas } from '../data/data'
+import { Img, Input, Flex, MyLink } from '../components/basic'
 import { icon, icons } from '../components/icons'
 import { cssView, cssImg, cssText, ideaType } from './home'
 
@@ -14,7 +14,7 @@ export default function AddPage(){
   return(
     <View style={cssView.screen}>
       <Head/>
-      <Add {...movies[0]}/>
+      <Add {...Object.values(allIdeas)[0]}/>
     </View>
   )
 }
@@ -22,7 +22,7 @@ export default function AddPage(){
 function Head(){
   return(
     <View style={cssView.row}>
-      <IconB icon={icons.left}/>
+      <MyLink to='home' icon={icons.left}/>
       {Flex()}
       <IconB icon={icons.check}/>
     </View>
@@ -38,7 +38,7 @@ function Add(p: ideaType){
       <View style={cssView.main}>
         <Input style={cssText.title} placeholder={p.title} autoFocus/>
         <Input style={cssText.body} placeholder={p.body} n={6}/>
-        <Input style={cssText.tags} placeholder={p.tags.join(', ')}/>
+        <Input style={cssText.tags} placeholder={p.tags?.join(', ')}/>
         <Img style={cssImg.image} uri={icon('image')} resizeMode='contain'/>
       </View>
     </View>

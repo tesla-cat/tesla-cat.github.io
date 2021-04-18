@@ -9,7 +9,7 @@
 
 import { fetchJSON } from '../cloudBase/cloudBase'
 import { ideaType } from '../../screens/home'
-export { search, getMoviesByIds, allIdeas }
+export { allIdeas, search, getIdeasByIds }
 
 const movie0 = {
   "vod_time": "2019-11-15 21:28:39",
@@ -96,7 +96,7 @@ function moviesToIdeas(p: movieType[]){
 const baidu = 'https://api.apibdzy.com/api.php/provide/vod/?ac=detail'
 const maHua = 'https://www.mhapi123.com/inc/api_mac10.php'
 
-function getMoviesByIds(ids: string){
+function getIdeasByIds(ids: string){
   return fetchJSON(`${maHua}?ac=detail&ids=${ids}`).then((r: movieListType)=>{
     return moviesToIdeas(r.list)
   }) 
@@ -105,6 +105,6 @@ function getMoviesByIds(ids: string){
 function search(query: string){
   return fetchJSON(`${maHua}?ac=list&wd=${query}`).then((r: movieListType)=>{
     const ids = r.list.map(movie=>movie.vod_id).join(',')
-    return getMoviesByIds(ids)
+    return getIdeasByIds(ids)
   })
 }

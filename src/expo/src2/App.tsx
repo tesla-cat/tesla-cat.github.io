@@ -24,7 +24,8 @@ export default function App(){
         Linking.createURL('/')
       ]}}>
         <Stack.Navigator headerMode='none'>
-          <Tab.Screen name='home' component={Home}/>
+          <Stack.Screen name='home' component={Home}/>
+          <Stack.Screen name='add' component={Add}/>
           <Stack.Screen name='search' component={Search}/>
           <Stack.Screen name='idea' component={Idea} options={({route})=>({title: route?.params?.title })}/>
         </Stack.Navigator>

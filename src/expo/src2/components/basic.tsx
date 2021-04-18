@@ -7,8 +7,9 @@ import {
   View
 } from "react-native"
 import {
-  TouchableRipple as Ripple, IconButton as IconB,
+  TouchableRipple as Ripple, IconButton as IconB, FAB, 
 } from 'react-native-paper'
+import { cssView } from '../screens/home'
 // local import
 export { Img, Input, Flex, Box, MyLink }
 
@@ -39,7 +40,7 @@ function Input(p: InputType){
 
 type MyLinkType = {
   to: string, params?: object, 
-  children?: ReactNode, icon?: string,
+  children?: ReactNode, icon?: string, fab?: string,
 }
 function MyLink(p: MyLinkType){
   const nav = useNavigation()
@@ -48,5 +49,6 @@ function MyLink(p: MyLinkType){
     else nav.navigate(p.to)
   }
   if(p.icon) return <IconB onPress={onPress} icon={p.icon}/>
+  if(p.fab) return <FAB onPress={onPress} style={cssView.fab} icon={p.fab}/>
   return <Ripple onPress={onPress}>{p.children}</Ripple>
 }
