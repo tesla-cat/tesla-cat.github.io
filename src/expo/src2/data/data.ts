@@ -1,6 +1,6 @@
 import { ideaType } from "../screens/home"
 
-import { allIdeas, search, getIdeasByIds } from './girls/girls'
+import { allIdeas, search, getIdeasByIds } from './people/people'
 export { allIdeas, search, getIdeasByIds }
 
 /*

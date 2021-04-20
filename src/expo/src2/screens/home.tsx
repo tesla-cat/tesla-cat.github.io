@@ -29,8 +29,11 @@ export default function HomePage(){
 function HomeHead(){
   return(
     <View style={cssView.head}>
-      <MyLink to='home'><Img style={cssImg.logo} uri={icon('kitty-watch')} resizeMode='contain'/></MyLink>
-      <Text style={cssText.title}>KittyTube</Text>
+      <MyLink to='home'><Img style={cssImg.logo} uri={icon('unhappy')} resizeMode='contain'/></MyLink>
+      <View>
+        <Text style={cssText.title}>求为了在新加坡名校读本科而签了6年卖身契的孩子的心理阴影面积</Text>
+        <Text style={cssText.info}>本科名校情结有毛用系列</Text>
+      </View>
       {Flex()}
       <MyLink to='search' icon={icons.magnify}/>
     </View>
@@ -64,7 +67,7 @@ type ideaType = {
   //====================
   uris: string[],
 }
-function IdeaCard(p: ideaType){
+function IdeaCard1(p: ideaType){
   const card = (
     <View style={cssView.row}>
       <View style={cssView.center}>
@@ -92,6 +95,24 @@ function IdeaCard(p: ideaType){
   return <MyLink to='idea' params={{id: p.id, title: p.title}}>{card}</MyLink>
 }
 
+function IdeaCard(p: ideaType){
+  const card = (
+    <View style={cssView.row}>
+      <View style={cssView.center}>
+        <Img style={cssImg.avatarLarge} uri={p.avatar}/>
+      </View>
+      <View style={cssView.main}>
+        <Text style={cssText.title}>{p.title}</Text>
+        <Text style={cssText.info}>{p.info}</Text>
+        <Text style={cssText.body}>{p.body}</Text>
+        <Text style={cssText.tags}>{p.tags.join(', ')}</Text>
+        <Img style={cssImg.image} uri={p.images[0]}/>
+      </View>
+    </View>
+  )
+  return card
+}
+
 const cssView = StyleSheet.create({
   screen: { flex: 1, backgroundColor: 'white' },
   main: {flex: 1, padding: 6},
@@ -105,6 +126,7 @@ const cssView = StyleSheet.create({
 
 const cssImg = StyleSheet.create({
   avatar: { height: 50, width: 50, borderRadius: 1e3, margin: 6, },
+  avatarLarge: { height: 100, width: 100, borderRadius: 20, margin: 6, },
   logo: { height: 30, width: 30, borderRadius: 1e3, margin: 6, },
   image: { height: 300, width: '100%', borderRadius: 20, padding: 6, marginVertical: 3 },
 })

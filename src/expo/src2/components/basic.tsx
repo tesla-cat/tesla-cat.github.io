@@ -9,11 +9,12 @@ import {
 import {
   TouchableRipple as Ripple, IconButton as IconB, FAB, 
 } from 'react-native-paper'
-import { cssView } from '../screens/home'
 // local import
+import { Editor, Viewer } from './vditor'
+import { cssView } from '../screens/home'
 export { Img, Input, Flex, Box, MyLink }
 
-function Flex(flex=1){return <View style={{flex}}/>}
+function Flex(flex=1, children: ReactNode=null){return <View style={{flex}}>{children}</View>}
 function Box(width=0, height=0){return <View style={{width, height}}/>}
 
 interface ImgType extends Partial<ImageProps> {
@@ -21,6 +22,7 @@ interface ImgType extends Partial<ImageProps> {
   on?: ()=>void,
 }
 function Img(p: ImgType){
+  if(!p.uri) return null
   return(
     <Image {...p} source={{uri: p.uri}}/>
   )
@@ -28,14 +30,12 @@ function Img(p: ImgType){
 
 interface InputType extends Partial<TextInputProps> {
   n?: number,
+  mode?: 'editor' | 'viewer'
 }
 function Input(p: InputType){
-  return(
-    <TextInput 
-      {...p}
-      numberOfLines={p.n} multiline={p.n ? true : false}
-    />
-  )
+  if(p.mode=='editor') return <Editor {...p}/>
+  if(p.mode=='viewer') return <Viewer {...p}/>
+  return <TextInput {...p} numberOfLines={p.n} multiline={p.n ? true : false}/>
 }
 
 type MyLinkType = {

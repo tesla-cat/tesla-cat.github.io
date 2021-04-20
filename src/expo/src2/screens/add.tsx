@@ -1,5 +1,5 @@
 // lib import
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { View } from "react-native"
 import {
   IconButton as IconB, 
@@ -15,6 +15,7 @@ export default function AddPage(){
     <View style={cssView.screen}>
       <Head/>
       <Add {...Object.values(allIdeas)[0]}/>
+      
     </View>
   )
 }
@@ -37,10 +38,11 @@ function Add(p: ideaType){
       </View>
       <View style={cssView.main}>
         <Input style={cssText.title} placeholder={p.title} autoFocus/>
-        <Input style={cssText.body} placeholder={p.body} n={6}/>
+        <Input mode='viewer' value='$x$'/>
         <Input style={cssText.tags} placeholder={p.tags?.join(', ')}/>
-        <Img style={cssImg.image} uri={icon('image')} resizeMode='contain'/>
       </View>
     </View>
   )
 }
+
+

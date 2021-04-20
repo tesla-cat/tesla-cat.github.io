@@ -17,4 +17,5 @@ const icons = {
   share: 'share-variant',
   magnify: 'magnify',
   check: 'check-bold',
+  unhappy: 'unhappy',
 }
