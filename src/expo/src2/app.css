@@ -1,5 +1,5 @@
 
-::-webkit-scrollbar{ width: 3px; height: 6px; }
+::-webkit-scrollbar{ width: 6px; height: 6px; }
 ::-webkit-scrollbar-thumb{ background: gray; }
 input{ outline: none; }
 textarea{ outline: none; }

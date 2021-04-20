@@ -32,13 +32,13 @@ function Head(){
 
 function Add(p: ideaType){
   return(
-    <View style={cssView.row}>
+    <View style={[cssView.row, {flex:1}]}>
       <View style={cssView.center}>
         <Img style={cssImg.avatar} uri={p.avatar}/>
       </View>
-      <View style={cssView.main}>
+      <View style={{flex:1}}>
         <Input style={cssText.title} placeholder={p.title} autoFocus/>
-        <Input mode='viewer' value='$x$'/>
+        <Input mode='editor' value={'$x$'}/>
         <Input style={cssText.tags} placeholder={p.tags?.join(', ')}/>
       </View>
     </View>
