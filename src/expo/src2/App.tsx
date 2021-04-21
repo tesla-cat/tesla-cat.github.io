@@ -13,7 +13,11 @@ import Home from './screens/home'
 import Add from './screens/add'
 import Search from './screens/search'
 import Idea from './screens/idea'
+import Doge from './screens/doge'
 
+export default Doge
+
+/*
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator()
 
@@ -47,3 +51,4 @@ function Tabs(){
     </Tab.Navigator>
   )
 }
+*/
