@@ -1,9 +1,26 @@
 site_name: Rick (Ruiqi) Ding
-theme: readthedocs
-markdown_extensions:
-  - markdown_katex:
-      no_inline_svg: True
-      insert_fonts_css: True
-      #macro-file: macros.tex
-extra_javascript: [extra.js]
+theme: material
+#theme: readthedocs
 site_dir: '../../site'
+
+plugins:
+- search
+- mkdocs-jupyter
+- mkdocstrings:
+    default_handler: python
+    handlers:
+      python:
+        rendering:
+          show_root_heading: true
+    watch:
+      - .
+
+markdown_extensions:
+- markdown_katex
+- pymdownx.highlight
+- pymdownx.superfences
+
+extra_css:
+- style.css
+extra_javascript: 
+- extra.js
