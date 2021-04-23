@@ -1,8 +1,0 @@
-
-{% if user.is_authenticated %}
-    <li><a href="/account">{{ user.username }}</a></li>
-    <li><a href="/signOut">Sign Out</a></li>
-{% else %}
-    <li><a href="/signIn">Sign In</a></li>
-{% endif %}
-    <li><a href="/admin">Admin</a></li>
