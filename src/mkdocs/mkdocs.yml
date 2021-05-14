@@ -19,6 +19,7 @@ markdown_extensions:
 - markdown_katex
 - pymdownx.highlight
 - pymdownx.superfences
+- admonition
 
 extra_css:
 - style.css
