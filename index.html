@@ -331,9 +331,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#improvement-3-from-on-policy-to-off-policy" class="md-nav__link">
+  <a href="#improvement-3-from-on-policy-to-off-policy-pg" class="md-nav__link">
     <span class="md-ellipsis">
-      Improvement 3: from on-policy to off-policy
+      Improvement 3: from on-policy to off-policy PG
     </span>
   </a>
   
@@ -367,6 +367,15 @@
   <a href="#improvement-5-actor-critic-still-trying-to-reduce-variance" class="md-nav__link">
     <span class="md-ellipsis">
       Improvement 5: Actor-Critic: still trying to reduce variance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#improvement-6-from-on-policy-to-off-policy-ac" class="md-nav__link">
+    <span class="md-ellipsis">
+      Improvement 6: from on-policy to off-policy AC
     </span>
   </a>
   
@@ -506,9 +515,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#improvement-3-from-on-policy-to-off-policy" class="md-nav__link">
+  <a href="#improvement-3-from-on-policy-to-off-policy-pg" class="md-nav__link">
     <span class="md-ellipsis">
-      Improvement 3: from on-policy to off-policy
+      Improvement 3: from on-policy to off-policy PG
     </span>
   </a>
   
@@ -547,6 +556,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#improvement-6-from-on-policy-to-off-policy-ac" class="md-nav__link">
+    <span class="md-ellipsis">
+      Improvement 6: from on-policy to off-policy AC
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -571,7 +589,10 @@
 
 <h1 id="summary-of-deep-reinforcement-learning">Summary of Deep Reinforcement Learning</h1>
 <ul>
-<li><a href="https://rail.eecs.berkeley.edu/deeprlcourse">CS285 at UC Berkeley</a></li>
+<li><a href="https://rail.eecs.berkeley.edu/deeprlcourse">CS285 at UC Berkeley</a><ul>
+<li><a href="https://www.youtube.com/watch?v=SupFHGbytvA&amp;list=PL_iWQOsE6TfVYGEGiAOMaOzzv41Jfm_Ps">videos</a></li>
+</ul>
+</li>
 </ul>
 <h2 id="lecture-1-intro-and-overview">Lecture 1: Intro and overview</h2>
 <h3 id="beyond-learning-from-reward">Beyond learning from reward</h3>
@@ -665,7 +686,7 @@ b &amp; := {1\over N} \sum_n r(\tau) \\
 \implies &amp; b = { E[g^2 r] \over E[g^2] }
 \end{align*}
 \]</div>
-<h3 id="improvement-3-from-on-policy-to-off-policy"><code>Improvement 3</code>: from on-policy to off-policy</h3>
+<h3 id="improvement-3-from-on-policy-to-off-policy-pg"><code>Improvement 3</code>: from on-policy to off-policy PG</h3>
 <p><strong>the above result is on-policy —— need to generate new samples whenever policy neural net is updated</strong></p>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Importance_sampling">importance sampling</a>: learn about one distribution from another distribution</li>
@@ -718,7 +739,47 @@ Q(s_t, a_t) &amp;= r(s_t, a_t) + E_{ s_{t+1} } [V(s_{t+1})] \\
 \implies A(s_t, a_t) &amp;\approx r(s_t, a_t) + V(s_{t+1}) - V(s_t)
 \end{align*}
 \]</div>
-<p>page 7</p>
+<ul>
+<li>use neural net <span class="arithmatex">\(\phi\)</span> to approximate <span class="arithmatex">\(V\)</span> (supervised learning)</li>
+</ul>
+<div class="arithmatex">\[
+\begin{align*}
+L_{\text{MSE}}(\phi) &amp;= {1\over 2} \sum_n \lVert V_\phi(s_n) - y_n \rVert^2 \\
+y_{n, t} &amp;= r(s_{n, t}, a_{n, t}) + \underbrace{ \gamma \in [0, 1] }_{ \text{ discount } } \; \underbrace{ V_\phi(s_{n, \; t+1}) }_{ \text{ bootstrapping } } 
+\end{align*}
+\]</div>
+<ul>
+<li><strong>skip pages 14-15: discount factor for PG</strong></li>
+</ul>
+<h3 id="improvement-6-from-on-policy-to-off-policy-ac"><code>Improvement 6</code>: from on-policy to off-policy AC</h3>
+<ul>
+<li>on-policy AC</li>
+</ul>
+<div class="arithmatex">\[
+\begin{align*}
+&amp; \text{1. sample } (s, a, s', r) \\
+&amp; \text{2. fit } V_\phi \text{ using } r + \gamma V_\phi(s') \\
+&amp; \text{3. eval } A(s, a) = r(s, a) + \gamma V_\phi(s') - V_\phi(s) \\
+&amp; \text{4. } \nabla J \approx \nabla \log \pi(a | s) A(s, a) \\
+&amp; \text{5. } \theta \leftarrow \theta + \alpha \nabla J
+\end{align*}
+\]</div>
+<ul>
+<li>off-policy AC, can still use <strong>importance sampling</strong>, but use another method: $ V \to Q $<ul>
+<li>cannot use the above directly because: <strong>$ a $ comes from old policies, not latest</strong></li>
+</ul>
+</li>
+</ul>
+<div class="arithmatex">\[
+\begin{align*}
+&amp; \text{1. sample } (s, a, s', r), \text{ store in } R \\
+&amp; \text{2. sample a batch } \{ s_n, a_n, s_n', r_n \} \text{ from } R \\
+&amp; \text{3. fit } Q_\phi \text{ using } y_n = r_n + \gamma Q_\phi(s_n', a_n') \text{ for each } s_n, a_n \quad a_n' \sim \pi(a | s_n') \\
+&amp; \text{4. } \nabla J \approx {1\over N} \sum_n \nabla \log \pi(a_n^\pi | s_n) Q(s_n, a_n^\pi) \quad a_n^\pi \sim \pi(a|s_n) \\
+&amp; \text{5. } \theta \leftarrow \theta + \alpha \nabla J
+\end{align*}
+\]</div>
+<p>page 26</p>
 
 
 
