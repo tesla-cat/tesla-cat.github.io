@@ -327,6 +327,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#6-mlp-swiglu" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. MLP (SwiGLU)
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -464,6 +473,15 @@
   <a href="#5-mla-multi-head-latent-attention" class="md-nav__link">
     <span class="md-ellipsis">
       5. MLA: Multi-head Latent Attention
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-mlp-swiglu" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. MLP (SwiGLU)
     </span>
   </a>
   
@@ -874,6 +892,46 @@ y = W_O A
 </span><span id="__span-8-90"><a id="__codelineno-8-90" name="__codelineno-8-90" href="#__codelineno-8-90"></a>            <span class="n">x</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;bshc,hdc-&gt;bshd&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">wkv_b</span><span class="p">[:,</span> <span class="o">-</span><span class="n">a</span><span class="o">.</span><span class="n">v_head_dim</span> <span class="p">:])</span>
 </span><span id="__span-8-91"><a id="__codelineno-8-91" name="__codelineno-8-91" href="#__codelineno-8-91"></a>        <span class="n">x</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">wo</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
 </span><span id="__span-8-92"><a id="__codelineno-8-92" name="__codelineno-8-92" href="#__codelineno-8-92"></a>        <span class="k">return</span> <span class="n">x</span>
+</span></code></pre></div>
+<h2 id="6-mlp-swiglu">6. MLP (SwiGLU)</h2>
+<ul>
+<li><a href="https://pytorch.org/docs/stable/generated/torch.nn.SiLU.html">SiLU (Sigmoid Linear Unit)</a> activation function.
+    Also called <a href="https://en.wikipedia.org/wiki/Swish_function">Swish function</a></li>
+</ul>
+<div class="arithmatex">\[
+\text{SiLU}(x) = x \cdot \sigma(x) = { x \over 1 + e^{-x} }
+\]</div>
+<div class="arithmatex">\[
+y = w_2( \; \text{SiLU}(w_1(x)) \cdot w_3(x) \; ) \\
+w_i \text{ are linear layers}
+\]</div>
+<ul>
+<li>
+<p>This is not a typical MLP. 
+    It is a <code>SwiGLU</code> (Gated Linear Unit with Swish activation)</p>
+<ul>
+<li>gating mechanism (element-wise product) allows the model to selectively emphasize / suppress certain features.
+It outperform standard MLPs in many tasks</li>
+</ul>
+</li>
+<li>
+<p>This is used in DeepSeek as:</p>
+<ol>
+<li>Shared Experts</li>
+<li>Dense Feed-Forward Network (only used by the first transformer layer,
+    the rest use MoE: Mixture-of-Experts)</li>
+</ol>
+</li>
+</ul>
+<div class="language-py highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">class</span> <span class="nc">MLP</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">inter_dim</span><span class="p">):</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>        <span class="n">s</span><span class="o">.</span><span class="n">w1</span> <span class="o">=</span> <span class="n">ColumnParallelLinear</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="n">inter_dim</span><span class="p">)</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>        <span class="n">s</span><span class="o">.</span><span class="n">w2</span> <span class="o">=</span> <span class="n">RowParallelLinear</span><span class="p">(</span><span class="n">inter_dim</span><span class="p">,</span> <span class="n">dim</span><span class="p">)</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>        <span class="n">s</span><span class="o">.</span><span class="n">w3</span> <span class="o">=</span> <span class="n">ColumnParallelLinear</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="n">inter_dim</span><span class="p">)</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>        <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">w2</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">silu</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">w1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">*</span> <span class="n">s</span><span class="o">.</span><span class="n">w3</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 </span></code></pre></div>
 
 
